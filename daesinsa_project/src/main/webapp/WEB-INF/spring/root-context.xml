@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	<!--  1-1.properties -->
+	<context:property-placeholder location="classpath:daesinsa.properties" />
+	
+	<!--  1-2.properties 이용하여 db연결 -->
+	<bean class="org.apache.commons.dbcp.BasicDataSource" id="dataSource" destroy-method="close">
+		<property name="driverClassName" value="${db.driverClassName}" />
+		<property name="url" value="${db.url}" />
+		<property name="username" value="${db.username}" />
+		<property name="password" value="${db.password}" />
+	</bean>
+		
+	<!-- 2. MyBatis: sqlSessionFactory 객체 생성 -->	
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactory">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="configLocation" value="classpath:mybatis-config.xml"/>
+	</bean>
+	
+	<!-- 3. MyBatis: sqlSession 객체 생성-->
+	<bean class="org.mybatis.spring.SqlSessionTemplate" id="sqlSession">
+		<!-- 생성자 arg -->
+		<constructor-arg ref="sqlSessionFactory" />
+	</bean>
+	
+	<!-- 4.트랜잭션 설정  commit / rollback -->
+ 	<bean id = "transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	<tx:annotation-driven/>
+		
+</beans>
