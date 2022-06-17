@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-
 <!-- Bootstrap CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
 integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -16,10 +15,10 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/main.css">
 <!-- 폰트 -->
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-<title>Daesinsa 대신사</title>
+<title>Daesinsa 대신사 - 대여</title>
 </head>
 <body>
- <jsp:include page="common/template_header.jsp"></jsp:include>
+ <jsp:include page="../common/template_header.jsp"></jsp:include>
 	<div id="mainwrap">
 
 		<!-- 메인 첫번째 슬라이드 배너 -->
@@ -96,7 +95,7 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 		<!-- 메인 두번째 상품 진열 -->
 		<div class="container main_second">
 			<h1>New product</h1>
-			<p>신규상품</p>
+			<p>신규 대여 가능 상품</p>
 			<ul class="row row-cols-4">
 				<li>
 					<div class="col">
@@ -133,8 +132,8 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 
 		<!-- 메인 세번째 상품 진열 -->
 		<div class="container main_thrid">
-			<h1>Best product</h1>
-			<p>인기상품</p>
+			<h1>Recommended product</h1>
+			<p>추천상품</p>
 			<ul class="row row-cols-4">
 				<li>
 					<div class="col">
@@ -219,10 +218,11 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 	</div>
 
 	<!-- 메인 끝 -->
-	<jsp:include page="common/template_footer.jsp"></jsp:include>
+	<jsp:include page="../common/template_footer.jsp"></jsp:include>
 	<!-- 부트스트랩 스크립트 -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
 integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" 
 crossorigin="anonymous"></script> 
+
 </body>
 </html>

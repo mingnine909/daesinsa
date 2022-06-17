@@ -11,12 +11,18 @@
 <!-- 2.typeAliases : 별칭 domain -->
  <typeAliases>
  <typeAlias type="kh.spring.daesinsa.member.domain.Member" alias="Member"/>
+  <typeAlias type="kh.spring.daesinsa.shopping.domain.Shopping" alias="Shopping"/>
+  <typeAlias type="kh.spring.daesinsa.shopping.domain.Product_img" alias="Product_img"/>
+  <typeAlias type="kh.spring.daesinsa.shopping.domain.Product" alias="Product"/>
+  <typeAlias type="kh.spring.daesinsa.shopping.domain.Category" alias="Category"/>
 </typeAliases> 
 
 
 <!-- 3.mappers -->
 <mappers>
 <mapper resource="mappers/member-mapper.xml"/>
+
+<mapper resource="mappers/shopping-mapper.xml"/>
 </mappers> 
 
 </configuration>

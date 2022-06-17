@@ -1,0 +1,54 @@
+/* 헤더 nav */
+body{
+    font-family: 'Noto Sans KR', sans-serif;
+}
+.second_menu{
+    color: black;
+}
+
+.third_menu>li{
+    padding: 10px;
+}
+
+.third_menu>li>a{
+    text-decoration: none;
+    color: black;
+}
+
+.third_menu>li>a:hover{
+    text-decoration: underline;
+}
+ 
+#headerwrap i{
+    color: white;
+    text-align: center;
+}
+
+#headerwrap i:hover{
+    color: rgba(228, 228, 228, 0.5);
+} 
+
+.icon_des{
+    font-size: 0.2rem;
+}
+
+/* 푸터 */
+#footerwrap{
+    margin-top: 150px; 
+}
+
+#footerwrap h5, #footerwrap li , #footerwrap p{
+    padding-bottom: 10px;
+}
+
+#footerwrap h5{
+    font-weight: bold;
+}
+
+#footerwrap li:hover{
+    font-weight: bold;
+}
+
+.col-4 h5:first-of-type{
+    font-size: 1.5rem;
+}

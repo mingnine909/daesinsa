@@ -1,0 +1,53 @@
+/* 첫번째 베너 css */
+
+.banner h1:first-of-type{
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+.banner p:first-of-type{
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+/* 메인 상품 css */
+
+.main_second, .main_thrid , .main_foruth{
+    margin-top: 150px;
+    margin-bottom: 80px;
+}
+
+/* 메인상품 title */
+.main_second h1, .main_thrid h1{
+    font-size: 1.5rem;
+    padding-bottom: 10px;
+    font-weight: bold;
+}
+/* 메인상품 sub title */
+.main_second p, .main_thrid p{
+    padding-bottom: 20px;
+    color: gray;
+
+}
+/* 상품가격 글씨크기 */
+.product_name  {
+   font-weight: bold;
+    padding-top: 5px;
+    padding-bottom: 10px; 
+ 
+}
+.product_price{
+font-size: 0.9rem;
+}
+
+.main_fourth h1{
+    font-size: 2rem;
+    font-weight: bold;
+    padding-top: 20px;
+}
+
+.main_fourth_item{
+    margin-top: 150px;
+}
+
+
+

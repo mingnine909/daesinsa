@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="Shopping">
+
+ 	<!-- 	
+ 	private String p_id;
+	private String p_name;
+	private int p_price;
+	private String p_content;
+	private String p_postdate;
+	private int p_issale;
+	private int p_saleamount;
+	private int p_isrental;
+	private int p_issoldout;
+	private String c_id;
+	//이미지 list 형태
+	private List<Product_img> p_img_list;
+	-->
+
+<!-- category + p_img_list 컬렉션 이용  -->
+<resultMap type="Shopping" id="CaShoppingAndImgResultMap">
+<id column="p_id" property="p_id"/>
+<result column="p_name" property="p_name"/>
+<result column="p_price" property="p_price"/>
+<result column="p_content" property="p_content"/>
+<result column="p_postdate" property="p_postdate"/>
+<result column="p_issale" property="p_issale"/>
+<result column="p_saleamount" property="p_saleamount"/>
+<result column="p_isrental" property="p_isrental"/>
+<result column="p_issoldout" property="p_issoldout"/>
+<result column="c_id" property="c_id"/>
+<collection property="category" resultMap="CategoryReusltMap"/>
+<collection property="p_img_list" resultMap="ShoppingImgReusltMap"/>
+</resultMap>
+<!-- 	private String c_id;
+	private int c_first;
+	private int c_second;
+	private int c_thrid; -->
+<!-- 카테고리 리스트 resultMap -->	
+<resultMap type="Category" id="CategoryReusltMap">
+<id column="c_id" property="c_id"/>
+<result column="c_first" property="c_first"/>
+<result column="c_second" property="c_second"/>
+<result column="c_thrid" property="c_thrid"/>
+</resultMap>
+<!-- 	private int p_img_no;
+	private String p_id;
+	private String p_img_path -->
+<!-- 이미지 리스트 resultMap -->
+<resultMap type="Product_img" id ="ShoppingImgReusltMap">
+<id column="p_img_no" property="p_img_no"/>
+<result column="p_id" property="p_id"/>
+<result column="p_img_path" property="p_img_path"/>
+</resultMap>
+
+
+	<!-- 카테고리별 상품 개수 조회 -->
+	<select id="selectTotal"  parameterType="string" resultType="_int">
+	select count(*) from product where c_id = #{c_id}
+	</select> 
+	
+	<!-- 전체상품 조회  -->
+	<select id="selectListAll" resultType="Shopping">
+		SELECT *
+		FROM CATEGORY JOIN PRODUCT
+		USING(c_id)
+	</select>
+
+	<!-- 카테고리별 header 조회  -->
+	<select id="selectListCa" parameterType="Shopping"
+		resultMap="CaShoppingAndImgResultMap">
+	select * from product
+    left outer join category
+    using(c_id)
+	left outer join product_img
+	using(p_id)
+	where c_id = #{c_id}
+	</select> 
+
+</mapper>
