@@ -25,9 +25,8 @@
 </head>
 <body>
 	<main class="form-signin w-100 m-auto">
+	     <p style="font-size:1.8rem;">DAESINSA ADMIN</p>
 		<form>
-			<h3>DAESINSA ADMIN</h3>
-
 			<div class="form-floating">
 				<input type="email" class="form-control" id="floatingInput"
 					placeholder="ID"> <label for="floatingInput">ID</label>
