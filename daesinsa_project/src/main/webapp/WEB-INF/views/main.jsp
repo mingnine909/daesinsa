@@ -13,6 +13,7 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 <!-- Common CSS -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/header_footer.css">
+<!-- main css -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/main.css">
 <!-- 폰트 -->
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">

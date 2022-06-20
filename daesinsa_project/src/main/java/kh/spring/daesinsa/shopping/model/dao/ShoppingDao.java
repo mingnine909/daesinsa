@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kh.spring.daesinsa.shopping.domain.ProductQna;
 import kh.spring.daesinsa.shopping.domain.Shopping;
 
 @Repository
@@ -15,9 +16,9 @@ public class ShoppingDao {
 	@Autowired
 	private SqlSession sqlsession;
 	
-	//0. 쇼핑 상품 전체 갯수(페이징처리용)
-	public int selectTotal(String c_id) {
-		return sqlsession.selectOne("Shopping.selectTotal",c_id);
+	//0. 쇼핑 상품 카테고리별 전체 갯수(페이징처리용)
+	public int selectCaTotal(String c_id) {
+		return sqlsession.selectOne("Shopping.selectCaTotal",c_id);
 	}
 	
 	//1. 쇼핑상품 전체 목록 조회
@@ -31,5 +32,38 @@ public class ShoppingDao {
 				,new RowBounds((currentPage-1)*pageSize,pageSize)
 				);
 	}
-
+	//1-2. 낮은가격순
+	public List<Shopping> selectListCaMin(Shopping shopping ,int currentPage, int pageSize){
+		return sqlsession.selectList("Shopping.selectListCaMin",shopping
+				,new RowBounds((currentPage-1)*pageSize,pageSize)
+				);
+	}
+	//1-3. 높은가격순
+	public List<Shopping> selectListCaMax(Shopping shopping ,int currentPage, int pageSize){
+		return sqlsession.selectList("Shopping.selectListCaMax",shopping
+				,new RowBounds((currentPage-1)*pageSize,pageSize)
+				);
+	}
+	
+	//2. 쇼핑상품 상세 조회
+	public Shopping detailProduct(Shopping shopping) {
+		return sqlsession.selectOne("Shopping.detailProduct",shopping);
+	}
+	
+	
+	//3-1.쇼핑 상품 검색 시 전체 개수(검색용)
+	public int selectSearchTotal(String keyword) {
+		return sqlsession.selectOne("Shopping.selectSearchTotal",keyword);
+	}
+	//3-2. 쇼핑 상품 검색
+	public List<Shopping> searchProduct(String keyword,int currentPage, int pageSize) {
+		return sqlsession.selectList("Shopping.searchProduct",keyword
+				,new RowBounds((currentPage-1)*pageSize,pageSize)
+				);
+	}
+	
+	//4. 상품 qna 
+	public List<ProductQna> selectQnaList(String p_id){
+		return sqlsession.selectList("Shopping.selectQnaList",p_id);
+	}
 }

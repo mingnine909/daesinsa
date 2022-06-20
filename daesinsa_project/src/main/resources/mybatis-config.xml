@@ -9,20 +9,25 @@
 
 
 <!-- 2.typeAliases : 별칭 domain -->
+<!-- 상품 - 김도현 -->
  <typeAliases>
  <typeAlias type="kh.spring.daesinsa.member.domain.Member" alias="Member"/>
   <typeAlias type="kh.spring.daesinsa.shopping.domain.Shopping" alias="Shopping"/>
-  <typeAlias type="kh.spring.daesinsa.shopping.domain.Product_img" alias="Product_img"/>
+  <typeAlias type="kh.spring.daesinsa.shopping.domain.ProductImg" alias="ProductImg"/>
   <typeAlias type="kh.spring.daesinsa.shopping.domain.Product" alias="Product"/>
   <typeAlias type="kh.spring.daesinsa.shopping.domain.Category" alias="Category"/>
+  <typeAlias type="kh.spring.daesinsa.shopping.domain.ProductOptionInfo" alias="ProductOptionInfo"/>
+  <typeAlias type="kh.spring.daesinsa.shopping.domain.ProductQna" alias="ProductQna"/>
+  <typeAlias type="kh.spring.daesinsa.shopping.domain.ProductReview" alias="ProductReview"/>
+  <typeAlias type="kh.spring.daesinsa.shopping.domain.ProductReviewImg" alias="ProductReviewImg"/>
 </typeAliases> 
 
 
 <!-- 3.mappers -->
 <mappers>
 <mapper resource="mappers/member-mapper.xml"/>
-
 <mapper resource="mappers/shopping-mapper.xml"/>
+<mapper resource="mappers/rent-mapper.xml"/>
 </mappers> 
 
 </configuration>

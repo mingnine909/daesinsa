@@ -1,0 +1,104 @@
+/* 상품flex 정렬 */
+.sideandlist{
+    display: flex;
+}
+/* 사이드 바 margin */
+.sidebar{
+	margin-top: 100px;
+}
+/*사이드메뉴 제목 */
+.top {
+    margin-top: 30px;
+    font-weight: bold;
+    font-size: 2rem;
+    transform: translateX(90px);
+}
+/* 사이드메뉴 ul li 텍스트 가운데 정렬 */
+
+.sidemenu{
+    text-align: center;
+}
+/* 사이드메뉴 버튼 글씨 가운데 정렬 및 글자크기 조정 */
+.first_menu button{
+    font-size: 1.2rem;
+    width: 100%;
+  
+}
+/* 메뉴 간격 조절 */
+.second_menu{
+    padding-bottom: 10px;
+}
+/* 버튼 누르면 나오는 메뉴 텍스트 */
+.second_menu a{
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.second_menu a:hover{
+    font-weight: bold;
+}
+
+/* ul li 정렬 */
+.container ul li{
+/* 	text-align: center;
+	margin: 20px;  */
+}
+.option{
+	margin-top: 100px;
+	float: right;
+}
+
+.rent_list ul{
+	clear: both;
+	margin-top: 100px;
+}
+.product_list{
+	display: inline-block;
+/* 	width: 300px; */
+  	margin: 50px;  
+}
+
+.product{
+	cursor: pointer;
+}
+
+.product a {
+	text-decoration: none;
+	color: black;
+}
+/* 상품가격 글씨크기 */
+.product_name  {
+    font-weight: bold;
+     padding-top: 5px;
+     padding-bottom: 10px; 
+  
+ }
+ .product_price{
+ font-size: 0.9rem;
+ padding-bottom: 10px; 
+ }
+ 
+ /* 페이징처리부분 */
+.paging p{
+	text-align: center;
+}
+
+.paging a {
+	text-decoration: none;
+	color: black;
+}
+
+.paging a:hover {
+	text-decoration: underline;
+	color: black;
+	cursor: pointer;
+}
+ /* 상품검색 */
+.rent_search_list ul li{
+	display: inline-block;
+	margin: 50px;  
+}
+
+.rent_search_list ul{
+	text-align: center;
+}

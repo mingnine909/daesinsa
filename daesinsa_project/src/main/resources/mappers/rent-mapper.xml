@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="Rent">
+
+<resultMap type="Shopping" id="CaShoppingAndImgResultMap">
+<id column="p_id" property="p_id"/>
+<result column="p_name" property="p_name"/>
+<result column="p_price" property="p_price"/>
+<result column="p_content" property="p_content"/>
+<result column="p_postdate" property="p_postdate"/>
+<result column="p_issale" property="p_issale"/>
+<result column="p_saleamount" property="p_saleamount"/>
+<result column="p_isrental" property="p_isrental"/>
+<result column="p_issoldout" property="p_issoldout"/>
+<result column="c_id" property="c_id"/>
+<collection property="category" resultMap="CategoryReusltMap"/>
+<collection property="p_img_list" resultMap="ShoppingImgReusltMap"/>
+</resultMap>
+
+<!-- 카테고리  resultMap -->	
+<resultMap type="Category" id="CategoryReusltMap">
+<id column="c_id" property="c_id"/>
+<result column="c_first" property="c_first"/>
+<result column="c_second" property="c_second"/>
+<result column="c_thrid" property="c_thrid"/>
+</resultMap>
+
+<!-- 상품 이미지 resultMap -->
+<resultMap type="ProductImg" id ="ShoppingImgReusltMap">
+<id column="p_img_no" property="p_img_no"/>
+<result column="p_id" property="p_id"/>
+<result column="p_img_path" property="p_img_path"/>
+</resultMap>
+
+
+	
+<!-- 카테고리별 전체 상품 개수 조회 -->
+<select id="selectCaRentTotal"  parameterType="string" resultType="_int">
+	select count(*) from product where c_id = #{c_id}
+</select> 
+
+	<!-- 1-1.카테고리별로 대여 페이지 headerd에서 진입   -->
+	<select id="selectRentListCa" parameterType="Shopping"
+		resultMap="CaShoppingAndImgResultMap">
+	select * from product
+    left outer join category
+    using(c_id)
+	left outer join product_img
+	using(p_id)
+	where c_id = #{c_id}
+	order by p_id asc , p_img_no asc
+	</select> 
+	
+	 <!--3-1. 전체 상품 개수 조회 (검색 시 페이징 처리용)-->
+	<select id="selectSearchTotal" parameterType="string" resultType="_int">
+	select count(*) 
+	from product 
+	WHERE LOWER(p_name) like '%'|| #{keyword} ||'%' 
+	or  UPPER(p_name)  	like '%'|| #{keyword} ||'%' 
+	</select> 
+	
+	
+	 <!-- 3-2.상품 검색 -->
+    <select id="searchRentProduct" parameterType="string"
+    resultMap="CaShoppingAndImgResultMap">
+    select * from product
+    left outer join category
+    using(c_id)
+	left outer join product_img
+	using(p_id)
+	where LOWER(p_name) like '%'|| #{keyword} ||'%' 
+	or  UPPER(p_name)  like '%'|| #{keyword} ||'%' 
+    </select>
+	
+</mapper>

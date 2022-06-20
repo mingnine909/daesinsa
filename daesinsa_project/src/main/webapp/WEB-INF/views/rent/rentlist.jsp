@@ -13,19 +13,19 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 <!-- Common CSS -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/header_footer.css">
-<!-- shop css -->
- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/shop/shop.css">
+<!-- rent css -->
+ <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/rent/rent.css">
 <!-- 폰트 -->
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-<title>Daesinsa - 상품목록</title>
+<title>Daesinsa - 대여목록</title>
 </head>
 <body>
- <jsp:include page="../common/template_header.jsp"></jsp:include>
+ <jsp:include page="../common/template_rheader.jsp"></jsp:include>
 	<div id="mainwrap">
 	<div class="sideandlist container">
 	<div class="sidebar">
   <div class="p-3 bg-white" style="width: 280px;">
-      <!-- TODO : 여성 상품 채워넣으면 test안에 여성 상품 카테고리 넣기 -->
+    <!-- TODO : 여성 상품 채워넣으면 test안에 여성 상품 카테고리 넣기 -->
     <div class="top">
       <c:choose>
     <c:when test="${c_id eq 'C111' || c_id eq 'C112' }">
@@ -51,9 +51,9 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
         <div class="collapse " id="home-collapse" >
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
    <c:if test="${c_first == 1 }">
-            <li class="second_menu"><a href="${pageContext.request.contextPath}/shop/shoplist?c_id=C111&c_first=1" 
+            <li class="second_menu"><a href="${pageContext.request.contextPath}/rent/rentlist?c_id=C111&c_first=1" 
             class="link-dark rounded ">긴팔</a></li>
-            <li class="second_menu"><a href="${pageContext.request.contextPath}/shop/shoplist?c_id=C112&c_first=1" 
+            <li class="second_menu"><a href="${pageContext.request.contextPath}/rent/rentlist?c_id=C112&c_first=1" 
              class="link-dark rounded ">반팔</a></li>
             </c:if>
              <c:if test="${c_first == 2 }">
@@ -70,7 +70,7 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
         <div class="collapse " id="dashboard-collapse">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
           <c:if test="${c_first == 1 }">
-           <li class="second_menu"><a href="${pageContext.request.contextPath}/shop/shoplist?c_id=C121&c_first=1"
+           <li class="second_menu"><a href="${pageContext.request.contextPath}/rent/rentlist?c_id=C121&c_first=1"
             class="link-dark rounded ">바지</a></li>
           </c:if>
             <c:if test="${c_first == 2}">
@@ -87,11 +87,11 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
         <div class="collapse " id="orders-collapse">
           <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
           <c:if test="${c_first ==1 }">
-            <li class="second_menu"><a href="${pageContext.request.contextPath}/shop/shoplist?c_id=C131&c_first=1"
+            <li class="second_menu"><a href="${pageContext.request.contextPath}/rent/rentlist?c_id=C131&c_first=1"
              class="link-dark rounded ">가방</a></li>
-            <li class="second_menu"><a href="${pageContext.request.contextPath}/shop/shoplist?c_id=C132&c_first=1"
+            <li class="second_menu"><a href="${pageContext.request.contextPath}/rent/rentlist?c_id=C132&c_first=1"
              class="link-dark rounded ">신발</a></li>
-            <li class="second_menu"><a href="${pageContext.request.contextPath}/shop/shoplist?c_id=C133&c_first=1"
+            <li class="second_menu"><a href="${pageContext.request.contextPath}/rent/rentlist?c_id=C133&c_first=1"
              class="link-dark rounded ">모자</a></li>
             </c:if>
                <c:if test="${c_first ==2 }">
@@ -108,46 +108,33 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 </div>
 <!-- 사이드 메뉴 끝 -->
 <c:choose>
-<c:when test="${not empty Shopping }">
-<div class="shopping_list">
-<div class="option">
-<i class="xi-filter"></i> &emsp; 
-<select onchange="location.href=this.value" >
-<option <c:if test="${sort==1 }">selected="selected"</c:if>
-value="${pageContext.request.contextPath}/shop/shoplist?c_id=${c_id}&c_first=${c_first}">
-최신상품순</option>
-<option <c:if test="${sort==2 }">selected="selected"</c:if>
-value="${pageContext.request.contextPath}/shop/shoplist?c_id=${c_id}&c_first=${c_first}&sort=2">
-낮은가격순</option>
-<option <c:if test="${sort==3 }">selected="selected"</c:if>
-value="${pageContext.request.contextPath}/shop/shoplist?c_id=${c_id}&c_first=${c_first}&sort=3">
-높은가격순</option>
-</select>
-
-</div>
-  <ul class="product_all">
-	<c:forEach items="${Shopping }" var ="shop">
+<c:when test="${not empty Rent }">
+<div class="rent_list">
+  <ul>
+	<c:forEach items="${Rent }" var ="rent">
 	<li class="product_list">
     <div class="product">
-    <a href="${pageContext.request.contextPath}/shop/detail?p_id=${shop.p_id }">
-    <c:forEach items="${shop.p_img_list }" var="shopimg" varStatus="status"> 
+    <a href="${pageContext.request.contextPath}/rent/detail?p_id=${rent.p_id }">
+     <c:if test="${rent.p_isrental ==1 }">
+    <c:forEach items="${rent.p_img_list }" var="rentimg" varStatus="status"> 
     <c:if test="${status.count <2 }">
-    <c:if test ="${not empty shopimg.p_img_path }">
-      <img src="${pageContext.request.contextPath}${shopimg.p_img_path}" width="100%" height="100%">
+    <c:if test ="${not empty rentimg.p_img_path }">
+      <img src="${pageContext.request.contextPath}${rentimg.p_img_path}" width="100%" height="100%">
       </c:if>
       </c:if>
       </c:forEach>
-       <div class="product_name">${shop.p_name }</div>
-      <div class="product_price">${shop.p_price }</div> 
-      <c:if test="${shop.p_isrental ==1 }">
+      </c:if>
+       <div class="product_name">${rent.p_name }</div>
+      <div class="product_price">일 1,500원 </div> 
+    <%--   <c:if test="${rent.p_isrental ==1 }">
       <span style= "background-color: #FAA570; color: white">대여가능</span>
       </c:if>
-       <c:if test="${shop.p_isrental ==2 }">
+       <c:if test="${rent.p_isrental ==2 }">
       <span style="background-color: #044343; color:#e4e4e4;">대여불가</span>
       </c:if>
-       <c:if test="${shop.p_issoldout ==1 }">
+       <c:if test="${rent.p_issoldout ==1 }">
       <span style="background-color: #e4e4e4;">품절</span>
-      </c:if>
+      </c:if> --%>
       </a>
     </div>
   </li>
@@ -157,7 +144,7 @@ value="${pageContext.request.contextPath}/shop/shoplist?c_id=${c_id}&c_first=${c
 
 </c:when>
 
-<c:when test="${empty Shopping }">
+<c:when test="${empty Rent }">
 <div>해당 상품이 없습니다. </div>
 </c:when>
 </c:choose>
@@ -168,13 +155,13 @@ value="${pageContext.request.contextPath}/shop/shoplist?c_id=${c_id}&c_first=${c
   <div class="paging">
 			<p>
 				<c:if test="${startPage > 1 }">
-					<a href="${pageContext.request.contextPath}/shop/shoplist?c_id=${c_id}&c_first=${c_first }&page=${startPage-1 }&sort=${sort}"><span>이전</span></a>&nbsp;&nbsp;&nbsp;
+					<a href="${pageContext.request.contextPath}/rent/rentlist?c_id=${c_id}&c_first=${c_first }&page=${startPage-1 }"><span>이전</span></a>&nbsp;&nbsp;&nbsp;
 			</c:if>
 				<c:forEach begin="${startPage}" end="${endPage}" var="i">
-					<a href="${pageContext.request.contextPath}/shop/shoplist?c_id=${c_id}&c_first=${c_first }&page=${i}&sort=${sort}"><span>${i }</span></a>&nbsp;&nbsp;&nbsp;
+					<a href="${pageContext.request.contextPath}/rent/rentlist?c_id=${c_id}&c_first=${c_first }&page=${i}"><span>${i }</span></a>&nbsp;&nbsp;&nbsp;
 			</c:forEach>
 				<c:if test="${endPage < pageCnt}">
-					<a href="${pageContext.request.contextPath}/shop/shoplist?c_id=${c_id}&c_first=${c_first }&page=${endPage+1 }&sort=${sort}"><span>다음</span></a>&nbsp;&nbsp;&nbsp;
+					<a href="${pageContext.request.contextPath}/rent/rentlist?c_id=${c_id}&c_first=${c_first }&page=${endPage+1 }"><span>다음</span></a>&nbsp;&nbsp;&nbsp;
 			</c:if>
 			</p>
 		</div>

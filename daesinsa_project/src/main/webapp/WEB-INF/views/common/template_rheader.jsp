@@ -5,7 +5,7 @@
   <div id="headerwrap">
  <!-- 로고 + 구매 / 대여 버튼 헤더 -->
     <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-      <a href="${pageContext.request.contextPath}/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+      <a href="${pageContext.request.contextPath}/rent/main" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
         <img src="${pageContext.request.contextPath}/resources/img/header_footer/로고.PNG" width="180" height="40">
       </a>
 
@@ -21,7 +21,7 @@
     <!-- 헤더 끝 -->
  
 	<!-- NAV : 메뉴 + 검색창 + 아이콘 -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
      
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,20 +37,20 @@
             <ul class="dropdown-menu ">
               <li ><a class="dropdown-item disabled second_menu" href="#">상의</a>
                 <ul class="dropdown-item third_menu"> 
-                  <li><a href="${pageContext.request.contextPath}/shop/shoplist?c_id=C111&c_first=1">긴팔</a></li>
-                  <li><a href="${pageContext.request.contextPath}/shop/shoplist?c_id=C112&c_first=1">반팔</a></li>
+                  <li><a href="${pageContext.request.contextPath}/rent/rentlist?c_id=C111&c_first=1">긴팔</a></li>
+                  <li><a href="${pageContext.request.contextPath}/rent/rentlist?c_id=C112&c_first=1">반팔</a></li>
                 </ul>
               </li>
               <li><a class="dropdown-item disabled second_menu" href="#">하의</a>
                 <ul class="dropdown-item third_menu"> 
-                  <li><a href="${pageContext.request.contextPath}/shop/shoplist?c_id=C121&c_first=1">바지</a></li>
+                  <li><a href="${pageContext.request.contextPath}/rent/rentlist?c_id=C121&c_first=1">바지</a></li>
                 </ul>
               </li>
               <li><a class="dropdown-item disabled second_menu" href="#">ACC</a>
                 <ul class="dropdown-item third_menu"> 
-                  <li><a href="${pageContext.request.contextPath}/shop/shoplist?c_id=C131&c_first=1">가방</a></li>
-                  <li><a href="${pageContext.request.contextPath}/shop/shoplist?c_id=C132&c_first=1">신발</a></li>
-                  <li><a href="${pageContext.request.contextPath}/shop/shoplist?c_id=C133&c_first=1">모자</a></li>
+                  <li><a href="${pageContext.request.contextPath}/rent/rentlist?c_id=C131&c_first=1">가방</a></li>
+                  <li><a href="${pageContext.request.contextPath}/rent/rentlist?c_id=C132&c_first=1">신발</a></li>
+                  <li><a href="${pageContext.request.contextPath}/rent/rentlist?c_id=C133&c_first=1">모자</a></li>
                 </ul>
               </li>
           </ul>
@@ -84,7 +84,7 @@
   
         </ul>
 				<form class="d-flex search" 
-				action="${pageContext.request.contextPath}/shop/search" method="get">
+				action="${pageContext.request.contextPath}/rent/search" method="get">
 					<input class="form-control me-2" type="search" placeholder="Search"
 						name="keyword" aria-label="Search">
 					<button class="btn btn-outline-light" type="submit">

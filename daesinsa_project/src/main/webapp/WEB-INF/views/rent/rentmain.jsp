@@ -18,7 +18,7 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 <title>Daesinsa 대신사 - 대여</title>
 </head>
 <body>
- <jsp:include page="../common/template_header.jsp"></jsp:include>
+ <jsp:include page="../common/template_rheader.jsp"></jsp:include>
 	<div id="mainwrap">
 
 		<!-- 메인 첫번째 슬라이드 배너 -->

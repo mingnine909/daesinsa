@@ -3,7 +3,7 @@ package kh.spring.daesinsa.shopping.domain;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Product_img {
+public class ProductImg {
 	
 	private int p_img_no;
 	private String p_id;
