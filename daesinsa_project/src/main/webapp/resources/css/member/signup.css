@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+  
+.signup-wrapper {
+    position: absolute;
+    max-width: 800px;
+    top: 10%;
+    left: 36%;
+}
+
+.signup-spacing{
+    margin-top: 20px;
+}
+
+.signup-spacing-s {
+    margin-top: 10px;
+}
+
+button.w-100.btn.btn-lg.btn-primary {
+    background-color: hsl(180, 91%, 18%);
+    border: none;
+    text-align: center;
+}
+
+button.btn.btn-primary{
+    background-color:#222222 ;
+    border: none;
+    height: 46px;
+    font-size: 14pt;
+}
+
+.form-check-input:checked {
+    background-color: #045757 !important;
+    background-color: #045757 !important;
+}
+
+.signup-spacing-l {
+    margin-top: 30%;
+}
