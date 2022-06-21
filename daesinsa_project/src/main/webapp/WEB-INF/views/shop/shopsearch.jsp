@@ -28,7 +28,7 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 <c:when test="${not empty Shopping }">
 <div class="shopping_search_list container">
 <div class="search_result">
-<p>${keyword }로 검색한 결과입니다.</p>
+<p>"${keyword }"(으)로 검색한 결과입니다.</p>
 </div>
 
   <ul>
@@ -64,7 +64,7 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 </c:when>
 
 <c:when test="${empty Shopping }">
-<div>해당 상품이 없습니다. </div>
+<div>"${keyword }"(으)로 검색한 상품이 없습니다. </div>
 </c:when>
 </c:choose>
 

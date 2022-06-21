@@ -34,14 +34,14 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 			</div>
 			<div class="carousel-inner">
 				<div class="carousel-item">
-					<img src="${pageContext.request.contextPath}/resources/img/main/슬라이드1.png"
+					<img src="${pageContext.request.contextPath}/resources/img/rent/슬라이드1.png"
 					 width="100%" height="100%">
 
 
 					<div class="container main_first">
 						<div class="carousel-caption text-start banner">
 							<h1>Welcome</h1>
-							<p>신규 회원 전용 쿠폰 지급!</p>
+							<p>원하는 상품을 자유롭게 대여해보세요!</p>
 							<p>
 								<a class="btn btn-sm btn-primary" href="#">바로가기</a>
 							</p>
@@ -49,7 +49,7 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 					</div>
 				</div>
 				<div class="carousel-item active">
-				<img src="${pageContext.request.contextPath}/resources/img/main/슬라이드2.png"
+				<img src="${pageContext.request.contextPath}/resources/img/rent/슬라이드2.png"
 				 width="100%" height="100%">
 
 					<div class="container">
@@ -64,7 +64,7 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 					</div>
 				</div>
 				<div class="carousel-item">
-					<img src="${pageContext.request.contextPath}/resources/img/main/슬라이드3.png"
+					<img src="${pageContext.request.contextPath}/resources/img/rent/슬라이드3.png"
 					width="100%" height="100%">
 
 					<div class="container">

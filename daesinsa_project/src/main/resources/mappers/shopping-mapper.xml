@@ -33,7 +33,7 @@
 <collection property="p_img_list" resultMap="ShoppingImgReusltMap"/>
 </resultMap>
 
-<!-- 상품 + 이미지 + 옵션 resultMap -->
+<!-- 카테고리 + 상품 + 이미지 + 옵션 resultMap -->
 <resultMap type="Shopping" id="ShopAndImgOptResultMap">
 <id column="p_id" property="p_id"/>
 <result column="p_name" property="p_name"/>
@@ -45,6 +45,7 @@
 <result column="p_isrental" property="p_isrental"/>
 <result column="p_issoldout" property="p_issoldout"/>
 <result column="c_id" property="c_id"/>
+<collection property="category" resultMap="CategoryReusltMap"/>
 <collection property="p_img_list" resultMap="ShoppingImgReusltMap"/>
 <collection property="p_option_info" resultMap="OptionInfoResultMap"/>
 </resultMap>
@@ -129,11 +130,14 @@
 	<!-- 2. 구매 상품 상세 조회 -->
 	<select id ="detailProduct" parameterType="Shopping" 
 	resultMap="ShopAndImgOptResultMap">
-	select * from product 
+		select * from category
+    left outer join product 
+    using(c_id)
 	left outer join product_img 
 	using(p_id) left outer join product_option_info
 	using(p_id)
-	where p_id = #{p_id}
+	where p_id =  #{p_id}
+	order by p_img_no
     </select>
     
     <!--3-1. 전체 상품 개수 조회 (검색 시 페이징 처리용)-->

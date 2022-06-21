@@ -33,7 +33,8 @@ public class AdviceLog {
 		// 타겟메소드로 전달되는 매개인자들
 		Object[] args = pjp.getArgs();
 		for(int i=0; i<args.length; i++) {
-			System.out.print("\t\t args["+i+"] "+args[i] +"\n");
+			//System.out.print("\t\t args["+i+"] "+args[i] +"\n");
+			logger.info("\t\t args["+i+"] "+args[i] );
 		}	
 		
 		// 타겟메소드 실행
@@ -54,7 +55,8 @@ public class AdviceLog {
 		// 타겟메소드로 전달되는 매개인자들
 		Object[] args = pjp.getArgs();
 		for(int i=0; i<args.length; i++) {
-			System.out.print("\t args["+i+"] "+args[i] +"\n");
+			//System.out.print("\t args["+i+"] "+args[i] +"\n");
+			logger.info("\t args["+i+"] "+args[i]);
 		}	
 		
 		// 타겟메소드 실행

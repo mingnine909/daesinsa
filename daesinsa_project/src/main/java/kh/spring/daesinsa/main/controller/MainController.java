@@ -27,7 +27,8 @@ public class MainController {
 	public String home(Shopping shopping
 			,ModelAndView mv) {
 		
-		mv.addObject("Shopping", service.selectListAll());	
+		//주석처리
+//		mv.addObject("Shopping", service.selectListAll());	
 		
 		return "main";
 	}

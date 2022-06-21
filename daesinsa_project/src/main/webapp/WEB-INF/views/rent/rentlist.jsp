@@ -57,8 +57,10 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
              class="link-dark rounded ">반팔</a></li>
             </c:if>
              <c:if test="${c_first == 2 }">
-            <li class="second_menu"><a href="#" class="link-dark rounded ">긴팔</a></li>
-            <li class="second_menu"><a href="#" class="link-dark rounded ">반팔</a></li>
+            <li class="second_menu"><a href="${pageContext.request.contextPath}/rent/rentlist?c_id=C211&c_first=2"
+             class="link-dark rounded ">긴팔</a></li>
+            <li class="second_menu"><a href="${pageContext.request.contextPath}/rent/rentlist?c_id=C212&c_first=2"
+            class="link-dark rounded ">반팔</a></li>
             </c:if>
           </ul>
         </div>
@@ -74,8 +76,10 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
             class="link-dark rounded ">바지</a></li>
           </c:if>
             <c:if test="${c_first == 2}">
-            <li class="second_menu"><a href="#" class="link-dark rounded ">바지</a></li>
-            <li class="second_menu"><a href="#" class="link-dark rounded ">치마</a></li>
+            <li class="second_menu"><a href="${pageContext.request.contextPath}/rent/rentlist?c_id=C221&c_first=2"
+            class="link-dark rounded ">바지</a></li>
+            <li class="second_menu"><a href="${pageContext.request.contextPath}/rent/rentlist?c_id=C222&c_first=2"
+            class="link-dark rounded ">치마</a></li>
             </c:if>
           </ul>
         </div>
@@ -95,9 +99,12 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
              class="link-dark rounded ">모자</a></li>
             </c:if>
                <c:if test="${c_first ==2 }">
-            <li class="second_menu"><a href="#" class="link-dark rounded ">가방</a></li>
-            <li class="second_menu"><a href="#" class="link-dark rounded ">신발</a></li>
-            <li class="second_menu"><a href="#" class="link-dark rounded ">모자</a></li>
+            <li class="second_menu"><a href="${pageContext.request.contextPath}/rent/rentlist?c_id=C231&c_first=2"
+            class="link-dark rounded ">가방</a></li>
+            <li class="second_menu"><a href="${pageContext.request.contextPath}/rent/rentlist?c_id=C232&c_first=2"
+            class="link-dark rounded ">신발</a></li>
+            <li class="second_menu"><a href="${pageContext.request.contextPath}/rent/rentlist?c_id=C233&c_first=2"
+            class="link-dark rounded ">모자</a></li>
             </c:if>
           </ul>
         </div>
