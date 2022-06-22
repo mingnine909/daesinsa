@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+body {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+  }
+  
+html {
+    height: -webkit-fill-available;
+  }
+  
+main {
+    height: 100vh;
+    height: -webkit-fill-available;
+    max-height: 100vh;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+  
+.mypage-wrapper {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+
+ }
+
+ div.d-flex.flex-column.flex-shrink-0.p-3.bg-light {
+    text-align:center;
+    max-width: 300px;
+    background-color: #FFFFFF !important;
+
+ }
+
+ .nav-pills {
+    --bs-nav-pills-link-active-bg: #045757 !important;
+ }
+
+ .link-dark:hover {
+   background-color: #E4E4E4 !important;
+ }

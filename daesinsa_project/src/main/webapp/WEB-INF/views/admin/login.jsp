@@ -1,7 +1,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/reset.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/admin/admin_login.css">
+	href="${pageContext.request.contextPath}/resources/css/admin/login.css">
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
