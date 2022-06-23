@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kh.spring.daesinsa.shopping.domain.ProductQna;
+import kh.spring.daesinsa.shopping.domain.ProductReview;
 import kh.spring.daesinsa.shopping.domain.Shopping;
 
 @Repository
@@ -66,4 +67,10 @@ public class ShoppingDao {
 	public List<ProductQna> selectQnaList(String p_id){
 		return sqlsession.selectList("Shopping.selectQnaList",p_id);
 	}
+	
+	//5. 상품 리뷰
+	public List<ProductReview> selectReviewList(String p_id){
+		return sqlsession.selectList("Shopping.selectReviewList",p_id);
+	}
+	
 }

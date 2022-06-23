@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kh.spring.daesinsa.shopping.domain.ProductQna;
+import kh.spring.daesinsa.shopping.domain.ProductReview;
 import kh.spring.daesinsa.shopping.domain.Shopping;
 import kh.spring.daesinsa.shopping.model.dao.ShoppingDao;
 
@@ -70,6 +71,12 @@ public class ShoppingServiceImpl implements ShoppingService{
 	@Override
 	public List<ProductQna> selectQnaList(String p_id) {
 		return dao.selectQnaList(p_id);
+	}
+
+	//5. 상품 리뷰
+	@Override
+	public List<ProductReview> selectReviewList(String p_id) {
+		return dao.selectReviewList(p_id);
 	}
 
 

@@ -83,6 +83,7 @@ public class ShoppingController {
 		}
 		mv.addObject("detail",service.detailProduct(shopping));
 		mv.addObject("ProductQna",service.selectQnaList(p_id));
+		mv.addObject("ProductReview", service.selectReviewList(p_id));
 		mv.setViewName("shop/detail");
 		return mv;
 		

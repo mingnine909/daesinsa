@@ -4,7 +4,7 @@
 
   <div id="headerwrap">
  <!-- 로고 + 구매 / 대여 버튼 헤더 -->
-    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom logo">
       <a href="${pageContext.request.contextPath}/rent/main" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
         <img src="${pageContext.request.contextPath}/resources/img/header_footer/로고.PNG" width="180" height="40">
       </a>

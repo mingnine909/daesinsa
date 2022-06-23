@@ -4,6 +4,10 @@ body{
     
 }
 
+.logo img{
+	margin-left: 10px;
+}
+
 /* 메뉴 세부 조정 */
 .second_menu{
     color: black;
@@ -38,6 +42,10 @@ body{
 /* 푸터 css*/
 #footerwrap{
     margin-top: 150px; 
+}
+
+.footer_list{
+	 margin-left: 50px;
 }
 
 #footerwrap h5, #footerwrap li , #footerwrap p{

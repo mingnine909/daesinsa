@@ -25,33 +25,35 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
 	rel="stylesheet">
-	
-	<!-- bx슬라이더 + jquery cdn -->
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+<!-- bx슬라이더 + jquery cdn -->
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
             <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+<!-- 카카오톡 공유 api -->
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <title>Daesinsa</title>
 </head>
 <body>
 	<jsp:include page="../common/template_header.jsp"></jsp:include>
 	<div id="mainwrap">
-	
-	<c:if test = "${detail.category[0].c_id eq 'C111' || detail.category[0].c_id eq 'C112'}">남성 상의</c:if>
-	<c:if test = "${detail.category[0].c_id eq 'C121'}" >남성 하의</c:if>
-	<c:if test = "${detail.category[0].c_id eq 'C131'}" >남성 가방</c:if>
-	<c:if test = "${detail.category[0].c_id eq 'C132'}" >남성 신발</c:if>
-	<c:if test = "${detail.category[0].c_id eq 'C133'}" >남성 모자</c:if>
+	<div class="product_detail_all container">
+	<div class="detail_category ">
+	<c:if test = "${detail.category[0].c_id eq 'C111' || detail.category[0].c_id eq 'C112'}"><p>남성 상의</p></c:if>
+	<c:if test = "${detail.category[0].c_id eq 'C121'}" ><p>남성 하의</p></c:if>
+	<c:if test = "${detail.category[0].c_id eq 'C131'}" ><p>남성 가방</p></c:if>
+	<c:if test = "${detail.category[0].c_id eq 'C132'}" ><p>남성 신발</p></c:if>
+	<c:if test = "${detail.category[0].c_id eq 'C133'}" ><p>남성 모자</p></c:if>
  	
-	<c:if test = "${detail.category[0].c_id eq 'C211' || detail.category[0].c_id eq 'C212'}">여성 상의</c:if>
-	<c:if test = "${detail.category[0].c_id eq 'C221' || detail.category[0].c_id eq 'C222'}">여성 하의</c:if>
+	<c:if test = "${detail.category[0].c_id eq 'C211' || detail.category[0].c_id eq 'C212'}"><p>여성 상의</p></c:if>
+	<c:if test = "${detail.category[0].c_id eq 'C221' || detail.category[0].c_id eq 'C222'}"><p>여성 하의</p></c:if>
 	
-	<c:if test = "${detail.category[0].c_id eq 'C231'}" >여성 가방</c:if>
-	<c:if test = "${detail.category[0].c_id eq 'C232'}" >여성 신발</c:if>
-	<c:if test = "${detail.category[0].c_id eq 'C233'}" >여성 모자</c:if> 
-
+	<c:if test = "${detail.category[0].c_id eq 'C231'}" ><p>여성 가방</p></c:if>
+	<c:if test = "${detail.category[0].c_id eq 'C232'}" ><p>여성 신발</p></c:if>
+	<c:if test = "${detail.category[0].c_id eq 'C233'}" ><p>여성 모자</p></c:if> 
+	</div>
 		<c:choose>
 			<c:when test="${not empty detail }">
-        	<div class="product_detail container">
+        	<div class="product_detail ">
 				<div class="product_img_all">
 				  <c:forEach items="${detail.p_img_list}" var="img">
 				 <c:if test="${not empty img.p_img_path }"> 
@@ -117,12 +119,28 @@
 				  </c:choose>
 				</c:forEach>
 				  </select>
+				  <br>
+				      <div class="product_buy">
+					<button type="submit" class="btn btn-light btn_cart"><i class="xi-cart-add"></i> &nbsp;장바구니 담기</button>
+					<button type="button" class="btn btn-light btn_rental" ><i class="xi-laundry"></i> &nbsp;대여하기</button>
+				  </div>
+				  <div class="btn_wish">
+					<button type="submit" class="btn  btn-dark btn_wish" ><span><i class="xi-heart"></i></span> &nbsp; 위시리스트</button>
+          </div>
+          <div class="product_share">
+            <button type="button" class="btn btn-light" onclick="copyURL();"><i class="xi-share-alt-o xi-x"></i> </button>
+            <button type="button" class="btn btn-light" onclick="shareTwitter();" id="twitter"><i class="xi-twitter xi-x"></i> </button>
+            <button type="button" class="btn btn-light" onclick="shareFacebook();" id="facebook"><i class="xi-facebook-official xi-x"></i> </button>
+            <button type="button" class="btn btn-light" onclick="shareKakao();" id="kakao"><i class=" xi-kakaotalk xi-x"></i> </button>
+           
+         		 </div>
 				</div>
 				</div>
 				<hr>
-				<div class="product_des container">
+				<div class="product_des ">
 				<c:if test="${not empty detail.p_content }">
-				<p> ${detail.p_content }</p>
+				<p>  ${detail.p_content }</p>
+				<p> 상품 코드: ${detail.p_id}</p>
 				</c:if>
 				</div>
 			</c:when>
@@ -132,9 +150,30 @@
 		</c:choose>
 
 
+<!-- 상품리뷰 -->
+<hr>
+
+<div class="product_review ">
+<h1> 상품 리뷰</h1>
+<c:choose>
+<c:when test="${not empty ProductReview }">
+<c:forEach items="${ProductReview }" var="re"> 
+<p>리뷰제목:${re.pr_title}</p> 
+<p>리뷰내용:${re.pr_content}</p> 
+<p>리뷰작성일:${re.pr_date}</p> 
+</c:forEach>
+</c:when>
+<c:when test="${empty  ProductReview}">
+현재 작성된 상품 리뷰가 없습니다.
+</c:when>
+</c:choose>
+</div>
+
+
 <!-- 상품문의 -->
 <hr>
-<div class="product_qna container">
+<div class="product_qna ">
+<h1> 상품 문의</h1>
 <c:choose>
 <c:when test="${not empty ProductQna }">
 <c:forEach items="${ProductQna }" var="qna">
@@ -152,16 +191,70 @@
 </c:when>
 </c:choose>
 </div>
-	</div>
 
+
+
+	</div>
+</div>
 	<jsp:include page="../common/template_footer.jsp"></jsp:include>
 	
-	<!-- 슬라이더 스크립트  -->
+      <!-- 상품공유 스크립트 -->
+        <script>
+      // 1. url복사
+      window.copyURL = function(){
+      prompt("아래의 상품 주소를 복사해주세요",window.location);
+      }
+		</script>
+		
+		 <script>    
+      // 2. 트위터 공유
+      function shareTwitter() {
+     
+	  var sendText= $('.product_name').text(); //전달할 제목
+      var sendUrl = document.URL; // 전달할 URL
+      window.open("https://twitter.com/intent/tweet?text=" + sendText + "&url=" + sendUrl);
+      }
+      </script>
+      
+       <script>
+      // 3. 페이스북 공유
+      function shareFacebook() {
+      var sendUrl =  document.URL; // 전달할 URL
+      window.open("http://www.facebook.com/sharer/sharer.php?u=" + sendUrl);
+      }
+      </script>
+      
+       <script>
+      // 4. 카카오 공유
+      function shareKakao() { 
+      // 사용할 앱의 JavaScript 키 설정
+      Kakao.init('508c6cadc43c704a73db239c5bc2c017');
+	
+      // 카카오링크 버튼 생성
+      Kakao.Link.createDefaultButton({
+      container: '#kakao', // 카카오공유버튼ID
+      objectType: 'feed',
+      content: {
+       title: $('.product_name').text(), // 보여질 제목
+       description: $('.product_des').text(), // 보여질 설명 
+       imageUrl: document.URL, // 콘텐츠 URL
+       link: {
+        mobileWebUrl: document.URL,
+          webUrl: document.URL
+       }
+     }
+   });
+  }
+        </script>
+
+	
+	<!-- bx 슬라이더 스크립트  -->
 	 <script>
       $(document).ready(function(){
         $('.product_img_all').bxSlider();
       });
     </script>
+    
 	<!-- 부트스트랩 스크립트 -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"

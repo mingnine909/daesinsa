@@ -72,8 +72,27 @@
 <result column="po_id" property="po_id"/>
 <result column="poi_type" property="poi_type"/>
 <result column="poi_amout" property="poi_amout"/>
-</resultMap>
+</resultMap>   
 
+
+<!-- 상품 리뷰 + 상품 리뷰 이미지 resultMap -->
+<resultMap type="ProductReview" id="ShopReviewResultMap">
+<id column="pr_no" property="pr_no"/>
+<result column="pr_title" property="pr_title"/>
+<result column="pr_content" property="pr_content"/>
+<result column="pr_date" property="pr_date"/>
+<result column="m_id" property="m_id"/>
+<result column="p_id" property="p_id"/>
+<collection property="pr_review_img" resultMap="ShopReviewImgResultMap"/>
+</resultMap> 
+
+
+<!-- 상품 리뷰 이미지 resultMap  -->
+<resultMap type="ProductReviewImg" id="ShopReviewImgResultMap">
+<id column="pr_img_no" property="pr_img_no"/>
+<result column="pr_no" property="pr_no"/>
+<result column="pr_img_path" property="pr_img_path"/>
+</resultMap>  
 
 	<!-- 0. 카테고리별 상품 개수 조회(페이징처리용) -->
 	<select id="selectCaTotal"  parameterType="string" resultType="_int">
@@ -167,5 +186,16 @@
 	where p_id = #{p_id}
 	order by pq_no , pq_level, pq_qref 
     </select>
+    
+    <!-- 5. 상품 리뷰 -->
+	<select id="selectReviewList" parameterType="string" resultMap="ShopReviewResultMap">
+		select * from product
+		right outer join product_review
+		using(p_id)
+		left outer join product_review_img
+		using(pr_no)
+		where p_id = #{p_id}
+    </select>
+    
 
 </mapper>

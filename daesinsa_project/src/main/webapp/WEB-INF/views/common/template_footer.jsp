@@ -2,10 +2,9 @@
     pageEncoding="UTF-8"%>
 <!-- 푸터 시작 -->
 <div id="footerwrap">
-<div class="container">
   <footer class="py-5">
     <div class="row">
-      <div class="col-3">
+      <div class="col-2 footer_list">
         <h5>이용안내</h5>
         <ul class="nav flex-column">
           <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">이용약관</a></li>
@@ -14,7 +13,7 @@
         </ul>
       </div>
 
-      <div class="col-3">
+      <div class="col-2 footer_list">
         <h5>고객지원</h5>
         <ul class="nav flex-column">
           <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">공지사항</a></li>
@@ -40,6 +39,5 @@
       <p>© 2022 Company, Inc. All rights reserved.</p>
     </div>
   </footer>
-</div>
 </div>
 <!-- 푸터 끝 -->

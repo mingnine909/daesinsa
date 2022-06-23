@@ -1,18 +1,103 @@
+
 /* 슬라이드 크기 조정 */
 
 .bx-wrapper{
-    width: 300px;
-    height: 300px;
+    width: 350px;
+    height: 350px;
+ 
 }
 
 /* 상품 이미지 , 설명 flex 정렬*/
+
+.detail_category{
+margin-top:50px;
+}
+
+/* 상품 사진 + 정보 + 설명 + 리뷰 + qna 전체 */
+.product_detail_all{
+
+}
+
+/* 상품 카테고리  */
+.detail_category p{
+	font-size: 1.5rem;
+	font-weight: bold;
+}
+/* 상품 이미지 + 상품 정보 flex 정렬 */
 .product_detail{
 	display: flex;
 	margin-top:100px;
-	margin-right: 100px;
 }
 
+/* 상품정보 */
 .product_info{
 	width:500px;
-	margin-left: 100px;
+	margin-left: 150px;
 }
+
+.product_info p{
+	margin-bottom: 20px;
+}
+
+/* 상품명 */
+.product_name {
+font-size: 2rem;
+font-weight: bold;
+}
+
+/* 상품가격 */
+.product_price{
+	font-size: 1.2rem;
+}
+
+.product_name:hover {
+	color: #045757;
+	}
+/* 상품옵션 */
+.product_option {
+	width: 255px;
+	margin-bottom: 10px;
+}
+
+/* 상품버튼 */
+
+.btn_cart {
+	font-weight: bold;
+	background-color: #0d6efd;
+	color:#e4e4e4;
+}
+
+.btn_rental {
+	color: #e4e4e4;
+	font-weight: bold;
+	background-color: #045757;
+}
+
+.product_buy{
+	margin-bottom: 10px;
+}
+.btn_wish {
+	font-weight: bold;
+	width: 255px;
+	text-align: center;
+}
+
+/* .btn_wish span{
+	color: red;
+} */
+.product_share{
+	margin-top: 20px;
+}
+
+.product_share button{
+	height: 40px; 
+	margin-right: 5px;
+	background-color: white;
+}
+
+.product_share i{
+	font-size: 1.5rem;
+	text-align: center;
+	line-height: 100%;
+}
+

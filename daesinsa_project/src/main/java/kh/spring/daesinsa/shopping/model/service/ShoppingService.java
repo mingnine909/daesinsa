@@ -3,6 +3,7 @@ package kh.spring.daesinsa.shopping.model.service;
 import java.util.List;
 
 import kh.spring.daesinsa.shopping.domain.ProductQna;
+import kh.spring.daesinsa.shopping.domain.ProductReview;
 import kh.spring.daesinsa.shopping.domain.Shopping;
 
 public interface ShoppingService {
@@ -34,4 +35,7 @@ public interface ShoppingService {
 	
 	//4.상품 qna 
 	public List<ProductQna> selectQnaList(String p_id);
+	
+	//5.상품 리뷰
+	public List<ProductReview> selectReviewList(String p_id);
 }
