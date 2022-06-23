@@ -1,1 +1,47 @@
 @charset "UTF-8";
+
+body {
+	min-height: 100vh;
+	min-height: -webkit-fill-available;
+}
+
+html {
+	height: -webkit-fill-available;
+}
+
+.exchange-wrapper {
+	position: absolute;
+	top: 10%;
+	left: 25%;
+}
+
+.exchange-spacing {
+	margin-top: 30px;
+}
+
+.exchange-container {
+	width: 600px;
+}
+
+.form-label {
+	font-size: 1.2rem;
+}
+
+.exchange-spacing-l {
+	margin-top: 60px;
+}
+
+div.d-grid.gap-2.d-md-block {
+	margin-left: 33%;
+}
+
+button.btn.btn-primary { -
+	-bs-btn-bg: #045757 !important; -
+	-bs-btn-border-color: #FFFFFF !important;
+}
+
+button.btn.btn-secondary { -
+	-bs-btn-color: #222222; -
+	-bs-btn-bg: #E4E4E4 !important; -
+	-bs-btn-border-color: #FFFFFF !important;
+}
