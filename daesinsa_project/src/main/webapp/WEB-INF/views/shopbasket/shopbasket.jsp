@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,18 +20,18 @@
 	href="${pageContext.request.contextPath}/resources/css/reset.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/common/header_footer.css">
-<!-- 폰트 -->
+<!-- í°í¸ -->
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
 	rel="stylesheet">
-
+<link
+	href="${pageContext.request.contextPath}/resources/css/shopbasket.css">
 
 <title>장바구니</title>
-</head>
 <body>
 	<jsp:include page="../common/template_header.jsp"></jsp:include>
 
-	<div class="shopbasket_title">
+<div class="shopbasket_title">
 		<h2 class="shopbasket_title_content">Shopbasket</h2>
 	</div>
 	<table>
@@ -96,7 +97,12 @@
 	<div class="shopbasket_delete-btn">
 		<button onclick="">선택삭제</button>
 	</div>
-
+    <div class="guide_text">
+        환불 어쩌꾸<br>
+        배송 저쩌구<br>
+        대여 어쩌구<br>
+        연체 저쩌구<br>
+    </div>
 
 
 

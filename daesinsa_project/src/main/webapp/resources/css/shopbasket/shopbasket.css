@@ -1,0 +1,15 @@
+
+
+table {border: solid 1px rgb(233, 233, 233);
+    width: 80%; margin: auto;
+
+}
+
+td, th{
+border-bottom: solid 1px rgb(233, 233, 233) ;
+
+}
+
+
+
+.guide_text{font-size: 12px;}
