@@ -9,38 +9,24 @@ html {
     height: -webkit-fill-available;
   }
   
-.rentalre-wrapper {
+.infoupdatepwd-wrapper {
     position: absolute;
     top: 10%;
     left: 25%;
  }
 
-.rentalre-spacing {
+.infoupdatepwd-spacing {
     margin-top :30px;
  }
 
-.rentalre-container {
+.infoupdatepwd-container {
     width: 600px;
  }
-
-.rentalre-spacing-l {
-    margin-top:60px;
-}
-
-div.d-grid.gap-2.d-md-block {
-    margin-left:33%;
-}
 
 button.btn.btn-primary {
     --bs-btn-bg: #045757 !important;
     --bs-btn-border-color: #FFFFFF !important;
+    margin-left: 15%;
 }
-
-button.btn.btn-secondary {
-    --bs-btn-color: #222222 ;
-    --bs-btn-bg: #E4E4E4 !important;
-    --bs-btn-border-color: #FFFFFF !important;
-}
-
 
 

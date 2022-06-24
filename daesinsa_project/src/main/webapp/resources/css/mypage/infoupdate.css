@@ -1,1 +1,37 @@
 @charset "UTF-8";
+
+body {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+  }
+  
+html {
+    height: -webkit-fill-available;
+  }
+  
+.infoupdate-wrapper {
+    position: absolute;
+    top: 10%;
+    left: 25%;
+ }
+
+.infoupdate-spacing {
+    margin-top :30px;
+ }
+
+.infoupdate-spacing-l {
+    margin-top :30px;
+ }
+
+.infoupdate-container {
+    width: 600px;
+ }
+
+button.btn.btn-primary {
+    --bs-btn-bg: #045757 !important;
+    --bs-btn-border-color: #FFFFFF !important;
+    margin-left: 40%;
+    margin-bottom: 100px;
+}
+
+

@@ -1,1 +1,39 @@
 @charset "UTF-8";
+
+body {
+	min-height: 100vh;
+	min-height: -webkit-fill-available;
+}
+
+html {
+	height: -webkit-fill-available;
+}
+
+.rental-wrapper {
+	position: absolute;
+	top: 10%;
+	left: 25%;
+}
+
+.rental-spacing {
+	margin-top: 30px;
+}
+
+.rental-container {
+	width: 600px;
+}
+
+.rental-spacing-l {
+	margin-top: 60px;
+}
+
+button.btn.btn-primary.btn-sm { -
+	-bs-btn-bg: #045757 !important; -
+	-bs-btn-border-color: #FFFFFF !important;
+}
+
+button.btn.btn-secondary.btn-sm { -
+	-bs-btn-color: #222222; -
+	-bs-btn-bg: #E4E4E4 !important; -
+	-bs-btn-border-color: #FFFFFF !important;
+}
