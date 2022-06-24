@@ -19,8 +19,10 @@ public interface ShoppingService {
 
 	//1-1.쇼핑 상품 카테고리별 조회
 	public List<Shopping> selectListCa(Shopping shopping,int currentPage, int pageSize);
+	
 	//1-2.낮은 가격순
 	public List<Shopping> selectListCaMin(Shopping shopping,int currentPage, int pageSize);
+	
 	//1-3.높은 가격순
 	public List<Shopping> selectListCaMax(Shopping shopping,int currentPage, int pageSize);
 
@@ -36,6 +38,11 @@ public interface ShoppingService {
 	//4.상품 qna 
 	public List<ProductQna> selectQnaList(String p_id);
 	
-	//5.상품 리뷰
+	//5-1.상품 리뷰
 	public List<ProductReview> selectReviewList(String p_id);
+	
+	//5-2. 상품 리뷰 전체 갯수
+	public int selectReviewTotal(String p_id);
+	
+	
 }

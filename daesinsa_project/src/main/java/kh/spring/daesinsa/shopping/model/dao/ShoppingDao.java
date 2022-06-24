@@ -68,9 +68,15 @@ public class ShoppingDao {
 		return sqlsession.selectList("Shopping.selectQnaList",p_id);
 	}
 	
-	//5. 상품 리뷰
+	
+	
+	//5-1. 상품 리뷰
 	public List<ProductReview> selectReviewList(String p_id){
 		return sqlsession.selectList("Shopping.selectReviewList",p_id);
 	}
 	
+	//5-2. 상품 리뷰 전체 개수
+	public int selectReviewTotal(String p_id) {
+		return sqlsession.selectOne("Shopping.selectReviewTotal",p_id);
+	}
 }

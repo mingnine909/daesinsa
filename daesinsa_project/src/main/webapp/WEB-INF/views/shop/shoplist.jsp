@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -177,7 +178,7 @@
 												</c:if>
 											</c:forEach>
 											<div class="product_name"><p>${shop.p_name }</p></div>
-											<div class="product_price"><p>${shop.p_price }</p></div> <c:if
+											<div class="product_price"><p><fmt:formatNumber value="${shop.p_price }" pattern="￦#,###.##"/></p></div> <c:if
 												test="${shop.p_isrental ==1 }">
 												<span style="background-color: #FAA570; color: white">대여가능</span>
 											</c:if> <c:if test="${shop.p_isrental ==2 }">

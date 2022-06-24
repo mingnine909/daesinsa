@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,8 +69,8 @@
 					
 				<div class="product_info ">
 				<div class="product_name"><p> ${detail.p_name }</p></div>
-				<div class="product_price"><p> ${detail.p_price }</p></div>
-					
+				<div class="product_price"><p><fmt:formatNumber value="${detail.p_price }" pattern="￦#,###.##"/> </p></div> 
+				<div class="product_total_review"><a href="#product_review">상품 리뷰 : ${totalCnt }개 <i class="xi-angle-right-min"></i></a></div>
 				  <select class="product_option">
 				  <!-- 이 부분 내일 질문 ...  -->
 				<c:forEach items="${detail.p_option_info}" var="option">
@@ -138,10 +140,8 @@
 				</div>
 				<hr>
 				<div class="product_des ">
-				<c:if test="${not empty detail.p_content }">
 				<p>  ${detail.p_content }</p>
 				<p> 상품 코드: ${detail.p_id}</p>
-				</c:if>
 				</div>
 			</c:when>
 			<c:when test="${empty detail } ">
@@ -151,39 +151,88 @@
 
 
 <!-- 상품리뷰 -->
-<hr>
+			<hr>
+			<div id="product_review" class="product_review ">
+				<h1>상품 리뷰 <span>${totalCnt }</span> 개</h1>
+				<div class="product_review_content ">
+					<c:choose>
+						<c:when test="${not empty ProductReview }">
+							<div class="product_review_left">
+								<table>
+									<c:forEach items="${ProductReview }" var="re">
+										<tr>
+											<td class="review_title">${re.pr_title}</td>
+										</tr>
+										<tr>
+											<td class="review_content">${re.pr_content}</td>
+										</tr>
+										<c:if test="${not empty re.pr_review_img[0].pr_img_path }">
+											<tr>
+												<td>
+												<img src="${pageContext.request.contextPath}${re.pr_review_img[0].pr_img_path}"
+													width="60%" height="60%"></td>
+											</tr>
+										</c:if>
+									</c:forEach>
+								</table>
+							</div>
 
-<div class="product_review ">
-<h1> 상품 리뷰</h1>
-<c:choose>
-<c:when test="${not empty ProductReview }">
-<c:forEach items="${ProductReview }" var="re"> 
-<p>리뷰제목:${re.pr_title}</p> 
-<p>리뷰내용:${re.pr_content}</p> 
-<p>리뷰작성일:${re.pr_date}</p> 
-</c:forEach>
-</c:when>
-<c:when test="${empty  ProductReview}">
-현재 작성된 상품 리뷰가 없습니다.
-</c:when>
-</c:choose>
-</div>
+							<div class="product_review_right">
+								<table>
+									<c:forEach items="${ProductReview }" var="re">
+										<tr>
+											<td class="review_date">작성일: ${fn:substring(re.pr_date,0,16) }</td>
+										</tr>
+										<tr>
+											<td class="review_writer">리뷰 작성자:<%-- ${re.pr_m_id} --%>
+											</td>
+										</tr>
+									</c:forEach>
+								</table>
+							</div>
+						</c:when>
+						<c:when test="${empty  ProductReview}">
+							<table>
+								<tr>
+									<td>현재 작성된 상품 리뷰가 없습니다.</td>
+								</tr>
+							</table>
+						</c:when>
+					</c:choose>
+				</div>
+			</div>
 
 
-<!-- 상품문의 -->
+
+
+
+			<!-- 상품문의 -->
 <hr>
 <div class="product_qna ">
 <h1> 상품 문의</h1>
+<div class="product_qna_all">
 <c:choose>
 <c:when test="${not empty ProductQna }">
 <c:forEach items="${ProductQna }" var="qna">
-<p>문의번호${qna.pq_no }</p>
+ <div class="qna">
+<div class="product_qna_title">
+<c:if test="${qna.pq_level ==1 }">
+<p><i class="xi-subdirectory-arrow"></i>
+작성일자${qna.pq_date }</p>
 <p>문의제목${qna.pq_title }</p>
 <p>문의유형${qna.pq_type }</p>
+</c:if>
+<c:if test="${qna.pq_level ==0 }">
 <p>작성일자${qna.pq_date }</p>
+<p>문의제목${qna.pq_title }</p>
+<p>문의유형${qna.pq_type }</p>
+</c:if>
+</div>
+<div class="product_qna_desc">
 <p>내용${qna.pq_content }</p>
-<p>회원아이디${qna.m_id }</p>
 <p>비밀글여부${qna.pq_closed }</p>
+</div>
+</div>
 </c:forEach>
 </c:when>
 <c:when test="${empty  productQna}">
@@ -191,12 +240,34 @@
 </c:when>
 </c:choose>
 </div>
+</div>
 
 
 
 	</div>
 </div>
 	<jsp:include page="../common/template_footer.jsp"></jsp:include>
+	
+	<!-- 상품 qna 스크립트 -->
+    <script>
+      let eleBtns= document.getElementsByClassName("product_qna_title");
+      for (var i = 0; i<eleBtns.length ; i++){
+        eleBtns[i].onclick = function(){
+            console.log(this); 
+            console.log(this.nextElementSibling);
+            var eleNext = this.nextElementSibling;
+            var isDisplay = eleNext.style.display;
+            console.log(isDisplay);
+            if(isDisplay =="" || isDisplay =="none"){
+                eleNext.style.display="block" ;
+      
+            } else{
+                eleNext.style.display="none" ;  
+            }
+      }
+      }
+      
+      </script>
 	
       <!-- 상품공유 스크립트 -->
         <script>

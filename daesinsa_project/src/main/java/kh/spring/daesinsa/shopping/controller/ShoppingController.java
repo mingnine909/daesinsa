@@ -77,13 +77,18 @@ public class ShoppingController {
 			,ModelAndView mv
 			,@RequestParam("p_id") String p_id
 			) {
+		int totalCnt = service.selectReviewTotal(p_id);
+	
+		
 		if(shopping.getP_id()==null) {
 			mv.setViewName("redirect:/shop/shoplist");
 			return mv;
 		}
+
 		mv.addObject("detail",service.detailProduct(shopping));
 		mv.addObject("ProductQna",service.selectQnaList(p_id));
 		mv.addObject("ProductReview", service.selectReviewList(p_id));
+		mv.addObject("totalCnt", totalCnt);
 		mv.setViewName("shop/detail");
 		return mv;
 		

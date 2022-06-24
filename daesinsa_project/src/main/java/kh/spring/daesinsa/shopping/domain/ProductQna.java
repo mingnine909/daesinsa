@@ -10,7 +10,9 @@ public class ProductQna {
 //	PQ_TYPE    NOT NULL NUMBER         
 //	PQ_CONTENT NOT NULL VARCHAR2(3000) 
 //	PQ_DATE    NOT NULL TIMESTAMP(6)   
-//	PQ_CLOSED           NUMBER         
+//	PQ_CLOSED           NUMBER      
+//	PQ_LEVEL            NUMBER         
+//	PQ_QREF             NUMBER      
 //	P_ID       NOT NULL VARCHAR2(20)   
 //	M_ID       NOT NULL VARCHAR2(20)   
 //	AD_ID      NOT NULL VARCHAR2(20)   
@@ -21,16 +23,19 @@ public class ProductQna {
 	private String pq_content;
 	private String pq_date;
 	private int pq_closed;
+	private int pq_level;
+	private int pq_qref;
 	private String p_id;
 	private String m_id;
 	private String ad_id;
-	@Override
 	
+	@Override
 	public String toString() {
 		return "ProductQna [pq_no=" + pq_no + ", pq_title=" + pq_title + ", pq_type=" + pq_type + ", pq_content="
-				+ pq_content + ", pq_date=" + pq_date + ", pq_closed=" + pq_closed + ", p_id=" + p_id + ", m_id=" + m_id
-				+ ", ad_id=" + ad_id + "]";
+				+ pq_content + ", pq_date=" + pq_date + ", pq_closed=" + pq_closed + ", pq_level=" + pq_level
+				+ ", pq_qref=" + pq_qref + ", p_id=" + p_id + ", m_id=" + m_id + ", ad_id=" + ad_id + "]";
 	}
+	
 	public int getPq_no() {
 		return pq_no;
 	}
@@ -67,6 +72,24 @@ public class ProductQna {
 	public void setPq_closed(int pq_closed) {
 		this.pq_closed = pq_closed;
 	}
+	
+	
+	public int getPq_level() {
+		return pq_level;
+	}
+
+	public void setPq_level(int pq_level) {
+		this.pq_level = pq_level;
+	}
+
+	public int getPq_qref() {
+		return pq_qref;
+	}
+
+	public void setPq_qref(int pq_qref) {
+		this.pq_qref = pq_qref;
+	}
+
 	public String getP_id() {
 		return p_id;
 	}

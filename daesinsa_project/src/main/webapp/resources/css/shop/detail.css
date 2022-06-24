@@ -35,8 +35,12 @@ margin-top:50px;
 	margin-left: 150px;
 }
 
-.product_info p{
+.product_info p, .product_total_review{
 	margin-bottom: 20px;
+}
+
+.product_total_review a{
+	color: black;
 }
 
 /* 상품명 */
@@ -72,7 +76,7 @@ font-weight: bold;
 	font-weight: bold;
 	background-color: #045757;
 }
-
+/* 장바구니 담기 버튼 + 렌탈 버튼 */
 .product_buy{
 	margin-bottom: 10px;
 }
@@ -85,6 +89,8 @@ font-weight: bold;
 /* .btn_wish span{
 	color: red;
 } */
+
+/* 상품공유 영역 */
 .product_share{
 	margin-top: 20px;
 }
@@ -93,6 +99,7 @@ font-weight: bold;
 	height: 40px; 
 	margin-right: 5px;
 	background-color: white;
+	border: none; 
 }
 
 .product_share i{
@@ -101,3 +108,74 @@ font-weight: bold;
 	line-height: 100%;
 }
 
+/* 상품리뷰 */
+.product_review {
+	margin: 20px 0;
+	
+}
+
+.product_review>h1>span{
+	color:orange;
+}
+
+.product_review_content{
+	display: flex;
+}
+
+.product_review_left{
+	width: 80%;
+}
+
+.product_review h1{
+	font-size: 1.5rem;
+	margin-bottom: 20px;
+	font-weight: bold;
+}
+
+.product_review_content td{
+	padding-bottom: 20px;
+}
+
+.product_review_right{
+	border-left: 1px solid black;
+	padding-left: 10px;
+}
+
+/* 상품qna */
+
+
+.product_qna h1{
+	font-size: 1.5rem;
+	margin-bottom: 20px;
+	font-weight: bold;
+}
+
+.product_qna_desc{
+
+	display: none;
+	line-height: 120%;
+	padding: 10px;
+	background: rgba(248,248,248,0.8);
+}
+
+
+.product_qna_title{
+	padding:10px;
+
+
+}
+
+/* .review_img{
+	cursor: pointer;
+}
+.review_img_reset{
+	display: none;
+	margin: auto;
+	cursor: pointer;
+}
+
+.review_img_reset p {
+	text-decoration: underline;
+	color: blue;
+}
+ */

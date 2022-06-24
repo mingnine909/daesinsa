@@ -73,11 +73,18 @@ public class ShoppingServiceImpl implements ShoppingService{
 		return dao.selectQnaList(p_id);
 	}
 
-	//5. 상품 리뷰
+	//5-1. 상품 리뷰
 	@Override
 	public List<ProductReview> selectReviewList(String p_id) {
 		return dao.selectReviewList(p_id);
 	}
+
+	//5-2. 상품 리뷰 전체 개수
+	@Override
+	public int selectReviewTotal(String p_id) {
+		return dao.selectReviewTotal(p_id);
+	}
+
 
 
 
