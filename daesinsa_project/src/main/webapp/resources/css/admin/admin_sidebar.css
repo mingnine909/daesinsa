@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+body {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+  }
+  
+html {
+    height: -webkit-fill-available;
+  }
+
+
+.admin-side-wrapper {
+    position: absolute;
+}
+
+.admin-side-container {
+    position: absolute;
+    width: 200px;
+    top: 5%;
+    left: 5%;
+    right: 5%;
+    bottom: 5%;
+}
+
+.admin-side-spacing {
+    margin-top:10px;
+}
+
+.admin-side-spacing-l {
+    margin-top:20px;
+}
+
+a.nav-link {
+    color: #2E2E2E;
+    font-size: 1.1rem;
+}
+
+a.nav-link.disabled {
+    color: #2E2E2E;
+    font-size: 1rem;
+}
+
+.btn-primary {
+    --bs-btn-bg: #045757 !important;
+    --bs-btn-border-color: #FFFFFF !important;
+}
