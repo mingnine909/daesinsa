@@ -210,6 +210,9 @@
 <hr>
 <div class="product_qna ">
 <h1> 상품 문의</h1>
+<div class="insert_qna">
+<button type="button" onclick="openQna();">문의 작성</button>
+</div>
 <div class="product_qna_all">
 <c:choose>
 <c:when test="${not empty ProductQna }">
@@ -267,6 +270,14 @@
       }
       }
       
+      </script>
+      
+       <!-- 상품 qna 새 창 열기 -->
+      <script>
+        function openQna(){
+          var popup = window.open('${pageContext.request.contextPath}/shop/qnainsert?p_id=${detail.p_id}', 
+        		  'daesinsa - 상품리뷰', 'width=800px,height=700px,scrollbars=yes');
+        }
       </script>
 	
       <!-- 상품공유 스크립트 -->

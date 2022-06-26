@@ -130,5 +130,17 @@ public class ShoppingController {
 		
 	}
 	
+	//4. 상품문의 작성(로그인 구현 이후 진행)
+	@GetMapping("/qnainsert")
+	public ModelAndView searchListCa(
+			ModelAndView mv
+			,@RequestParam("p_id") String p_id
+			) {
+		
+		mv.setViewName("shop/qnainsert");
+		return mv;
+	}
+	
+	
 	
 }

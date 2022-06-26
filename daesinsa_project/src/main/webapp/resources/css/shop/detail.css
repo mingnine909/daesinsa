@@ -104,13 +104,15 @@ font-weight: bold;
 
 .product_share i{
 	font-size: 1.5rem;
-	text-align: center;
-	line-height: 100%;
+}
+
+.product_des{
+	margin: 50px 0;
 }
 
 /* 상품리뷰 */
 .product_review {
-	margin: 20px 0;
+	margin: 50px 0;
 	
 }
 
@@ -143,6 +145,13 @@ font-weight: bold;
 
 /* 상품qna */
 
+.product_qna{
+	margin: 50px 0;
+}
+
+.product_qna_all{
+	clear: both;
+}
 
 .product_qna h1{
 	font-size: 1.5rem;
@@ -154,16 +163,21 @@ font-weight: bold;
 
 	display: none;
 	line-height: 120%;
-	padding: 10px;
+	padding-bottom: 10px;
 	background: rgba(248,248,248,0.8);
 }
 
 
 .product_qna_title{
-	padding:10px;
+	padding-bottom:10px;
 
 
 }
+
+.insert_qna{
+	float: right;
+}
+
 
 /* .review_img{
 	cursor: pointer;

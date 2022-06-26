@@ -204,7 +204,33 @@
 
 		<!-- 페이징 부분 -->
 		<div class="paging">
-			<p>
+
+  <ul class="pagination justify-content-center">
+     <c:if test="${startPage > 1 }">
+    <li class="page-item">
+      <a class="page-link" href="${pageContext.request.contextPath}/shop/shoplist?c_id=${c_id}&c_first=${c_first }&page=${startPage-1 }&sort=${sort}"
+       aria-label="이전">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+       </c:if>
+    <c:forEach begin="${startPage}" end="${endPage}" var="i">
+    <li class="page-item"><a class="page-link"
+     href="${pageContext.request.contextPath}/shop/shoplist?c_id=${c_id}&c_first=${c_first }&page=${i}&sort=${sort}">${i }</a></li>
+    </c:forEach>
+    	<c:if test="${endPage < pageCnt}">
+    <li class="page-item">
+      <a class="page-link" href="${pageContext.request.contextPath}/shop/shoplist?c_id=${c_id}&c_first=${c_first }&page=${endPage+1 }&sort=${sort}"
+       aria-label="다음">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+    </c:if>
+  </ul>
+
+		
+		
+		<%-- 	<p>
 				<c:if test="${startPage > 1 }">
 					<a
 						href="${pageContext.request.contextPath}/shop/shoplist?c_id=${c_id}&c_first=${c_first }&page=${startPage-1 }&sort=${sort}"><span>이전</span></a>&nbsp;&nbsp;&nbsp;
@@ -217,7 +243,7 @@
 					<a
 						href="${pageContext.request.contextPath}/shop/shoplist?c_id=${c_id}&c_first=${c_first }&page=${endPage+1 }&sort=${sort}"><span>다음</span></a>&nbsp;&nbsp;&nbsp;
 			</c:if>
-			</p>
+			</p> --%>
 		</div>
 
 	</div>
