@@ -29,7 +29,7 @@ public class Shopping {
 	private int p_issoldout;
 	private String c_id;
 	//카테고리 목록
-	private List<Category> category;
+	private Category category;
 	//이미지 파일 번호 및 경로 추가 
 	private List<ProductImg> p_img_list;
 	//상품 상세조회 시 상세옵션
@@ -164,13 +164,13 @@ public class Shopping {
 
 
 
-	public List<Category> getCategory() {
+
+	public Category getCategory() {
 		return category;
 	}
 
 
-
-	public void setCategory(List<Category> category) {
+	public void setCategory(Category category) {
 		this.category = category;
 	}
 

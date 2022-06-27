@@ -13,9 +13,27 @@
 <result column="p_isrental" property="p_isrental"/>
 <result column="p_issoldout" property="p_issoldout"/>
 <result column="c_id" property="c_id"/>
-<collection property="category" resultMap="CategoryReusltMap"/>
+<association property="category" resultMap="CategoryReusltMap"/>
 <collection property="p_img_list" resultMap="ShoppingImgReusltMap"/>
 </resultMap>
+
+<!-- 카테고리 + 상품 + 이미지 + 옵션 resultMap -->
+<resultMap type="Shopping" id="ShopAndImgOptResultMap">
+<id column="p_id" property="p_id"/>
+<result column="p_name" property="p_name"/>
+<result column="p_price" property="p_price"/>
+<result column="p_content" property="p_content"/>
+<result column="p_postdate" property="p_postdate"/>
+<result column="p_issale" property="p_issale"/>
+<result column="p_saleamount" property="p_saleamount"/>
+<result column="p_isrental" property="p_isrental"/>
+<result column="p_issoldout" property="p_issoldout"/>
+<result column="c_id" property="c_id"/>
+<association property="category" resultMap="CategoryReusltMap"/>
+<collection property="p_img_list" resultMap="ShoppingImgReusltMap"/>
+<collection property="p_option_info" resultMap="OptionInfoResultMap"/>
+</resultMap>
+
 
 <!-- 카테고리  resultMap -->	
 <resultMap type="Category" id="CategoryReusltMap">
@@ -32,25 +50,71 @@
 <result column="p_img_path" property="p_img_path"/>
 </resultMap>
 
+<!-- 상품 상세옵션 resultMap -->
+<resultMap type="ProductOptionInfo" id="OptionInfoResultMap">
+<id column="poi_id" property="poi_id"/>
+<result column="p_id" property="p_id"/>
+<result column="po_id" property="po_id"/>
+<result column="poi_type" property="poi_type"/>
+<result column="poi_amout" property="poi_amout"/>
+</resultMap>  
+
+
+<!-- 상품 리뷰 + 상품 리뷰 이미지 resultMap -->
+<resultMap type="ProductReview" id="ShopReviewResultMap">
+<id column="pr_no" property="pr_no"/>
+<result column="pr_title" property="pr_title"/>
+<result column="pr_content" property="pr_content"/>
+<result column="pr_date" property="pr_date"/>
+<result column="m_id" property="m_id"/>
+<result column="p_id" property="p_id"/>
+<collection property="pr_review_img" resultMap="ShopReviewImgResultMap"/>
+</resultMap> 
+
+
+<!-- 상품 리뷰 이미지 resultMap  -->
+<resultMap type="ProductReviewImg" id="ShopReviewImgResultMap">
+<id column="pr_img_no" property="pr_img_no"/>
+<result column="pr_no" property="pr_no"/>
+<result column="pr_img_path" property="pr_img_path"/>
+</resultMap>  
 
 	
 <!-- 카테고리별 전체 상품 개수 조회 -->
 <select id="selectCaRentTotal"  parameterType="string" resultType="_int">
 	select count(*) from product where c_id = #{c_id}
+	and p_isrental=1
 </select> 
 
-	<!-- 1-1.카테고리별로 대여 페이지 headerd에서 진입   -->
+		<!-- 1-1-1.카테고리별로 대여 페이지 headerd에서 진입   -->
 	<select id="selectRentListCa" parameterType="Shopping"
-		resultMap="CaShoppingAndImgResultMap">
+		resultType="Shopping">
 	select * from product
-    left outer join category
-    using(c_id)
-	left outer join product_img
-	using(p_id)
-	where c_id = #{c_id}
-	order by p_id asc , p_img_no asc
+	where c_id = #{c_id} and p_isrental=1
+	order by p_id asc
 	</select> 
 	
+	<!-- 1-1-2.카테고리별로 대여 페이지 headerd에서 진입   -->
+	<select id="selectRentListCaImg" parameterType="Shopping"
+		resultType="ProductImg">
+	select * from product_img
+	where p_id = #{p_id}
+	order by p_img_no asc
+	</select> 
+	
+	<!-- 2. 구매 상품 상세 조회 -->
+	<select id ="detailProduct" parameterType="Shopping" 
+	resultMap="ShopAndImgOptResultMap">
+		select * from category
+    left outer join product 
+    using(c_id)
+	left outer join product_img 
+	using(p_id) left outer join product_option_info
+	using(p_id)
+	where p_id =  #{p_id}
+	order by p_img_no , poi_type
+    </select>
+    
 	 <!--3-1. 전체 상품 개수 조회 (검색 시 페이징 처리용)-->
 	<select id="selectSearchTotal" parameterType="string" resultType="_int">
 	select count(*) 
@@ -70,6 +134,40 @@
 	using(p_id)
 	where LOWER(p_name) like '%'|| #{keyword} ||'%' 
 	or  UPPER(p_name)  like '%'|| #{keyword} ||'%' 
+    </select>
+    
+    
+    <!-- 4-1. 상품 qna -->
+    <select id="selectQnaList" parameterType="string" resultType="ProductQna">
+    select * from product_qna
+	where p_id = #{p_id}
+	order by pq_no , pq_level, pq_qref 
+    </select>
+    
+    <!-- 4-2. qna 전체 갯수 -->
+     <select id="selectQnaTotal" parameterType="string" resultType="_int">
+      select count(*) from product_qna
+     where p_id =  #{p_id}
+    </select>
+    
+    <!-- 5-1. 상품 리뷰 -->
+	<select id="selectReviewList" parameterType="string" resultMap="ShopReviewResultMap">
+		select * from product
+		right outer join product_review
+		using(p_id)
+		left outer join product_review_img
+		using(pr_no)
+		where p_id = #{p_id}
+    </select>
+    
+    <!-- 5.2 각 상품별 리뷰 전체 갯수 -->
+    <select id="selectReviewTotal" parameterType="string" resultType="_int">
+    select count(*) from product
+		right outer join product_review
+		using(p_id)
+		left outer join product_review_img
+		using(pr_no)
+		where p_id =  #{p_id}
     </select>
 	
 </mapper>

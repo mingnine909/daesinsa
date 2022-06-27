@@ -29,7 +29,7 @@
 <result column="p_isrental" property="p_isrental"/>
 <result column="p_issoldout" property="p_issoldout"/>
 <result column="c_id" property="c_id"/>
-<collection property="category" resultMap="CategoryReusltMap"/>
+<association property="category" resultMap="CategoryReusltMap"/>
 <collection property="p_img_list" resultMap="ShoppingImgReusltMap"/>
 </resultMap>
 
@@ -45,7 +45,7 @@
 <result column="p_isrental" property="p_isrental"/>
 <result column="p_issoldout" property="p_issoldout"/>
 <result column="c_id" property="c_id"/>
-<collection property="category" resultMap="CategoryReusltMap"/>
+<association property="category" resultMap="CategoryReusltMap"/>
 <collection property="p_img_list" resultMap="ShoppingImgReusltMap"/>
 <collection property="p_option_info" resultMap="OptionInfoResultMap"/>
 </resultMap>
@@ -106,45 +106,56 @@
 		USING(c_id)
 	</select>
 
-	<!-- 1-1.카테고리별로 구매 페이지 headerd에서 진입   -->
+	<!-- 1-1-1.카테고리별로 구매 페이지 headerd에서 진입   -->
 	<select id="selectListCa" parameterType="Shopping"
-		resultMap="CaShoppingAndImgResultMap">
+		resultType="Shopping">
 	select * from product
-    left outer join category
-    using(c_id)
-	left outer join product_img
-	using(p_id)
 	where c_id = #{c_id}
-	order by p_id asc , p_img_no asc
+	order by p_id asc
 	</select> 
-	<!-- 1-2.낮은가격순 -->
-		<select id ="selectListCaMin" parameterType="Shopping"
-		resultMap="CaShoppingAndImgResultMap">
-		select *
-    from product
-    left outer join category
-    using(c_id)
-	left outer join product_img
-	using(p_id)
-	where c_id = #{c_id}
-	order by  p_price , p_img_no asc
 	
+	<!-- 1-1-2.카테고리별로 구매 페이지 headerd에서 진입   -->
+	<select id="selectListCaImg" parameterType="Shopping"
+		resultType="ProductImg">
+	select * from product_img
+	where p_id = #{p_id}
+	order by p_img_no asc
+	</select> 
+	
+	
+	<!-- 1-2-1.낮은가격순 -->
+	<select id ="selectListCaMin" parameterType="Shopping"
+	resultType="Shopping">
+	select * from product
+	where c_id = #{c_id}
+	order by  p_price 
 	</select>
-		
-	<!-- 1-3.높은가격순 -->
-	<select id ="selectListCaMax" parameterType="Shopping"
-		resultMap="CaShoppingAndImgResultMap">
-	select *
-    from product
-    left outer join category
-    using(c_id)
-	left outer join product_img
-	using(p_id)
-	where c_id = #{c_id}
-	order by  p_price desc ,p_img_no asc
 	
+	<!-- 1-2-1.낮은가격순 이미지 -->
+	<select id ="selectListCaMinImg" parameterType="Shopping"
+	resultType="ProductImg">
+	select * from product_img
+	where p_id = #{p_id}
+	order by p_img_no asc
+	</select>
+	
+	
+		
+	<!-- 1-3-1.높은가격순 -->
+	<select id ="selectListCaMax" parameterType="Shopping"
+	resultType="Shopping">
+	select * from product
+	where c_id = #{c_id}
+	order by  p_price  desc
 	</select>
 
+	<!-- 1-3-2.높은가격순 이미지 -->
+	<select id ="selectListCaMaxImg" parameterType="Shopping"
+	resultType="ProductImg">
+	select * from product_img
+	where p_id = #{p_id}
+	order by p_img_no asc
+	</select>
 	
 	<!-- 2. 구매 상품 상세 조회 -->
 	<select id ="detailProduct" parameterType="Shopping" 
@@ -179,12 +190,19 @@
 	where LOWER(p_name) like '%'|| #{keyword} ||'%' 
 	or  UPPER(p_name)  like '%'|| #{keyword} ||'%' 
     </select>
+ 
     
-    <!-- 4. 상품 qna -->
+    <!-- 4-1. 상품 qna -->
     <select id="selectQnaList" parameterType="string" resultType="ProductQna">
     select * from product_qna
 	where p_id = #{p_id}
 	order by pq_no , pq_level, pq_qref 
+    </select>
+    
+    <!-- 4-2. qna 전체 갯수 -->
+     <select id="selectQnaTotal" parameterType="string" resultType="_int">
+      select count(*) from product_qna
+     where p_id =  #{p_id}
     </select>
     
     <!-- 5-1. 상품 리뷰 -->

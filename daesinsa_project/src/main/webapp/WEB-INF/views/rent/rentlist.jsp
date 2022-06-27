@@ -119,10 +119,10 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 <div class="rent_list">
   <ul>
 	<c:forEach items="${Rent }" var ="rent">
+     <c:if test="${rent.p_isrental ==1 }">
 	<li class="product_list">
     <div class="product">
     <a href="${pageContext.request.contextPath}/rent/detail?p_id=${rent.p_id }">
-     <c:if test="${rent.p_isrental ==1 }">
     <c:forEach items="${rent.p_img_list }" var="rentimg" varStatus="status"> 
     <c:if test="${status.count <2 }">
     <c:if test ="${not empty rentimg.p_img_path }">
@@ -130,21 +130,12 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
       </c:if>
       </c:if>
       </c:forEach>
-      </c:if>
        <div class="product_name">${rent.p_name }</div>
       <div class="product_price">일 1,500원 </div> 
-    <%--   <c:if test="${rent.p_isrental ==1 }">
-      <span style= "background-color: #FAA570; color: white">대여가능</span>
-      </c:if>
-       <c:if test="${rent.p_isrental ==2 }">
-      <span style="background-color: #044343; color:#e4e4e4;">대여불가</span>
-      </c:if>
-       <c:if test="${rent.p_issoldout ==1 }">
-      <span style="background-color: #e4e4e4;">품절</span>
-      </c:if> --%>
       </a>
     </div>
   </li>
+      </c:if>
 </c:forEach>
 </ul>
 </div>
@@ -160,17 +151,28 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 	
    <!-- 페이징 부분 -->
   <div class="paging">
-			<p>
-				<c:if test="${startPage > 1 }">
-					<a href="${pageContext.request.contextPath}/rent/rentlist?c_id=${c_id}&c_first=${c_first }&page=${startPage-1 }"><span>이전</span></a>&nbsp;&nbsp;&nbsp;
-			</c:if>
-				<c:forEach begin="${startPage}" end="${endPage}" var="i">
-					<a href="${pageContext.request.contextPath}/rent/rentlist?c_id=${c_id}&c_first=${c_first }&page=${i}"><span>${i }</span></a>&nbsp;&nbsp;&nbsp;
-			</c:forEach>
-				<c:if test="${endPage < pageCnt}">
-					<a href="${pageContext.request.contextPath}/rent/rentlist?c_id=${c_id}&c_first=${c_first }&page=${endPage+1 }"><span>다음</span></a>&nbsp;&nbsp;&nbsp;
-			</c:if>
-			</p>
+			<ul class="pagination justify-content-center">
+     <c:if test="${startPage > 1 }">
+    <li class="page-item">
+      <a class="page-link" href="${pageContext.request.contextPath}/rent/rentlist?c_id=${c_id}&c_first=${c_first }&page=${startPage-1 }"
+       aria-label="이전">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+       </c:if>
+    <c:forEach begin="${startPage}" end="${endPage}" var="i">
+    <li class="page-item"><a class="page-link"
+     href="${pageContext.request.contextPath}/rent/rentlist?c_id=${c_id}&c_first=${c_first }&page=${i}">${i }</a></li>
+    </c:forEach>
+    	<c:if test="${endPage < pageCnt}">
+    <li class="page-item">
+      <a class="page-link" href="${pageContext.request.contextPath}/rent/rentlist?c_id=${c_id}&c_first=${c_first }&page=${endPage+1 }"
+       aria-label="다음">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+    </c:if>
+  </ul>
 		</div>
 
 </div>

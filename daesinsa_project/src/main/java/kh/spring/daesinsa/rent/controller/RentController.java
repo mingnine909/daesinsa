@@ -67,6 +67,56 @@ private static final Logger logger = LoggerFactory.getLogger(RentController.clas
 		return mv;
 	}
 	
+	
+	//2. 대여 상품 상세조회
+	@GetMapping("/detail")
+	public ModelAndView detailProduct(
+			Shopping shopping
+			,ModelAndView mv
+			,@RequestParam("p_id") String p_id
+			,@RequestParam(name = "page", defaultValue = "1") int currentPage
+			) {
+		int totalCntRe = service.selectReviewTotal(p_id); //리뷰 개수
+		int totalCntQna = service.selectQnaTotal(p_id); // qna 개수
+		
+		
+		final int pageSize = 5;
+		final int pageBlock = 3;
+		// paging 처리
+		int pageCnt = (totalCntQna / pageSize) + (totalCntQna % pageSize == 0 ? 0 : 1);
+		int startPage = 1;
+		int endPage = 1;
+		if (currentPage % pageBlock == 0) {
+			startPage = ((currentPage / pageBlock) - 1) * pageBlock + 1;
+		} else {
+			startPage = (currentPage / pageBlock) * pageBlock + 1;
+		}
+		endPage = startPage + pageBlock - 1;
+		if (endPage > pageCnt) {
+			endPage = pageCnt;
+		}
+	
+		
+		if(shopping.getP_id()==null) {
+			mv.setViewName("redirect:/rent/rentlist");
+			return mv;
+		}
+
+		mv.addObject("detail",service.detailProduct(shopping));
+		mv.addObject("ProductQna",service.selectQnaList(p_id));
+		mv.addObject("ProductReview", service.selectReviewList(p_id));
+		mv.addObject("totalCntRe", totalCntRe);
+		mv.addObject("totalCntQna", totalCntQna);
+		mv.addObject("startPage", startPage);
+		mv.addObject("endPage", endPage);
+		mv.addObject("pageCnt", pageCnt);
+		mv.addObject("currentPage", currentPage);
+		mv.setViewName("rent/detail");
+		return mv;
+		
+	}
+	
+	
 	//3. 대여 상품 검색
 		@GetMapping("/search")
 		public ModelAndView searchListCa(
@@ -102,6 +152,20 @@ private static final Logger logger = LoggerFactory.getLogger(RentController.clas
 			return mv;
 			
 		}
+		
+		
+		//4. 대여 작성 폼
+		@GetMapping("/rentinsert")
+		public ModelAndView rentInsert (
+				ModelAndView mv
+				,@RequestParam("p_id") String p_id
+				) {
+			mv.addObject("p_id", p_id); //상품번호 가지고 이동
+			mv.setViewName("rent/rentinsert");
+			
+			return mv;
+		}
+		
 	
 	
 }

@@ -181,9 +181,11 @@
 											<div class="product_price"><p><fmt:formatNumber value="${shop.p_price }" pattern="￦#,###.##"/></p></div> <c:if
 												test="${shop.p_isrental ==1 }">
 												<span style="background-color: #FAA570; color: white">대여가능</span>
-											</c:if> <c:if test="${shop.p_isrental ==2 }">
+											 </c:if>
+											 <%-- <c:if test="${shop.p_isrental ==2 }">
 												<span style="background-color: #044343; color: #e4e4e4;">대여불가</span>
-											</c:if> <c:if test="${shop.p_issoldout ==1 }">
+											</c:if>  --%>
+											<c:if test="${shop.p_issoldout ==1 }">
 												<span style="background-color: #e4e4e4;">품절</span>
 											</c:if>
 										</a>
@@ -230,20 +232,7 @@
 
 		
 		
-		<%-- 	<p>
-				<c:if test="${startPage > 1 }">
-					<a
-						href="${pageContext.request.contextPath}/shop/shoplist?c_id=${c_id}&c_first=${c_first }&page=${startPage-1 }&sort=${sort}"><span>이전</span></a>&nbsp;&nbsp;&nbsp;
-			</c:if>
-				<c:forEach begin="${startPage}" end="${endPage}" var="i">
-					<a
-						href="${pageContext.request.contextPath}/shop/shoplist?c_id=${c_id}&c_first=${c_first }&page=${i}&sort=${sort}"><span>${i }</span></a>&nbsp;&nbsp;&nbsp;
-			</c:forEach>
-				<c:if test="${endPage < pageCnt}">
-					<a
-						href="${pageContext.request.contextPath}/shop/shoplist?c_id=${c_id}&c_first=${c_first }&page=${endPage+1 }&sort=${sort}"><span>다음</span></a>&nbsp;&nbsp;&nbsp;
-			</c:if>
-			</p> --%>
+
 		</div>
 
 	</div>

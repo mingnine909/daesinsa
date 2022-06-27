@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kh.spring.daesinsa.shopping.domain.ProductImg;
 import kh.spring.daesinsa.shopping.domain.ProductQna;
 import kh.spring.daesinsa.shopping.domain.ProductReview;
 import kh.spring.daesinsa.shopping.domain.Shopping;
@@ -27,23 +28,48 @@ public class ShoppingDao {
 		return sqlsession.selectList("Shopping.selectListAll");
 	}
 	
+//	//1-1.쇼핑 상품 카테고리별 조회
+//	public List<Shopping> selectListCa(Shopping shopping ,int currentPage, int pageSize){
+//		return sqlsession.selectList("Shopping.selectListCa",shopping
+//				,new RowBounds((currentPage-1)*pageSize,pageSize)
+//				);
+//	}
+	
+	
 	//1-1.쇼핑 상품 카테고리별 조회
-	public List<Shopping> selectListCa(Shopping shopping ,int currentPage, int pageSize){
-		return sqlsession.selectList("Shopping.selectListCa",shopping
-				,new RowBounds((currentPage-1)*pageSize,pageSize)
-				);
-	}
+		public List<Shopping> selectListCa(Shopping shopping ,int currentPage, int pageSize){
+			List<Shopping> shoppinglist = sqlsession.selectList("Shopping.selectListCa",shopping
+					,new RowBounds((currentPage-1)*pageSize,pageSize)
+					);
+			for(Shopping svo : shoppinglist) {
+				List<ProductImg> pImg = sqlsession.selectList("Shopping.selectListCaImg", svo.getP_id());
+				svo.setP_img_list(pImg);
+			}
+			return shoppinglist;
+		}
 	//1-2. 낮은가격순
 	public List<Shopping> selectListCaMin(Shopping shopping ,int currentPage, int pageSize){
-		return sqlsession.selectList("Shopping.selectListCaMin",shopping
+		List<Shopping> shoppingMinlist = sqlsession.selectList("Shopping.selectListCaMin",shopping
 				,new RowBounds((currentPage-1)*pageSize,pageSize)
 				);
+		for(Shopping svo : shoppingMinlist) {
+			List<ProductImg> pImg = sqlsession.selectList("Shopping.selectListCaMinImg", svo.getP_id());
+			svo.setP_img_list(pImg);
+		}
+		return shoppingMinlist;
 	}
+	
+	
 	//1-3. 높은가격순
 	public List<Shopping> selectListCaMax(Shopping shopping ,int currentPage, int pageSize){
-		return sqlsession.selectList("Shopping.selectListCaMax",shopping
+		List<Shopping> shoppingMaxlist = sqlsession.selectList("Shopping.selectListCaMax",shopping
 				,new RowBounds((currentPage-1)*pageSize,pageSize)
 				);
+		for(Shopping svo : shoppingMaxlist) {
+			List<ProductImg> pImg = sqlsession.selectList("Shopping.selectListCaMaxImg", svo.getP_id());
+			svo.setP_img_list(pImg);
+		}
+		return shoppingMaxlist;
 	}
 	
 	//2. 쇼핑상품 상세 조회
@@ -63,11 +89,15 @@ public class ShoppingDao {
 				);
 	}
 	
-	//4. 상품 qna 
+	//4-1. 상품 qna 
 	public List<ProductQna> selectQnaList(String p_id){
 		return sqlsession.selectList("Shopping.selectQnaList",p_id);
 	}
 	
+	//4-2 상품 qna 전체 개수
+	public int selectQnaTotal(String p_id) {
+		return sqlsession.selectOne("Shopping.selectQnaTotal",p_id);
+	}
 	
 	
 	//5-1. 상품 리뷰

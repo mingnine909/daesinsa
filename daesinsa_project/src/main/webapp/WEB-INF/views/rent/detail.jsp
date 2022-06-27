@@ -36,7 +36,7 @@
 <title>Daesinsa</title>
 </head>
 <body>
-	<jsp:include page="../common/template_header.jsp"></jsp:include>
+	<jsp:include page="../common/template_rheader.jsp"></jsp:include>
 	<div id="mainwrap">
 	<div class="product_detail_all container">
 	<div class="detail_category ">
@@ -69,7 +69,7 @@
 					
 				<div class="product_info ">
 				<div class="product_name"><p> ${detail.p_name }</p></div>
-				<div class="product_price"><p><fmt:formatNumber value="${detail.p_price }" pattern="￦#,###.##"/> </p></div> 
+				<div class="product_price"><p>일 1,500원 </p></div> 
 				<div class="product_total_review"><a href="#product_review">상품 리뷰 : ${totalCntRe }개 <i class="xi-angle-right-min"></i></a></div>
 				  <select class="product_option">
 				  <!-- 이 부분 내일 질문 ...  -->
@@ -122,22 +122,10 @@
 				</c:forEach>
 				  </select>
 				  <br>
-				      <div class="product_buy">
-					<button type="submit" class="btn btn-light btn_cart"><i class="xi-cart-add"></i> &nbsp;장바구니 담기</button>
-					<!-- 대여 가능 상품인 경우 페이지 이동 / 불가능한 경우 비활성화 및 페이지 이동 x -->
-					<c:if test="${detail.p_isrental ==1 }">
 					<button type="button" class="btn btn-light btn_rental" 
-					onclick="location.href='${pageContext.request.contextPath}/rent/rentinsert?p_id=${detail.p_id }'">
-					<i class="xi-laundry"></i> &nbsp;대여하기</button>
-					</c:if>
-					<c:if test="${detail.p_isrental ==2 }">
-					<button type="button" class="btn btn-light btn_rental disabled">
-					<i class="xi-laundry"></i> &nbsp;대여하기</button>
-					</c:if>
-				  </div>
-				  <div class="btn_wish">
-					<button type="submit" class="btn btn-dark btn_wish" ><span><i class="xi-heart"></i></span> &nbsp; 위시리스트</button>
-          </div>
+					onclick="location.href='${pageContext.request.contextPath}/rent/rentinsert?p_id=${detail.p_id }'"
+					><i class="xi-laundry"></i> &nbsp;대여하기</button>
+
           <div class="product_share">
             <button type="button" class="btn btn-light" onclick="copyURL();"><i class="xi-share-alt-o xi-x"></i> </button>
             <button type="button" class="btn btn-light" onclick="shareTwitter();" id="twitter"><i class="xi-twitter xi-x"></i> </button>
@@ -154,7 +142,7 @@
 						<p>${detail.p_id}</p>
 						<p>상품 등록일 </p>
 						<p> ${fn:substring(detail.p_postdate ,0,10) }</p>
-						<p> <i class="xi-truck"></i> &nbsp;배송비 : 2,000원</p>
+						<p> <i class="xi-truck"></i> &nbsp;왕복 배송비 : 4,000원</p>
 						
 					</div>
 				</c:when>
@@ -275,7 +263,6 @@ onclick="window.open('${pageContext.request.contextPath}/shop/qnaanswer?pq_no=${
 </c:when>
 </c:choose>
 </div>
-
 <div class="paging">
 
   <ul class="pagination justify-content-center">
@@ -311,21 +298,7 @@ onclick="window.open('${pageContext.request.contextPath}/shop/qnaanswer?pq_no=${
 
 	<div class="product_delivery container">
 		<hr style="border: solid 2px black;">
-	<p>※ 교환/반품 기간 
-<br>고객님의 변심으로 인한 교환·반품은 제품 수령일로부터 7일 이내 </p>
-<p>※ 교환/반품 배송비  
-<br>고객님의 변심으로 인한 제품 교환/반품은 고객님께서 부담하셔야 합니다. 
-<br>- 단, 제품 불량, 하자가 있는 경우에 한하여 </p>
-<p>택배비 제외 사이즈 교환은 반품 후 재구매 부탁드립니다. 
-<br>타 택배 이용시 교환/반품은 제품을 타 택배를 통해 선불로 이용하셔서 박스에 2,000원을 동봉하여 반품 주소로 보내주시면 됩니다.</p>
-
-						<p>※ 배송 지역  
-						<br>전국(일부 지역 제외) </p>
-						<p>※ 배송 방식  
-						<br>- 도서·산간 지역은 별도의 추가 금액이 발생할 수도 있습니다. </p>
-						<p>배송 정보  
-						<br> 결제일 다음 날로부터 3일 이내 발송(토요일, 일요일, 공휴일은 배송일에서 제외)
-						<br>- 도서·산간 지역은 배송일이 추가적으로 소요될 수 있으며, 상품의 재고 상황에 따라 다소 지연될 수 있습니다.</p>
+	<!-- 대여 배송관련 정보 적어두기 (폼 진입 시 한번 더 약관으로 확인) -->
 	</div>
 	
 </div>
@@ -380,8 +353,7 @@ onclick="window.open('${pageContext.request.contextPath}/shop/qnaanswer?pq_no=${
           var popup = window.open('${pageContext.request.contextPath}/shop/qnainsert?p_id=${detail.p_id}', 
         		  'daesinsa - 상품리뷰', 'width=800px,height=700px,scrollbars=yes');
         }
-        </script>
-        
+      </script>
 	
       <!-- 상품공유 스크립트 -->
         <script>

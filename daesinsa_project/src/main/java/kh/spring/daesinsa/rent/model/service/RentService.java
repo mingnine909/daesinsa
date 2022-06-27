@@ -2,6 +2,8 @@ package kh.spring.daesinsa.rent.model.service;
 
 import java.util.List;
 
+import kh.spring.daesinsa.shopping.domain.ProductQna;
+import kh.spring.daesinsa.shopping.domain.ProductReview;
 import kh.spring.daesinsa.shopping.domain.Shopping;
 
 public interface RentService {
@@ -14,6 +16,10 @@ public interface RentService {
 	
 	//1-1.대여 상품 카테고리별 조회
 	public List<Shopping> selectRentListCa(Shopping shopping,int currentPage, int pageSize);
+	
+	
+	//2. 대여 상품 상세 조회
+	public Shopping detailProduct(Shopping shopping) ;
 
 	
 	//3-1.대여 상품 검색 시 전체 개수(검색용)
@@ -21,5 +27,18 @@ public interface RentService {
 	
 	//3-2. 상품 검색
 	public List<Shopping> searchRentProduct(String keyword,int currentPage, int pageSize);
+	
+	//4-1.상품 qna 
+	public List<ProductQna> selectQnaList(String p_id);
+	
+	//4-2. 상품 qna 전체 개수
+	public int selectQnaTotal(String p_id);
+	
+	//5-1.상품 리뷰
+	public List<ProductReview> selectReviewList(String p_id);
+	
+	//5-2. 상품 리뷰 전체 갯수
+	public int selectReviewTotal(String p_id);
+	
 
 }

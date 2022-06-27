@@ -35,8 +35,11 @@ public interface ShoppingService {
 	//3-2. 상품 검색
 	public List<Shopping> searchProduct(String keyword,int currentPage, int pageSize);
 	
-	//4.상품 qna 
+	//4-1.상품 qna 
 	public List<ProductQna> selectQnaList(String p_id);
+	
+	//4-2. 상품 qna 전체 개수
+	public int selectQnaTotal(String p_id);
 	
 	//5-1.상품 리뷰
 	public List<ProductReview> selectReviewList(String p_id);

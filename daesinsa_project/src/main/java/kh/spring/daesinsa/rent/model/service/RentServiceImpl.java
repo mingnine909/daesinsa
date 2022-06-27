@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kh.spring.daesinsa.rent.model.dao.RentDao;
+import kh.spring.daesinsa.shopping.domain.ProductQna;
+import kh.spring.daesinsa.shopping.domain.ProductReview;
 import kh.spring.daesinsa.shopping.domain.Shopping;
 import kh.spring.daesinsa.shopping.model.dao.ShoppingDao;
 
@@ -28,6 +30,13 @@ public class RentServiceImpl implements RentService {
 		return dao.selectRentListCa(shopping, currentPage, pageSize);
 	}
 	
+	//2. 대여 상품 상세조회
+	@Override
+	public Shopping detailProduct(Shopping shopping) {
+	
+		return dao.detailProduct(shopping);
+	}
+	
 	//3-1.대여 상품 검색 시 전체 개수(검색용)
 		@Override
 		public int selectSearchTotal(String keyword) {
@@ -40,6 +49,31 @@ public class RentServiceImpl implements RentService {
 		return dao.searchRentProduct(keyword, currentPage, pageSize);
 	}
 
+	//4-1. 상품 qna
+	@Override
+	public List<ProductQna> selectQnaList(String p_id) {
+		return dao.selectQnaList(p_id);
+	}
+	
+	
+	//4-1. 상품 qna
+	@Override
+	public int selectQnaTotal(String p_id) {
+		return dao.selectQnaTotal(p_id);
+	}
+
+
+	//5-1. 상품 리뷰
+	@Override
+	public List<ProductReview> selectReviewList(String p_id) {
+		return dao.selectReviewList(p_id);
+	}
+
+	//5-2. 상품 리뷰 전체 개수
+	@Override
+	public int selectReviewTotal(String p_id) {
+		return dao.selectReviewTotal(p_id);
+	}
 
 	
 
