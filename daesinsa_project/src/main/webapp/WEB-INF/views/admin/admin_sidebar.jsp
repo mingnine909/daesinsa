@@ -23,7 +23,7 @@
 	rel="stylesheet">
 </head>
 <body>
-        <div calss="admin-side-wrapper">
+        <div class="admin-side-wrapper">
             <div class="admin-side-container">
                 <div class="admin-side-spacing"></div>
                 <h4>DAESINSA <br>ADMIN</h4>

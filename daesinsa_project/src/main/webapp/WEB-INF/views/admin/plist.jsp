@@ -1,8 +1,6 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/reset.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/common/header_footer.css">
-<link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/admin/admin_sidebar.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/admin/plist.css">
@@ -30,7 +28,8 @@
 <title>상품 관리</title>
 </head>
 <body>
-	<div calss="plist-wrapper">
+<%@ include file="/WEB-INF/views/admin/admin_sidebar.jsp"%>
+	<div class="plist-wrapper">
 		<div class="plist-container">
 			<h4 style="text-align: left;">상품 관리</h4>
 			<div class="plist-spacing"></div>
