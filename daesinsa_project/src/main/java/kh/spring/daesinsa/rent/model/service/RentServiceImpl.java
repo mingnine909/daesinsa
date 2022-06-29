@@ -44,9 +44,9 @@ public class RentServiceImpl implements RentService {
 		}
 	
 	//3-2.대여 상품 검색
-	public List<Shopping> searchRentProduct(String keyword, int currentPage, int pageSize) {
+	public List<Shopping> searchRentProduct(String keyword) {
 		
-		return dao.searchRentProduct(keyword, currentPage, pageSize);
+		return dao.searchRentProduct(keyword);
 	}
 
 	//4-1. 상품 qna

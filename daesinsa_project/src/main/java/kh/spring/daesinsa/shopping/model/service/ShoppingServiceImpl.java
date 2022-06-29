@@ -63,8 +63,8 @@ public class ShoppingServiceImpl implements ShoppingService{
 	
 	//3-2. 상품 검색
 	@Override
-	public List<Shopping> searchProduct(String keyword, int currentPage, int pageSize) {
-		return dao.searchProduct(keyword, currentPage, pageSize);
+	public List<Shopping> searchProduct(String keyword) {
+		return dao.searchProduct(keyword);
 	}
 
 	//4-1. 상품 qna

@@ -1,0 +1,31 @@
+/*이미지 크기조정*/
+.card img{
+    margin: 0 auto;
+}
+
+.card-body button{
+    margin: 0 auto;
+}
+
+.card-body div{
+	margin-bottom: 20px;
+}
+
+.search_result{
+	font-size:2rem;
+	margin: 50px;
+	
+}
+
+.search_result p{
+	padding-bottom: 20px;
+}
+
+.search_result>p>b:nth-of-type(1){
+	font-weight: bold;
+}
+
+.search_result>p>b:nth-of-type(2){
+	font-weight: bold;
+	color: orange;
+}

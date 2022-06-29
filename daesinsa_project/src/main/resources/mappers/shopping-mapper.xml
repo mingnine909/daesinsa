@@ -170,7 +170,7 @@
 	order by p_img_no , poi_type
     </select>
     
-    <!--3-1. 전체 상품 개수 조회 (검색 시 페이징 처리용)-->
+    <!--3-1. 전체 상품 개수 조회 (검색용)-->
 	<select id="selectSearchTotal" parameterType="string" resultType="_int">
 	select count(*) 
 	from product 

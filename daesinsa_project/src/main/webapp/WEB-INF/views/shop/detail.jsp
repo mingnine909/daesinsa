@@ -123,13 +123,22 @@
 				  </select>
 				  <br>
 				      <div class="product_buy">
+				      <form>
 					<button type="submit" class="btn btn-light btn_cart"><i class="xi-cart-add"></i> &nbsp;장바구니 담기</button>
+					</form>
 					<!-- 대여 가능 상품인 경우 페이지 이동 / 불가능한 경우 비활성화 및 페이지 이동 x -->
+					
 					<c:if test="${detail.p_isrental ==1 }">
-					<button type="button" class="btn btn-light btn_rental" 
-					onclick="location.href='${pageContext.request.contextPath}/rent/rentinsert?p_id=${detail.p_id }'">
+					<form action="${pageContext.request.contextPath}/rent/rentinsert" method="post">
+					<input type="hidden" name="p_id" value="${detail.p_id }">
+					<input type="hidden" name="p_name" value="${detail.p_name }">
+					<button type="submit" class="btn btn-light btn_rental">
 					<i class="xi-laundry"></i> &nbsp;대여하기</button>
+					</form>
 					</c:if>
+					
+			
+					
 					<c:if test="${detail.p_isrental ==2 }">
 					<button type="button" class="btn btn-light btn_rental disabled">
 					<i class="xi-laundry"></i> &nbsp;대여하기</button>

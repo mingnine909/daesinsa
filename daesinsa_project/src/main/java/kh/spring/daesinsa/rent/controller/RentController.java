@@ -5,9 +5,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kh.spring.daesinsa.rent.model.service.RentServiceImpl;
@@ -122,32 +124,13 @@ private static final Logger logger = LoggerFactory.getLogger(RentController.clas
 		public ModelAndView searchListCa(
 				ModelAndView mv
 				,@RequestParam(name = "keyword", defaultValue = "") String keyword
-				,@RequestParam(name = "page", defaultValue = "1") int currentPage
 				){
+		
 			
-			final int pageSize = 9;
-			final int pageBlock = 3;
-			int totalCnt = service.selectSearchTotal(keyword);
-			// paging 처리
-			int pageCnt = (totalCnt / pageSize) + (totalCnt % pageSize == 0 ? 0 : 1);
-			int startPage = 1;
-			int endPage = 1;
-			if (currentPage % pageBlock == 0) {
-				startPage = ((currentPage / pageBlock) - 1) * pageBlock + 1;
-			} else {
-				startPage = (currentPage / pageBlock) * pageBlock + 1;
-			}
-			endPage = startPage + pageBlock - 1;
-			if (endPage > pageCnt) {
-				endPage = pageCnt;
-			}
-				
-			mv.addObject("startPage", startPage);
-			mv.addObject("endPage", endPage);
-			mv.addObject("pageCnt", pageCnt);
-			mv.addObject("currentPage", currentPage);
+			int searchCnt = service.selectSearchTotal(keyword);
+			mv.addObject("searchCnt", searchCnt);
 			mv.addObject("keyword", keyword);
-			mv.addObject("Rent", service.searchRentProduct(keyword,currentPage,pageSize));	
+			mv.addObject("Rent", service.searchRentProduct(keyword));	
 			mv.setViewName("rent/rentsearch");
 			return mv;
 			
@@ -155,12 +138,16 @@ private static final Logger logger = LoggerFactory.getLogger(RentController.clas
 		
 		
 		//4. 대여 작성 폼
-		@GetMapping("/rentinsert")
+		@PostMapping(value="/rentinsert", produces ="text/plain;charset=UTF-8")
+		@ResponseBody
 		public ModelAndView rentInsert (
 				ModelAndView mv
 				,@RequestParam("p_id") String p_id
+				,@RequestParam("p_name") String p_name
 				) {
 			mv.addObject("p_id", p_id); //상품번호 가지고 이동
+			mv.addObject("p_name", p_name); 
+			
 			mv.setViewName("rent/rentinsert");
 			
 			return mv;

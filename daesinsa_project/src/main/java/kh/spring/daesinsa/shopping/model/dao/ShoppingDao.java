@@ -83,10 +83,8 @@ public class ShoppingDao {
 		return sqlsession.selectOne("Shopping.selectSearchTotal",keyword);
 	}
 	//3-2. 쇼핑 상품 검색
-	public List<Shopping> searchProduct(String keyword,int currentPage, int pageSize) {
-		return sqlsession.selectList("Shopping.searchProduct",keyword
-				,new RowBounds((currentPage-1)*pageSize,pageSize)
-				);
+	public List<Shopping> searchProduct(String keyword) {
+		return sqlsession.selectList("Shopping.searchProduct",keyword);
 	}
 	
 	//4-1. 상품 qna 

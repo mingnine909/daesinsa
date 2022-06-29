@@ -1,0 +1,20 @@
+/* 글자 센터정렬 */
+.terms_box h1:nth-of-type(1) {
+    text-align: center;
+}
+
+.terms_box,.text{
+  
+    margin: 0 auto;
+    position: relative;
+}
+
+.text{
+    border: 1px solid black;
+    width: 80%;
+    height: 80%;
+}
+
+.text p{
+    margin: 30px;
+}

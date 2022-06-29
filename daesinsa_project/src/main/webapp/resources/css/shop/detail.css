@@ -80,6 +80,7 @@ font-weight: bold;
 /* 장바구니 담기 버튼 + 렌탈 버튼 */
 .product_buy{
 	margin-bottom: 10px;
+	display: flex;
 }
 .btn_wish {
 	font-weight: bold;

@@ -45,9 +45,8 @@ public class RentDao {
 	}
 
 	// 3-2. 대여 상품 검색
-	public List<Shopping> searchRentProduct(String keyword, int currentPage, int pageSize) {
-		return sqlsession.selectList("Rent.searchRentProduct", keyword,
-				new RowBounds((currentPage - 1) * pageSize, pageSize));
+	public List<Shopping> searchRentProduct(String keyword) {
+		return sqlsession.selectList("Rent.searchRentProduct", keyword);
 	}
 
 	// 4-1. 상품 qna

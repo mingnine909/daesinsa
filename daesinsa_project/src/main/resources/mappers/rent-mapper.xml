@@ -115,25 +115,25 @@
 	order by p_img_no , poi_type
     </select>
     
-	 <!--3-1. 전체 상품 개수 조회 (검색 시 페이징 처리용)-->
+	 <!--3-1. 전체 대여상품 개수 조회 (검색용)-->
 	<select id="selectSearchTotal" parameterType="string" resultType="_int">
 	select count(*) 
-	from product 
+	from (select * from product where p_isrental=1)
 	WHERE LOWER(p_name) like '%'|| #{keyword} ||'%' 
 	or  UPPER(p_name)  	like '%'|| #{keyword} ||'%' 
 	</select> 
 	
 	
-	 <!-- 3-2.상품 검색 -->
+	 <!-- 3-2.대여상품 검색 -->
     <select id="searchRentProduct" parameterType="string"
     resultMap="CaShoppingAndImgResultMap">
-    select * from product
+	select * from (select * from product where p_isrental=1)
     left outer join category
     using(c_id)
 	left outer join product_img
 	using(p_id)
 	where LOWER(p_name) like '%'|| #{keyword} ||'%' 
-	or  UPPER(p_name)  like '%'|| #{keyword} ||'%' 
+	or UPPER(p_name)  like '%'|| #{keyword} ||'%' 
     </select>
     
     

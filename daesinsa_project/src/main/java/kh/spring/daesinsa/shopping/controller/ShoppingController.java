@@ -120,35 +120,15 @@ public class ShoppingController {
 	
 	//3. 쇼핑 상품 검색
 	@GetMapping("/search")
-	public ModelAndView searchListCa(
+	public ModelAndView searchListSearch(
 			ModelAndView mv
 			,@RequestParam(name = "keyword", defaultValue = "") String keyword
-			,@RequestParam(name = "page", defaultValue = "1") int currentPage
 			){
 		
-		final int pageSize = 9;
-		final int pageBlock = 3;
-		int totalCnt = service.selectSearchTotal(keyword);
-		// paging 처리
-		int pageCnt = (totalCnt / pageSize) + (totalCnt % pageSize == 0 ? 0 : 1);
-		int startPage = 1;
-		int endPage = 1;
-		if (currentPage % pageBlock == 0) {
-			startPage = ((currentPage / pageBlock) - 1) * pageBlock + 1;
-		} else {
-			startPage = (currentPage / pageBlock) * pageBlock + 1;
-		}
-		endPage = startPage + pageBlock - 1;
-		if (endPage > pageCnt) {
-			endPage = pageCnt;
-		}
-			
-		mv.addObject("startPage", startPage);
-		mv.addObject("endPage", endPage);
-		mv.addObject("pageCnt", pageCnt);
-		mv.addObject("currentPage", currentPage);
+		int searchCnt = service.selectSearchTotal(keyword);
 		mv.addObject("keyword", keyword);
-		mv.addObject("Shopping", service.searchProduct(keyword,currentPage,pageSize));	
+		mv.addObject("searchCnt", searchCnt);
+		mv.addObject("Shopping", service.searchProduct(keyword));	
 		mv.setViewName("shop/shopsearch");
 		return mv;
 		

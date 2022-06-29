@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,8 +14,8 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 <!-- Common CSS -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/header_footer.css">
-<!-- shop css -->
- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/shop/shop.css">
+<!-- search css -->
+ <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/shop/search.css">
 <!-- 폰트 -->
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 <title>Daesinsa - 상품검색</title>
@@ -23,42 +24,57 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
  <jsp:include page="../common/template_header.jsp"></jsp:include>
 	<div id="mainwrap">
 
-<!-- 사이드 메뉴 끝 -->
+
 <c:choose>
 <c:when test="${not empty Shopping }">
 <div class="shopping_search_list container">
 <div class="search_result">
-<p>"${keyword }"(으)로 검색한 결과입니다.</p>
+<p><b>"${keyword }"</b>에 대한 <b>${searchCnt } </b>개의 검색 결과입니다.</p>
+
 </div>
 
-  <ul>
-	<c:forEach items="${Shopping }" var ="shop">
-	<li>
-    <div class="product">
-    <a href="${pageContext.request.contextPath}/shop/detail?p_id=${shop.p_id }">
+
+    <div class="album py-5 bg-light">
+        <div class="container">
+    
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+	 <c:forEach items="${Shopping }" var ="shop">
+      <div class="col">
+      <div class="card shadow-sm">
+<%--     <a href="${pageContext.request.contextPath}/shop/detail?p_id=${shop.p_id }"> --%>
     <c:forEach items="${shop.p_img_list }" var="shopimg" varStatus="status"> 
     <c:if test="${status.count <2 }">
     <c:if test ="${not empty shopimg.p_img_path }">
-      <img src="${pageContext.request.contextPath}${shopimg.p_img_path}" width="100%" height="100%">
+      <img src="${pageContext.request.contextPath}${shopimg.p_img_path}" width="60%" height="60%">
+       </c:if>
       </c:if>
-      </c:if>
-      </c:forEach>
-      <div class="product_name">${shop.p_name }</div>
-      <div class="product_price">${shop.p_price }</div> 
+      </c:forEach> 
+      <div class="card-body">
+      <div class="product_name"><p>${shop.p_name }</p></div>
+      <div class="product_price"><p><fmt:formatNumber value="${shop.p_price }" pattern="￦#,###.##"/></p></div> 
       <c:if test="${shop.p_isrental ==1 }">
       <span style= "background-color: #FAA570; color: white">대여가능</span>
       </c:if>
-       <c:if test="${shop.p_isrental ==2 }">
+      <c:if test="${shop.p_isrental ==2 }">
       <span style="background-color: #044343; color:#e4e4e4;">대여불가</span>
       </c:if>
        <c:if test="${shop.p_issoldout ==1 }">
       <span style="background-color: #e4e4e4;">품절</span>
       </c:if>
-      </a>
-    </div>
-  </li>
-</c:forEach>
-</ul>
+     
+       <div class="d-flex justify-content-between align-items-center">
+                      <button type="button" class="btn btn-outline-secondary"
+                      onclick="location.href='${pageContext.request.contextPath}/shop/detail?p_id=${shop.p_id }'">View Detail</button>
+
+                  </div>
+                </div>
+<!--              </a> -->
+              </div>
+            </div>
+            </c:forEach>
+            </div>
+            </div>
+            </div>
 </div>
 
 </c:when>
@@ -69,20 +85,6 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 </c:choose>
 
 	
-   <!-- 페이징 부분 -->
-  <div class="paging">
-			<p>
-				<c:if test="${startPage > 1 }">
-					<a href="${pageContext.request.contextPath}/shop/search?keyword=${keyword }&page=${startPage-1 }"><span>이전</span></a>&nbsp;&nbsp;&nbsp;
-			</c:if>
-				<c:forEach begin="${startPage}" end="${endPage}" var="i">
-					<a href="${pageContext.request.contextPath}/shop/search?keyword=${keyword }&page=${i}"><span>${i }</span></a>&nbsp;&nbsp;&nbsp;
-			</c:forEach>
-				<c:if test="${endPage < pageCnt}">
-					<a href="${pageContext.request.contextPath}/shop/search?keyword=${keyword }&page=${endPage+1 }"><span>다음</span></a>&nbsp;&nbsp;&nbsp;
-			</c:if>
-			</p>
-		</div>
 
 </div>
 	<jsp:include page="../common/template_footer.jsp"></jsp:include>

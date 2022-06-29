@@ -33,7 +33,7 @@ public interface ShoppingService {
 	public int selectSearchTotal(String keyword);
 	
 	//3-2. 상품 검색
-	public List<Shopping> searchProduct(String keyword,int currentPage, int pageSize);
+	public List<Shopping> searchProduct(String keyword);
 	
 	//4-1.상품 qna 
 	public List<ProductQna> selectQnaList(String p_id);
