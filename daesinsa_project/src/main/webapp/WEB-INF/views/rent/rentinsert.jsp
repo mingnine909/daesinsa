@@ -74,6 +74,10 @@
 							<td>상품명</td>
 							<td><input type="text" value="${p_name }"></td>
 						</tr>
+						<tr>
+							<td>1일 대여료</td>
+							<td><input type="text" value="1500"></td>
+						</tr>
 					</table>
 				</div>
 
