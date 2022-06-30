@@ -1,0 +1,76 @@
+@charset "UTF-8";
+
+body {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+  }
+  
+html {
+    height: -webkit-fill-available;
+  }
+
+
+.padd-wrapper {
+    position: absolute;
+    top: 10%;
+    left: 18%;
+    right: 10%;
+    bottom: 10%;
+}
+
+.padd-container {
+    position: absolute;
+    width: 600px;
+    margin-bottom: 10%;
+}
+
+.padd-dropdown {
+    position:absolute;
+    left: 0.1%;
+}
+
+.padd-spacing {
+    margin-top:10px;
+}
+
+.padd-spacing-l {
+    margin-top:30px;
+}
+
+.padd-spacing-xl {
+    margin-top:50px;
+}
+
+.btn-check:active+.btn, .btn-check:checked+.btn, .btn.active, .btn.show, .btn:active, .btn:focus{
+    color: #2E2E2E !important;
+    background-color: #FFFFFF !important;
+}
+
+button#dropdownMenuButton1.btn.btn-secondary.dropdown-toggle {
+    --bs-btn-color: #2E2E2E !important;
+    --bs-btn-bg: #FFFFFF !important;
+}
+
+button.btn.btn-success.btn {
+    --bs-btn-bg: #045757 !important;
+    --bs-btn-border-color: #FFFFFF !important;
+    margin-left: 40%;
+    margin-bottom: 10%;
+}
+
+a.page-link {
+    color: #2E2E2E;
+}
+
+a.page-link:hover {
+    color: #2E2E2E;
+}
+
+a.page-link:checked {
+    color: #2E2E2E;
+}
+
+.form-check-input:checked {
+    background-color: #045757 !important;
+    border: #045757 !important;
+}
