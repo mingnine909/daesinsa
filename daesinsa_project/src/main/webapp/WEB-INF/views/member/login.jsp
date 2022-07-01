@@ -47,11 +47,10 @@
 			<div class="checkbox mb-3"></div>
 			<button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
 			<div class="checkbox mb-3"></div>
-			<a href="#"><img class="social-img" src="./img/kakao_login.png"></a>
+			<a href="#"><img class="social-img" src="${pageContext.request.contextPath}/resources/img/member/kakao_login.png"></a>
 			<div class="checkbox mb-3"></div>
-			<a href="#"><img class="social-img" src="./img/naver_login.png"
+			<a href="#"><img class="social-img" src="${pageContext.request.contextPath}/resources/img/member/naver_login.png"
 				style="height: 50px;"></a>
-			</div>
 		</form>
 	</main>
 	<%@ include file="/WEB-INF/views/common/template_footer.jsp"%>

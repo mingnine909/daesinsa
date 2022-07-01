@@ -18,13 +18,12 @@ public class MemberController {
 	@Autowired
 	private MemberServiceImpl service;
 	
-	@GetMapping("/insert")
+	@GetMapping("/signup")
 	public String insertMember() {
-		
-		return "member/insert";
+		return "member/signup";
 	}
 	
-	@PostMapping("/insert")
+	@PostMapping("/signup")
 	public ModelAndView insertMember(
 		ModelAndView mv
 		, Member member	
@@ -33,7 +32,7 @@ public class MemberController {
 		int result = service.insertMember(member);
 		if(result ==0) {
 		rttr.addFlashAttribute("msg", "회원가입 실패");
-		mv.setViewName("redirect:/member/insert");	
+		mv.setViewName("redirect:/member/siginup");	
 		return mv;
 		}else {
 		mv.setViewName("redirect:/");	
@@ -41,5 +40,21 @@ public class MemberController {
 		}
 
 	}
+	
+	@GetMapping("/findid") 
+	public String findId() {
+		return "member/findid";
+	}
 
+	@GetMapping("/findpwd") 
+	public String findPwd() {
+		return "member/findpwd";
+	}
+	
+	@GetMapping("/login") 
+	public String login() {
+		return "member/login";
+	}
+	
+	
 }
