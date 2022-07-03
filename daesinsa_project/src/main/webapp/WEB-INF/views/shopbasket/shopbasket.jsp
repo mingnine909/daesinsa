@@ -128,5 +128,42 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 		crossorigin="anonymous"></script>
+<script type="text/javascript">
+		let shopbasket = {
+    totalCount: 0, 
+    totalPrice: 0,
+
+    },
+    <!-- 개별 수량 변경 -->
+    changePNum: function (pos) {
+        var item = document.querySelector('input[name=p_num'+pos+']');
+        var p_num = parseInt(item.getAttribute('value'));
+        var newval = event.target.classList.contains('up') ? p_num+1 : event.target.classList.contains('down') ? p_num-1 : event.target.value;
+        
+        if (parseInt(newval) < 1 || parseInt(newval) > 99) { return false; }
+
+        item.setAttribute('value', newval);
+        item.value = newval;
+
+        var price = item.parentElement.parentElement.previousElementSibling.firstElementChild.getAttribute('value');
+        item.parentElement.parentElement.nextElementSibling.textContent = (newval * price).formatNumber()+"원";
+        <!-- AJAX 업데이트 전송 -->
+
+       <!--  전송 처리 결과가 성공이면  -->   
+        this.reCalc();
+        this.updateUI();
+    },
+    checkItem: function () {
+        this.reCalc();
+        this.updateUI();
+    },
+    delItem: function () {
+        event.target.parentElement.parentElement.parentElement.remove();
+        this.reCalc();
+        this.updateUI();
+    }
+}
+		</script>
+
 </body>
 </html>
