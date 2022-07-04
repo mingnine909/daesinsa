@@ -11,7 +11,6 @@
 <!-- 2.typeAliases : 별칭 domain -->
 <!-- 상품 - 김도현 -->
  <typeAliases>
- <typeAlias type="kh.spring.daesinsa.member.domain.Member" alias="Member"/>
   <typeAlias type="kh.spring.daesinsa.shopping.domain.Shopping" alias="Shopping"/>
   <typeAlias type="kh.spring.daesinsa.shopping.domain.ProductImg" alias="ProductImg"/>
   <typeAlias type="kh.spring.daesinsa.shopping.domain.Product" alias="Product"/>
@@ -22,12 +21,19 @@
   <typeAlias type="kh.spring.daesinsa.shopping.domain.ProductReviewImg" alias="ProductReviewImg"/>
  <!-- 공지사항 - 김도현 -->
    <typeAlias type="kh.spring.daesinsa.cs.domain.CsNotice" alias="CsNotice"/>
+ <!-- 박자민 (member, admin, mypage) -->
+   <typeAlias type="kh.spring.daesinsa.member.domain.Member" alias="Member"/>
+   <typeAlias type="kh.spring.daesinsa.admin.domain.Admin" alias="Admin"/>
+   <typeAlias type="kh.spring.daesinsa.mypage.domain.Mypage" alias="Mypage"/>
 </typeAliases> 
 
 
 <!-- 3.mappers -->
 <mappers>
+<!-- 박자민 -->
 <mapper resource="mappers/member-mapper.xml"/>
+<mapper resource="mappers/mypage-mapper.xml"/>
+<mapper resource="mappers/admin-mapper.xml"/>
 <!-- 김도현 -->
 <mapper resource="mappers/shopping-mapper.xml"/>
 <mapper resource="mappers/rent-mapper.xml"/>

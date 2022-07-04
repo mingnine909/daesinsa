@@ -13,9 +13,8 @@ public class MemberDao {
 	private SqlSession sqlsession;
 	
 	//1. 회원가입
-	
 	public int insertMember(Member member) {
-		return sqlsession.insert("Member.insertMember",member);
+		return sqlsession.insert("Member.insertMember", member);
 	}
 
 }

@@ -23,6 +23,10 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
 	rel="stylesheet">
+<!-- jQuery CDN -->
+<script src="https://code.jquery.com/jquery-3.6.0.js" 
+	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" 
+	crossorigin="anonymous"></script>
 <title>회원가입</title>
 </head>
 <body>
@@ -125,13 +129,24 @@
         <p>본인은 만 14세 이상이며 이용약관 및 개인정보 수집에 동의합니다.</p>
         <div class="signup-spacing"></div>
         <div class="checkbox mb-3"></div>
-        <button class="w-100 btn btn-lg btn-primary" type="submit">회원가입 하기</button>
+        <button class="w-100 btn btn-lg btn-primary" id="siginup-form" type="submit">회원가입 하기</button>
         <div class="signup-spacing-s"></div>
        <div class="d-grid gap-2">
-        <button class="btn btn-primary" type="submit">취소하기</button>
+        <button class="btn btn-primary" id="signup-cancle" type="submit">취소하기</button>
         </div>
         <div class="signup-spacing-l"></div>
     </div>
     <%@ include file="/WEB-INF/views/common/template_footer.jsp"%>
+    
+    <script>
+/*     	$(document).ready(function(){
+    		//회원가입 버튼
+    		$(".w-100 btn btn-lg btn-primary").click(function(){
+    			$("#signup-form").attr("action", "/member/signup"));
+    			$("#signup-form").submit();
+    		})
+    	}) */
+    
+   	</script>
 </body>
 </html>

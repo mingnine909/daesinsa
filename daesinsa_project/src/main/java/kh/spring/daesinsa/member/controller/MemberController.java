@@ -13,7 +13,7 @@ import kh.spring.daesinsa.member.model.service.MemberServiceImpl;
 
 @Controller
 @RequestMapping("/member")
-public class MemberController {
+public class MemberController {	
 	
 	@Autowired
 	private MemberServiceImpl service;
@@ -35,7 +35,7 @@ public class MemberController {
 		mv.setViewName("redirect:/member/siginup");	
 		return mv;
 		}else {
-		mv.setViewName("redirect:/");	
+		mv.setViewName("redirect:/main");	
 		return mv;
 		}
 
@@ -55,6 +55,4 @@ public class MemberController {
 	public String login() {
 		return "member/login";
 	}
-	
-	
 }
