@@ -18,3 +18,9 @@
 .text p{
     margin: 30px;
 }
+
+ .rantal_submit button{
+	margin: auto;
+	display:block;
+    cursor: pointer;
+} 

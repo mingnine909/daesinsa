@@ -33,6 +33,8 @@
 	href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!-- iamport.payment -->
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <title>Daesinsa - 상품대여</title>
 </head>
 <body>
@@ -131,6 +133,10 @@
 							<td>대여종료일</td>
 							<td><input type="text" id="endDate"></td>
 						</tr>
+						<tr>
+							<td>대여일수</td>
+							<td><input type="text"></td>
+						</tr>
 					</table>
 					<div class="check">
 						<label for="check2"><input type="checkbox" id="check2"
@@ -140,6 +146,10 @@
 				</div>
 			</div>
 		</div>
+			 <div class="rantal_submit">
+		<!-- 대여하기 버튼 클릭 시 대여 테이블 insert / 상품 테이블 p_isrental =2로  update -->
+        <button type="button" id="btn-retal" class="btn btn-retal">대여하기</button>
+        </div>
 	</div>
 
 	<jsp:include page="../common/template_footer.jsp"></jsp:include>
@@ -230,6 +240,34 @@
 			});
 		});
 	</script>
+	
+	<!-- 결제 api 실행 -->
+	<script>
+	$('#btn-retal').click(
+    function requestPay() {
+        var pay = 1500;
+	  IMP.init('imp81715131'); 
+	  IMP.request_pay({
+	    pg: 'inicis',
+	    pay_method: 'card',
+	    merchant_uid : 'merchant_'+new Date().getTime(),
+	    name : 'Daesinsa 대여',
+	    amount : pay
+	  }, function (rsp) { // callback
+	      if (rsp.success) {
+	    	  msg = '결제에 성공하였습니다.';
+              alert(msg);
+	    	//성공시 수행하는 로직 
+	      } else {
+	    	    msg = '결제에 실패하였습니다.';
+                msg += '에러내용 : ' + rsp.error_msg;
+                //실패시 수행하는 로직 
+             
+                
+	      }
+	  });
+	})
+	</script> 
 
 </body>
 </html>

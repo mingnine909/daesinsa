@@ -12,7 +12,7 @@ import kh.spring.daesinsa.admin.model.service.AdminServiceImpl;
 public class AdminController {
 	
 	@Autowired
-	private AdminServiceImpl service;
+	//private AdminServiceImpl service;
 	
 	@GetMapping("/main")
 	public String main() {

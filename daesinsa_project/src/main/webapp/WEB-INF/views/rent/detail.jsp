@@ -253,10 +253,13 @@
 <p>비밀글여부${qna.pq_closed }</p>
 <c:if test="${qna.pq_level ==0 }">
 
-<button type="button" class="btn btn-dark btn-sm"
-onclick="window.open('${pageContext.request.contextPath}/shop/qnaanswer?pq_no=${qna.pq_no }'
-,'daesinsa-문의답변'
-,'width=800,height=700,scrollbars=yes');">답변</button>
+<form action="${pageContext.request.contextPath}/shop/qnaanswer" method="post"
+target="qnaAnswer" onsubmit='openAnswer();'>
+<input type="hidden" name ="pq_content_copy" value="${qna.pq_content }">
+<input type="hidden" name ="p_id" value="${detail.p_id}">
+ <input type="hidden" name ="pq_no" value="${qna.pq_no }">
+<button type="submit" class="btn btn-dark btn-sm">답변</button>
+</form>
 </c:if>
 </div>
 </div>
@@ -351,13 +354,20 @@ onclick="window.open('${pageContext.request.contextPath}/shop/qnaanswer?pq_no=${
       
       </script>
       
-       <!-- 상품 qna 새 창 열기 -->
+        <!-- 상품 qna 질문창 / 답변 새 창 열기 -->
       <script>
         function openQna(){
           var popup = window.open('${pageContext.request.contextPath}/shop/qnainsert?p_id=${detail.p_id}', 
         		  'daesinsa - 상품리뷰', 'width=800px,height=700px,scrollbars=yes');
         }
       </script>
+      
+        <script>
+        function openAnswer(){
+        	var popup = open('','qnaAnswer','width=800px,height=700px,scrollbars=yes');
+        }
+        </script>
+      
 	
       <!-- 상품공유 스크립트 -->
         <script>

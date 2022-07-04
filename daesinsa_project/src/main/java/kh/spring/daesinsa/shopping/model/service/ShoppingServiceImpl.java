@@ -74,11 +74,34 @@ public class ShoppingServiceImpl implements ShoppingService{
 	}
 	
 	
-	//4-1. 상품 qna
+	//4-2. 상품 qna 개수
 	@Override
 	public int selectQnaTotal(String p_id) {
 		return dao.selectQnaTotal(p_id);
 	}
+	
+	//4-3. 상품 문의 작성
+	@Override
+	public int pQnaInsertDo(ProductQna pQna) {
+		return dao.pQnaInsertDo(pQna);
+	}
+	
+	
+	//4-4-1. 상품 qna 답변 원글 확인
+
+	@Override
+	public ProductQna selectProductQna(ProductQna pQna) {
+		return dao.selectProductQna(pQna);
+	}
+
+
+
+	//4-4-2. 상품 문의 답변
+	@Override
+	public int pQnaAnswerDo(ProductQna pQna) {
+		return dao.pQnaAnswerDo(pQna);
+	}
+
 
 
 	//5-1. 상품 리뷰
@@ -92,6 +115,9 @@ public class ShoppingServiceImpl implements ShoppingService{
 	public int selectReviewTotal(String p_id) {
 		return dao.selectReviewTotal(p_id);
 	}
+
+
+	
 
 
 

@@ -1,0 +1,73 @@
+@charset "UTF-8";
+/* 상품flex 정렬 */
+.sideandlist{
+    display: flex;
+}
+/* 사이드 바 margin */
+.sidebar{
+	margin-top: 100px;
+}
+
+/*사이드메뉴 제목 */
+.top {
+    margin-top: 30px;
+    font-weight: bold;
+    font-size: 2rem;
+  transform: translateX(60px);
+}
+/* 사이드메뉴 ul li 텍스트 가운데 정렬 */
+.sidemenu{
+    text-align: center;
+}
+/* 버튼 글씨 가운데 정렬 및 글자크기 조정 */
+.first_menu button{
+    font-size: 1.2rem;
+    width: 100%;
+  
+}
+/* 메뉴 간격 조절 */
+.second_menu{
+    padding-bottom: 10px;
+}
+/* 버튼 누르면 나오는 메뉴 텍스트 */
+.second_menu a{
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.second_menu a:hover{
+    font-weight: bold;
+}
+
+.shopping_list{
+    margin-top: 50px;
+}
+
+.shopping_list li{
+    padding-bottom: 200px;
+}
+
+
+
+
+
+
+
+
+
+
+ /* 페이징처리부분 */
+.paging p{
+	text-align: center;
+}
+
+.paging a {
+	text-decoration: none;
+	color: black;
+}
+
+.paging a:hover {
+	text-decoration: underline;
+	color: black;
+	cursor: pointer;
+}

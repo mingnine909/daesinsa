@@ -41,6 +41,17 @@ public interface ShoppingService {
 	//4-2. 상품 qna 전체 개수
 	public int selectQnaTotal(String p_id);
 	
+	//4-3. 상품 qna 작성
+	public int pQnaInsertDo(ProductQna pQna);
+	
+	
+	//4-4-1. 상품 qna 답변 원글 확인
+	public ProductQna selectProductQna(ProductQna pQna);
+	
+	//4-4-2. 상품 qna 답변
+	public int pQnaAnswerDo(ProductQna pQna);
+
+	
 	//5-1.상품 리뷰
 	public List<ProductReview> selectReviewList(String p_id);
 	

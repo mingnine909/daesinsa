@@ -24,10 +24,10 @@ public class MypageController {
 		return "mypage/exchange";
 	}
 	
-	@GetMapping ("/order")
-	public String myRental() {
-		return "mypage/rental";
-	}
+//	@GetMapping ("/order")
+//	public String myRental() {
+//		return "mypage/rental";
+//	}
 	
 	@GetMapping ("/rentalre")
 	public String myRentalRe() {

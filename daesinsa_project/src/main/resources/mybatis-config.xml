@@ -20,14 +20,18 @@
   <typeAlias type="kh.spring.daesinsa.shopping.domain.ProductQna" alias="ProductQna"/>
   <typeAlias type="kh.spring.daesinsa.shopping.domain.ProductReview" alias="ProductReview"/>
   <typeAlias type="kh.spring.daesinsa.shopping.domain.ProductReviewImg" alias="ProductReviewImg"/>
+ <!-- 공지사항 - 김도현 -->
+   <typeAlias type="kh.spring.daesinsa.cs.domain.CsNotice" alias="CsNotice"/>
 </typeAliases> 
 
 
 <!-- 3.mappers -->
 <mappers>
 <mapper resource="mappers/member-mapper.xml"/>
+<!-- 김도현 -->
 <mapper resource="mappers/shopping-mapper.xml"/>
 <mapper resource="mappers/rent-mapper.xml"/>
+<mapper resource="mappers/cs-mapper.xml"/>
 </mappers> 
 
 </configuration>

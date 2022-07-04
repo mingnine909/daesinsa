@@ -92,10 +92,24 @@ public class ShoppingDao {
 		return sqlsession.selectList("Shopping.selectQnaList",p_id);
 	}
 	
-	//4-2 상품 qna 전체 개수
+	//4-2. 상품 qna 전체 개수
 	public int selectQnaTotal(String p_id) {
 		return sqlsession.selectOne("Shopping.selectQnaTotal",p_id);
 	}
+	
+	//4-3. 상품 qna 작성
+	public int pQnaInsertDo(ProductQna pQna) {
+		return sqlsession.insert("Shopping.pQnaInsertDo",pQna);
+	}
+	
+	//4-4-1. 상품 qna 답변 원글 확인
+	public ProductQna selectProductQna(ProductQna pQna) {
+		return sqlsession.selectOne("Shopping.selectProductQna",pQna );
+	}
+	//4-4-2. 상품 qna 답변
+		public int pQnaAnswerDo(ProductQna pQna) {
+			return sqlsession.insert("Shopping.pQnaAnswerDo",pQna);
+		}
 	
 	
 	//5-1. 상품 리뷰
@@ -107,4 +121,6 @@ public class ShoppingDao {
 	public int selectReviewTotal(String p_id) {
 		return sqlsession.selectOne("Shopping.selectReviewTotal",p_id);
 	}
+	
+	
 }

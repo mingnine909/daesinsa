@@ -1,1 +1,22 @@
 @charset "UTF-8";
+
+
+#qna_review_form {
+	margin:40px 0 0 80px;
+}
+
+#qna_review_form td{
+	padding-right: 30px;
+	padding-bottom: 20px;
+	vertical-align : middle;
+}
+
+	.btn-insert{
+	margin: auto;
+	display:block;
+    cursor: pointer;
+}
+
+#pq_title{
+	width: 500px;
+}

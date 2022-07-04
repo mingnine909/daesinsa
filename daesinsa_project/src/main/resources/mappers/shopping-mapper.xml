@@ -205,6 +205,33 @@
      where p_id =  #{p_id}
     </select>
     
+    
+    <!-- 4.3 상품 문의 작성 -->
+    <insert id="pQnaInsertDo" parameterType="ProductQna">
+    insert into product_qna (PQ_NO,PQ_TITLE,PQ_TYPE,PQ_CONTENT,PQ_DATE,PQ_CLOSED,PQ_LEVEL
+		,PQ_QREF,P_ID,M_ID,AD_ID) 
+		values
+	((select nvl(max(PQ_NO),0)+1 from PRODUCT_QNA),#{pq_title},#{pq_type},#{pq_content},default,#{pq_closed},0
+		,(select nvl(max(PQ_NO),0)+1 from PRODUCT_QNA),#{p_id},'test',default)
+    </insert>
+    
+    <!-- 4-4-1. 상품 qna 답변 원글 확인-->
+    <select id="selectProductQna" parameterType="ProductQna" resultType="ProductQna">
+    select * from product_qna
+	where p_id =  #{p_id} and pq_no = #{pq_no}
+	order by pq_no , pq_level, pq_qref
+    </select>
+    
+       <!-- 4.4-2 상품 문의 답변 -->
+    <insert id="pQnaAnswerDo" parameterType="ProductQna">
+    insert into product_qna (PQ_NO,PQ_TITLE,PQ_TYPE,PQ_CONTENT,PQ_DATE,PQ_CLOSED,PQ_LEVEL
+		,PQ_QREF,P_ID,M_ID,AD_ID) 
+		values
+	((select nvl(max(PQ_NO),0)+1 from PRODUCT_QNA),#{pq_title},#{pq_type},#{pq_content},default,#{pq_closed},1
+		,#{pq_no},#{p_id},#{m_id},default)
+    </insert>
+    
+    
     <!-- 5-1. 상품 리뷰 -->
 	<select id="selectReviewList" parameterType="string" resultMap="ShopReviewResultMap">
 		select * from product

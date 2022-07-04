@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="CsTotal">
+
+	<!-- 0.공지사항 전체 갯수 -->
+	<select id="noticeTotalCnt" resultType="_int">
+		select count(*) from cs_notice
+	</select>
+	
+	<!-- 1.공지사항 전체 글 목록 -->
+	<select id ="noticeList" resultType="CsNotice">
+	select * from cs_notice
+	</select>
+
+</mapper>

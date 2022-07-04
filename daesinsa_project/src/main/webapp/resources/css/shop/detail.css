@@ -177,12 +177,12 @@ font-weight: bold;
 	display: none;
 	line-height: 120%;
 	padding-bottom: 10px;
-	background: rgba(248,248,248,0.8);
 }
 
 
 .product_qna_title{
-	padding-bottom:10px;
+	padding-top:20px;
+	padding-bottom:20px;
 
 
 }
@@ -191,6 +191,14 @@ font-weight: bold;
 	float: right;
 }
 
+.qna{
+	border-bottom: 1px solid black;
+}
+
+.qna_answer{
+	font-weight: bold;
+}
+/* 상품 배송정보 써져있는 부분 */
 .product_delivery{
 	margin-top: 100px;
 }
@@ -199,6 +207,9 @@ font-weight: bold;
 	padding-bottom: 10px;
 }
 
+.paging{
+	margin-top: 50px;
+}
 .paging a {
 	text-decoration: none;
 	color: black;

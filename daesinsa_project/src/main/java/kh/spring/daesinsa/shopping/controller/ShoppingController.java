@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kh.spring.daesinsa.shopping.domain.ProductQna;
@@ -134,16 +136,61 @@ public class ShoppingController {
 		
 	}
 	
-	//4. 상품문의 작성(로그인 구현 이후 진행)
+	//4-1,2. 상품문의 작성
 	@GetMapping("/qnainsert")
-	public ModelAndView searchListCa(
+	public ModelAndView pQnaInsert(
 			ModelAndView mv
 			,@RequestParam("p_id") String p_id
-			) {
-		
+			) {	
+		mv.addObject("p_id", p_id);
 		mv.setViewName("shop/qnainsert");
 		return mv;
 	}
+	
+	//4-3. 상품문의 작성
+		@PostMapping("/qnainsert.do")
+		public ModelAndView pQnaInsertDo(
+			ModelAndView mv,
+			ProductQna pQna
+				) {	
+			
+			int result = service.pQnaInsertDo(pQna);
+			if (result==1) {
+			mv.setViewName("redirect:/shop/detail?p_id="+pQna.getP_id());
+			} else {
+				mv.setViewName("redirect:/shop/shoplist");
+			}
+			return mv;
+		}
+		
+	
+	//4-4-1. 상품문의 답변
+		@PostMapping("/qnaanswer")
+		public ModelAndView pQnaAnswer(ModelAndView mv
+				,ProductQna pQna
+				,@RequestParam("pq_content_copy") String pq_content_copy
+				) {
+		
+			mv.addObject("pq_content_copy", pq_content_copy);
+			mv.addObject("pQna",service.selectProductQna(pQna));
+			mv.setViewName("shop/qnaanswer");
+			return mv;
+		}
+		
+		//4-4-2. 상품문의 답변
+		@PostMapping("/qnaanswer.do")
+		public ModelAndView pQnaAnswerDo(
+				ModelAndView mv,
+				ProductQna pQna
+					) {	
+				int result = service.pQnaAnswerDo(pQna);
+				if (result==1) {
+				mv.setViewName("redirect:/shop/detail?p_id="+pQna.getP_id());
+				} else {
+					mv.setViewName("redirect:/shop/shoplist");
+				}
+				return mv;
+			}
 	
 	
 	
