@@ -74,18 +74,22 @@
         
         	<c:choose>
 				<c:when test="${not empty notice }">
-				   <div class="notice_list">
-				   <table class="notice">
+				   <div class="table-responsive notice_list ">
+				   <table class="table  table-hover notice">
+				   <thead>
 				   <tr>
 				   <td>제목</td>
 				   <td>작성일</td>
 				   </tr>
+				   </thead>
+				   <tbody>
 				   <c:forEach items="${notice }" var="notice">
 				   <tr class="notice_content">
 				   <td><p>${notice.cs_ntitle }</p></td>
 				   <td><p>${fn:substring(notice.cs_ndate ,0,10) }</p></td>
 				   </tr>
 				   </c:forEach>
+				   </tbody>
 				   </table>
 				</div>
 				</c:when>

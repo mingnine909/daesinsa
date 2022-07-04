@@ -29,3 +29,8 @@
 	font-weight: bold;
 	color: orange;
 }
+
+.search_error{
+	font-size: 1.5rem;
+	margin-top: 50px;
+}

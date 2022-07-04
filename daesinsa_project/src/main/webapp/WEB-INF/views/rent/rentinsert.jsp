@@ -135,7 +135,7 @@
 						</tr>
 						<tr>
 							<td>대여일수</td>
-							<td><input type="text"></td>
+							<td><input type="text" id="rentalDays"></td>
 						</tr>
 					</table>
 					<div class="check">
@@ -193,10 +193,23 @@
 
 									$("#endDate").datepicker("option",
 											"minDate", selectedDate);
-									var date = $(this).datepicker('getDate');//날짜 가져오기
-									date.setDate(date.getDate() + 7); //최대 7일까지 설정
+									var fromDate = $(this).datepicker('getDate');//날짜 가져오기
+									var maxEndDate=fromDate;
+									maxEndDate.setDate(maxEndDate.getDate() + 7); //최대 7일까지 설정
 									$("#endDate").datepicker("option",
-											"maxDate", date);
+											"maxDate", maxEndDate);
+									
+
+									<!-- 날짜 값 구하기 -->
+									var endDateVal = $("#endDate").val();
+									if(endDateVal == false){
+										// 대여일수 계산 안함.
+									} else {
+										var rentalDaysOr = string2date(endDateVal)-string2date(selectedDate)+1;
+										var days = 1000*60*60*24;
+										var rentalDays = (rentalDaysOr)/(days) ;
+										$("#rentalDays").val(Math.floor(rentalDays));
+									}
 								}
 							});
 
@@ -211,6 +224,16 @@
 							// 시작일(fromDate)의 선택할수있는 최대 날짜(maxDate)를 선택한 종료일로 지정 
 							$("#fromDate").datepicker("option", "maxDate",
 									selectedDate);
+							<!-- 날짜 값 구하기 -->
+							var fromDateVal = $("#fromDate").val();
+							if(fromDateVal == false){
+								// 대여일수 계산 안함.
+							} else {
+								var rentalDaysOr = string2date(selectedDate)-string2date(fromDateVal)+1;
+								var days = 1000*60*60*24;
+								var rentalDays = (rentalDaysOr)/(days) ;
+								$("#rentalDays").val(Math.floor(rentalDays));
+							}
 						}
 					});
 		});
@@ -219,32 +242,25 @@
 
 	<!-- 날짜 값 구하기 -->
 	<script>
-		$(function() {
-			//대여시작일
-			$("#fromDate").datepicker();
+	function string2date(date_str){
+	    var yyyyMMdd = String(date_str);
+	    var sYear = yyyyMMdd.substring(0,4);
+	    var sMonth = yyyyMMdd.substring(5,7);
+	    var sDate = yyyyMMdd.substring(8,10);
+	
+	    //alert("sYear :"+sYear +"   sMonth :"+sMonth + "   sDate :"+sDate);
+	    return new Date(Number(sYear), Number(sMonth)-1, Number(sDate));
+	 
+    }
 
-			$("#fromDate").val();
-
-			$("#fromDate").on("change", function() {
-				var fromDate = $(this).val();
-				console.log("시작일" + fromDate);
-			});
-			//대여종료일
-			$("#endDate").datepicker();
-
-			$("#endDate").val();
-
-			$("#endDate").on("change", function() {
-				var endDate = $(this).val();
-				console.log("종료일" + endDate);
-			});
-		});
 	</script>
 	
 	<!-- 결제 api 실행 -->
 	<script>
 	$('#btn-retal').click(
     function requestPay() {
+    	var days = $('#rentalDays').val();
+    	console.log("대여일수"+days);
         var pay = 1500;
 	  IMP.init('imp81715131'); 
 	  IMP.request_pay({
@@ -252,7 +268,7 @@
 	    pay_method: 'card',
 	    merchant_uid : 'merchant_'+new Date().getTime(),
 	    name : 'Daesinsa 대여',
-	    amount : pay
+	    amount : days * pay
 	  }, function (rsp) { // callback
 	      if (rsp.success) {
 	    	  msg = '결제에 성공하였습니다.';
@@ -268,6 +284,8 @@
 	  });
 	})
 	</script> 
+	
+	
 
 </body>
 </html>
