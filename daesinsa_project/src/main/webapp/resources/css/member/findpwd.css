@@ -1,19 +1,11 @@
 @charset "UTF-8";
 
 * {
-    font-family: 'Noto Sans', sans-serif;
-}
-
-html,
-body {
-  height: 100%;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
 body {
-  display: flex;
   align-items: center;
-  padding-top: 40px;
-  padding-bottom: 40px;
   background-color: #FFFFFF;
 }
 
@@ -24,6 +16,11 @@ body {
 
 .form-signin .form-floating:focus-within {
   z-index: 2;
+}
+
+main.form-signin.w-100.m-auto {
+	margin-top : 8% !important;
+	margin-bottom : 8% !important;
 }
 
 .form-signin input[type="email"] {

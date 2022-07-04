@@ -1,10 +1,3 @@
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/reset.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/common/header_footer.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/member/findpwd.css">
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -19,9 +12,18 @@
 	crossorigin="anonymous">
 <link rel="canonical"
 	href="https://getbootstrap.com/docs/5.2/examples/sign-in/">
+<!-- XEICON CDN -->
+<link rel="stylesheet"
+	href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/reset.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/common/header_footer.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/member/findpwd.css">
 <!-- Font -->
 <link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
 	rel="stylesheet">
 <title>비밀번호 찾기</title>
 </head>
@@ -30,7 +32,10 @@
 	    <main class="form-signin w-100 m-auto">
         <p style="font-size:1.8rem;">비밀번호 찾기</p>
         <div class="checkbox mb-3"></div>
-        <p style="font-size:1rem;">가입 시 작성한 아이디와 이메일을 입력하시면 <br> 비밀번호 재설정 메일을 전달 드립니다.</p>
+        <p style="font-size:1rem;">가입 시 작성한 아이디와 이메일을 입력하면 </p>
+		<div class="checkbox mb-3"></div>
+		<p style="font-size:1rem;">비밀번호 재설정 메일을 전달 드립니다.</p>
+        <div class="checkbox mb-3"></div>
         <form>
             <div class="form-floating">
                 <input type="email" class="form-control" id="floatingInput" placeholder="ID">

@@ -1,11 +1,21 @@
 @charset "UTF-8";
 
+* {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+  body {
+    align-items: center;
+    background-color: #FFFFFF;
+  }
   
 .signup-wrapper {
-    position: absolute;
-    max-width: 800px;
-    top: 30%;
-    left: 36%;
+	position:relative;
+    margin-top:5% !important;
+    margin-left:36% !important;
+    margin-bottom:5% !important;
+    max-width: 500px;
+    max-height: 1400px;
 }
 
 .signup-spacing{

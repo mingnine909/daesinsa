@@ -1,11 +1,3 @@
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/reset.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/common/header_footer.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/member/signup.css">
-
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -18,22 +10,29 @@
 	rel="stylesheet"
 	integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
 	crossorigin="anonymous">
+<!-- XEICON CDN -->
+<link rel="stylesheet"
+	href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/reset.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/common/header_footer.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/member/signup.css">
 <!-- Font -->
 <link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
 	rel="stylesheet">
 <title>회원가입</title>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/common/template_header.jsp"%>
 	    <div class="signup-wrapper">
-        <div class="signup-title">
-            <h2>회원가입</h2>
-        </div>
+        <p style="font-size:26px;"><b>회원가입</b></p>
         <div class="signup-spacing"></div>
         <label for="formGroupExampleInput" class="form-label">아이디<span class="text-muted">(필수)</span></label>
         <div class="input-group mb-3">
-            <input type="id" class="form-control" aria-describedby="button-addon2">
+            <input type="text" class="form-control" aria-describedby="button-addon2">
             <button class="btn btn-outline-secondary" type="submit" id="button-addon2">중복확인</button>
             <div class="invalid-feedback">
                 아이디는 6글자 이상의 영문, 숫자로 작성되어야 합니다.
@@ -52,7 +51,7 @@
         </div>
         <div class="mb-3">
             <label for="formGroupExampleInput" class="form-label">이름<span class="text-muted">(필수)</span></label>
-            <input type="name" class="form-control" id="formGroupExampleInput" placeholder="김신사" required>
+            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="김신사" required>
             <div class="invalid-feedback">
                 이름은 한글로만 입력해주세요.
             </div>
@@ -76,7 +75,7 @@
         <label for="formGroupExampleInput" class="form-label">주소<span class="text-muted">(필수)</span></label>
         <div class="input-group mb-3">
             <input type="text" class="form-control" aria-describedby="button-addon2">
-            <button class="btn btn-outline-secondary" type="submit" id="button-addon2" required>우편번호 검색</button>
+            <button class="btn btn-outline-secondary" type="submit" id="button-addon2">우편번호 검색</button>
         </div>
         <div class="mb-3">
             <label for="formGroupExampleInput" class="form-label">나머지 주소<span class="text-muted">(선택)</span></label>
@@ -128,12 +127,11 @@
         <div class="checkbox mb-3"></div>
         <button class="w-100 btn btn-lg btn-primary" type="submit">회원가입 하기</button>
         <div class="signup-spacing-s"></div>
-        <div class="d-grid gap-2">
+       <div class="d-grid gap-2">
         <button class="btn btn-primary" type="submit">취소하기</button>
-        <div class="signup-spacing-l"></div>
         </div>
+        <div class="signup-spacing-l"></div>
     </div>
-	
-	<%@ include file="/WEB-INF/views/common/template_footer.jsp"%>
+    <%@ include file="/WEB-INF/views/common/template_footer.jsp"%>
 </body>
 </html>
