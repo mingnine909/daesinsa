@@ -12,9 +12,15 @@ public class MemberDao {
 	@Autowired
 	private SqlSession sqlsession;
 	
-	//1. 회원가입
+	// 회원가입
 	public int insertMember(Member member) {
 		return sqlsession.insert("Member.insertMember", member);
+	}
+	
+
+	// 로그인	
+	public int login(Member member) {
+		return sqlsession.selectOne("Member.login", member);
 	}
 
 }

@@ -27,7 +27,7 @@ public class MemberController {
 	public ModelAndView insertMember(
 		ModelAndView mv
 		, Member member	
-		, RedirectAttributes rttr) {
+		, RedirectAttributes rttr) throws Exception {
 		
 		int result = service.insertMember(member);
 		if(result ==0) {
@@ -41,6 +41,24 @@ public class MemberController {
 
 	}
 	
+	@PostMapping("/login") 
+	public ModelAndView login(	
+		ModelAndView mv
+		, Member member	
+		, RedirectAttributes rttr) throws Exception {
+		
+		int result = service.login(member);
+		if(result ==0) {
+		rttr.addFlashAttribute("msg", "아이디 또는 비밀번호가 일치하지 않습니다.");
+		mv.setViewName("redirect:/member/login");	
+		return mv;
+		}else {
+		mv.setViewName("redirect:/main");	
+		return mv;
+		}
+	}
+
+	
 	@GetMapping("/findid") 
 	public String findId() {
 		return "member/findid";
@@ -51,8 +69,5 @@ public class MemberController {
 		return "member/findpwd";
 	}
 	
-	@GetMapping("/login") 
-	public String login() {
-		return "member/login";
-	}
+
 }

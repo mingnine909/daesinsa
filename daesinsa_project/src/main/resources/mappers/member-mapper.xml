@@ -13,13 +13,22 @@
 	private String m_enrolldate;
 	private int m_isdelete; -->
 	
+	<!-- 회원가입 -->
 	<insert id="insertMember" parameterType="Member">
-	insert into member 
-	(m_id, m_pwd, m_name, m_email,m_phone
-	,m_adrs,m_gender,m_bdate,m_enrolldate,m_isdelete) 
-	values 
-	(#{m_id},#{m_pwd},#{m_name},#{m_email},#{m_phone}
-	,#{m_adrs},#{m_gender},#{m_bdate},default,default)
+	INSERT INTO MEMBER
+	 (M_ID, M_PWD, M_NAME, M_EMAIL, M_PHONE
+	 , M_ADRS, M_GENDER, M_BDATE, M_ENROLLDATE, M_ISDELETE)
+	  VALUES 
+	 (#{M_ID}, #{M_PWD}, #{M_NAME}, #{M_EMAIL}, #{M_PHONE}
+	 , #{M_ADRS}, #{M_GENDER}, #{M_BDATE}, DEFAULT, DEFAULT) 
 	</insert>
-
+	
+	<!-- 로그인 -->
+	<select id="login" resultType="Member">
+	SELECT M_ID, M_PWD
+	 FROM MEMBER
+	WHERE M_ID = #{M_ID}
+	 AND M_PWD = #{M_PWD} 
+	</select>
+	
 </mapper>
