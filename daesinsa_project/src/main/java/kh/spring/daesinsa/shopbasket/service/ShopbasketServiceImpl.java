@@ -20,17 +20,7 @@ public class ShopbasketServiceImpl implements ShopbasketService {
 		return null;
 	}
 
-	@Override
-	public List<ProductReview> selectReviewList(String p_id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	public int selectReviewTotal(String p_id) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 	
 
 	
