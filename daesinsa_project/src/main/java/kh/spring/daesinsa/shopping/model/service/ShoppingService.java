@@ -14,6 +14,9 @@ public interface ShoppingService {
 	//0. 쇼핑 상품 전체 갯수(페이징처리용)
 	public int selectCaTotal(String c_id);
 	
+	// 메인 - 최신상품순
+	public List<Shopping> selectNewProductList();
+	
 	//1. 쇼핑상품 전체 목록 조회
 	public List<Shopping> selectListAll();
 
@@ -50,6 +53,9 @@ public interface ShoppingService {
 	
 	//4-4-2. 상품 qna 답변
 	public int pQnaAnswerDo(ProductQna pQna);
+	
+	//4-4-3. 상품 문의 삭제
+	public int pQnaDeleteDo(int pq_qref);
 
 	
 	//5-1.상품 리뷰

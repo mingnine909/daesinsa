@@ -23,14 +23,20 @@
     font-weight: bold;
 }
 /* 메인상품 sub title */
-.main_second p, .main_thrid p{
+.sub_title{
     padding-bottom: 20px;
     color: gray;
 
 }
+
+.col a {
+	text-decoration: none;
+	color: black;
+}
 /* 상품가격 글씨크기 */
 .product_name  {
-   font-weight: bold;
+	font-size: 1.2rem;
+	font-weight: bold;
     padding-top: 5px;
     padding-bottom: 10px; 
  

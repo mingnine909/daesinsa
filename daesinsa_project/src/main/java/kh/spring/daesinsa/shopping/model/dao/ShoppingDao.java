@@ -23,7 +23,12 @@ public class ShoppingDao {
 		return sqlsession.selectOne("Shopping.selectCaTotal",c_id);
 	}
 	
-	//1. 쇼핑상품 전체 목록 조회
+	//메인 최신상품 목록 조회
+	public List<Shopping> selectNewProductList(){
+		return sqlsession.selectList("Shopping.selectNewProductList");
+	}
+	
+	// 1. 쇼핑상품 전체 목록 조회
 	public List<Shopping> selectListAll(){
 		return sqlsession.selectList("Shopping.selectListAll");
 	}
@@ -110,6 +115,11 @@ public class ShoppingDao {
 		public int pQnaAnswerDo(ProductQna pQna) {
 			return sqlsession.insert("Shopping.pQnaAnswerDo",pQna);
 		}
+		
+	//4-4-3. 상품 문의 삭제
+	public int pQnaDeleteDo(int pq_qref) {
+		return sqlsession.delete("Shopping.pQnaDeleteDo",pq_qref);
+	}
 	
 	
 	//5-1. 상품 리뷰

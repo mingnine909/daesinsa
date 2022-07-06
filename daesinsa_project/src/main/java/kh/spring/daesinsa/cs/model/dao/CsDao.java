@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kh.spring.daesinsa.cs.domain.CsFaq;
 import kh.spring.daesinsa.cs.domain.CsNotice;
 
 @Repository
@@ -25,4 +26,21 @@ public class CsDao {
 		return sqlsession.selectList("CsTotal.noticeList",null, 
 				new RowBounds((currentPage-1)*pageSize,pageSize));
 	}
+	
+	//1-2. 공지사항 읽기
+	public CsNotice noticeRead(int cs_nno) {
+		return sqlsession.selectOne("CsTotal.noticeRead",cs_nno);
+	}
+	
+	//2-1. 자주묻는 질문 목록 조회
+	public List<CsFaq> faqList(){
+		return sqlsession.selectList("CsTotal.faqList");
+	}
+	
+	//2-2. 자주묻는 질문 목록 조회(카테고리별)
+	public List<CsFaq> faqListCa(int cs_fcategory){
+		return sqlsession.selectList("CsTotal.faqListCa",cs_fcategory);
+	}
+	
+	
 }

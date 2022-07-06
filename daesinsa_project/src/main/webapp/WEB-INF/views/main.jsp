@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -96,38 +98,30 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 
 		<!-- 메인 두번째 상품 진열 -->
 		<div class="container main_second">
+<%-- 		${main } --%>
 			<h1>New product</h1>
-			<p>신규상품</p>
+			<p class="sub_title">신규상품</p>
 			<ul class="row row-cols-4">
+			<c:forEach items="${main }" var="main">
 				<li>
-					<div class="col">
-						<img src="" width="80%" height="80%">
-						<div class="product_name">상품1</div>
-						<div class="product_price">19,400원</div>
+				<div class="col">
+				<a href="${pageContext.request.contextPath}/shop/detail?p_id=${main.p_id }">
+				<c:forEach items="${main.p_img_list }" var="img"
+						varStatus="status">
+					<c:if test="${status.count <2 }">
+					<c:if test="${not empty img.p_img_path }">
+			<img
+				src="${pageContext.request.contextPath}${img.p_img_path}" width="70%" height="70%">
+				</c:if>
+				</c:if>
+			</c:forEach>
+						<div class="product_name"><p>${main.p_name }</p></div>
+						<div class="product_price"><p><fmt:formatNumber value="${main.p_price }" pattern="￦#,###.##"/></p></div>
+					</a>
 					</div>
 				</li>
-				<li>
-					<div class="col">
-						<img src="" width="80%" height="80%">
-						<div class="product_name">상품2</div>
-						<div class="product_price">20,000원</div>
-					</div>
-				</li>
-
-				<li>
-					<div class="col">
-						<img src="" width="80%" height="80%">
-						<div class="product_name">상품3</div>
-						<div class="product_price">45,500원</div>
-					</div>
-				</li>
-				<li>
-					<div class="col">
-						<img src="" width="80%" height="80%">
-						<div class="product_name">상품4</div>
-						<div class="product_price">25,500원</div>
-					</div>
-				</li>
+				
+			</c:forEach>	
 			</ul>
 		</div>
 		<!-- 메인 두번째 상품 진열 끝 -->
@@ -135,7 +129,7 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 		<!-- 메인 세번째 상품 진열 -->
 		<div class="container main_thrid">
 			<h1>Best product</h1>
-			<p>인기상품</p>
+			<p class="sub_title">인기상품</p>
 			<ul class="row row-cols-4">
 				<li>
 					<div class="col">
@@ -175,7 +169,7 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 			class="position-relative p-3 p-md-5 m-md-3 text-center main_fourth"
 			style="background-color: #2266a5cb; color: white;">
 			<div class="col-md-5 p-sm mx-auto">
-				<img src="./img/여름배너.png" width="350" height="200">
+				<img src="${pageContext.request.contextPath}/resources/img/main/여름배너.png" width="350" height="200">
 				<h1>Best summer clothes</h1>
 			</div>
 		</div>
@@ -187,31 +181,43 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 			<ul class="row row-cols-4">
 				<li>
 					<div class="col">
-						<img src="" width="80%" height="80%">
-						<div class="product_name">상품1</div>
-						<div class="product_price">19,400원</div>
+					<a href="${pageContext.request.contextPath}/shop/detail?p_id=MTSS007">
+						<img src="${pageContext.request.contextPath}/resources/img/shop/men/top/MTSS007_1.jpg"
+						 width="70%" height="70%">
+						<div class="product_name">악어 카라 반팔 BLACK</div>
+						<div class="product_price">￦39,800</div>
+						</a>
 					</div>
 				</li>
 				<li>
 					<div class="col">
-						<img src="" width="80%" height="80%">
-						<div class="product_name">상품2</div>
-						<div class="product_price">20,000원</div>
+						<a href="${pageContext.request.contextPath}/shop/detail?p_id=WTSS005">
+						<img src="${pageContext.request.contextPath}/resources/img/shop/women/top/WTSS005_1.jpg"
+						width="70%" height="70%">
+						<div class="product_name">반팔 가디건 SKYBLUE</div>
+						<div class="product_price">￦34,900</div>
+						</a>
 					</div>
 				</li>
 
 				<li>
 					<div class="col">
-						<img src="" width="80%" height="80%">
-						<div class="product_name">상품3</div>
-						<div class="product_price">45,500원</div>
+					<a href="${pageContext.request.contextPath}/shop/detail?p_id=WTSS008">
+					<img src="${pageContext.request.contextPath}/resources/img/shop/women/top/WTSS008_1.jpg"
+						width="70%" height="70%">
+						<div class="product_name">심슨 프린팅 반팔 WHITE</div>
+						<div class="product_price">￦39,000</div>
+					</a>
 					</div>
 				</li>
 				<li>
 					<div class="col">
-						<img src="" width="80%" height="80%">
-						<div class="product_name">상품4</div>
-						<div class="product_price">25,500원</div>
+					<a href="${pageContext.request.contextPath}/shop/detail?p_id=WAS010">
+					<img src="${pageContext.request.contextPath}/resources/img/shop/women/acc/shoes/WAS010_1.jpg"
+						 width="70%" height="70%">
+						<div class="product_name">심플 운동화 SKYBLUE</div>
+						<div class="product_price">￦55,000</div>
+					</a>
 					</div>
 				</li>
 			</ul>

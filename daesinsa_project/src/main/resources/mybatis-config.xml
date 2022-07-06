@@ -21,6 +21,7 @@
   <typeAlias type="kh.spring.daesinsa.shopping.domain.ProductReviewImg" alias="ProductReviewImg"/>
  <!-- 공지사항 - 김도현 -->
    <typeAlias type="kh.spring.daesinsa.cs.domain.CsNotice" alias="CsNotice"/>
+   <typeAlias type="kh.spring.daesinsa.cs.domain.CsFaq" alias="CsFaq"/>
  <!-- 박자민 (member, admin, mypage) -->
    <typeAlias type="kh.spring.daesinsa.member.domain.Member" alias="Member"/>
    <typeAlias type="kh.spring.daesinsa.admin.domain.Admin" alias="Admin"/>

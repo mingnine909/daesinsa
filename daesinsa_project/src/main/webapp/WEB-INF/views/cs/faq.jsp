@@ -1,12 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<!-- Bootstrap CSS -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -22,12 +20,12 @@
 	href="${pageContext.request.contextPath}/resources/css/common/header_footer.css">
 <!-- notice css -->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/cs/notice.css">
+	href="${pageContext.request.contextPath}/resources/css/cs/faq.css">
 <!-- 폰트 -->
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
 	rel="stylesheet">
-<title>Daesinsa 공지사항</title>
+<title>Daesinsa - 자주묻는질문</title>
 </head>
 <body>
 <jsp:include page="../common/template_header.jsp"></jsp:include>
@@ -47,7 +45,7 @@
               <button class="btn btn-toggle align-items-center rounded d-grid gap-2" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
                공지사항
               </button>
-              <div class="collapse " id="home-collapse" >  
+              <div class="collapse " id="home-collapse" >
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                   <li class="second_menu"><a href="${pageContext.request.contextPath}/cs/notice" class="link-dark rounded ">안내</a></li>
                   <li class="second_menu"><a href="${pageContext.request.contextPath}/cs/noticeEvent" class="link-dark rounded ">Event</a></li>
@@ -62,7 +60,7 @@
             </li>
             <li class="mb-1 first_menu">
               <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false"
-              onclick="location.href='${pageContext.request.contextPath}/cs/faq'">
+                      onclick="location.href='${pageContext.request.contextPath}/cs/faq'">
                 자주 묻는 질문<span>
               </button>
               
@@ -72,69 +70,74 @@
         </div>
         </div>
         <!-- 사이드메뉴 끝 -->
-        
-        	<c:choose>
-				<c:when test="${not empty notice }">
-				   <div class="table-responsive notice_list ">
-				   <table class="table  table-hover notice">
-				   <thead>
-				   <tr>
-				   <td>제목</td>
-				   <td>작성일</td>
-				   </tr>
-				   </thead>
-				   <tbody>
-				   <c:forEach items="${notice }" var="notice">
-				   <tr class="notice_content">
-				   <td><a href="${pageContext.request.contextPath}/cs/noticeread?cs_nno=${notice.cs_nno}">
-				   <p>${notice.cs_ntitle }</p></a> </td>
-				   <td><p>${fn:substring(notice.cs_ndate ,0,10) }</p></td>
-				   </tr>
-				   </c:forEach>
-				   </tbody>
-				   </table>
-				</div>
-				</c:when>
-				<c:when test="${empty notice }">
-				<p>작성된 공지사항이 없습니다.</p>
-				</c:when>
-				</c:choose>
-    </div>
-       		<!-- 페이징 부분 -->
-		<div class="paging">
+     
+        <div class="faq_list">
+        <div class="list_title"><h2>자주 묻는 질문</h2></div>
+        <div class="category_link">
+        <ul>
+        <li><a href="${pageContext.request.contextPath}/cs/faq">전체</a></li>
+        <li><a href="${pageContext.request.contextPath}/cs/faq?cs_fcategory=1">상품</a></li>
+        <li><a href="${pageContext.request.contextPath}/cs/faq?cs_fcategory=2">취소/환불/교환</a></li>
+        <li><a href="${pageContext.request.contextPath}/cs/faq?cs_fcategory=3">주문/배송</a></li>
+       </ul>
+        </div>
+        <c:choose>
+		<c:when test="${not empty faq }">
+		<c:forEach items="${faq }" var="faq">
+		 <div class="faq">
+		 <div class="faq_cate_question ">
+		 <div class="faq_category">
+		<c:if test="${faq.cs_fcategory==1 }"><p>상품</p></c:if>
+		<c:if test="${faq.cs_fcategory==2 }"><p>취소/환불/교환</p></c:if>
+		<c:if test="${faq.cs_fcategory==3 }"><p>주문/배송</p></c:if>
 
-  <ul class="pagination justify-content-center">
-     <c:if test="${startPage > 1 }">
-    <li class="page-item">
-      <a class="page-link" href="${pageContext.request.contextPath}/cs/notice?page=${startPage-1 }"
-       aria-label="이전">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-       </c:if>
-    <c:forEach begin="${startPage}" end="${endPage}" var="i">
-    <li class="page-item"><a class="page-link"
-     href="${pageContext.request.contextPath}/cs/notice?page=${i}">${i }</a></li>
-    </c:forEach>
-    	<c:if test="${endPage < pageCnt}">
-    <li class="page-item">
-      <a class="page-link" href="${pageContext.request.contextPath}/cs/notice?page=${endPage+1 }"
-       aria-label="다음">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-    </c:if>
-  </ul>
 		</div>
-
-
-
-</div>
-<jsp:include page="../common/template_footer.jsp"></jsp:include>
+		<div class="faq_question">
+		${faq. cs_qcontent }
+		</div>
+		</div>
+		<div class="faq_answer">
+		${faq.cs_acontent }
+		</div>
+		</div>
+		</c:forEach>
+		</c:when>
+     	<c:when test="${empty faq }">
+     	<div><p>작성된 질문이 없습니다.</p></div> 
+     	</c:when>
+     	</c:choose>
+        </div>
+        </div>
+        </div>
+        
+     <jsp:include page="../common/template_footer.jsp"></jsp:include>
 	<!-- 부트스트랩 스크립트 -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 		crossorigin="anonymous"></script>
+		
+		
+		
+    <script>
+      let eleBtns= document.getElementsByClassName("faq_cate_question");
+      for (var i = 0; i<eleBtns.length ; i++){
+        eleBtns[i].onclick = function(){
+            console.log(this); 
+            console.log(this.nextElementSibling);
+            var eleNext = this.nextElementSibling;
+            var isDisplay = eleNext.style.display;
+            console.log(isDisplay);
+            if(isDisplay =="" || isDisplay =="none"){
+                eleNext.style.display="block" ;
+      
+            } else{
+                eleNext.style.display="none" ;  
+            }
+      }
+      }
+      
+      </script>
+
 </body>
 </html>

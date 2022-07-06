@@ -7,6 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="short icon" href="#">
 <!-- Bootstrap CSS -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
@@ -269,7 +270,34 @@
 <p>내용${qna.pq_content }</p>
 <p>비밀글여부${qna.pq_closed }</p>
 <c:if test="${qna.pq_level ==0 }">
+<div class="qna_delete">
+<form id="frmdelete">
+<button type="submit" class="btn" id="qna_delete"> 삭제 </button>
+</form>
+	<script>
+	$("#qna_delete").click(function(){
+	$.ajax({
+		url : "${pageContext.request.contextPath}/shop/pqnadelete"
+		,type: "post"
+		,data :{
+			pq_qref : "${qna.pq_qref }"
+			}
+		,success:function(result){
+			console.log(result);
+			alert(result);
+			window.location.reload();
+				},
+				error : function(errcode) {
+					console.log(errcode);
+				}
+			});
+		});
+	</script>
+</div>
+</c:if>
+<c:if test="${qna.pq_level ==0 }">
 
+<!-- TODO : 아래 버튼 관리자 로그인인 경우만 나타나도록 수정  -->
 <form action="${pageContext.request.contextPath}/shop/qnaanswer" method="post"
 target="qnaAnswer" onsubmit='openAnswer();'>
 <input type="hidden" name ="pq_content_copy" value="${qna.pq_content }">

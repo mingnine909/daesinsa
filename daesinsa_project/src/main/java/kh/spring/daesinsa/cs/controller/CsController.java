@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import kh.spring.daesinsa.cs.domain.CsNotice;
 import kh.spring.daesinsa.cs.model.service.CsServiceImpl;
 
 @Controller
@@ -16,6 +17,7 @@ public class CsController {
 	@Autowired
 	private CsServiceImpl service;
 	
+	//1. 공지사항 목록
 	@GetMapping("/notice")
 	public ModelAndView noticeList(
 			ModelAndView mv
@@ -48,5 +50,46 @@ public class CsController {
 		mv.setViewName("cs/notice");
 		return mv;
 	}
-
+	
+	//1-2. 공지사항 읽기 
+	@GetMapping("/noticeread")
+	public ModelAndView noticeRead(
+			ModelAndView mv
+			,@RequestParam(name="cs_nno", defaultValue = "0") int cs_nno
+			) {
+		
+		if(cs_nno==0) {
+			mv.setViewName("redirect:/cs/notice");
+			return mv;
+		}
+		
+		mv.addObject("notice",service.noticeRead(cs_nno));
+		mv.setViewName("cs/noticeread");
+		return mv;
+		
+	}
+	//1-3.공지사항 이벤트
+	@GetMapping("noticeEvent")
+	public ModelAndView noticeEvent(ModelAndView mv) {
+		
+		mv.setViewName("cs/event");
+		return mv;
+	}
+	
+	//2. 자주묻는 질문
+	@GetMapping("faq")
+	public ModelAndView faqList(
+			ModelAndView mv
+			,@RequestParam(name="cs_fcategory",defaultValue = "0")int cs_fcategory
+			) {
+		
+		if(cs_fcategory!=0) {
+		mv.addObject("faq", service.faqListCa(cs_fcategory));	
+		return mv;
+		}
+		mv.addObject("faq", service.faqList());
+		mv.setViewName("cs/faq");
+		return mv;
+	}
+	
 }

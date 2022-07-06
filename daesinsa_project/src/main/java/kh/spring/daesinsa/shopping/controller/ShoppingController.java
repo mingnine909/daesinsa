@@ -2,6 +2,7 @@ package kh.spring.daesinsa.shopping.controller;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+
 import kh.spring.daesinsa.shopping.domain.ProductQna;
 import kh.spring.daesinsa.shopping.domain.Shopping;
 import kh.spring.daesinsa.shopping.model.service.ShoppingServiceImpl;
+
 
 
 @Controller
@@ -79,6 +82,7 @@ public class ShoppingController {
 			,ModelAndView mv
 			,@RequestParam("p_id") String p_id
 			,@RequestParam(name = "page", defaultValue = "1") int currentPage
+		
 			) {
 		int totalCntRe = service.selectReviewTotal(p_id); //리뷰 개수
 		int totalCntQna = service.selectQnaTotal(p_id); // qna 개수
@@ -100,12 +104,11 @@ public class ShoppingController {
 			endPage = pageCnt;
 		}
 	
-		
+		//상품 id가 null이면 다시 목록으로 
 		if(shopping.getP_id()==null) {
 			mv.setViewName("redirect:/shop/shoplist");
 			return mv;
 		}
-
 		mv.addObject("detail",service.detailProduct(shopping));
 		mv.addObject("ProductQna",service.selectQnaList(p_id));
 		mv.addObject("ProductReview", service.selectReviewList(p_id));
@@ -136,12 +139,14 @@ public class ShoppingController {
 		
 	}
 	
-	//4-1,2. 상품문의 작성
+	//4-1.2. 상품문의 작성
 	@GetMapping("/qnainsert")
 	public ModelAndView pQnaInsert(
 			ModelAndView mv
 			,@RequestParam("p_id") String p_id
 			) {	
+		
+		//TODO : 추후 로그인 된 사용자만 작성 가능하도록 구현
 		mv.addObject("p_id", p_id);
 		mv.setViewName("shop/qnainsert");
 		return mv;
@@ -191,6 +196,24 @@ public class ShoppingController {
 				}
 				return mv;
 			}
+		
+		
+		//4-4-3. 상품문의 삭제
+		@PostMapping(value="/pqnadelete", produces ="text/plain;charset=UTF-8")
+		@ResponseBody
+		public String deleteBoard(
+				@RequestParam(name="pq_qref", required = false) int pq_qref
+			) {
+			int result = service.pQnaDeleteDo(pq_qref);
+			String msg ="";
+			if(result>0) {
+				msg = "해당 문의가 삭제되었습니다.";
+			}else {
+				msg = "삭제 실패";
+			}
+
+		return msg;
+		}
 	
 	
 	

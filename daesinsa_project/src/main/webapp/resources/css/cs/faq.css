@@ -39,71 +39,66 @@
     font-weight: bold;
 }
 
-.notice_list{
-	margin-top:80px;
+.faq_list{
+	margin-top:60px;
 	margin-left:30px;
 	width: 80%;
-	text-align: center;
 }
 
-.notice_list a{
+.list_title{
+	border-bottom: 1px solid black;
+	margin-bottom: 50px;
+	
+}
+.list_title h2{
+	font-weight: bold;
+	font-size: 2rem;
+	padding-bottom: 20px;
+}
+.category_link ul{
+	display: flex;
+	margin-bottom: 20px;
+}
+.category_link li{
+	padding: 10px 15px;
+	border-right: 1px solid gray;
+}
+
+.category_link li:first-of-type{
+	padding-left: 0px;
+}
+
+
+.category_link a {
+	display: block;
+	font-weight:bold;
 	text-decoration: none;
 	color: black;
+
 }
 
-
-/* noticeread */
-
-.notice_detail{
-	margin-top:80px;
-	margin-left:30px;
-	width: 80%;
-}
-
-.notice_detail tr:not(:last-child){
+.faq_cate_question {
 	border-bottom: 1px solid black;
 }
 
-.nTitle {
-	font-size: 1.2rem;
-	font-weight: bold;
+.faq_category{
+	margin-top:10px;
+	height: 20px;
+	line-height: 20px;
 }
-.nDate{
-	text-align: center;
-}
-
-.nContent{
-	font-size: 1.2rem;
-	line-height: 150%;
-
-}
-
-.nContent p {
-	padding-top:50px;
+.faq_question{
+	height: 50px;
+	line-height: 50px;
 }
 
 
-
- /* 페이징처리부분 */
-.paging p{
-	text-align: center;
-}
-
-.paging a {
-	text-decoration: none;
-	color: black;
-}
-
-.paging a:hover {
-	text-decoration: underline;
-	color: black;
-	cursor: pointer;
+.faq_answer {
+	padding-top: 20px ;
+	padding-bottom: 20px ;
+	display: none;
+	height: 100%;
+	line-height:200%;
+	background-color: #e4e4e4;
 }
 
 
-.btn-back{
-	display: block;
-	margin: auto;
-	background-color: #045757;
-	color: white;
-}

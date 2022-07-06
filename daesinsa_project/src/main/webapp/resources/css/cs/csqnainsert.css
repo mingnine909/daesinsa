@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+
+#qna_review_form {
+	margin:40px 0 0 80px;
+}
+
+#qna_review_form td{
+	padding-right: 30px;
+	padding-bottom: 20px;
+	vertical-align : middle;
+}
+
+.button_td{
+	margin: 0 auto;
+}
+
+.btn-insert , .btn-reset{
+    cursor: pointer;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.btn-label{
+	background-color: #045757;
+	color: white;
+}
+
+#cs_qtitle{
+	width: 500px;
+}
+
+#file-upload-button{
+	background-color: black;
+}

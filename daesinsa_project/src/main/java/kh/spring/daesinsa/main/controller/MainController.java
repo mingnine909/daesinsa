@@ -24,13 +24,13 @@ public class MainController {
 	
 //	메인페이지 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Shopping shopping
+	public ModelAndView home(Shopping shopping
 			,ModelAndView mv) {
 		
 		//주석처리
-//		mv.addObject("Shopping", service.selectListAll());	
-		
-		return "main";
+		mv.addObject("main", service.selectNewProductList());	
+		mv.setViewName("main");
+		return mv;
 	}
 	
 	

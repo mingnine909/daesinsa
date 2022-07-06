@@ -63,3 +63,20 @@ body{
 .col-4 h5:first-of-type{
     font-size: 1.5rem;
 }
+
+.btn-notice{
+	background-color: #222222;
+	color: white;
+}
+
+.btn-qna{
+	background-color: #045757;
+	color: white;
+}
+
+.btn-faq{
+	background-color: #044343;
+	color: white;
+}
+
+

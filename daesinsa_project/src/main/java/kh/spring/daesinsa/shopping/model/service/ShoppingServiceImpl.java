@@ -23,6 +23,11 @@ public class ShoppingServiceImpl implements ShoppingService{
 		return dao.selectCaTotal(c_id);
 	}
 	
+	//메인 - 최신상품순
+	@Override
+	public List<Shopping> selectNewProductList() {
+		return dao.selectNewProductList();
+	}
 	
 	//1. 쇼핑상품 전체 목록 조회
 	@Override
@@ -102,6 +107,12 @@ public class ShoppingServiceImpl implements ShoppingService{
 		return dao.pQnaAnswerDo(pQna);
 	}
 
+	
+	//4-4-3. 상품 문의 삭제
+	@Override
+	public int pQnaDeleteDo(int pq_qref) {
+		return dao.pQnaDeleteDo(pq_qref);
+	}
 
 
 	//5-1. 상품 리뷰
@@ -116,6 +127,11 @@ public class ShoppingServiceImpl implements ShoppingService{
 		return dao.selectReviewTotal(p_id);
 	}
 
+
+
+
+
+	
 
 	
 
