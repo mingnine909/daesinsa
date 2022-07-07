@@ -151,12 +151,15 @@
 								onchange="location.href=this.value">
 								<option <c:if test="${sort==1 }">selected="selected"</c:if>
 									value="${pageContext.request.contextPath}/shop/shoplist?c_id=${c_id}&c_first=${c_first}">
-									최신상품순</option>
+									-전체상품-</option>				
 								<option <c:if test="${sort==2 }">selected="selected"</c:if>
 									value="${pageContext.request.contextPath}/shop/shoplist?c_id=${c_id}&c_first=${c_first}&sort=2">
-									낮은가격순</option>
+									최신상품순</option>
 								<option <c:if test="${sort==3 }">selected="selected"</c:if>
 									value="${pageContext.request.contextPath}/shop/shoplist?c_id=${c_id}&c_first=${c_first}&sort=3">
+									낮은가격순</option>
+								<option <c:if test="${sort==4 }">selected="selected"</c:if>
+									value="${pageContext.request.contextPath}/shop/shoplist?c_id=${c_id}&c_first=${c_first}&sort=4">
 									높은가격순</option>
 							</select>
 

@@ -9,7 +9,7 @@
 
 
 <!-- 2.typeAliases : 별칭 domain -->
-<!-- 상품 - 김도현 -->
+<!-- 상품&대여 - 김도현 -->
  <typeAliases>
   <typeAlias type="kh.spring.daesinsa.shopping.domain.Shopping" alias="Shopping"/>
   <typeAlias type="kh.spring.daesinsa.shopping.domain.ProductImg" alias="ProductImg"/>
@@ -19,6 +19,7 @@
   <typeAlias type="kh.spring.daesinsa.shopping.domain.ProductQna" alias="ProductQna"/>
   <typeAlias type="kh.spring.daesinsa.shopping.domain.ProductReview" alias="ProductReview"/>
   <typeAlias type="kh.spring.daesinsa.shopping.domain.ProductReviewImg" alias="ProductReviewImg"/>
+  <typeAlias type="kh.spring.daesinsa.rent.domain.Rental" alias="Rental"/>
  <!-- 공지사항 - 김도현 -->
    <typeAlias type="kh.spring.daesinsa.cs.domain.CsNotice" alias="CsNotice"/>
    <typeAlias type="kh.spring.daesinsa.cs.domain.CsFaq" alias="CsFaq"/>

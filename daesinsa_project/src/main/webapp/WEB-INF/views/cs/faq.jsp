@@ -87,9 +87,9 @@
 		 <div class="faq">
 		 <div class="faq_cate_question ">
 		 <div class="faq_category">
-		<c:if test="${faq.cs_fcategory==1 }"><p>상품</p></c:if>
-		<c:if test="${faq.cs_fcategory==2 }"><p>취소/환불/교환</p></c:if>
-		<c:if test="${faq.cs_fcategory==3 }"><p>주문/배송</p></c:if>
+		<c:if test="${faq.cs_fcategory==1 }"><p>[ 상품 ]</p></c:if>
+		<c:if test="${faq.cs_fcategory==2 }"><p>[ 취소/환불/교환 ]</p></c:if>
+		<c:if test="${faq.cs_fcategory==3 }"><p>[ 주문/배송 ]</p></c:if>
 
 		</div>
 		<div class="faq_question">

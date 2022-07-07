@@ -149,6 +149,7 @@
 			 <div class="rantal_submit">
 		<!-- 대여하기 버튼 클릭 시 대여 테이블 insert / 상품 테이블 p_isrental =2로  update -->
         <button type="button" id="btn-retal" class="btn btn-retal">대여하기</button>
+        <button type="button" id="btn-checkd" class="btn btn-checkd">확인용</button>
         </div>
 	</div>
 
@@ -285,7 +286,53 @@
 	})
 	</script> 
 	
-	
+	<!-- 값 확인하기 -->
+ 	<script>
 
+	$('#btn-checkd').click(function(){
+	var startDateVal = $('#fromDate').val();
+  	console.log("시작일"+startDateVal);
+	var endDateVal = $('#endDate').val();
+	console.log("종료일"+endDateVal);
+	var daysVal = $('#rentalDays').val();
+    console.log("대여일수"+daysVal);
+    var price = 1500;
+    var priceVal = daysVal*price;
+	console.log("가격"+priceVal);
+	var productVal = '${p_id }';
+	console.log("상품"+productVal);
+	})
+    </script> 
+    
+    
+<!--     	<script>
+	$("#btn-retal").click(function(){
+	$.ajax({
+		var startDateVal = $('#fromDate').val();
+		var endDateVal = $('#endDate').val();
+		var daysVal = $('#rentalDays').val();
+	    var price = 1500;
+	    var priceVal = daysVal*price;
+	    var productVal = '${p_id }';
+		url : "${pageContext.request.contextPath}/rent/rentinsert.do";
+		,type: "post"
+		,data :{
+			p_id : 'productVal',
+			r_startdate : 'startDateVal',
+			r_enddate : 'endDateVal',
+			r_price : 'priceVal';
+		}
+		,success:function(data){
+			console.log(data);
+			alert(data);
+			location.href="/";
+				},
+				error : function(errcode) {
+					console.log(errcode);
+				}
+			});
+		});
+	</script>
+ -->
 </body>
 </html>

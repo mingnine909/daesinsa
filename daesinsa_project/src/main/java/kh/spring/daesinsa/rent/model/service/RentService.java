@@ -2,6 +2,7 @@ package kh.spring.daesinsa.rent.model.service;
 
 import java.util.List;
 
+import kh.spring.daesinsa.rent.domain.Rental;
 import kh.spring.daesinsa.shopping.domain.ProductQna;
 import kh.spring.daesinsa.shopping.domain.ProductReview;
 import kh.spring.daesinsa.shopping.domain.Shopping;
@@ -40,5 +41,9 @@ public interface RentService {
 	//5-2. 상품 리뷰 전체 갯수
 	public int selectReviewTotal(String p_id);
 	
-
+	// 6-1.상품 대여
+	public int insertRental(Rental rent);
+	
+	//6-2.상품 대여시 대여 상태 update 
+	public int updateProductRental(String p_id);
 }

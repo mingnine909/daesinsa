@@ -52,6 +52,19 @@ public class ShoppingDao {
 			}
 			return shoppinglist;
 		}
+		
+	//최신상품순 
+	public List<Shopping> selectListCaNew(Shopping shopping ,int currentPage, int pageSize){
+		List<Shopping> shoppingNewlist = sqlsession.selectList("Shopping.selectListCaNew",shopping
+			,new RowBounds((currentPage-1)*pageSize,pageSize)
+			);
+	for(Shopping svo : shoppingNewlist) {
+		List<ProductImg> pImg = sqlsession.selectList("Shopping.selectListCaNewImg", svo.getP_id());
+		svo.setP_img_list(pImg);
+			}
+			return shoppingNewlist;
+		}
+
 	//1-2. 낮은가격순
 	public List<Shopping> selectListCaMin(Shopping shopping ,int currentPage, int pageSize){
 		List<Shopping> shoppingMinlist = sqlsession.selectList("Shopping.selectListCaMin",shopping

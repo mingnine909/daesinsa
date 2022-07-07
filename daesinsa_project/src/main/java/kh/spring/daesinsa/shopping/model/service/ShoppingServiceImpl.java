@@ -41,6 +41,13 @@ public class ShoppingServiceImpl implements ShoppingService{
 		return dao.selectListCa(shopping,currentPage,pageSize);
 	}
 	
+	//최신상품순
+	@Override
+	public List<Shopping> selectListCaNew(Shopping shopping, int currentPage, int pageSize) {
+		return dao.selectListCaNew(shopping,currentPage,pageSize);
+	}
+
+	
 	//1-2.낮은 가격순
 	@Override
 	public List<Shopping> selectListCaMin(Shopping shopping, int currentPage, int pageSize) {
@@ -126,6 +133,8 @@ public class ShoppingServiceImpl implements ShoppingService{
 	public int selectReviewTotal(String p_id) {
 		return dao.selectReviewTotal(p_id);
 	}
+
+
 
 
 

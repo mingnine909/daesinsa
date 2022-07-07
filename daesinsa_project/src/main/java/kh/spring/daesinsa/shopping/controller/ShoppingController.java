@@ -61,11 +61,14 @@ public class ShoppingController {
 		mv.addObject("c_id", c_id);
 		mv.addObject("c_first", c_first);
 		mv.addObject("sort",sort);
-		
-		if(sort==2){
+		if(sort==2) {
+			mv.addObject("Shopping", service.selectListCaNew(shopping,currentPage,pageSize));
+			return mv;	
+		}
+		else if(sort==3){
 			mv.addObject("Shopping", service.selectListCaMin(shopping,currentPage,pageSize));
 			return mv;
-		} else if (sort==3) {
+		} else if (sort==4) {
 			mv.addObject("Shopping", service.selectListCaMax(shopping,currentPage,pageSize));
 			return mv;
 		}
@@ -215,6 +218,15 @@ public class ShoppingController {
 		return msg;
 		}
 	
+		
+		
+		
+		//위시리스트 화면 열기(미구현상태) 
+		@GetMapping ("/wishlist")
+		public String wishList() {
+			return "shop/wishlist";
+		}
+		
 	
 	
 }

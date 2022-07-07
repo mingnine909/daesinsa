@@ -138,8 +138,7 @@ private static final Logger logger = LoggerFactory.getLogger(RentController.clas
 		
 		
 		//4. 대여 작성 폼
-		@PostMapping(value="/rentinsert", produces ="text/plain;charset=UTF-8")
-		@ResponseBody
+		@PostMapping("/rentinsert")
 		public ModelAndView rentInsert (
 				ModelAndView mv
 				,@RequestParam("p_id") String p_id
@@ -147,6 +146,24 @@ private static final Logger logger = LoggerFactory.getLogger(RentController.clas
 				) {
 			mv.addObject("p_id", p_id); //상품번호 가지고 이동
 			mv.addObject("p_name", p_name); 
+			
+			mv.setViewName("rent/rentinsert");
+			
+			return mv;
+		}
+		
+		@PostMapping(value="/rentinsert.do", produces ="text/plain;charset=UTF-8")
+		public ModelAndView rentInsertDo (
+				ModelAndView mv
+				,@RequestParam("p_id") String p_id
+				,@RequestParam("r_startdate") String r_startdate
+				,@RequestParam("p_name") String r_enddate
+				,@RequestParam("p_name") String r_price
+				) {
+			mv.addObject("p_id", p_id);
+			mv.addObject("r_startdate", r_startdate); 
+			mv.addObject("r_enddate", r_enddate); 
+			mv.addObject("r_price", r_price); 
 			
 			mv.setViewName("rent/rentinsert");
 			

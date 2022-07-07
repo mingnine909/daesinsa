@@ -72,7 +72,7 @@
 				<div class="product_name"><p> ${detail.p_name }</p></div>
 				<div class="product_price"><p><fmt:formatNumber value="${detail.p_price }" pattern="￦#,###.##"/> </p></div> 
 				<div class="product_total_review"><a href="#product_review">상품 리뷰 : ${totalCntRe }개 <i class="xi-angle-right-min"></i></a></div>
-				  <select class="product_option">
+				  <select id="product_option" onchange="selectOption(this);">
 				  <!-- 이 부분 내일 질문 ...  -->
 				<c:forEach items="${detail.p_option_info}" var="option">
 				<c:choose>
@@ -117,12 +117,38 @@
 				   </option>
 				  </c:when>
 				  <c:otherwise>
-				  <option>Free</option>
+				  <option <c:if test="${option.poi_type==0 }">value="0"</c:if>
+				  ><c:if test="${option.poi_type==0 }">FREE</c:if></option>
 				  </c:otherwise>
 				  </c:choose>
 				</c:forEach>
 				  </select>
 				  <br>
+				  <div class="product_cnt">
+				  주문수량  
+				  <span>
+				  <button type="button" class="plus_btn btn ">+</button>
+				   <input type="text" class="cnt" name="sb_amount" value="1">
+				  <button type="button" class="minus_btn btn ">-</button>
+				  </span>
+				  </div>
+				 <!-- 장바구니 상품 수량 조절 -->
+				  <script>
+				  /* +버튼 눌렀을때 */
+				 var cart_cnt =$('.cnt').val();
+				 $('.plus_btn').click(function(){
+					 $('.cnt').val(++cart_cnt);
+				 })
+				 
+				 /* -버튼 눌렀을때 */
+				  var cart_cnt =$('.cnt').val();
+				 $('.minus_btn').click(function(){
+					 if(cart_cnt>1){//0개 이하로 내려가지 못하게 조절
+					 $('.cnt').val(--cart_cnt); 
+					 }
+				 })
+				  
+				  </script>
 				      <div class="product_buy">
 				      <form>
 					<button type="submit" class="btn btn-light btn_cart"><i class="xi-cart-add"></i> &nbsp;장바구니 담기</button>
@@ -137,9 +163,7 @@
 					<i class="xi-laundry"></i> &nbsp;대여하기</button>
 					</form>
 					</c:if>
-					
-			
-					
+									
 					<c:if test="${detail.p_isrental ==2 }">
 					<button type="button" class="btn btn-light btn_rental disabled">
 					<i class="xi-laundry"></i> &nbsp;대여하기</button>
@@ -271,28 +295,8 @@
 <p>비밀글여부${qna.pq_closed }</p>
 <c:if test="${qna.pq_level ==0 }">
 <div class="qna_delete">
-<form id="frmdelete">
-<button type="submit" class="btn" id="qna_delete"> 삭제 </button>
-</form>
-	<script>
-	$("#qna_delete").click(function(){
-	$.ajax({
-		url : "${pageContext.request.contextPath}/shop/pqnadelete"
-		,type: "post"
-		,data :{
-			pq_qref : "${qna.pq_qref }"
-			}
-		,success:function(result){
-			console.log(result);
-			alert(result);
-			window.location.reload();
-				},
-				error : function(errcode) {
-					console.log(errcode);
-				}
-			});
-		});
-	</script>
+<button type="submit" class="btn qna_delete" > 삭제 </button>
+<input type="hidden" class="pq_qref_value" value="${qna.pq_qref }">
 </div>
 </c:if>
 <c:if test="${qna.pq_level ==0 }">
@@ -309,6 +313,30 @@ target="qnaAnswer" onsubmit='openAnswer();'>
 </div>
 </div>
 </c:forEach>
+
+<script>
+	$(".qna_delete").click(function(){
+		console.log($(this));
+		console.log($(this).next().val());
+	$.ajax({
+		url : "${pageContext.request.contextPath}/shop/pqnadelete"
+		,type: "post"
+		,data :{
+			pq_qref : $(this).next().val()
+			}
+		,success:function(result){
+			console.log(result);
+			alert(result);
+			window.location.reload();
+				},
+				error : function(errcode) {
+					console.log(errcode);
+				}
+			});
+		});
+	</script>
+	
+	
 </c:when>
 <c:when test="${empty  productQna}">
 현재 작성된 상품 문의가 없습니다.
@@ -372,12 +400,25 @@ target="qnaAnswer" onsubmit='openAnswer();'>
 	<jsp:include page="../common/template_footer.jsp"></jsp:include>
 	
 	
+	<!-- 상품 값 확인 -->
+	<script>
+	  function selectOption(option) {
+		const optionVal = option.value;
+		console.log(optionVal);  
+		
+  }
+		const priceVal = $('.product_price').text();
+		console.log(priceVal); 
+		const productVal = '${detail.p_id}';
+		console.log(productVal); 
+	</script>
+	
 	<!-- 상품 리뷰 더 보기 스크립트  -->
 	<script>
         
         $(function(){ //리뷰 5개씩 보여주기
         	if($(".product_review_content").length<5){
-        	console.log($(".product_review_content").length);
+        //	console.log($(".product_review_content").length);
         	$(".btn-loadmore").hide();
         	}
         	else {

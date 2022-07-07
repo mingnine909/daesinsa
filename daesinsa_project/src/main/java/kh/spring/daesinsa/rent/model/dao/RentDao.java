@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kh.spring.daesinsa.rent.domain.Rental;
 import kh.spring.daesinsa.shopping.domain.ProductImg;
 import kh.spring.daesinsa.shopping.domain.ProductQna;
 import kh.spring.daesinsa.shopping.domain.ProductReview;
@@ -67,6 +68,16 @@ public class RentDao {
 	// 5-2. 상품 리뷰 전체 개수
 	public int selectReviewTotal(String p_id) {
 		return sqlsession.selectOne("Rent.selectReviewTotal", p_id);
+	}
+	
+	// 6-1.상품 대여
+	public int insertRental(Rental rent) {
+		return sqlsession.insert("Rent.insertRental",rent);
+	}
+	
+	//6-2.상품 대여시 대여 상태 update 
+	public int updateProductRental(String p_id) {
+		return sqlsession.update("Rent.updateProductRental",p_id);
 	}
 
 }

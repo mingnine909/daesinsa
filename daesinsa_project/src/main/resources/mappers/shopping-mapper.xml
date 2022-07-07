@@ -133,6 +133,23 @@
 	order by p_img_no asc
 	</select> 
 	
+	<!-- 최신상품순 -->
+	<select id="selectListCaNew" parameterType="Shopping"
+	resultType="Shopping">
+	select * from product
+	where c_id = #{c_id}
+	order by p_postdate desc
+	</select> 
+	
+	<!-- 최신상품순 이미지 -->
+	<select id ="selectListCaNewImg" parameterType="Shopping"
+	resultType="ProductImg">
+	select * from product_img
+	where p_id = #{p_id}
+	order by p_img_no asc
+	</select>
+	
+	
 	
 	<!-- 1-2-1.낮은가격순 -->
 	<select id ="selectListCaMin" parameterType="Shopping"

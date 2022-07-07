@@ -58,10 +58,23 @@ font-weight: bold;
 	color: #045757;
 	}
 /* 상품옵션 */
-.product_option {
+#product_option {
 	width: 255px;
 	margin-top:20px;
 	margin-bottom: 10px;
+}
+.product_cnt{
+	margin-bottom: 20px;
+}
+.cnt{
+	width: 35px;
+	height : 30px;
+	text-align: center;
+}
+
+.plus_btn,.minus_btn{
+	font-weight: bold;
+	
 }
 
 /* 상품버튼 */

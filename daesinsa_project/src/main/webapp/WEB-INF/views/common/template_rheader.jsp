@@ -92,11 +92,11 @@
 					</button>
 				</form>
 				<ul class="navbar-nav mb-2 mb-lg-0">
-					<li class="nav-item"><a class="nav-link" href="#"><i
+					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/mypage/order"><i
 							class="xi-user xi-2x"><p class="icon_des">마이페이지</p></i></a></li>
-					<li class="nav-item"><a class="nav-link" href="#"><i
+					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/shop/wishlist"><i
 							class="xi-heart xi-2x"><p class="icon_des">위시리스트</p></i></a></li>
-					<li class="nav-item"><a class="nav-link" href="#"><i
+					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/shopbasket/list"><i
 							class="xi-cart xi-2x"><p class="icon_des">장바구니</p></i></a></li>
 							
 					<!-- TODO : 로그인 구현 후 로그인시 로그아웃으로 변경(주석처리 : 조건식 에러떠서 변경 시 삽입) -->
@@ -106,9 +106,9 @@
               </li>  -->
 
 				
-						<li class="nav-item"><a class="nav-link" href="#"><i
+						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/member/login"><i
 								class="xi-log-in xi-2x"><p class="icon_des">로그인</p></i></a></li>
-						<li class="nav-item"><a class="nav-link" href="#"><i
+						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/member/signup"><i
 								class="xi-user-plus xi-2x"><p class="icon_des">회원가입</p></i></a></li>
 					
 

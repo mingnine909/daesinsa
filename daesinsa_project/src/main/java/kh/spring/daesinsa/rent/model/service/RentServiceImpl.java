@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kh.spring.daesinsa.rent.domain.Rental;
 import kh.spring.daesinsa.rent.model.dao.RentDao;
 import kh.spring.daesinsa.shopping.domain.ProductQna;
 import kh.spring.daesinsa.shopping.domain.ProductReview;
@@ -73,6 +74,18 @@ public class RentServiceImpl implements RentService {
 	@Override
 	public int selectReviewTotal(String p_id) {
 		return dao.selectReviewTotal(p_id);
+	}
+	
+	// 6-1.상품 대여 + 6-2.번도 동시에 되어야함! ...
+	@Override
+	public int insertRental(Rental rent) {
+		return dao.insertRental(rent);
+	}
+	
+	//6-2.상품 대여시 대여 상태 update 
+	@Override
+	public int updateProductRental(String p_id) {
+		return dao.updateProductRental(p_id);
 	}
 
 	

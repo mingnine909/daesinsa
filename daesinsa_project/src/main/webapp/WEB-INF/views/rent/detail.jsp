@@ -71,7 +71,7 @@
 				<div class="product_name"><p> ${detail.p_name }</p></div>
 				<div class="product_price"><p>일 1,500원 </p></div> 
 				<div class="product_total_review"><a href="#product_review">상품 리뷰 : ${totalCntRe }개 <i class="xi-angle-right-min"></i></a></div>
-				  <select class="product_option">
+				  <select id="product_option">
 				  <!-- 이 부분 내일 질문 ...  -->
 				<c:forEach items="${detail.p_option_info}" var="option">
 				<c:choose>
@@ -252,6 +252,13 @@
 <p>내용${qna.pq_content }</p>
 <p>비밀글여부${qna.pq_closed }</p>
 <c:if test="${qna.pq_level ==0 }">
+<div class="qna_delete">
+<button type="submit" class="btn qna_delete" > 삭제 </button>
+<input type="hidden" class="pq_qref_value" value="${qna.pq_qref }">
+</div>
+</c:if>
+
+<c:if test="${qna.pq_level ==0 }">
 
 <form action="${pageContext.request.contextPath}/shop/qnaanswer" method="post"
 target="qnaAnswer" onsubmit='openAnswer();'>
@@ -264,6 +271,31 @@ target="qnaAnswer" onsubmit='openAnswer();'>
 </div>
 </div>
 </c:forEach>
+
+<!-- 상품문의 삭제 스크립트 -->
+<script>
+	$(".qna_delete").click(function(){
+		console.log($(this));
+		console.log($(this).next().val());
+	$.ajax({
+		url : "${pageContext.request.contextPath}/shop/pqnadelete"
+		,type: "post"
+		,data :{
+			pq_qref : $(this).next().val()
+			}
+		,success:function(result){
+			console.log(result);
+			alert(result);
+			window.location.reload();
+				},
+				error : function(errcode) {
+					console.log(errcode);
+				}
+			});
+		});
+	</script>
+	
+	
 </c:when>
 <c:when test="${empty  productQna}">
 현재 작성된 상품 문의가 없습니다.
@@ -311,13 +343,12 @@ target="qnaAnswer" onsubmit='openAnswer();'>
 </div>
 	<jsp:include page="../common/template_footer.jsp"></jsp:include>
 	
-	
 	<!-- 상품 리뷰 더 보기 스크립트  -->
 	<script>
         
         $(function(){ //리뷰 5개씩 보여주기
         	if($(".product_review_content").length<5){
-        	console.log($(".product_review_content").length);
+        	//console.log($(".product_review_content").length);
         	$(".btn-loadmore").hide();
         	}
         	else {

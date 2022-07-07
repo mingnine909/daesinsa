@@ -23,6 +23,9 @@ public interface ShoppingService {
 	//1-1.쇼핑 상품 카테고리별 조회
 	public List<Shopping> selectListCa(Shopping shopping,int currentPage, int pageSize);
 	
+	//최신상품순 
+	public List<Shopping> selectListCaNew(Shopping shopping ,int currentPage, int pageSize);
+	
 	//1-2.낮은 가격순
 	public List<Shopping> selectListCaMin(Shopping shopping,int currentPage, int pageSize);
 	
