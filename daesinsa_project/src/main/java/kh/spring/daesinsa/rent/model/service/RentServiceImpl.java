@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kh.spring.daesinsa.rent.domain.Rental;
 import kh.spring.daesinsa.rent.model.dao.RentDao;
@@ -18,7 +19,11 @@ public class RentServiceImpl implements RentService {
 	@Autowired
 	private RentDao dao;
 
-	
+	//메인 최신대여 목록 조회
+	@Override
+	public List<Shopping> selectNewRentalList() {
+		return dao.selectNewRentalList();
+	}
 
 	// 대여 상품 전체 조회 (페이징처리용)
 	@Override
@@ -77,18 +82,24 @@ public class RentServiceImpl implements RentService {
 	}
 	
 	// 6-1.상품 대여 + 6-2.번도 동시에 되어야함! ...
+//	@Override
+//	public int insertRental(Rental rent) {
+//		dao.insertRental(rent);
+//	}
+//	
+//	//6-2.상품 대여시 대여 상태 update 
+//	@Override
+//	public int updateProductRental(String p_id) {
+//		return dao.updateProductRental(p_id);
+//	}
+	
+	// 6-1.상품 대여 / 상품 대여시 대여 상태 update 
 	@Override
+	@Transactional
 	public int insertRental(Rental rent) {
+		dao.updateProductRental(rent.getP_id());
 		return dao.insertRental(rent);
 	}
-	
-	//6-2.상품 대여시 대여 상태 update 
-	@Override
-	public int updateProductRental(String p_id) {
-		return dao.updateProductRental(p_id);
-	}
-
-	
 
 
 }

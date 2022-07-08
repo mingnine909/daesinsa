@@ -26,14 +26,14 @@
 <script src="https://code.jquery.com/jquery-latest.js"></script>
 <!-- ckediter cdn  -->
 <script src="//cdn.ckeditor.com/4.19.0/basic/ckeditor.js"></script>
-
+<script src="${pageContext.request.contextPath}/resources/js/daesinsa.js"></script>
 <title>상품문의</title>
 </head>
 <body>
 
 
 <div id="mainwrap">
-<form action="${pageContext.request.contextPath}/shop/qnainsert.do" method="post">
+<form id="frmQna">
 <input type="hidden" name="p_id" value="${p_id }">
 <table id="qna_review_form">
 <tr>
@@ -61,12 +61,45 @@
 
 </tr>
 
-<tr>
-<td colspan="2"><button type="submit" class="btn btn-primary btn-insert">등록하기</button></td>
+<tr><!-- ajax로 코드 바꾸기  -->
+<td colspan="2"><button type="button" class="btn btn-primary btn-insert" onclick="insertQna();">등록하기</button></td>
 </tr>
 </table>
 </form>
 </div>
+<!-- 등록하기 -->
+<script>
+	function insertQna() {
+		//action="${pageContext.request.contextPath}/shop/qnainsert.do" method="post"
+		for (instance in CKEDITOR.instances) {
+			CKEDITOR.instances[instance].updateElement();
+		}
+		
+		var frmdata = $("#frmQna").serialize();
+		$.ajax({
+			url : "${pageContext.request.contextPath}/shop/qnainsert.do",
+			type : "post",
+			data : frmdata,
+			success : CloseAndRefresh,
+			error : ajaxError
+		});
+	}
+</script>
+
+	<script>
+function CloseAndRefresh(result){
+	if(result>0){
+		alert("문의글이 등록되었습니다.");	
+	}else {
+	alert("실패했습니다. 다시 등록해주세요");
+	}
+	window.close();
+	if(window.opener && !window.opener.closed){
+		window.opener.location.reload();
+	}
+	}	
+		
+</script>
 
 	<!-- ckediter api 스크립트 -->
 	<script>

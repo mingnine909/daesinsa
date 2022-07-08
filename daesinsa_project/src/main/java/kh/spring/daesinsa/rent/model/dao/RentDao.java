@@ -24,6 +24,11 @@ public class RentDao {
 		return sqlsession.selectOne("Rent.selectCaRentTotal", c_id);
 	}
 
+	//메인 최신대여 목록 조회
+	public List<Shopping> selectNewRentalList(){
+		return sqlsession.selectList("Rent.selectNewRentalList");
+		}
+		
 	// 1-1.대여 상품 카테고리별 조회
 	public List<Shopping> selectRentListCa(Shopping shopping, int currentPage, int pageSize) {
 		List<Shopping> shoppinglist = sqlsession.selectList("Rent.selectRentListCa", shopping,

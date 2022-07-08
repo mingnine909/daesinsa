@@ -228,7 +228,7 @@
  <div class="qna">
 <div class="product_qna_title">
 <c:if test="${qna.pq_level ==1 }">
-<p><i class="xi-subdirectory-arrow"> </i>답변완료</p>
+<p class="qna_answer"><i class="xi-subdirectory-arrow"> </i>답변완료</p>
 <p>${fn:substring(qna.pq_date ,0,16) }</p>
 <p>[ <c:if test="${qna.pq_type ==1}">상품</c:if>
 <c:if test="${qna.pq_type ==2}">배송</c:if>

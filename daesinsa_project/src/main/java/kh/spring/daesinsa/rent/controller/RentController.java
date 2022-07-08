@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import kh.spring.daesinsa.rent.model.service.RentServiceImpl;
+import kh.spring.daesinsa.rent.domain.Rental;
+import kh.spring.daesinsa.rent.model.service.RentService;
+
 import kh.spring.daesinsa.shopping.domain.Shopping;
 import kh.spring.daesinsa.shopping.model.service.ShoppingServiceImpl;
 
@@ -23,12 +25,16 @@ public class RentController {
 private static final Logger logger = LoggerFactory.getLogger(RentController.class);
 	
 	@Autowired
-	private RentServiceImpl service;
+	private RentService service;
 	
 	//대여 메인페이지 열기 
 	@GetMapping("/main")
-	public String home() {
-		return "rent/rentmain";
+	public ModelAndView home(ModelAndView mv) {
+		
+		mv.addObject("rmain", service.selectNewRentalList());	
+		mv.setViewName("rent/rentmain");
+		
+		return mv;
 	}
 	
 	//1.대여 상품 카테고리별 값
@@ -152,22 +158,16 @@ private static final Logger logger = LoggerFactory.getLogger(RentController.clas
 			return mv;
 		}
 		
-		@PostMapping(value="/rentinsert.do", produces ="text/plain;charset=UTF-8")
-		public ModelAndView rentInsertDo (
+		//5. 상품 대여
+		@PostMapping(value="/rentinsert.do")
+		@ResponseBody
+		public int rentInsertDo (
 				ModelAndView mv
-				,@RequestParam("p_id") String p_id
-				,@RequestParam("r_startdate") String r_startdate
-				,@RequestParam("p_name") String r_enddate
-				,@RequestParam("p_name") String r_price
+			,Rental rent
 				) {
-			mv.addObject("p_id", p_id);
-			mv.addObject("r_startdate", r_startdate); 
-			mv.addObject("r_enddate", r_enddate); 
-			mv.addObject("r_price", r_price); 
 			
-			mv.setViewName("rent/rentinsert");
-			
-			return mv;
+			int result = service.insertRental(rent);
+			return result;
 		}
 		
 	

@@ -156,19 +156,16 @@ public class ShoppingController {
 	}
 	
 	//4-3. 상품문의 작성
-		@PostMapping("/qnainsert.do")
-		public ModelAndView pQnaInsertDo(
+		@PostMapping(value="/qnainsert.do")
+		@ResponseBody
+		public int pQnaInsertDo(
 			ModelAndView mv,
 			ProductQna pQna
-				) {	
-			
+				) {		
 			int result = service.pQnaInsertDo(pQna);
-			if (result==1) {
-			mv.setViewName("redirect:/shop/detail?p_id="+pQna.getP_id());
-			} else {
-				mv.setViewName("redirect:/shop/shoplist");
-			}
-			return mv;
+			System.out.println(result);
+//			return String.valueOf(result);
+			return 1;
 		}
 		
 	
@@ -187,17 +184,14 @@ public class ShoppingController {
 		
 		//4-4-2. 상품문의 답변
 		@PostMapping("/qnaanswer.do")
-		public ModelAndView pQnaAnswerDo(
+		@ResponseBody
+		public int pQnaAnswerDo(
 				ModelAndView mv,
 				ProductQna pQna
 					) {	
 				int result = service.pQnaAnswerDo(pQna);
-				if (result==1) {
-				mv.setViewName("redirect:/shop/detail?p_id="+pQna.getP_id());
-				} else {
-					mv.setViewName("redirect:/shop/shoplist");
-				}
-				return mv;
+			
+				return result;
 			}
 		
 		

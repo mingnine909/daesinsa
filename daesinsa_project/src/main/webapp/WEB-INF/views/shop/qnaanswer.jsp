@@ -21,8 +21,11 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
 	rel="stylesheet">
+<!-- Jquery -->
+<script src="https://code.jquery.com/jquery-latest.js"></script>
 <!-- ckediter cdn  -->
 <script src="//cdn.ckeditor.com/4.19.0/basic/ckeditor.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/daesinsa.js"></script>
 <meta charset="UTF-8">
 <title>문의 답변</title>
 </head>
@@ -30,7 +33,7 @@
 
 <div id="mainwrap">
 
-<form action="${pageContext.request.contextPath}/shop/qnaanswer.do" method="post">
+<form id="frmQna">
 <input type="hidden" name="p_id" value="${pQna.p_id }">
 <input type="hidden" name="pq_no" value="${pQna.pq_no }">
 <input type="hidden" name="m_id" value="${pQna.m_id }">
@@ -69,11 +72,45 @@ ${pq_content_copy}</textarea></td>
 </tr>
 
 <tr>
-<td colspan="2"><button type="submit" class="btn btn-primary btn-insert" readonly="readonly">답변</button></td>
+<td colspan="2"><button type="button" class="btn btn-primary btn-insert" onclick="insertQna();">답변</button></td>
 </tr>
 </table>
 </form>
 </div>
+
+<!-- 등록하기 -->
+<script>
+	function insertQna() {
+		for (instance in CKEDITOR.instances) {
+			CKEDITOR.instances[instance].updateElement();
+		}
+		
+		var frmdata = $("#frmQna").serialize();
+		$.ajax({
+			url : "${pageContext.request.contextPath}/shop/qnaanswer.do",
+			type : "post",
+			data : frmdata,
+			success : CloseAndRefresh,
+			error : ajaxError
+		});
+	}
+</script>
+
+	<script>
+function CloseAndRefresh(result){
+	if(result>0){
+		alert("문의에 대한 답변이 등록되었습니다.");	
+	}else {
+	alert("실패했습니다. 다시 등록해주세요");
+	}
+	window.close();
+	if(window.opener && !window.opener.closed){
+		window.opener.location.reload();
+	}
+	}	
+		
+</script>
+
 
 	<!-- ckediter api 스크립트 -->
 	<script>

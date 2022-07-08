@@ -86,6 +86,17 @@
 	and p_isrental=1
 </select> 
 
+<!-- 메인 - 최신대여상품순 -->
+<select id="selectNewRentalList" resultMap="CaShoppingAndImgResultMap">
+	   <![CDATA[
+	   	SELECT *
+      	FROM (select * from  product join product_img
+        using(p_id)
+        order by p_postdate desc)
+        where  rownum <=4 and p_isrental =1
+	    ]]>
+	</select>
+
 		<!-- 1-1-1.카테고리별로 대여 페이지 headerd에서 진입   -->
 	<select id="selectRentListCa" parameterType="Shopping"
 		resultType="Shopping">
@@ -139,9 +150,9 @@
     
     <!-- 4-1. 상품 qna -->
     <select id="selectQnaList" parameterType="string" resultType="ProductQna">
-    select * from product_qna
+     select * from product_qna
 	where p_id = #{p_id}
-	order by pq_no , pq_level, pq_qref 
+	order by PQ_QREF,PQ_NO ,PQ_LEVEL
     </select>
     
     <!-- 4-2. qna 전체 갯수 -->
@@ -170,8 +181,17 @@
 		where p_id =  #{p_id}
     </select>
     
+      <!-- 6-1. 상품 대여 insert -->
+    <insert id="insertRental" parameterType="Rental">
+    insert into rental (M_ID,P_ID,R_STARTDATE,R_ENDDATE,R_STATUS,R_PRICE,R_NUM)
+	values ('test',#{p_id},#{r_startdate},#{r_enddate},default,#{r_price},(select nvl(max(R_NUM),0)+1 from rental))
+    </insert>
     
-    <!-- 6. 상품 대여 -->
-
+     <!-- 6-2. 상품 대여 update -->
+     <update id="updateProductRental" parameterType="string">
+     update product set p_isrental = 2 where p_id =#{p_id}
+     </update>
+    
+  
 	
 </mapper>

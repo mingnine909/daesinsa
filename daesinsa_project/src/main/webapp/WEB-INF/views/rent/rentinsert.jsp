@@ -260,24 +260,27 @@
 	<script>
 	$('#btn-retal').click(
     function requestPay() {
-    	var days = $('#rentalDays').val();
-    	console.log("대여일수"+days);
-        var pay = 1500;
+		var daysVal = $('#rentalDays').val();
+	    var price = 1500;
+	    var dCharge = 4000;
+	    var priceVal = daysVal*price+dCharge;
+    	console.log("대여일수"+daysVal);
 	  IMP.init('imp81715131'); 
 	  IMP.request_pay({
 	    pg: 'inicis',
 	    pay_method: 'card',
 	    merchant_uid : 'merchant_'+new Date().getTime(),
 	    name : 'Daesinsa 대여',
-	    amount : days * pay
+	    amount : priceVal
 	  }, function (rsp) { // callback
 	      if (rsp.success) {
-	    	  msg = '결제에 성공하였습니다.';
-              alert(msg);
-	    	//성공시 수행하는 로직 
-	      } else {
-	    	    msg = '결제에 실패하였습니다.';
-                msg += '에러내용 : ' + rsp.error_msg;
+       	 msg = '결제에 성공하였습니다. 대여 메인으로 이동합니다';
+       	 alert(msg);	
+       	rentSuccess();
+       	location.href="main"
+        } else {
+	   msg = '결제에 실패하였습니다.';
+       msg += '에러내용 : ' + rsp.error_msg;
                 //실패시 수행하는 로직 
              
                 
@@ -287,7 +290,7 @@
 	</script> 
 	
 	<!-- 값 확인하기 -->
- 	<script>
+<!--  	<script>
 
 	$('#btn-checkd').click(function(){
 	var startDateVal = $('#fromDate').val();
@@ -303,36 +306,36 @@
 	console.log("상품"+productVal);
 	})
     </script> 
+     -->
     
-    
-<!--     	<script>
-	$("#btn-retal").click(function(){
-	$.ajax({
+    <!-- 대여 상품 insert , 상품 테이블 is_rental =2 업뎃 -->
+      	<script>
+      	function rentSuccess(){
 		var startDateVal = $('#fromDate').val();
 		var endDateVal = $('#endDate').val();
 		var daysVal = $('#rentalDays').val();
 	    var price = 1500;
-	    var priceVal = daysVal*price;
+	    var dCharge = 4000;
+	    var priceVal = daysVal*price+4000;
 	    var productVal = '${p_id }';
-		url : "${pageContext.request.contextPath}/rent/rentinsert.do";
+	$.ajax({
+		url : "${pageContext.request.contextPath}/rent/rentinsert.do"
 		,type: "post"
 		,data :{
-			p_id : 'productVal',
-			r_startdate : 'startDateVal',
-			r_enddate : 'endDateVal',
-			r_price : 'priceVal';
+			p_id : productVal,
+			r_startdate : startDateVal,
+			r_enddate : endDateVal,
+			r_price : priceVal
 		}
 		,success:function(data){
-			console.log(data);
-			alert(data);
-			location.href="/";
+			console.log("결과는??? 1이면 성공"+data);	
 				},
-				error : function(errcode) {
-					console.log(errcode);
+			error : function(errcode) {
+			console.log(errcode);
 				}
 			});
-		});
+		};
 	</script>
- -->
+
 </body>
 </html>

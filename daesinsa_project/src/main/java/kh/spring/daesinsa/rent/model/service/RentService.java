@@ -15,6 +15,9 @@ public interface RentService {
 	// 대여 상품 전체 갯수(페이징처리용)
 	public int selectCaRentTotal(String c_id);
 	
+	//메인 최신대여 목록 조회
+	public List<Shopping> selectNewRentalList();
+	
 	//1-1.대여 상품 카테고리별 조회
 	public List<Shopping> selectRentListCa(Shopping shopping,int currentPage, int pageSize);
 	
@@ -45,5 +48,5 @@ public interface RentService {
 	public int insertRental(Rental rent);
 	
 	//6-2.상품 대여시 대여 상태 update 
-	public int updateProductRental(String p_id);
+	//public int updateProductRental(String p_id);
 }

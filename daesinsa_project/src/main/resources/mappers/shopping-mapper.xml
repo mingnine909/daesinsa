@@ -224,7 +224,7 @@
     <select id="selectQnaList" parameterType="string" resultType="ProductQna">
     select * from product_qna
 	where p_id = #{p_id}
-	order by pq_no , pq_level, pq_qref 
+	order by PQ_QREF,PQ_NO ,PQ_LEVEL
     </select>
     
     <!-- 4-2. qna 전체 갯수 -->
