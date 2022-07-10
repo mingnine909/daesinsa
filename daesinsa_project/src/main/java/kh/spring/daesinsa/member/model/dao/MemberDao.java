@@ -10,10 +10,10 @@ import kh.spring.daesinsa.member.domain.Member;
 public class MemberDao {
 	
 	@Autowired
-	private SqlSession sqlsession;
+	private static SqlSession sqlsession;
 	
 	// 회원가입
-	public int insertMember(Member member) {
+	public static int insertMember(Member member) {
 		return sqlsession.insert("Member.insertMember", member);
 	}
 	

@@ -13,6 +13,7 @@
 		<org.springframework-version>5.3.19</org.springframework-version>
 		<org.aspectj-version>1.9.9.1</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
+		<spring.security.version>5.6.5</spring.security.version>
 	</properties>
 	<dependencies>
 		<!-- Spring -->
@@ -185,8 +186,44 @@
 		</dependency>
 		
 	
-		<!-- 추후에 Spring Security  사용여부에 따라서 추가 -->
-
+		<!-- Spring Security -->
+		<dependency>
+		  <groupId>org.springframework.security</groupId>
+		  <artifactId>spring-security-core</artifactId>
+		  <version>${spring.security.version}</version>
+		</dependency>		
+		<dependency>
+		  <groupId>org.springframework.security</groupId>
+		  <artifactId>spring-security-web</artifactId>
+		  <version>${spring.security.version}</version>
+		</dependency>		
+		<dependency>
+		  <groupId>org.springframework.security</groupId>
+		  <artifactId>spring-security-config</artifactId>
+		  <version>${spring.security.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+		  <artifactId>spring-security-taglibs</artifactId>
+		  <version>${spring.security.version}</version>
+		</dependency>
+		
+		
+		<!-- Thymeleaf  -->
+		<dependency>
+		    <groupId>org.thymeleaf</groupId>
+		    <artifactId>thymeleaf</artifactId>
+		    <version>3.0.11.RELEASE</version>
+		</dependency>
+		
+		<!--lombok -->
+		<dependency>
+		    <groupId>org.projectlombok</groupId>
+		    <artifactId>lombok</artifactId>
+		    <version>1.18.22</version>
+		    <scope>provided</scope>
+		</dependency>
+	
 	</dependencies>
 	<build>
 		<plugins>

@@ -34,6 +34,7 @@
 	    <div class="signup-wrapper">
         <p style="font-size:26px;"><b>회원가입</b></p>
         <div class="signup-spacing"></div>
+        <form action="${pageContext.request.contextPath}/" method="post">
         <label for="formGroupExampleInput" class="form-label">아이디<span class="text-muted">(필수)</span></label>
         <div class="input-group mb-3">
             <input type="text" class="form-control" aria-describedby="button-addon2">
@@ -124,6 +125,7 @@
                 (선택) 대신사 신상품 정보 수신 동의 (SMS, 이메일)
             </label>
         </div>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
         <div class="signup-spacing-s"></div>
         <hr>
         <p>본인은 만 14세 이상이며 이용약관 및 개인정보 수집에 동의합니다.</p>
@@ -135,15 +137,9 @@
         <button class="btn btn-primary" id="signup-cancle" type="submit">취소하기</button>
         </div>
         <div class="signup-spacing-l"></div>
+        </form>
     </div>
     <%@ include file="/WEB-INF/views/common/template_footer.jsp"%>
     
-<!--     <script>	
-    	$(document).ready(function(){
-    		$("button[id='signup-submit']").click(function() {
-    			location.href = '/login'
-    		});
-    	});
-   	</script> -->
 </body>
 </html>

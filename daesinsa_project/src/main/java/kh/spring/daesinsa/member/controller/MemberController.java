@@ -2,6 +2,7 @@ package kh.spring.daesinsa.member.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,6 +40,16 @@ public class MemberController {
 		return mv;
 		}
 
+	}
+	
+	@GetMapping("/login")
+	public void loginPage(String error, String logout, Model model) {
+		if(error != null) { 
+			model.addAttribute("error","로그인 실패"); 
+		} 
+		if(logout != null) { 
+			model.addAttribute("logout","로그아웃"); 
+		}
 	}
 	
 	@PostMapping("/login") 
