@@ -31,7 +31,8 @@
           <div class="d-flex w-100 gap-2">
           <button class="btn btn-sm btn-notice" type="button" 
           onclick="location.href='${pageContext.request.contextPath}/cs/notice'">공지사항</button>
-          <button class="btn btn-sm btn-qna " type="button">1:1문의</button>  
+          <button class="btn btn-sm btn-qna " type="button"
+            onclick="location.href='${pageContext.request.contextPath}/cs/qnaMain'">1:1문의</button>  
           <button class="btn btn-sm btn-faq" type="button"
            onclick="location.href='${pageContext.request.contextPath}/cs/faq'">자주묻는 질문</button>
           </div>

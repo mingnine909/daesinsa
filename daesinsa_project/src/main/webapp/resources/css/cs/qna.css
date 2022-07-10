@@ -1,0 +1,97 @@
+@charset "UTF-8";
+
+/* flex 정렬 */
+.sideandlist{
+    display: flex;
+}
+/* 사이드 바 margin */
+.sidebar{
+	margin-top: 100px;
+}
+
+/*사이드메뉴 제목 */
+.top {
+    margin-top: 30px;
+    font-weight: bold;
+    font-size: 2rem;
+  transform: translateX(60px);
+}
+/* 사이드메뉴 ul li 텍스트 가운데 정렬 */
+.sidemenu{
+    text-align: center;
+}
+/* 버튼 글씨 가운데 정렬 및 글자크기 조정 */
+.first_menu button{
+    font-size: 1.2rem;
+    width: 100%;
+  
+}
+/* 메뉴 간격 조절 */
+.second_menu{
+    padding-bottom: 10px;
+}
+/* 버튼 누르면 나오는 메뉴 텍스트 */
+.second_menu a{
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.second_menu a:hover{
+    font-weight: bold;
+}
+
+
+.qna_list{
+	margin-top:80px;
+	margin-left:30px;
+	width: 80%;
+	text-align: center;
+}
+
+.btn-qnainsert{
+	margin-top:100px;
+	background-color: #e4e4e4;
+	font-weight: bold;
+}
+
+
+/* 상품 문의  */
+
+#qna_review_form {
+	margin:40px 0 0 80px;
+}
+
+#qna_review_form td{
+	padding-right: 30px;
+	padding-bottom: 20px;
+	vertical-align : middle;
+}
+
+.btn-insert-reset{
+	margin-top:50px;
+	text-align: center;
+}
+
+.btn-insert , .btn-reset{
+    cursor: pointer;
+    margin: 0 auto;
+}
+.btn-insert{
+	background-color: #045757;
+	color: white;
+}
+
+.btn-reset{
+	background-color: #e4e4e4;
+}
+
+.btn-label{
+	background-color: #222222;
+	color: white;
+}
+
+#cs_qtitle{
+	width: 500px;
+}
+
+	

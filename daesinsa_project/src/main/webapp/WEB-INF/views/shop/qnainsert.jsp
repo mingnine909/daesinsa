@@ -37,13 +37,13 @@
 <input type="hidden" name="p_id" value="${p_id }">
 <table id="qna_review_form">
 <tr>
-<td>문의 제목</td>
-<td><input type="text"  id="pq_title" name="pq_title" placeholder="제목을 입력해주세요" required="required"></td> 
+<td>문의 제목 <span style="color: orange"> *</span> </td>
+<td><input type="text"  id="pq_title" name="pq_title" class="form-control" placeholder="제목을 입력해주세요" required="required"></td> 
 <td><input type="checkbox" name ="pq_closed" value="1" checked="checked">비밀글</td> 
 </tr>
 
 <tr>
-<td>문의 유형</td>
+<td>문의 유형 <span style="color: orange"> *</span> </td>
 <td colspan="2">
  	<label for ="pQna1"><input type="radio" name ="pq_type" id="pQna1" value="1"> 상품 </label>
     <label for ="pQna2"><input type="radio" name ="pq_type" id="pQna2" value="2"> 배송 </label>
@@ -54,11 +54,15 @@
 </tr>
 
 <tr>
-<td>문의 내용</td>
+<td>문의 내용 <span style="color: orange">*</span> </td>
 <td colspan="2">
-<textarea id="pq_content" name="pq_content" placeholder="내용을 입력해주세요">
+<textarea id="pq_content" name="pq_content"  required="required" placeholder="내용을 입력해주세요">
 </textarea></td>
 
+</tr>
+
+<tr>
+<td colspan="2"><p><span style="color: orange">*</span> 표시된 항목은 필수 입력사항입니다.</p></td>
 </tr>
 
 <tr><!-- ajax로 코드 바꾸기  -->

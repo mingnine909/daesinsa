@@ -55,7 +55,8 @@
               </div>
             </li>
             <li class="mb-1 first_menu">
-              <button class="btn btn-toggle align-items-center rounded collapsed " data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+              <button class="btn btn-toggle align-items-center rounded collapsed " data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false"
+               onclick="location.href='${pageContext.request.contextPath}/cs/qnaMain'">
                 1:1문의<span>
               </button>
              

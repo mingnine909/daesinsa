@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<!-- Bootstrap CSS -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -18,21 +19,25 @@
 	href="${pageContext.request.contextPath}/resources/css/reset.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/common/header_footer.css">
-<!-- notice css -->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/cs/faq.css">
+	href="${pageContext.request.contextPath}/resources/css/cs/qna.css">
 <!-- 폰트 -->
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
 	rel="stylesheet">
-<title>Daesinsa - 자주묻는질문</title>
+<!-- Jquery -->
+<script src="https://code.jquery.com/jquery-latest.js"></script>
+<!-- ckediter cdn  -->
+<script src="//cdn.ckeditor.com/4.19.0/basic/ckeditor.js"></script>
+
+<title>상품문의</title>
 </head>
 <body>
 <jsp:include page="../common/template_header.jsp"></jsp:include>
-<div id="mainwrap">
 
- <div class="sideandlist container">
-            <!-- 사이드 메뉴 -->
+<div id="mainwrap">
+<div class="sideandlist container">
+ <!-- 사이드 메뉴 -->
         <div id="sidebar">
         <div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">
           <div class="top">
@@ -54,7 +59,7 @@
             </li>
             <li class="mb-1 first_menu">
               <button class="btn btn-toggle align-items-center rounded collapsed " data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false"
-               onclick="location.href='${pageContext.request.contextPath}/cs/qnaMain'">
+              onclick="location.href='${pageContext.request.contextPath}/cs/qnaMain'">
                 1:1문의<span>
               </button>
              
@@ -71,74 +76,93 @@
         </div>
         </div>
         <!-- 사이드메뉴 끝 -->
-     
-        <div class="faq_list">
-        <div class="list_title"><h2>자주 묻는 질문</h2></div>
-        <div class="category_link">
-        <ul>
-        <li><a href="${pageContext.request.contextPath}/cs/faq">전체</a></li>
-        <li><a href="${pageContext.request.contextPath}/cs/faq?cs_fcategory=1">상품</a></li>
-        <li><a href="${pageContext.request.contextPath}/cs/faq?cs_fcategory=2">취소/환불/교환</a></li>
-        <li><a href="${pageContext.request.contextPath}/cs/faq?cs_fcategory=3">주문/배송</a></li>
-       </ul>
-        </div>
-        <c:choose>
-		<c:when test="${not empty faq }">
-		<c:forEach items="${faq }" var="faq">
-		 <div class="faq">
-		 <div class="faq_cate_question ">
-		 <div class="faq_category">
-		<c:if test="${faq.cs_fcategory==1 }"><p>[ 상품 ]</p></c:if>
-		<c:if test="${faq.cs_fcategory==2 }"><p>[ 취소/환불/교환 ]</p></c:if>
-		<c:if test="${faq.cs_fcategory==3 }"><p>[ 주문/배송 ]</p></c:if>
+<form>
+<table id="qna_review_form">
 
-		</div>
-		<div class="faq_question">
-		${faq. cs_qcontent }
-		</div>
-		</div>
-		<div class="faq_answer">
-		${faq.cs_acontent }
-		</div>
-		</div>
-		</c:forEach>
-		</c:when>
-     	<c:when test="${empty faq }">
-     	<div><p>작성된 질문이 없습니다.</p></div> 
-     	</c:when>
-     	</c:choose>
-        </div>
-        </div>
-        </div>
-        
-     <jsp:include page="../common/template_footer.jsp"></jsp:include>
+<tr>
+<td>회원 정보</td>
+<td>
+ 	<p>회원 이름</p></td>
+</tr>
+<tr>
+<td>회원 ID</td>
+<td>
+ 	<p>회원 id</p></td>
+</tr>
+<tr>
+<td>문의 유형 <span style="color: orange">&nbsp; *</span> </td>
+<td>
+ 	<label for ="cs_type1"><input type="radio" name ="cs_type" id="cs_type1" value="1"> 구매/대여 </label>
+    <label for ="cs_type2"><input type="radio" name ="cs_type" id="cs_type2" value="2"> 교환/환불/취소 </label>
+    <label for ="cs_type3"><input type="radio" name ="cs_type" id="cs_type3" value="3"> 오류 </label>
+    <label for ="cs_type4"><input type="radio" name ="cs_type" id="cs_type4" value="4"> 기타 </label>
+    </td>
+</tr>
+<tr>
+<td>문의 제목 <span style="color: orange">&nbsp; *</span> </td>
+<td><input type="text"  id="cs_qtitle" name="cs_qtitle" class="form-control"
+placeholder="제목을 입력해주세요" required="required"></td> 
+</tr>
+
+
+<tr>
+<td>문의 내용<span style="color: orange">&nbsp; *</span></td>
+<td colspan="2">
+<textarea id="cs_qcontent" name="cs_qcontent" placeholder="내용을 입력해주세요">
+</textarea></td>
+</tr>
+<tr>
+<td colspan="2">
+<label class="btn btn-label btn-sm" for="file-upload">
+파일첨부
+</label>
+<input type="file" id="file-upload" class="form-control" style="display:none">
+<span id="fileName">파일을 선택해주세요. (최대 1장)</span>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<label for="check_info"><input type="checkbox" required="required" name="check_info"
+id="check_info"> 개인정보 수집 및 이용에 대한 동의(필수)</label></td>
+</tr>
+
+</table>
+<div class="btn-insert-reset">
+<button type="submit" class="btn btn-sm  btn-insert">등록하기</button>
+<button type="button" class="btn btn-sm  btn-reset" onclick="history.back();">작성취소</button>
+</div>
+</form>
+</div>
+</div>
+
+
+<jsp:include page="../common/template_footer.jsp"></jsp:include>
+	<!-- 파일첨부 버튼 - label 연결  -->
+	<script>
+		document.getElementById('file-upload').addEventListener('change',
+				function() {
+					var filename = document.getElementById('fileName');
+					if (this.files[0] == undefined) {
+						filename.innerText = '파일을 선택해주세요. (최대 1장)';
+						return;
+					}
+					filename.innerText = this.files[0].name;
+				});
+	</script>
+
+	<!-- ckediter api 스크립트 -->
+	<script>
+		CKEDITOR.replace('cs_qcontent', {
+			height : '500',
+			width: '600'
+		});
+	</script>
+
 	<!-- 부트스트랩 스크립트 -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 		crossorigin="anonymous"></script>
-		
-		
-		
-    <script>
-      let eleBtns= document.getElementsByClassName("faq_cate_question");
-      for (var i = 0; i<eleBtns.length ; i++){
-        eleBtns[i].onclick = function(){
-            console.log(this); 
-            console.log(this.nextElementSibling);
-            var eleNext = this.nextElementSibling;
-            var isDisplay = eleNext.style.display;
-            console.log(isDisplay);
-            if(isDisplay =="" || isDisplay =="none"){
-                eleNext.style.display="block" ;
-      
-            } else{
-                eleNext.style.display="none" ;  
-            }
-      }
-      }
-      
-      </script>
 
 </body>
 </html>

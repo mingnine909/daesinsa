@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<!-- Bootstrap CSS -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -18,20 +19,20 @@
 	href="${pageContext.request.contextPath}/resources/css/reset.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/common/header_footer.css">
-<!-- notice css -->
+<!-- qna css -->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/cs/faq.css">
+	href="${pageContext.request.contextPath}/resources/css/cs/qna.css">
+<!-- 폰트 -->
 <!-- 폰트 -->
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
 	rel="stylesheet">
-<title>Daesinsa - 자주묻는질문</title>
+<title>Daesinsa</title>
 </head>
 <body>
 <jsp:include page="../common/template_header.jsp"></jsp:include>
 <div id="mainwrap">
-
- <div class="sideandlist container">
+<div class="sideandlist container">
             <!-- 사이드 메뉴 -->
         <div id="sidebar">
         <div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">
@@ -54,7 +55,7 @@
             </li>
             <li class="mb-1 first_menu">
               <button class="btn btn-toggle align-items-center rounded collapsed " data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false"
-               onclick="location.href='${pageContext.request.contextPath}/cs/qnaMain'">
+              onclick="location.href='${pageContext.request.contextPath}/cs/qnaMain'">
                 1:1문의<span>
               </button>
              
@@ -71,74 +72,60 @@
         </div>
         </div>
         <!-- 사이드메뉴 끝 -->
-     
-        <div class="faq_list">
-        <div class="list_title"><h2>자주 묻는 질문</h2></div>
-        <div class="category_link">
-        <ul>
-        <li><a href="${pageContext.request.contextPath}/cs/faq">전체</a></li>
-        <li><a href="${pageContext.request.contextPath}/cs/faq?cs_fcategory=1">상품</a></li>
-        <li><a href="${pageContext.request.contextPath}/cs/faq?cs_fcategory=2">취소/환불/교환</a></li>
-        <li><a href="${pageContext.request.contextPath}/cs/faq?cs_fcategory=3">주문/배송</a></li>
-       </ul>
-        </div>
-        <c:choose>
-		<c:when test="${not empty faq }">
-		<c:forEach items="${faq }" var="faq">
-		 <div class="faq">
-		 <div class="faq_cate_question ">
-		 <div class="faq_category">
-		<c:if test="${faq.cs_fcategory==1 }"><p>[ 상품 ]</p></c:if>
-		<c:if test="${faq.cs_fcategory==2 }"><p>[ 취소/환불/교환 ]</p></c:if>
-		<c:if test="${faq.cs_fcategory==3 }"><p>[ 주문/배송 ]</p></c:if>
-
-		</div>
-		<div class="faq_question">
-		${faq. cs_qcontent }
-		</div>
-		</div>
-		<div class="faq_answer">
-		${faq.cs_acontent }
-		</div>
-		</div>
-		</c:forEach>
-		</c:when>
-     	<c:when test="${empty faq }">
-     	<div><p>작성된 질문이 없습니다.</p></div> 
-     	</c:when>
-     	</c:choose>
-        </div>
-        </div>
-        </div>
         
-     <jsp:include page="../common/template_footer.jsp"></jsp:include>
+        <c:choose>
+				<c:when test="${not empty qna }">
+				   <div class="table-responsive qna_list ">
+				
+				   <table class="table  table-hover qna">
+				   <thead>
+				   <tr>
+				   <td>제목</td>
+				   <td>작성일</td>
+				   </tr>
+				   </thead>
+				   <tbody>
+				   <c:forEach items="${qna }" var="qna">
+				   <tr class="qna_content">
+				   <td> </td>
+				   <td></td>
+				   </tr>
+				   </c:forEach>
+				   </tbody>
+				   </table>
+				   <button type="button" class="btn btn-qnainsert">문의 작성</button>
+				</div>
+				</c:when>
+				<c:when test="${empty qna }">
+				  <div class="table-responsive qna_list ">
+				 
+				 <table class="table  table-hover qna">
+				    <thead>
+				   <tr>
+				   <td>문의유형</td>
+				   <td>제목</td>
+				   <td>작성일</td>
+				   </tr>
+				   </thead>
+				   <tbody>
+				     <tr>
+				   <td colspan="3">현재 작성된 문의사항이 없습니다.</td>
+				   </tr>
+				   </tbody>
+				 </table>
+				  <button type="button" class="btn btn-qnainsert"
+				   onclick="location.href='${pageContext.request.contextPath}/cs/qna'">문의 작성</button>
+				 </div>
+				</c:when>
+				</c:choose>
+</div>
+</div>
+
+<jsp:include page="../common/template_footer.jsp"></jsp:include>
 	<!-- 부트스트랩 스크립트 -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 		crossorigin="anonymous"></script>
-		
-		
-		
-    <script>
-      let eleBtns= document.getElementsByClassName("faq_cate_question");
-      for (var i = 0; i<eleBtns.length ; i++){
-        eleBtns[i].onclick = function(){
-            console.log(this); 
-            console.log(this.nextElementSibling);
-            var eleNext = this.nextElementSibling;
-            var isDisplay = eleNext.style.display;
-            console.log(isDisplay);
-            if(isDisplay =="" || isDisplay =="none"){
-                eleNext.style.display="block" ;
-      
-            } else{
-                eleNext.style.display="none" ;  
-            }
-      }
-      }
-      
-      </script>
-
 </body>
 </html>

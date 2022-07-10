@@ -72,7 +72,7 @@
 				<div class="product_name"><p> ${detail.p_name }</p></div>
 				<div class="product_price"><p><fmt:formatNumber value="${detail.p_price }" pattern="￦#,###.##"/> </p></div> 
 				<div class="product_total_review"><a href="#product_review">상품 리뷰 : ${totalCntRe }개 <i class="xi-angle-right-min"></i></a></div>
-				  <select id="product_option" onchange="selectOption(this);">
+				  <select id="product_option" class="form-select" onchange="selectOption(this);">
 				  <!-- 이 부분 내일 질문 ...  -->
 				<c:forEach items="${detail.p_option_info}" var="option">
 				<c:choose>

@@ -41,6 +41,9 @@
     font-weight: bold;
 }
 
+.form-select{
+	width: 150px;
+}
 /* ul li 정렬 */
 .container ul li{
 	/*  text-align: center;  */
@@ -48,11 +51,13 @@
 }
 .option{
 	margin-top: 100px;
+	display: flex;
 
 }
 
 .option i {
 	font-weight: bold;
+	line-height: 38px;
 }
 
 .shopping_list ul{

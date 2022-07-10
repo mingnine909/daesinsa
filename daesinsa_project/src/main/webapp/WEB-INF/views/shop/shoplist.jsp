@@ -147,7 +147,7 @@
 				<c:when test="${not empty Shopping }">
 					<div class="shopping_list">
 						<div class="option">
-							<i class="xi-filter"></i> &emsp; <select
+							<i class="xi-filter"></i> &emsp; <select class="form-select" id="sort"
 								onchange="location.href=this.value">
 								<option <c:if test="${sort==1 }">selected="selected"</c:if>
 									value="${pageContext.request.contextPath}/shop/shoplist?c_id=${c_id}&c_first=${c_first}">

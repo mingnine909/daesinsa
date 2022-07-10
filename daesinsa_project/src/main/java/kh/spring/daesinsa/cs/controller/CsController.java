@@ -92,4 +92,20 @@ public class CsController {
 		return mv;
 	}
 	
+	//3-1. 1:1 문의
+	@GetMapping("qnaMain")
+	public ModelAndView qnaMain(ModelAndView mv) {
+		
+		mv.setViewName("cs/csqnamain");
+		return mv;
+	}
+	
+	//3-1. 1:1 문의 작성
+	@GetMapping("qna")
+	public ModelAndView qnaPage(ModelAndView mv) {
+		
+		mv.setViewName("cs/csqnainsert");
+		return mv;
+	}
+	
 }
