@@ -35,12 +35,5 @@ public class MemberServiceImpl implements MemberService{
 	public int login(Member member) throws Exception {
 		return dao.login(member);
 	}
-
-
-	@Override
-	public void SignupUser(Member member) {
-		
-	}
-
 	
 }

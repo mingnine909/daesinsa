@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kh.spring.daesinsa.member.domain.Member;
+import kh.spring.daesinsa.member.security.CustomUserDetails;
 
 @Repository
 public class MemberDao {
@@ -21,6 +22,13 @@ public class MemberDao {
 	// 로그인	
 	public int login(Member member) {
 		return sqlsession.selectOne("Member.login", member);
+	}
+
+
+	// Spring Security 로그인 정보 들고오기
+	public CustomUserDetails getUserById(String id) {
+		CustomUserDetails users = sqlsession.selectOne("getUserById", id);
+		return users;
 	}
 
 }

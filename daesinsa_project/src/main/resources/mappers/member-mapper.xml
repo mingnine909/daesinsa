@@ -11,7 +11,9 @@
 	private int m_gender;
 	private String m_bdate;
 	private String m_enrolldate;
-	private int m_isdelete; -->
+	private int m_isdelete; 
+	private String auth
+	private int enabled -->
 	
 	<!-- 회원가입 -->
 	<insert id="insertMember" parameterType="Member">
@@ -29,6 +31,10 @@
 	 FROM MEMBER
 	WHERE M_ID = #{M_ID}
 	 AND M_PWD = #{M_PWD} 
+	</select>
+	
+	<select id="getUserById" parameterType="String" resultType="kh.spring.daesinsa.member.security.CustomUserDetails">
+	SELECT * FROM MEMBER WHERE ID=#{M_id}
 	</select>
 	
 </mapper>

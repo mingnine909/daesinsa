@@ -8,5 +8,4 @@ public interface MemberService {
 	
 	public int login(Member member) throws Exception;
 
-	void SignupUser(Member member);
 }
