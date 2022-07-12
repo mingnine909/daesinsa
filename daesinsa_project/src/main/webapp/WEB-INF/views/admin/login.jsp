@@ -30,29 +30,36 @@
 <body>
 	<%@ include file="/WEB-INF/views/common/template_header.jsp"%>
 	<main class="form-signin w-100 m-auto">
-		<img src="${pageContext.request.contextPath}/resources/img/member/dassinsa_logo.png" class="login-logo">
+		<img
+			src="${pageContext.request.contextPath}/resources/img/member/dassinsa_logo.png"
+			class="login-logo">
 		<div class="checkbox mb-3"></div>
-		<form action="${pageContext.request.contextPath}/member/login" method="post">
+		<form action="${pageContext.request.contextPath}/member/mypage" method="post">
 			<div class="form-floating">
 				<input type="text" class="form-control" id="floatingInput"
-					placeholder="ID" name="username"> <label for="floatingInput">ID</label>
+					placeholder="ID"> <label for="floatingInput">ID</label>
 			</div>
 			<div class="form-floating">
 				<input type="password" class="form-control" id="floatingPassword"
-					placeholder="Password" name="password"> <label for="floatingPassword">Password</label>
+					placeholder="Password"> <label for="floatingPassword">Password</label>
 			</div>
-			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
+			<input type="hidden" name="${_csrf.parameterName}"
+				value="${_csrf.token}" />
 			<div class="find">
-				<a href="#"style="text-decoration: none; color: black; text-align: center;">아이디 찾기</a> 
-				&nbsp;|&nbsp; 
-				<a href="#" style="text-decoration: none; color: black; text-align: center;">비밀번호 찾기</a>
+				<a href="#"
+					style="text-decoration: none; color: black; text-align: center;">아이디
+					찾기</a> &nbsp;|&nbsp; <a href="#"
+					style="text-decoration: none; color: black; text-align: center;">비밀번호
+					찾기</a>
 			</div>
 			<div class="checkbox mb-3"></div>
 			<button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
 			<div class="checkbox mb-3"></div>
-			<a href="#"><img class="social-img" src="${pageContext.request.contextPath}/resources/img/member/kakao_login.png"></a>
+			<a href="#"><img class="social-img"
+				src="${pageContext.request.contextPath}/resources/img/member/kakao_login.png"></a>
 			<div class="checkbox mb-3"></div>
-			<a href="#"><img class="social-img" src="${pageContext.request.contextPath}/resources/img/member/naver_login.png"
+			<a href="#"><img class="social-img"
+				src="${pageContext.request.contextPath}/resources/img/member/naver_login.png"
 				style="height: 50px;"></a>
 		</form>
 	</main>
