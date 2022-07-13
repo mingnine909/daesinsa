@@ -34,10 +34,10 @@
 	    <div class="signup-wrapper">
         <p style="font-size:26px;"><b>회원가입</b></p>
         <div class="signup-spacing"></div>
-        <form action="${pageContext.request.contextPath}/" method="post">
+        <form action="${pageContext.request.contextPath}/member/signup" method="post">
         <label for="formGroupExampleInput" class="form-label">아이디<span class="text-muted">(필수)</span></label>
         <div class="input-group mb-3">
-            <input type="text" class="form-control" aria-describedby="button-addon2">
+            <input type="text" class="form-control" name="username" aria-describedby="button-addon2">
             <button class="btn btn-outline-secondary" type="submit" id="button-addon2">중복확인</button>
             <div class="invalid-feedback">
                 아이디는 6글자 이상의 영문, 숫자로 작성되어야 합니다.
@@ -137,6 +137,7 @@
         <button class="btn btn-primary" id="signup-cancle" type="submit">취소하기</button>
         </div>
         <div class="signup-spacing-l"></div>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
         </form>
     </div>
     <%@ include file="/WEB-INF/views/common/template_footer.jsp"%>
