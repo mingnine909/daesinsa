@@ -6,15 +6,17 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.access.AccessDeniedHandler;
 
-public class CustomAccessDeniedHandler implements AuthenticationFailureHandler {
+public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 
-   @Override
-   public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
-         AuthenticationException exception) throws IOException, ServletException {
-      System.out.println("로그인 실패");
-   }
+	@Override
+	public void handle(HttpServletRequest req, HttpServletResponse res,
+			org.springframework.security.access.AccessDeniedException ade) throws IOException, ServletException {
+
+		req.setAttribute("errMsg", ade.getMessage());
+		req.getRequestDispatcher("/WEB-INF/views/member/login").forward(req, res);
+
+	}
 
 }
