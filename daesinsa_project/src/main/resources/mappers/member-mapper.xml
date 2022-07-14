@@ -19,22 +19,22 @@
 	<insert id="insertMember" parameterType="Member">
 	INSERT INTO MEMBER
 	 (M_ID, M_PWD, M_NAME, M_EMAIL, M_PHONE
-	 , M_ADRS, M_GENDER, M_BDATE, M_ENROLLDATE, M_ISDELETE)
+	 , M_ADRS, M_GENDER, M_BDATE, M_ENROLLDATE, M_ISDELETE, AUTH, ENABLED, M_ADR2)
 	  VALUES 
-	 (#{M_ID}, #{M_PWD}, #{M_NAME}, #{M_EMAIL}, #{M_PHONE}
-	 , #{M_ADRS}, #{M_GENDER}, #{M_BDATE}, DEFAULT, DEFAULT) 
+	 (#{id}, #{password}, #{name}, #{email}, #{phone}
+	 , #{adrs}, #{gender}, #{bdate}, DEFAULT, DEFAULT, DEFAULT, DEFAULT, #{adrs2}) 
 	</insert>
 	
 	<!-- 로그인 -->
-	<select id="login" resultType="Member">
-	SELECT M_ID, M_PWD
+	<select id="login" resultType="Member" parameterType="Member">
+	SELECT M_ID id, M_PWD password
 	 FROM MEMBER
-	WHERE M_ID = #{M_ID}
-	 AND M_PWD = #{M_PWD} 
+	WHERE M_ID = #{id}
+	 AND M_PWD = #{password} 
 	</select>
 	
 	<select id="getUserById" parameterType="String" resultType="kh.spring.daesinsa.member.security.CustomUserDetails">
-	SELECT * FROM MEMBER WHERE ID=#{M_id}
+	SELECT * FROM MEMBER WHERE M_ID=#{username}
 	</select>
 	
 </mapper>

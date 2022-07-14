@@ -45,18 +45,18 @@
         </div>
         <div class="mb-3">
             <label for="formGroupExampleInput" class="form-label">비밀번호<span class="text-muted">(필수)</span></label>
-            <input type="password" class="form-control" id="pwd" required>
+            <input type="password" class="form-control" name="password" required>
         </div>
         <div class="mb-3">
             <label for="formGroupExampleInput" class="form-label">비밀번호 확인<span class="text-muted">(필수)</span></label>
-            <input type="password" class="form-control" id="pwdconfirm" required>
+            <input type="password" class="form-control" name="pwdconfirm" required>
             <div class="invalid-feedback">
                 비밀번호가 일치하지 않습니다.
             </div>
         </div>
         <div class="mb-3">
             <label for="formGroupExampleInput" class="form-label">이름<span class="text-muted">(필수)</span></label>
-            <input type="text" class="form-control" id="name" placeholder="김신사" required>
+            <input type="text" class="form-control" name="name" placeholder="김신사" required>
             <div class="invalid-feedback">
                 이름은 한글로만 입력해주세요.
             </div>
@@ -64,7 +64,7 @@
         <label for="formGroupExampleInput" class="form-label">이메일<span class="text-muted">(필수)</span></label>
         <div class="input-group mb-3">
             <input type="email" class="form-control" placeholder="exmple@exmples.com" aria-label="exmple@exmples.com"
-                aria-describedby="button-addon2" id="email" required>
+                aria-describedby="button-addon2" name="email" required>
             <button class="btn btn-outline-secondary" type="submit" id="button-addon2">중복확인</button>
             <div class="invalid-feedback">
                 이메일 형식으로 입력해주세요.
@@ -72,23 +72,23 @@
         </div>
         <div class="mb-3">
             <label for="formGroupExampleInput" class="form-label">휴대폰번호<span class="text-muted">(필수)</span></label>
-            <input type="number" class="form-control" id="phonenum" placeholder="01012345678" required>
+            <input type="number" class="form-control" name="phone" placeholder="01012345678" required>
             <div class="invalid-feedback">
                 9자리의 숫자만 입력해주세요.
             </div>
         </div>
         <label for="formGroupExampleInput" class="form-label">주소<span class="text-muted">(필수)</span></label>
         <div class="input-group mb-3">
-            <input type="text" class="form-control" aria-describedby="button-addon2" id="adrs">
+            <input type="text" class="form-control" aria-describedby="button-addon2" name="adrs">
             <button class="btn btn-outline-secondary" type="submit" id="button-addon2">우편번호 검색</button>
         </div>
         <div class="mb-3">
             <label for="formGroupExampleInput" class="form-label">나머지 주소<span class="text-muted">(선택)</span></label>
-            <input type="text" class="form-control" id="adrsadd">
+            <input type="text" class="form-control" name="adrs2">
         </div>
         <div class="mb-3">
             <label for="formGroupExampleInput" class="form-label">생년월일<span class="text-muted">(선택)</span></label>
-            <input type="text" class="form-control" id="bdate" placeholder="19900219">
+            <input type="text" class="form-control" name="bdate" placeholder="19900219">
             <div class="invalid-feedback">
                 8자리 숫자로 입력해주세요.(YYYYMMDD)
             </div>
@@ -98,7 +98,7 @@
             <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
                 <option selected>선택 안 함</option>
                 <option value="1">남성</option>
-                <option value="2">남성</option>
+                <option value="2">여성</option>
             </select>
             <label for="floatingSelect">선택해주세요</label>
         </div>
