@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kh.spring.daesinsa.shopbasket.domain.Shopbasket;
 import kh.spring.daesinsa.shopping.domain.ProductQna;
 import kh.spring.daesinsa.shopping.domain.ProductReview;
 import kh.spring.daesinsa.shopping.domain.Shopping;
@@ -134,13 +135,13 @@ public class ShoppingServiceImpl implements ShoppingService{
 		return dao.selectReviewTotal(p_id);
 	}
 
-
-
-
-
-
-
+	//6. 장바구니 담기
+	@Override
+	public int insertShopBasket(Shopbasket shopbasket) {
+		return dao.insertShopBasket(shopbasket);
+	}
 	
+
 
 	
 

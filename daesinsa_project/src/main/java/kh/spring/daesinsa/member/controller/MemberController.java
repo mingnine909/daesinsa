@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kh.spring.daesinsa.member.domain.Member;
+import kh.spring.daesinsa.member.model.service.MemberService;
 import kh.spring.daesinsa.member.model.service.MemberServiceImpl;
 
 @Controller
@@ -17,7 +18,7 @@ import kh.spring.daesinsa.member.model.service.MemberServiceImpl;
 public class MemberController {	
 	
 	@Autowired
-	private MemberServiceImpl service;
+	private MemberService service;
 	
 	@GetMapping("/signup")
 	public ModelAndView pageinsertMember(ModelAndView mv) {

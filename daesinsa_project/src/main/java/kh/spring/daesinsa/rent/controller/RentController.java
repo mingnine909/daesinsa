@@ -1,13 +1,11 @@
 package kh.spring.daesinsa.rent.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -16,13 +14,12 @@ import kh.spring.daesinsa.rent.domain.Rental;
 import kh.spring.daesinsa.rent.model.service.RentService;
 
 import kh.spring.daesinsa.shopping.domain.Shopping;
-import kh.spring.daesinsa.shopping.model.service.ShoppingServiceImpl;
 
 @Component
 @RequestMapping("/rent")
 public class RentController {
 
-private static final Logger logger = LoggerFactory.getLogger(RentController.class);
+
 	
 	@Autowired
 	private RentService service;
@@ -168,6 +165,15 @@ private static final Logger logger = LoggerFactory.getLogger(RentController.clas
 			
 			int result = service.insertRental(rent);
 			return result;
+		}
+		
+		//6.대여 성공 후 이동 페이지
+		@GetMapping("/rentalss")
+		public ModelAndView rentalss(ModelAndView mv) {
+			
+			mv.setViewName("rent/rentalss");
+			
+			return mv;
 		}
 		
 	

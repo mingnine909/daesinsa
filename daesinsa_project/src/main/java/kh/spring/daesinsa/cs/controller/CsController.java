@@ -6,16 +6,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import kh.spring.daesinsa.cs.model.service.CsService;
 
-import kh.spring.daesinsa.cs.domain.CsNotice;
-import kh.spring.daesinsa.cs.model.service.CsServiceImpl;
 
 @Controller
 @RequestMapping("/cs")
 public class CsController {
 	
 	@Autowired
-	private CsServiceImpl service;
+	private CsService service;
 	
 	//1. 공지사항 목록
 	@GetMapping("/notice")

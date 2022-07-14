@@ -1,7 +1,5 @@
 package kh.spring.daesinsa.shopping.controller;
 
-import java.util.List;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-
+import kh.spring.daesinsa.shopbasket.domain.Shopbasket;
 import kh.spring.daesinsa.shopping.domain.ProductQna;
 import kh.spring.daesinsa.shopping.domain.Shopping;
-import kh.spring.daesinsa.shopping.model.service.ShoppingServiceImpl;
+import kh.spring.daesinsa.shopping.model.service.ShoppingService;
 
 
 
@@ -24,7 +22,7 @@ import kh.spring.daesinsa.shopping.model.service.ShoppingServiceImpl;
 public class ShoppingController {
 	
 	@Autowired
-	private ShoppingServiceImpl service;
+	private ShoppingService service;
 	
 	//1-1. 쇼핑상품 카테고리별 값
 	@GetMapping("/shoplist")
@@ -165,7 +163,7 @@ public class ShoppingController {
 			int result = service.pQnaInsertDo(pQna);
 			System.out.println(result);
 //			return String.valueOf(result);
-			return 1;
+			return result;
 		}
 		
 	
@@ -210,6 +208,16 @@ public class ShoppingController {
 			}
 
 		return msg;
+		}
+		
+		//5. 장바구니 담기
+		@PostMapping(value="/insertsb.do")
+		@ResponseBody
+		public int insertShopBasket(Shopbasket shopbasket) {
+			
+			int result = service.insertShopBasket(shopbasket);
+			return result;
+			
 		}
 	
 		

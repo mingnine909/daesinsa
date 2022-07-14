@@ -38,6 +38,7 @@
 <input type="hidden" name="pq_no" value="${pQna.pq_no }">
 <input type="hidden" name="m_id" value="${pQna.m_id }">
 <input type="hidden" name="pq_type" value="${pQna.pq_type }">
+<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 <table id="qna_review_form">
 <tr>
 <td>문의 제목</td>
@@ -78,18 +79,29 @@ ${pq_content_copy}</textarea></td>
 </form>
 </div>
 
+
 <!-- 등록하기 -->
 <script>
 	function insertQna() {
 		for (instance in CKEDITOR.instances) {
 			CKEDITOR.instances[instance].updateElement();
 		}
-		
+		if(frmQna.pq_content.value ==""){
+			frmQna.pq_title.focus();
+			alert("문의에 대한 답변을 입력해주세요.");
+			return false;
+		}
+		var token = $("input[name='_csrf']").val();
+		var header = "X-CSRF-TOKEN";
 		var frmdata = $("#frmQna").serialize();
 		$.ajax({
 			url : "${pageContext.request.contextPath}/shop/qnaanswer.do",
 			type : "post",
 			data : frmdata,
+			  beforeSend : function(xhr)
+			  {  
+			 	 xhr.setRequestHeader(header, token);
+			  },
 			success : CloseAndRefresh,
 			error : ajaxError
 		});

@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,15 +29,17 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
 	rel="stylesheet">
-<!-- bx슬라이더 + jquery cdn -->
-          <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+<!-- bx슬라이더 + jQuery 불러오기 -->
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="//cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
 <!-- 카카오톡 공유 api -->
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <title>Daesinsa</title>
 </head>
 <body>
+
+
 	<jsp:include page="../common/template_header.jsp"></jsp:include>
 	<div id="mainwrap">
 	<div class="product_detail_all container">
@@ -58,30 +61,32 @@
 			<c:when test="${not empty detail }">
         	<div class="product_detail ">
 				<div class="product_img_all">
-				  <c:forEach items="${detail.p_img_list}" var="img">
+				 
+          		<ul class="product_img" >
+          		 <c:forEach items="${detail.p_img_list}" var="img">
 				 <c:if test="${not empty img.p_img_path }"> 
-          		<div class="product_img">
-                <img src="${pageContext.request.contextPath}${img.p_img_path }" width="100%" height="100%">   
-       			</div>
-       		
-                 </c:if> 
-				</c:forEach>		
-					</div>
+                <li><img src="${pageContext.request.contextPath}${img.p_img_path }" width="100%" height="100%"> </li>
+       			 </c:if> 
+				</c:forEach>	
+       			</ul>
+				</div>
+		
 					
 				<div class="product_info ">
 				<div class="product_name"><p> ${detail.p_name }</p></div>
 				<div class="product_price"><p><fmt:formatNumber value="${detail.p_price }" pattern="￦#,###.##"/> </p></div> 
 				<div class="product_total_review"><a href="#product_review">상품 리뷰 : ${totalCntRe }개 <i class="xi-angle-right-min"></i></a></div>
-				  <select id="product_option" class="form-select" onchange="selectOption(this);">
+		<%-- 	   	${detail.p_option_info} --%>
+				  <select id="product_option" class="form-select" name="p_option">
 				  <!-- 이 부분 내일 질문 ...  -->
 				<c:forEach items="${detail.p_option_info}" var="option">
 				<c:choose>
 				  <c:when test="${option.po_id eq 'PO2' }">
 				  <option 
-				  <c:if test="${option.poi_type==1 }">value="1"</c:if>
-				  <c:if test="${option.poi_type==2 }">value="2"</c:if>
-				  <c:if test="${option.poi_type==3 }">value="3"</c:if>
-				  <c:if test="${option.poi_type==4 }">value="4"</c:if>
+				  <c:if test="${option.poi_id eq 'POI1' }">value="POI1" </c:if>
+				  <c:if test="${option.poi_id eq 'POI2' }">value="POI2" </c:if>
+				  <c:if test="${option.poi_id eq 'POI3' }">value="POI3" </c:if>
+				  <c:if test="${option.poi_id eq 'POI4'}">value="POI4" </c:if>
 				   ><c:if test="${option.poi_type==1 }">S</c:if>
 				   <c:if test="${option.poi_type==2 }">M</c:if>
 				   <c:if test="${option.poi_type==3 }">L</c:if>
@@ -90,11 +95,11 @@
 				  </c:when>
 				  <c:when test="${option.po_id eq 'PO3' }">
 				  <option 
-				  <c:if test="${option.poi_type==1 }">value="1"</c:if>
-				  <c:if test="${option.poi_type==2 }">value="2"</c:if>
-				  <c:if test="${option.poi_type==3 }">value="3"</c:if>
-				  <c:if test="${option.poi_type==4 }">value="4"</c:if>
-				  <c:if test="${option.poi_type==5 }">value="5"</c:if>
+				  <c:if test="${option.poi_id eq 'POI1' }">value="POI1"</c:if>
+				  <c:if test="${option.poi_id eq 'POI2' }">value="POI2"</c:if>
+				  <c:if test="${option.poi_id eq 'POI3' }">value="POI3"</c:if>
+				  <c:if test="${option.poi_id eq 'POI4' }">value="POI4"</c:if>
+				  <c:if test="${option.poi_id eq 'POI5'}">value="POI5"</c:if>
 				   ><c:if test="${option.poi_type==1 }">250</c:if>
 				   <c:if test="${option.poi_type==2 }">260</c:if>
 				   <c:if test="${option.poi_type==3 }">270</c:if>
@@ -104,11 +109,11 @@
 				   </c:when>
 				   <c:when test="${option.po_id eq 'PO4' }">
 				  <option 
-				  <c:if test="${option.poi_type==1 }">value="1"</c:if>
-				  <c:if test="${option.poi_type==2 }">value="2"</c:if>
-				  <c:if test="${option.poi_type==3 }">value="3"</c:if>
-				  <c:if test="${option.poi_type==4 }">value="4"</c:if>
-				  <c:if test="${option.poi_type==5 }">value="5"</c:if>
+		  		  <c:if test="${option.poi_id eq 'POI1' }">value="POI1"</c:if>
+				  <c:if test="${option.poi_id eq 'POI2'}">value="POI2"</c:if>
+				  <c:if test="${option.poi_id eq 'POI3' }">value="POI3"</c:if>
+				  <c:if test="${option.poi_id eq 'POI4' }">value="POI4"</c:if>
+				  <c:if test="${option.poi_id eq 'POI5'}">value="POI5"</c:if>
 				   ><c:if test="${option.poi_type==1 }">210</c:if>
 				   <c:if test="${option.poi_type==2 }">220</c:if>
 				   <c:if test="${option.poi_type==3 }">230</c:if>
@@ -117,12 +122,19 @@
 				   </option>
 				  </c:when>
 				  <c:otherwise>
-				  <option <c:if test="${option.poi_type==0 }">value="0"</c:if>
+				  <option <c:if test="${option.poi_id eq 'POI1' }">value="POI1"</c:if>
 				  ><c:if test="${option.poi_type==0 }">FREE</c:if></option>
 				  </c:otherwise>
 				  </c:choose>
+				  
 				</c:forEach>
-				  </select>
+				 </select>
+				  
+				 <!-- po_id 값 가져오기 -->
+				 <c:forEach items="${detail.p_option_info}" var="option">
+				 <input type="hidden" value="${option.po_id}" id="poi_hidden">
+				 </c:forEach>
+				  
 				  <br>
 				  <div class="product_cnt">
 				  주문수량  
@@ -150,16 +162,70 @@
 				  
 				  </script>
 				      <div class="product_buy">
-				      <form>
+				      
+				     <%--  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> --%>
+				    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 					<button type="submit" class="btn btn-light btn_cart"><i class="xi-cart-add"></i> &nbsp;장바구니 담기</button>
-					</form>
+			
+					<!-- 장바구니 담기 -->
+					<script>
+  
+					$(".btn_cart").click(function(){
+						var priceVal = '${detail.p_price}';
+						console.log(priceVal); 
+						var productVal = '${detail.p_id}';
+						console.log(productVal); 
+						var sbAmountVal = $('.cnt').val();
+						console.log(sbAmountVal); 
+						var totalCntVal = priceVal * sbAmountVal;
+						console.log(totalCntVal);
+						var poiIdVal = $('#product_option').val();
+						console.log(poiIdVal);
+						var poIdVal = $('#poi_hidden').val();
+						console.log(poIdVal);	
+						var token = $("input[name='_csrf']").val();
+						var header = "X-CSRF-TOKEN";
+						 $.ajax({
+							url : "${pageContext.request.contextPath}/shop/insertsb.do"
+							,type: "post"
+							,data :{
+								poi_id: poiIdVal,
+								p_id: productVal,
+								po_id: poIdVal,
+								sb_amount: sbAmountVal,
+								p_price : priceVal,
+								sb_totalprice : totalCntVal
+							}
+							,beforeSend : function(xhr)
+							  {  
+							 	 xhr.setRequestHeader(header, token);
+							  }
+							,success:function(data){
+								console.log(data);
+								
+								var result = confirm('상품이 장바구니에 추가되었습니다. 장바구니로 이동하시겠습니까?')
+								if(result){
+								location.href="${pageContext.request.contextPath}/shopbasket/list"
+								}else{
+								location.reload();
+								}
+									},
+								error : function(errcode) {
+								console.log(errcode);
+									}
+								}); 
+						
+					}) 
+					</script>
+			
+			
 					<!-- 대여 가능 상품인 경우 페이지 이동 / 불가능한 경우 비활성화 및 페이지 이동 x -->
-					
 					<c:if test="${detail.p_isrental ==1 }">
-					<form action="${pageContext.request.contextPath}/rent/rentinsert" method="post">
+				  <form action="${pageContext.request.contextPath}/rent/rentinsert" method="post">
+				  	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 					<input type="hidden" name="p_id" value="${detail.p_id }">
 					<input type="hidden" name="p_name" value="${detail.p_name }">
-					<button type="submit" class="btn btn-light btn_rental">
+					<button type="submit" class="btn btn-light btn_rental" >
 					<i class="xi-laundry"></i> &nbsp;대여하기</button>
 					</form>
 					</c:if>
@@ -297,6 +363,7 @@
 <div class="qna_delete">
 <button type="submit" class="btn qna_delete" > 삭제 </button>
 <input type="hidden" class="pq_qref_value" value="${qna.pq_qref }">
+<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 </div>
 </c:if>
 <c:if test="${qna.pq_level ==0 }">
@@ -304,6 +371,7 @@
 <!-- TODO : 아래 버튼 관리자 로그인인 경우만 나타나도록 수정  -->
 <form action="${pageContext.request.contextPath}/shop/qnaanswer" method="post"
 target="qnaAnswer" onsubmit='openAnswer();'>
+<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 <input type="hidden" name ="pq_content_copy" value="${qna.pq_content }">
 <input type="hidden" name ="p_id" value="${detail.p_id}">
  <input type="hidden" name ="pq_no" value="${qna.pq_no }">
@@ -318,12 +386,18 @@ target="qnaAnswer" onsubmit='openAnswer();'>
 	$(".qna_delete").click(function(){
 		console.log($(this));
 		console.log($(this).next().val());
+		var token = $("input[name='_csrf']").val();
+		var header = "X-CSRF-TOKEN";
 	$.ajax({
 		url : "${pageContext.request.contextPath}/shop/pqnadelete"
 		,type: "post"
 		,data :{
 			pq_qref : $(this).next().val()
 			}
+		,beforeSend : function(xhr)
+		  {  
+		 	 xhr.setRequestHeader(header, token);
+		  }
 		,success:function(result){
 			console.log(result);
 			alert(result);
@@ -400,17 +474,35 @@ target="qnaAnswer" onsubmit='openAnswer();'>
 	<jsp:include page="../common/template_footer.jsp"></jsp:include>
 	
 	
+		<!-- bx 슬라이더 스크립트  -->
+	<script>
+		$(document).ready(function() {
+			$('.product_img').bxSlider({
+				minSlides : 1, //화면에 나타내는 슬라이드 갯수
+
+				maxSlides : 2,
+
+				slideWidth : 350, //넓이
+
+				slideHeight : 350,
+				
+				slideMargin : 10,
+
+				pager : true
+			});
+		});
+	</script>
+	
 	<!-- 상품 값 확인 -->
 	<script>
-	  function selectOption(option) {
+/* 	  function selectOption(option) {
 		const optionVal = option.value;
 		console.log(optionVal);  
 		
-  }
-		const priceVal = $('.product_price').text();
-		console.log(priceVal); 
-		const productVal = '${detail.p_id}';
-		console.log(productVal); 
+  } */
+		$("select[name=p_option]").change(function(){
+			console.log($(this).val());
+		})
 	</script>
 	
 	<!-- 상품 리뷰 더 보기 스크립트  -->
@@ -520,12 +612,7 @@ target="qnaAnswer" onsubmit='openAnswer();'>
         </script>
 
 	
-	<!-- bx 슬라이더 스크립트  -->
-	 <script>
-      $(document).ready(function(){
-        $('.product_img_all').bxSlider();
-      });
-    </script>
+
     
 	<!-- 부트스트랩 스크립트 -->
 	<script

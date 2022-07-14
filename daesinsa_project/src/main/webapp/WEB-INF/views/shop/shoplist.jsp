@@ -146,6 +146,7 @@
 			<c:choose>
 				<c:when test="${not empty Shopping }">
 					<div class="shopping_list">
+					<!-- sort 값에 따라서 최신순, 낮은가격순, 높은가격순 정렬 -->
 						<div class="option">
 							<i class="xi-filter"></i> &emsp; <select class="form-select" id="sort"
 								onchange="location.href=this.value">
@@ -172,6 +173,7 @@
 											href="${pageContext.request.contextPath}/shop/detail?p_id=${shop.p_id }">
 											<c:forEach items="${shop.p_img_list }" var="shopimg"
 												varStatus="status">
+												<!-- 이미지 2장 이상인상품들 1장씩만 화면에 출력되도록 나타냄 -->
 												<c:if test="${status.count <2 }">
 													<c:if test="${not empty shopimg.p_img_path }">
 														<img
@@ -201,7 +203,7 @@
 				</c:when>
 
 				<c:when test="${empty Shopping }">
-					<div>해당 상품이 없습니다.</div>
+					<div class="empty_shoplist">해당 상품이 없습니다.</div>
 				</c:when>
 			</c:choose>
 

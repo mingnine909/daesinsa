@@ -1,12 +1,22 @@
 /* 글자 센터정렬 */
 .terms_box h1:nth-of-type(1) {
-    text-align: center;
+	text-align: center;
+	font-weight: bold;
+	font-size: 1.8rem;
+	margin: 50px;
 }
 
 .terms_box,.text{
   
     margin: 0 auto;
     position: relative;
+    padding: 20px;
+}
+
+.terms_box h2:nth-of-type(1) {
+	text-align: center;
+	font-weight: bold;
+	font-size: 1.2rem;
 }
 
 .text{
@@ -19,8 +29,96 @@
     margin: 30px;
 }
 
+.text p:nth-of-type(6){
+	color: red;
+	font-weight: bold;
+}
+
+.rental_info input:not(#check2) {
+	width: 400px;
+}
+.check{
+	margin: 0 auto;
+	text-align: center;
+}
+#check1, #check2{
+	margin-top: 20px;
+}
+
+.product_table  ,.date_table{
+	margin: 0 auto;
+	width: 80%;
+	height: 200px;
+}
+
+.user_table{
+	margin: 0 auto;
+	width:  80%;
+	height: 350px;
+}
+
+.user_table button{
+	background-color: #222222;
+	color: white;
+	margin-top: 10px;
+}
+
+
+.table_title{
+	padding:10px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.table_info{
+	text-align: center;
+	width: 200px;
+}
+
+.rantal_submit{
+	margin-top: 50px;
+}
  .rantal_submit button{
 	margin: auto;
 	display:block;
-    cursor: pointer;
+    background-color: #045757;
+    color: white;
 } 
+
+
+.btn_box h1{
+  
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.8rem;
+  margin: 50px;
+}
+
+.btn_box {
+  text-align: center;
+}
+
+.btn_box button{
+	margin: 0 auto;
+	display: block;
+	width: 200px;
+	margin-bottom: 20px;
+}
+
+.btn_box button:nth-of-type(1) {
+	background-color: #222222;
+	color: white;
+	font-weight: bold;
+}
+
+.btn_box button:nth-of-type(2) {
+	background-color: #045757;
+	color: white;
+	font-weight: bold;
+}
+
+.btn_box button:nth-of-type(3) {
+	background-color: #044343;
+	color: white;
+	font-weight: bold;
+}

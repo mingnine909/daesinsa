@@ -57,14 +57,14 @@
 			<c:when test="${not empty detail }">
         	<div class="product_detail ">
 				<div class="product_img_all">
+          		<ul class="product_img">
 				  <c:forEach items="${detail.p_img_list}" var="img">
 				 <c:if test="${not empty img.p_img_path }"> 
-          		<div class="product_img">
-                <img src="${pageContext.request.contextPath}${img.p_img_path }" width="100%" height="100%">   
-       			</div>
-       		
+                <li><img src="${pageContext.request.contextPath}${img.p_img_path }" width="100%" height="100%"></li>  
                  </c:if> 
 				</c:forEach>		
+       			</ul>
+       		
 					</div>
 					
 				<div class="product_info ">
@@ -77,10 +77,10 @@
 				<c:choose>
 				  <c:when test="${option.po_id eq 'PO2' }">
 				  <option 
-				  <c:if test="${option.poi_type==1 }">value="1"</c:if>
-				  <c:if test="${option.poi_type==2 }">value="2"</c:if>
-				  <c:if test="${option.poi_type==3 }">value="3"</c:if>
-				  <c:if test="${option.poi_type==4 }">value="4"</c:if>
+				  <c:if test="${option.poi_id eq 'POI1' }">value="POI1" </c:if>
+				  <c:if test="${option.poi_id eq 'POI2' }">value="POI2" </c:if>
+				  <c:if test="${option.poi_id eq 'POI3' }">value="POI3" </c:if>
+				  <c:if test="${option.poi_id eq 'POI4'}">value="POI4" </c:if>
 				   ><c:if test="${option.poi_type==1 }">S</c:if>
 				   <c:if test="${option.poi_type==2 }">M</c:if>
 				   <c:if test="${option.poi_type==3 }">L</c:if>
@@ -89,11 +89,11 @@
 				  </c:when>
 				  <c:when test="${option.po_id eq 'PO3' }">
 				  <option 
-				  <c:if test="${option.poi_type==1 }">value="1"</c:if>
-				  <c:if test="${option.poi_type==2 }">value="2"</c:if>
-				  <c:if test="${option.poi_type==3 }">value="3"</c:if>
-				  <c:if test="${option.poi_type==4 }">value="4"</c:if>
-				  <c:if test="${option.poi_type==5 }">value="5"</c:if>
+				  <c:if test="${option.poi_id eq 'POI1' }">value="POI1"</c:if>
+				  <c:if test="${option.poi_id eq 'POI2' }">value="POI2"</c:if>
+				  <c:if test="${option.poi_id eq 'POI3' }">value="POI3"</c:if>
+				  <c:if test="${option.poi_id eq 'POI4' }">value="POI4"</c:if>
+				  <c:if test="${option.poi_id eq 'POI5'}">value="POI5"</c:if>
 				   ><c:if test="${option.poi_type==1 }">250</c:if>
 				   <c:if test="${option.poi_type==2 }">260</c:if>
 				   <c:if test="${option.poi_type==3 }">270</c:if>
@@ -103,11 +103,11 @@
 				   </c:when>
 				   <c:when test="${option.po_id eq 'PO4' }">
 				  <option 
-				  <c:if test="${option.poi_type==1 }">value="1"</c:if>
-				  <c:if test="${option.poi_type==2 }">value="2"</c:if>
-				  <c:if test="${option.poi_type==3 }">value="3"</c:if>
-				  <c:if test="${option.poi_type==4 }">value="4"</c:if>
-				  <c:if test="${option.poi_type==5 }">value="5"</c:if>
+		  		  <c:if test="${option.poi_id eq 'POI1' }">value="POI1"</c:if>
+				  <c:if test="${option.poi_id eq 'POI2'}">value="POI2"</c:if>
+				  <c:if test="${option.poi_id eq 'POI3' }">value="POI3"</c:if>
+				  <c:if test="${option.poi_id eq 'POI4' }">value="POI4"</c:if>
+				  <c:if test="${option.poi_id eq 'POI5'}">value="POI5"</c:if>
 				   ><c:if test="${option.poi_type==1 }">210</c:if>
 				   <c:if test="${option.poi_type==2 }">220</c:if>
 				   <c:if test="${option.poi_type==3 }">230</c:if>
@@ -116,13 +116,16 @@
 				   </option>
 				  </c:when>
 				  <c:otherwise>
-				  <option>Free</option>
+				  <option <c:if test="${option.poi_id eq 'POI1' }">value="POI1"</c:if>
+				  ><c:if test="${option.poi_type==0 }">FREE</c:if></option>
 				  </c:otherwise>
 				  </c:choose>
+				  
 				</c:forEach>
 				  </select>
 				  <br>
 				  <form action="${pageContext.request.contextPath}/rent/rentinsert" method="post">
+				  	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 					<input type="hidden" name="p_id" value="${detail.p_id }">
 					<input type="hidden" name="p_name" value="${detail.p_name }">
 					<button type="submit" class="btn btn-light btn_rental" >
@@ -254,6 +257,7 @@
 <div class="qna_delete">
 <button type="submit" class="btn qna_delete" > 삭제 </button>
 <input type="hidden" class="pq_qref_value" value="${qna.pq_qref }">
+<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 </div>
 </c:if>
 
@@ -276,12 +280,18 @@ target="qnaAnswer" onsubmit='openAnswer();'>
 	$(".qna_delete").click(function(){
 		console.log($(this));
 		console.log($(this).next().val());
+		var token = $("input[name='_csrf']").val();
+		var header = "X-CSRF-TOKEN";
 	$.ajax({
 		url : "${pageContext.request.contextPath}/shop/pqnadelete"
 		,type: "post"
 		,data :{
 			pq_qref : $(this).next().val()
 			}
+		,beforeSend : function(xhr)
+		  {  
+		 	 xhr.setRequestHeader(header, token);
+		  }
 		,success:function(result){
 			console.log(result);
 			alert(result);
@@ -341,6 +351,25 @@ target="qnaAnswer" onsubmit='openAnswer();'>
 	
 </div>
 	<jsp:include page="../common/template_footer.jsp"></jsp:include>
+	
+		<!-- bx 슬라이더 스크립트  -->
+	<script>
+		$(document).ready(function() {
+			$('.product_img').bxSlider({
+				minSlides : 1, //화면에 나타내는 슬라이드 갯수
+
+				maxSlides : 2,
+
+				slideWidth : 350, //넓이
+
+				slideHeight : 350,
+				
+				slideMargin : 10,
+
+				pager : true
+			});
+		});
+	</script>
 	
 	<!-- 상품 리뷰 더 보기 스크립트  -->
 	<script>
@@ -449,13 +478,6 @@ target="qnaAnswer" onsubmit='openAnswer();'>
         </script>
 
 	
-	<!-- bx 슬라이더 스크립트  -->
-	 <script>
-      $(document).ready(function(){
-        $('.product_img_all').bxSlider();
-      });
-    </script>
-    
 	<!-- 부트스트랩 스크립트 -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"

@@ -5,14 +5,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import kh.spring.daesinsa.mypage.model.service.MypageServiceImpl;
+import kh.spring.daesinsa.mypage.model.service.MypageService;
 
 @Controller
 @RequestMapping("/mypage")
 public class MypageController {
 	
 	@Autowired
-	private MypageServiceImpl service;
+	private MypageService service;
 	
 	@GetMapping ("/order")
 	public String myOrder() {

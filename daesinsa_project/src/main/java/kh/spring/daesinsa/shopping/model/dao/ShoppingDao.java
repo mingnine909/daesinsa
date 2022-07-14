@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kh.spring.daesinsa.shopbasket.domain.Shopbasket;
 import kh.spring.daesinsa.shopping.domain.ProductImg;
 import kh.spring.daesinsa.shopping.domain.ProductQna;
 import kh.spring.daesinsa.shopping.domain.ProductReview;
@@ -145,5 +146,10 @@ public class ShoppingDao {
 		return sqlsession.selectOne("Shopping.selectReviewTotal",p_id);
 	}
 	
+	//6. 장바구니 추가
+	public int insertShopBasket(Shopbasket shopbasket) {
+		return sqlsession.insert("Shopping.insertShopBasket",shopbasket);
+		
+	}
 	
 }

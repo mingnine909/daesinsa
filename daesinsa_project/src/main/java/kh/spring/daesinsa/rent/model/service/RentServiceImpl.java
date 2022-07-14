@@ -11,7 +11,6 @@ import kh.spring.daesinsa.rent.model.dao.RentDao;
 import kh.spring.daesinsa.shopping.domain.ProductQna;
 import kh.spring.daesinsa.shopping.domain.ProductReview;
 import kh.spring.daesinsa.shopping.domain.Shopping;
-import kh.spring.daesinsa.shopping.model.dao.ShoppingDao;
 
 @Service
 public class RentServiceImpl implements RentService {

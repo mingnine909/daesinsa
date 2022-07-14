@@ -27,6 +27,9 @@
    <typeAlias type="kh.spring.daesinsa.member.domain.Member" alias="Member"/>
    <typeAlias type="kh.spring.daesinsa.admin.domain.Admin" alias="Admin"/>
    <typeAlias type="kh.spring.daesinsa.mypage.domain.Mypage" alias="Mypage"/>
+  <!-- 장바구니 -->
+  <typeAlias type="kh.spring.daesinsa.shopbasket.domain.Shopbasket" alias="Shopbasket"/>
+
 </typeAliases> 
 
 

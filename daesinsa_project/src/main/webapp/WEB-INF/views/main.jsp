@@ -169,7 +169,7 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 			class="position-relative p-3 p-md-5 m-md-3 text-center main_fourth"
 			style="background-color: #2266a5cb; color: white;">
 			<div class="col-md-5 p-sm mx-auto">
-				<img src="${pageContext.request.contextPath}/resources/img/main/여름배너.png" width="350" height="200">
+				<img src="${pageContext.request.contextPath}/resources/img/main/여름배너.png" width="550" height="250">
 				<h1>Best summer clothes</h1>
 			</div>
 		</div>

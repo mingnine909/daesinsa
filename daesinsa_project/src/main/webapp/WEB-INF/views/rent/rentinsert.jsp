@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -46,15 +47,16 @@
 			<div class="terms_box">
 				<h1>Daesinsa 상품 대여</h1>
 				<div class="text">
-					<h1>대여 약관 소개</h1>
-					<p>1.대여 일수 1 - 7 일 왕복 배송비 4000원 선결제</p>
-					<p>2.대신사 자체 배송 시스템을 통하여 진행</p>
-					<p>3.무조건 카드결제로만 결제 진행</p>
-					<p>4.대여 반납 신청 예정일에 반납이 확인되지 않으면 연체료 부과</p>
-					<p>5. 연체료 1일 1만원</p>
+					<h2>대여 약관 소개</h2>
+					<p>1.대여 일수 1 - 7 일 선택이 가능하며 왕복 배송비 4000원이 선결제 됩니다.</p>
+					<p>2.대신사 자체 배송 시스템을 통하여 진행됩니다.</p>
+					<p>3.카드결제로만 진행 가능합니다.</p>
+					<p>4.대여 반납 신청 예정일에 반납이 확인되지 않으면 연체료 부과됩니다.</p>
+					<p>5.연체료 1일 1만원</p>
+					<p>* 당일 상품 대여는 불가능합니다. </p>
 				</div>
-				<div class="check container">
-					<label for="check1"><input type="checkbox" id="check1"
+				<div class="check">
+					<label for="check1"><input type="checkbox" id="check1" name="check1"
 						required> (필수) 해당 약관에 반드시 동의하여야 대여 신청이 진행됩니다. </label>
 				</div>
 			</div>
@@ -63,79 +65,79 @@
 			<div class="rental_info">
 
 				<hr>
-				<div class="rental_product_info container">
-					<table style="border: 1px solid black;">
+				<div class="rental_product_info ">
+					<table style="border: 1px solid black;" class="product_table">
 						<tr>
-							<td colspan="2">상품정보</td>
+							<td colspan="2" class="table_title">상품정보</td>
 						</tr>
 						<tr>
-							<td>상품코드</td>
-							<td><input type="text" value="${p_id }"></td>
+							<td class="table_info">상품코드</td>
+							<td><input type="text" class="form-control" value="${p_id }"></td>
 						</tr>
 						<tr>
-							<td>상품명</td>
-							<td><input type="text" value="${p_name }"></td>
+							<td class="table_info">상품명</td>
+							<td><input type="text" class="form-control" value="${p_name }"></td>
 						</tr>
 						<tr>
-							<td>1일 대여료</td>
-							<td><input type="text" value="1500"></td>
+							<td class="table_info">1일 대여료</td>
+							<td><input type="text" class="form-control" value="1500"></td>
 						</tr>
 					</table>
 				</div>
 
 				<hr>
 
-				<div class="rental_user_info container">
+				<div class="rental_user_info ">
 
-					<table style="border: 1px solid black;">
+					<table style="border: 1px solid black;" class="user_table">
 						<tr>
-							<td colspan="2">회원정보</td>
+							<td colspan="2" class="table_title">회원정보</td>
 						</tr>
 						<tr>
-							<td>수령인</td>
-							<td><input type="text"></td>
+							<td class="table_info">수령인</td>
+							<td><input type="text" id="rent_member" class="form-control" placeholder="수령인 이름을 입력해주세요"></td>
 						</tr>
 						<tr>
-							<td>연락처</td>
-							<td><input type="tel" pattern="(010)-\d{3,4}-\d{4}"
-								title="형식 010-0000-0000"></td>
+							<td class="table_info">연락처</td>
+							<td><input type="tel" id="rent_member_tel" class="form-control" onkeyPress="javascript:checkInputNum();"
+							placeholder="수령인 연락처를 입력해주세요"></td>
 						</tr>
 						<tr>
-							<td>우편번호</td>
-							<td><input type="text" name="zipcode" id="zipcode"  placeholder="우편번호" readonly>
-								<button type="button" onclick="kakaopost();">우편번호 찾기</button></td>
+							<td class="table_info">우편번호</td>
+							<td><input type="text" name="zipcode" id="zipcode" class="form-control" placeholder="우편번호" readonly>
+								<button type="button" class="btn btn-sm" onclick="kakaopost();">우편번호 찾기</button></td>
 						</tr>
 						<tr>
-							<td>주소</td>
-							<td><input type="text" name="address" id="address" placeholder="주소">
+							<td class="table_info">주소</td>
+							<td><input type="text" name="address" class="form-control" id="address" placeholder="주소">
 							</td>
 						</tr>
 						
 						<tr>
-							<td>상세주소</td>
-							<td><input type="text" name="detailadd" id="detailadd" placeholder="상세주소">
+							<td class="table_info">상세주소</td>
+							<td><input type="text" name="detailadd" class="form-control" id="detailadd" placeholder="상세주소">
 							</td>
 						</tr>
 					</table>
 				</div>
 
 				<hr>
-				<div class="rental_select_date container">
-					<table style="border: 1px solid black;">
+				<div class="rental_select_date ">
+					<table style="border: 1px solid black;"  class="date_table">
 						<tr>
-							<td colspan="2">대여정보</td>
+							<td colspan="2" class="table_title">대여정보</td>
 						</tr>
 						<tr>
-							<td>대여시작일</td>
-							<td><input type="text" id="fromDate"></td>
+							<td class="table_info">대여시작일</td>
+							<td><input type="text" id="fromDate" class="form-control" placeholder="시작일"></td>
 						</tr>
 						<tr>
-							<td>대여종료일</td>
-							<td><input type="text" id="endDate"></td>
+							<td class="table_info">대여종료일</td>
+							<td><input type="text" id="endDate" class="form-control" placeholder="종료일"></td>
 						</tr>
 						<tr>
-							<td>대여일수</td>
-							<td><input type="text" id="rentalDays"></td>
+							<td class="table_info">대여일수</td>
+							<td><input type="text" id="rentalDays" class="form-control" readonly="readonly"></td>
 						</tr>
 					</table>
 					<div class="check">
@@ -148,6 +150,7 @@
 		</div>
 			 <div class="rantal_submit">
 		<!-- 대여하기 버튼 클릭 시 대여 테이블 insert / 상품 테이블 p_isrental =2로  update -->
+		 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
         <button type="button" id="btn-retal" class="btn btn-retal">대여하기</button>
         <button type="button" id="btn-checkd" class="btn btn-checkd">확인용</button>
         </div>
@@ -160,6 +163,25 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 		crossorigin="anonymous"></script>
+		
+	<!-- 전화번호 정규표현식 -->
+	<script>
+	var phone = $('#rent_member_tel').val();
+	var phoneVal = phone.replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/,"$1-$2-$3");
+	
+	 $("#rent_member_tel").text(phoneVal);
+	 console.log(phoneVal);
+	</script>
+	
+	<!-- 숫자만 입력 가능하게 제한 -->
+	<script>
+  	function checkInputNum(){
+      if ((event.keyCode < 48) || (event.keyCode > 57)){
+          event.returnValue = false;
+      }
+ 	 }
+	</script>
+
 
 	<!-- 카카오 우편번호 스크립트 -->
 	<script>
@@ -189,7 +211,7 @@
 
 								dateFormat : "yy-mm-dd",
 								changeMonth : true,
-								minDate : 0, //0으로 설정 시 오늘 날짜            
+								minDate : 1, //0으로 설정 시 오늘 날짜            
 								onClose : function(selectedDate) {
 
 									$("#endDate").datepicker("option",
@@ -256,15 +278,40 @@
 
 	</script>
 	
-	<!-- 결제 api 실행 -->
+	<!-- 결제 api 실행 --> 
 	<script>
 	$('#btn-retal').click(
     function requestPay() {
+    	/* 값 확인  */
 		var daysVal = $('#rentalDays').val();
 	    var price = 1500;
 	    var dCharge = 4000;
 	    var priceVal = daysVal*price+dCharge;
     	console.log("대여일수"+daysVal);
+    	
+    	/* 결제 실행 하기 전에 체크해야 할 값 체크 */
+    	 if(!$("input:checked[id='check1']").is(":checked")){
+   	     alert('(필수)해당 약관에 반드시 동의하여야 합니다.'); 
+   	     return false;
+   	    } else if(!$("input:checked[id='check2']").is(":checked")){
+   	     alert('(필수)연체 시 부과되는 연체료에 대해 동의하여야 합니다.'); 
+   	     return false;	
+   	    } else if($('#rent_member').val()=="" ||  $('#rent_member_tel').val()=="")
+   	    {
+   	     alert('수령인 정보를 입력해주세요.'); 	
+   	  	$('#rent_member').focus();
+   	     return false;
+   	    } else if($('#zipcode').val()=="" || $('#detailadd').val()=="")
+   	    {
+      	     alert('수령인 주소를 입력해주세요.'); 	
+      	  	$('#zipcode').focus();
+      	     return false;
+      	    }	
+   	 	else if($('#fromDate').val()=="" || $('#endDate').val()=="")
+	    {
+   	     alert('대여 정보를 입력해주세요.'); 	
+   	     return false;
+   	    }	
 	  IMP.init('imp81715131'); 
 	  IMP.request_pay({
 	    pg: 'inicis',
@@ -274,10 +321,10 @@
 	    amount : priceVal
 	  }, function (rsp) { // callback
 	      if (rsp.success) {
-       	 msg = '결제에 성공하였습니다. 대여 메인으로 이동합니다';
+       	 msg = '결제에 성공하였습니다. ';
        	 alert(msg);	
        	rentSuccess();
-       	location.href="main"
+       	location.href="rentalss"
         } else {
 	   msg = '결제에 실패하였습니다.';
        msg += '에러내용 : ' + rsp.error_msg;
@@ -311,6 +358,7 @@
     <!-- 대여 상품 insert , 상품 테이블 is_rental =2 업뎃 -->
       	<script>
       	function rentSuccess(){
+      	/* 값 확인 */
 		var startDateVal = $('#fromDate').val();
 		var endDateVal = $('#endDate').val();
 		var daysVal = $('#rentalDays').val();
@@ -318,6 +366,8 @@
 	    var dCharge = 4000;
 	    var priceVal = daysVal*price+4000;
 	    var productVal = '${p_id }';
+		var token = $("input[name='_csrf']").val();
+		var header = "X-CSRF-TOKEN";    
 	$.ajax({
 		url : "${pageContext.request.contextPath}/rent/rentinsert.do"
 		,type: "post"
@@ -327,11 +377,16 @@
 			r_enddate : endDateVal,
 			r_price : priceVal
 		}
+		,beforeSend : function(xhr)
+		  {  
+		 	 xhr.setRequestHeader(header, token);
+		  }
 		,success:function(data){
 			console.log("결과는??? 1이면 성공"+data);	
 				},
 			error : function(errcode) {
 			console.log(errcode);
+			history.back();
 				}
 			});
 		};

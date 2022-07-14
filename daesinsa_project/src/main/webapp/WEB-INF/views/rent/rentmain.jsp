@@ -113,7 +113,7 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 				</c:if>
 			</c:forEach>
 						<div class="product_name"><p>${main.p_name }</p></div>
-						<div class="product_price"><p><fmt:formatNumber value="${main.p_price }" pattern="￦#,###.##"/></p></div>
+						<div class="product_price"><p>일 1,500원</p></div>
 					</a>
 					</div>
 				</li>

@@ -35,6 +35,7 @@
 <div id="mainwrap">
 <form id="frmQna">
 <input type="hidden" name="p_id" value="${p_id }">
+<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 <table id="qna_review_form">
 <tr>
 <td>문의 제목 <span style="color: orange"> *</span> </td>
@@ -78,12 +79,30 @@
 		for (instance in CKEDITOR.instances) {
 			CKEDITOR.instances[instance].updateElement();
 		}
-		
+		if(frmQna.pq_title.value ==""){
+			alert("문의 제목을 입력해주세요.");
+			frmQna.pq_title.focus();
+			return false;
+		} else if ($(':radio[name="pq_type"]:checked').length < 1 ){
+			alert("문의 유형을 선택해주세요.");
+			$(':input:radio[name=pq_type]:eq(0)').focus();
+			return false;
+		} else if(frmQna.pq_content.value ==""){
+			frmQna.pq_title.focus();
+			alert("문의 내용을 입력해주세요.");
+			return false;
+		}
+		var token = $("input[name='_csrf']").val();
+		var header = "X-CSRF-TOKEN";
 		var frmdata = $("#frmQna").serialize();
 		$.ajax({
 			url : "${pageContext.request.contextPath}/shop/qnainsert.do",
 			type : "post",
 			data : frmdata,
+			  beforeSend : function(xhr)
+			  {  
+			 	 xhr.setRequestHeader(header, token);
+			  },
 			success : CloseAndRefresh,
 			error : ajaxError
 		});

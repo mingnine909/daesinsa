@@ -2,21 +2,35 @@ package kh.spring.daesinsa.shopbasket.domain;
 
 
 import org.springframework.stereotype.Component;
+    
+
 
 @Component
 public class Shopbasket {
+	
+	private String m_id;
 	private String poi_id;
-	private String member_id;
+	private String p_id;
+	private String po_id;
 	private int sb_amount;
-	private int sb_coupon;
 	private int p_price;
 	private int sb_totalprice;
 	
 	
 	@Override
 	public String toString() {
-		return "Shopbasket [poi_id=" + poi_id + ", member_id=" + member_id + ", sb_amount=" + sb_amount + ", sb_coupon="
-				+ sb_coupon + ", p_price=" + p_price + ", sb_totalprice=" + sb_totalprice + "]";
+		return "Shopbasket [m_id=" + m_id + ", poi_id=" + poi_id + ", p_id=" + p_id + ", po_id=" + po_id
+				+ ", sb_amount=" + sb_amount + ", p_price=" + p_price + ", sb_totalprice=" + sb_totalprice + "]";
+	}
+
+
+	public String getM_id() {
+		return m_id;
+	}
+
+
+	public void setM_id(String m_id) {
+		this.m_id = m_id;
 	}
 
 
@@ -30,13 +44,23 @@ public class Shopbasket {
 	}
 
 
-	public String getMember_id() {
-		return member_id;
+	public String getP_id() {
+		return p_id;
 	}
 
 
-	public void setMember_id(String member_id) {
-		this.member_id = member_id;
+	public void setP_id(String p_id) {
+		this.p_id = p_id;
+	}
+
+
+	public String getPo_id() {
+		return po_id;
+	}
+
+
+	public void setPo_id(String po_id) {
+		this.po_id = po_id;
 	}
 
 
@@ -47,16 +71,6 @@ public class Shopbasket {
 
 	public void setSb_amount(int sb_amount) {
 		this.sb_amount = sb_amount;
-	}
-
-
-	public int getSb_coupon() {
-		return sb_coupon;
-	}
-
-
-	public void setSb_coupon(int sb_coupon) {
-		this.sb_coupon = sb_coupon;
 	}
 
 
@@ -78,7 +92,10 @@ public class Shopbasket {
 	public void setSb_totalprice(int sb_totalprice) {
 		this.sb_totalprice = sb_totalprice;
 	}
-
+	
+	
+	
+	
 	
 
 }

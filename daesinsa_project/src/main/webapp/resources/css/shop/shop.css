@@ -105,6 +105,12 @@
 	cursor: pointer;
 }
 
+.empty_shoplist{
+	font-weight: bold;
+	font-size: 1.5rem;
+	margin-top: 50px;
+}
+
  /* 상품 검색 */
 .shopping_search_list ul li{
 	display: inline-block;

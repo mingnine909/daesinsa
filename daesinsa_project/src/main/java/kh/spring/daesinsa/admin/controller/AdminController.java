@@ -5,14 +5,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import kh.spring.daesinsa.admin.model.service.AdminServiceImpl;
+import kh.spring.daesinsa.admin.model.service.AdminService;
 
 @Controller
 @RequestMapping ("/admin")
 public class AdminController {
 	
 	@Autowired
-	//private AdminServiceImpl service;
+	private AdminService service ;
 	
 	@GetMapping("/main")
 	public String main() {

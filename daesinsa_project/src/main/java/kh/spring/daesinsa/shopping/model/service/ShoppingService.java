@@ -2,6 +2,7 @@ package kh.spring.daesinsa.shopping.model.service;
 
 import java.util.List;
 
+import kh.spring.daesinsa.shopbasket.domain.Shopbasket;
 import kh.spring.daesinsa.shopping.domain.ProductQna;
 import kh.spring.daesinsa.shopping.domain.ProductReview;
 import kh.spring.daesinsa.shopping.domain.Shopping;
@@ -50,7 +51,6 @@ public interface ShoppingService {
 	//4-3. 상품 qna 작성
 	public int pQnaInsertDo(ProductQna pQna);
 	
-	
 	//4-4-1. 상품 qna 답변 원글 확인
 	public ProductQna selectProductQna(ProductQna pQna);
 	
@@ -59,13 +59,15 @@ public interface ShoppingService {
 	
 	//4-4-3. 상품 문의 삭제
 	public int pQnaDeleteDo(int pq_qref);
-
 	
 	//5-1.상품 리뷰
 	public List<ProductReview> selectReviewList(String p_id);
 	
 	//5-2. 상품 리뷰 전체 갯수
 	public int selectReviewTotal(String p_id);
+	
+	//6.장바구니 추가
+	public int insertShopBasket(Shopbasket shopbasket);
 	
 	
 }
