@@ -22,12 +22,12 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 		auth.getAuthorities().forEach(authority -> {
 			roleNames.add(authority.getAuthority());
 		});
-				
+		System.out.println("roleNames:" + roleNames);
 		if(roleNames.contains("ROLE_ADMIN")) {
 			res.sendRedirect(req.getContextPath()+"/admin/dashboard");
 			return;
 		}
-		if(roleNames.contains("ROLE_MEMBER")) {
+		if(roleNames.contains("ROLE_USER")) {
 			res.sendRedirect(req.getContextPath()+"/");
 			return;
 		}

@@ -25,7 +25,6 @@ public class MemberServiceImpl implements MemberService{
 		System.out.println("Resister User Info : " + member);
         
 		member.setPassword(endcodedPassword);	
-		dao.insertMember(member);
 		
 		return dao.insertMember(member);
 	}

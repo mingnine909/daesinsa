@@ -37,7 +37,7 @@ public class MemberController {
 		mv.setViewName("redirect:/member/siginup");	
 		return mv;
 		}else {
-		mv.setViewName("redirect:/main");	
+		mv.setViewName("redirect:/");	
 		return mv;
 		}
 
