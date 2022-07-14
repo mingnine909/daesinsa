@@ -20,8 +20,9 @@ public class MemberController {
 	private MemberServiceImpl service;
 	
 	@GetMapping("/signup")
-	public String insertMember() {
-		return "member/signup";
+	public ModelAndView pageinsertMember(ModelAndView mv) {
+		mv.setViewName("/member/signup");
+		return mv;
 	}
 	
 	@PostMapping("/signup")
@@ -51,24 +52,6 @@ public class MemberController {
 			model.addAttribute("logout","로그아웃"); 
 		}
 	}
-	
-//	@PostMapping("/login") 
-//	public ModelAndView login(	
-//		ModelAndView mv
-//		, Member member	
-//		, RedirectAttributes rttr) throws Exception {
-//		
-//		int result = service.login(member);
-//		if(result ==0) {
-//		rttr.addFlashAttribute("msg", "아이디 또는 비밀번호가 일치하지 않습니다.");
-//		mv.setViewName("redirect:/member/login");	
-//		return mv;
-//		}else {
-//		mv.setViewName("redirect:/");	
-//		return mv;
-//		}
-//	}
-
 	
 	@GetMapping("/findid") 
 	public String findId() {
