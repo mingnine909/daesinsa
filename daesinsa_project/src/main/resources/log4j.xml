@@ -34,7 +34,7 @@
 
 	<!-- Root Logger : sql문 콘솔로 출력하도록 debug 로 설정-->
 	<root>
-		<priority value="debug" />
+		<priority value="trace" />
 		<appender-ref ref="console" />
 	</root>
 	

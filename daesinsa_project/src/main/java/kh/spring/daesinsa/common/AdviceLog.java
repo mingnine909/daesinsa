@@ -32,12 +32,12 @@ public class AdviceLog {
 		Object ro = null;  // 타겟메소드로부터 return 받은 값을 저장
 		
 		//일단은 info단계로 설정
-		logger.info("\t\t @Around(dao) : ["+pjp.getThis()+":"+pjp.getSignature().getName()+"]");
+		logger.info("\t\t ▶▶ @Around(dao) : ["+pjp.getThis()+":"+pjp.getSignature().getName()+"]");
 		// 타겟메소드로 전달되는 매개인자들
 		Object[] args = pjp.getArgs();
 		for(int i=0; i<args.length; i++) {
 			//System.out.print("\t\t args["+i+"] "+args[i] +"\n");
-			logger.info("\t\t args["+i+"] "+args[i] );
+			logger.info("\t\t ▶▶ args["+i+"] "+args[i] );
 		}	
 		
 		// 타겟메소드 실행
@@ -45,7 +45,7 @@ public class AdviceLog {
 		
 		// 타겟메소드의 return 값
 		//System.out.println("\t\t DAO Ret : "+ ro);
-		logger.info("\t\t DAO Ret : "+ ro);
+		logger.info("\t\t ▶▶ DAO Ret : "+ ro);
 		return ro;
 	}
 	
@@ -54,12 +54,12 @@ public class AdviceLog {
 	public Object aroundLogCtrlMethod(ProceedingJoinPoint pjp) throws Throwable {
 		Object ro = null;  // 타겟메소드로부터 return 받은 값을 저장
 		
-		logger.info("\t @Around(controller) : ["+pjp.getThis()+":"+pjp.getSignature().getName()+"]");
+		logger.info("\t ▶ @Around(controller) : ["+pjp.getThis()+":"+pjp.getSignature().getName()+"]");
 		// 타겟메소드로 전달되는 매개인자들
 		Object[] args = pjp.getArgs();
 		for(int i=0; i<args.length; i++) {
 			//System.out.print("\t args["+i+"] "+args[i] +"\n");
-			logger.info("\t args["+i+"] "+args[i]);
+			logger.info("\t ▶ args["+i+"] "+args[i]);
 		}	
 		
 		// 타겟메소드 실행
@@ -67,7 +67,7 @@ public class AdviceLog {
 		
 		// 타겟메소드의 return 값
 		//System.out.println("\t CRTL Ret : "+ ro);
-		logger.info("\t CRTL Ret : "+ ro);
+		logger.info("\t ▶ CRTL Ret : "+ ro);
 		return ro;
 	}
 	

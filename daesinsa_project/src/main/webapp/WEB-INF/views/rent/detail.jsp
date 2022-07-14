@@ -125,9 +125,8 @@
 				  <form action="${pageContext.request.contextPath}/rent/rentinsert" method="post">
 					<input type="hidden" name="p_id" value="${detail.p_id }">
 					<input type="hidden" name="p_name" value="${detail.p_name }">
-					<button type="submit" class="btn btn-light btn_rental" 
-					onclick="location.href='${pageContext.request.contextPath}/rent/rentinsert?p_id=${detail.p_id }'"
-					><i class="xi-laundry"></i> &nbsp;대여하기</button>
+					<button type="submit" class="btn btn-light btn_rental" >
+					<i class="xi-laundry"></i> &nbsp;대여하기</button>
 					</form>
 
           <div class="product_share">
