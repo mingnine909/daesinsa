@@ -82,15 +82,15 @@ public class ShoppingServiceImpl implements ShoppingService{
 
 	//4-1. 상품 qna
 	@Override
-	public List<ProductQna> selectQnaList(String p_id) {
-		return dao.selectQnaList(p_id);
+	public List<ProductQna> selectQnaList(ProductQna pQna) {
+		return dao.selectQnaList(pQna);
 	}
 	
 	
 	//4-2. 상품 qna 개수
 	@Override
-	public int selectQnaTotal(String p_id) {
-		return dao.selectQnaTotal(p_id);
+	public int selectQnaTotal(ProductQna pQna ) {
+		return dao.selectQnaTotal(pQna);
 	}
 	
 	//4-3. 상품 문의 작성
@@ -125,14 +125,14 @@ public class ShoppingServiceImpl implements ShoppingService{
 
 	//5-1. 상품 리뷰
 	@Override
-	public List<ProductReview> selectReviewList(String p_id) {
-		return dao.selectReviewList(p_id);
+	public List<ProductReview> selectReviewList(ProductReview pReview) {
+		return dao.selectReviewList(pReview);
 	}
 
 	//5-2. 상품 리뷰 전체 개수
 	@Override
-	public int selectReviewTotal(String p_id) {
-		return dao.selectReviewTotal(p_id);
+	public int selectReviewTotal(ProductReview pReview) {
+		return dao.selectReviewTotal(pReview);
 	}
 
 	//6. 장바구니 담기

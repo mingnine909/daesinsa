@@ -12,9 +12,7 @@
 <!-- Bootstrap CSS -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-	crossorigin="anonymous">
+	rel="stylesheet">
 <!-- XEICON CDN -->
 <link rel="stylesheet"
 	href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
@@ -41,6 +39,7 @@
 
 
 	<jsp:include page="../common/template_header.jsp"></jsp:include>
+	
 	<div id="mainwrap">
 	<div class="product_detail_all container">
 	<div class="detail_category ">
@@ -212,6 +211,7 @@
 									},
 								error : function(errcode) {
 								console.log(errcode);
+								alert('상품이 이미 장바구니에 있습니다.')
 									}
 								}); 
 						
@@ -334,9 +334,10 @@
 <c:when test="${not empty ProductQna }">
 <c:forEach items="${ProductQna }" var="qna">
  <div class="qna">
+<%--  <c:choose> --%>
+<%--  <c:when test="${qna.m_id eq username }"> --%>
 <div class="product_qna_title">
-<c:if test="${qna.pq_level ==1 }">
-<p class="qna_answer"><i class="xi-subdirectory-arrow"> </i>답변완료</p>
+<c:if test="${qna.pq_level ==0 }">
 <p>${fn:substring(qna.pq_date ,0,16) }</p>
 <p>[ <c:if test="${qna.pq_type ==1}">상품</c:if>
 <c:if test="${qna.pq_type ==2}">배송</c:if>
@@ -346,7 +347,8 @@
 ] ${qna.pq_title }</p>
 
 </c:if>
-<c:if test="${qna.pq_level ==0 }">
+<c:if test="${qna.pq_level ==1 }">
+<p class="qna_answer"><i class="xi-subdirectory-arrow"> </i>답변완료</p>
 <p>${fn:substring(qna.pq_date ,0,16) }</p>
 <p>[ <c:if test="${qna.pq_type ==1}">상품</c:if>
 <c:if test="${qna.pq_type ==2}">배송</c:if>
@@ -356,6 +358,19 @@
 ] ${qna.pq_title }</p>
 </c:if>
 </div>
+<%-- </c:when> --%>
+<%-- <c:when test="${pq_closed ==1 && qna.m_id ne username }">
+<div class="product_qna_title_closed">
+<c:if test="${qna.pq_level ==0 }">
+<p>해당 게시물은 비공개로 작성된 게시글입니다.</p>
+</c:if>
+<c:if test="${qna.pq_level ==1 }">
+<p><i class="xi-subdirectory-arrow"> </i>해당 게시물은 비공개로 작성된 게시글입니다.</p>
+</c:if>
+
+</div>
+</c:when>
+</c:choose> --%>
 <div class="product_qna_desc bg-light">
 <p>내용${qna.pq_content }</p>
 <p>비밀글여부${qna.pq_closed }</p>
@@ -374,7 +389,7 @@ target="qnaAnswer" onsubmit='openAnswer();'>
 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 <input type="hidden" name ="pq_content_copy" value="${qna.pq_content }">
 <input type="hidden" name ="p_id" value="${detail.p_id}">
- <input type="hidden" name ="pq_no" value="${qna.pq_no }">
+<input type="hidden" name ="pq_no" value="${qna.pq_no }">
 <button type="submit" class="btn btn-dark btn-sm">답변</button>
 </form>
 </c:if>

@@ -221,19 +221,19 @@
  
     
     <!-- 4-1. 상품 qna -->
-    <select id="selectQnaList" parameterType="string" resultType="ProductQna">
+    <select id="selectQnaList" parameterType="ProductQna" resultType="ProductQna">
     select * from product_qna
 	where p_id = #{p_id}
 	order by PQ_QREF,PQ_NO ,PQ_LEVEL
     </select>
     
     <!-- 4-2. qna 전체 갯수 -->
-     <select id="selectQnaTotal" parameterType="string" resultType="_int">
+     <select id="selectQnaTotal" parameterType="ProductQna" resultType="_int">
       select count(*) from product_qna
      where p_id =  #{p_id}
     </select>
     
-    <!-- TODO : m_id에 'test'되어있는 항목들 로그인 구현 후 m_id값 받아와서 변경  -->
+    <!-- TODO : m_id에 'test'되어있는 항목들 로그인 구현 후 m_id값 받아와서 변경 -> 변경완료  -->
     
     <!-- 4.3 상품 문의 작성 -->
     <insert id="pQnaInsertDo" parameterType="ProductQna">
@@ -241,7 +241,7 @@
 		,PQ_QREF,P_ID,M_ID,AD_ID) 
 		values
 	((select nvl(max(PQ_NO),0)+1 from PRODUCT_QNA),#{pq_title},#{pq_type},#{pq_content},default,#{pq_closed},0
-		,(select nvl(max(PQ_NO),0)+1 from PRODUCT_QNA),#{p_id},'test',default)
+		,(select nvl(max(PQ_NO),0)+1 from PRODUCT_QNA),#{p_id},#{m_id},default)
     </insert>
     
     <!-- 4-4-1. 상품 qna 답변 원글 확인-->
@@ -292,7 +292,7 @@
     insert into shopbasket 
     (m_id,poi_id,p_id,po_id,sb_amount,p_price,sb_totalprice) 
     values
-	('test',#{poi_id},#{p_id},#{po_id},#{sb_amount},#{p_price},#{sb_totalprice})
+	(#{m_id},#{poi_id},#{p_id},#{po_id},#{sb_amount},#{p_price},#{sb_totalprice})
     </insert>
 
 </mapper>

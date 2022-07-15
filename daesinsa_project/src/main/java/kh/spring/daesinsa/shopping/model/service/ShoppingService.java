@@ -43,10 +43,10 @@ public interface ShoppingService {
 	public List<Shopping> searchProduct(String keyword);
 	
 	//4-1.상품 qna 
-	public List<ProductQna> selectQnaList(String p_id);
+	public List<ProductQna> selectQnaList(ProductQna pQna);
 	
 	//4-2. 상품 qna 전체 개수
-	public int selectQnaTotal(String p_id);
+	public int selectQnaTotal(ProductQna pQna) ;
 	
 	//4-3. 상품 qna 작성
 	public int pQnaInsertDo(ProductQna pQna);
@@ -61,10 +61,10 @@ public interface ShoppingService {
 	public int pQnaDeleteDo(int pq_qref);
 	
 	//5-1.상품 리뷰
-	public List<ProductReview> selectReviewList(String p_id);
+	public List<ProductReview> selectReviewList(ProductReview pReview);
 	
 	//5-2. 상품 리뷰 전체 갯수
-	public int selectReviewTotal(String p_id);
+	public int selectReviewTotal(ProductReview pReview);
 	
 	//6.장바구니 추가
 	public int insertShopBasket(Shopbasket shopbasket);

@@ -1,7 +1,11 @@
 package kh.spring.daesinsa.shopping.controller;
 
+import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,8 +14,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import kh.spring.daesinsa.member.domain.Member;
+import kh.spring.daesinsa.member.security.CustomUserDetails;
 import kh.spring.daesinsa.shopbasket.domain.Shopbasket;
 import kh.spring.daesinsa.shopping.domain.ProductQna;
+import kh.spring.daesinsa.shopping.domain.ProductReview;
 import kh.spring.daesinsa.shopping.domain.Shopping;
 import kh.spring.daesinsa.shopping.model.service.ShoppingService;
 
@@ -81,14 +88,21 @@ public class ShoppingController {
 	public ModelAndView detailProduct(
 			Shopping shopping
 			,ModelAndView mv
+			,ProductQna pQna
+			,ProductReview pReview
 			,@RequestParam("p_id") String p_id
 			,@RequestParam(name = "page", defaultValue = "1") int currentPage
-		
 			) {
-		int totalCntRe = service.selectReviewTotal(p_id); //리뷰 개수
-		int totalCntQna = service.selectQnaTotal(p_id); // qna 개수
+		int totalCntRe = service.selectReviewTotal(pReview); //리뷰 개수
+		int totalCntQna = service.selectQnaTotal(pQna); // qna 개수
 		
 		
+		
+		//시큐리티 로그인 정보 가져오기
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String username = ((UserDetails)principal).getUsername();
+
+		System.out.println("★★★★★★★★username === "+username);
 		final int pageSize = 5;
 		final int pageBlock = 3;
 		// paging 처리
@@ -110,9 +124,12 @@ public class ShoppingController {
 			mv.setViewName("redirect:/shop/shoplist");
 			return mv;
 		}
+		
+
+
 		mv.addObject("detail",service.detailProduct(shopping));
-		mv.addObject("ProductQna",service.selectQnaList(p_id));
-		mv.addObject("ProductReview", service.selectReviewList(p_id));
+		mv.addObject("ProductQna",service.selectQnaList(pQna));
+		mv.addObject("ProductReview", service.selectReviewList(pReview));
 		mv.addObject("totalCntRe", totalCntRe);
 		mv.addObject("totalCntQna", totalCntQna);
 		mv.addObject("startPage", startPage);
@@ -120,6 +137,7 @@ public class ShoppingController {
 		mv.addObject("pageCnt", pageCnt);
 		mv.addObject("currentPage", currentPage);
 		mv.setViewName("shop/detail");
+	
 		return mv;
 		
 	}
@@ -147,7 +165,7 @@ public class ShoppingController {
 			,@RequestParam("p_id") String p_id
 			) {	
 		
-		//TODO : 추후 로그인 된 사용자만 작성 가능하도록 구현
+		
 		mv.addObject("p_id", p_id);
 		mv.setViewName("shop/qnainsert");
 		return mv;
@@ -160,6 +178,13 @@ public class ShoppingController {
 			ModelAndView mv,
 			ProductQna pQna
 				) {		
+			
+			//시큐리티 로그인 정보 가져오기
+			Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			String username = ((UserDetails)principal).getUsername();
+			
+			pQna.setM_id(username);
+			
 			int result = service.pQnaInsertDo(pQna);
 			System.out.println(result);
 //			return String.valueOf(result);
@@ -214,6 +239,13 @@ public class ShoppingController {
 		@PostMapping(value="/insertsb.do")
 		@ResponseBody
 		public int insertShopBasket(Shopbasket shopbasket) {
+			
+			
+			//시큐리티 로그인 정보 가져오기
+			Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			String username = ((UserDetails)principal).getUsername();
+			
+			shopbasket.setM_id(username);
 			
 			int result = service.insertShopBasket(shopbasket);
 			return result;
