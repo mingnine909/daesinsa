@@ -9,7 +9,7 @@ public interface ShopbasketService {
 	
 	//장바구니 목록
 	
-	public List<Shopbasket> getShopBasketList(String c_id);
+	public List<Shopbasket> getShopBasketList(String m_id);
 	
 	
 

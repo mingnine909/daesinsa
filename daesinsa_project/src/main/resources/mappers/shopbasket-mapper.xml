@@ -3,4 +3,52 @@
 <mapper namespace="Shopbasket">
 
 
+
+
+
+<!-- 	
+	private String m_id;
+	private String p_id;
+	private String poi_id;
+	private String po_id;
+	private int sb_amount;
+	private int p_price;
+	private int sb_totalprice;
+	 -->
+
+
+<resultMap type="Shopbasket" id="ShopbasketMap">
+<id column="m_id" property="m_id"/>
+<result column="poi_id" property="poi_id"/>
+<result column="po_id" property="po_id"/>
+<result column="sb_amount" property="sb_amount"/>
+<result column="p_price" property="p_price"/>
+<result column="sb_totalprice" property="sb_totalprice"/>
+</resultMap>
+
+
+<!-- 장바구니 목록 -->
+<select id="getShopbasket" resultType="Shopbasket">
+select * from shopbasket
+where m_id=#{m_id}
+</select>
+
+<!-- 장바구니 삭제 -->
+<delete id="deleteShopbasket">
+delete from shopbasket where shopbasketId=#{shopbasketId}
+</delete>
+
+<!-- 장바구니 수량 수정 -->
+<update id="modifyCount">
+update shopbasket set sb_amount=#{sb_amount} where shopbasketId=#{shopbasketId}
+</update>
+
+
+
+
+
+
+
+
+
 </mapper>
