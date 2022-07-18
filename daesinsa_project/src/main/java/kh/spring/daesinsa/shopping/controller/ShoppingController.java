@@ -20,6 +20,7 @@ import kh.spring.daesinsa.shopbasket.domain.Shopbasket;
 import kh.spring.daesinsa.shopping.domain.ProductQna;
 import kh.spring.daesinsa.shopping.domain.ProductReview;
 import kh.spring.daesinsa.shopping.domain.Shopping;
+import kh.spring.daesinsa.shopping.domain.WishList;
 import kh.spring.daesinsa.shopping.model.service.ShoppingService;
 
 
@@ -90,6 +91,7 @@ public class ShoppingController {
 			,ModelAndView mv
 			,ProductQna pQna
 			,ProductReview pReview
+			,WishList wishlist
 			,@RequestParam("p_id") String p_id
 			,@RequestParam(name = "page", defaultValue = "1") int currentPage
 			) {
@@ -98,11 +100,19 @@ public class ShoppingController {
 		
 		
 		
-		//시큐리티 로그인 정보 가져오기
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String username = ((UserDetails)principal).getUsername();
-
-		System.out.println("★★★★★★★★username === "+username);
+	    String username = null;
+        //시큐리티 로그인 정보 가져오기
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if(principal.equals("anonymousUser") ){
+           System.out.println(">>>>>>>>>>>>>>> 비로그인 시 username에 null 넣고 db로 전달. 그러나 이런경우 보통 로그인 페이지로 이동하도록 해야함. url pattern을 활용하세요.");
+           username = null;
+        }else {
+           username = ((UserDetails)principal).getUsername();
+        }
+        
+        //위시리스트 아이디
+        wishlist.setM_id(username);
+        
 		final int pageSize = 5;
 		final int pageBlock = 3;
 		// paging 처리
@@ -126,7 +136,8 @@ public class ShoppingController {
 		}
 		
 
-
+		mv.addObject("username", username);
+		mv.addObject("wishlist",service.selectWish(wishlist));
 		mv.addObject("detail",service.detailProduct(shopping));
 		mv.addObject("ProductQna",service.selectQnaList(pQna));
 		mv.addObject("ProductReview", service.selectReviewList(pReview));
@@ -180,11 +191,21 @@ public class ShoppingController {
 				) {		
 			
 			//시큐리티 로그인 정보 가져오기
-			Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-			String username = ((UserDetails)principal).getUsername();
-			
-			pQna.setM_id(username);
-			
+//			Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//			String username = ((UserDetails)principal).getUsername();	
+		
+			 String username = null;
+	         //시큐리티 로그인 정보 가져오기
+	         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	         if(principal.equals("anonymousUser") ){
+	        	 //로그인 되어있지 않은 사용자는 2리턴 -> window.close() 시킴
+	            return 2;
+	         }else {
+	            username = ((UserDetails)principal).getUsername();
+	         }
+	         
+	     	pQna.setM_id(username);
+	     	
 			int result = service.pQnaInsertDo(pQna);
 			System.out.println(result);
 //			return String.valueOf(result);
@@ -241,9 +262,15 @@ public class ShoppingController {
 		public int insertShopBasket(Shopbasket shopbasket) {
 			
 			
-			//시큐리티 로그인 정보 가져오기
-			Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-			String username = ((UserDetails)principal).getUsername();
+			 String username = null;
+	         //시큐리티 로그인 정보 가져오기
+	         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	         if(principal.equals("anonymousUser") ){
+	        	 //로그인 되어있지 않은 사용자는 2리턴 ->  ajax로 로그인 페이지로 이동
+	            return 2;
+	         }else {
+	            username = ((UserDetails)principal).getUsername();
+	         }
 			
 			shopbasket.setM_id(username);
 			
@@ -253,14 +280,63 @@ public class ShoppingController {
 		}
 	
 		
-		
-		
-		//위시리스트 화면 열기(미구현상태) 
-		@GetMapping ("/wishlist")
-		public String wishList() {
-			return "shop/wishlist";
+		//6-1.위시리스트 담기
+		@PostMapping ("/wishlist.do")
+		@ResponseBody
+		public int insertWishList(WishList wishlist
+				) {
+			 String username = null;
+	         //시큐리티 로그인 정보 가져오기
+	         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	         if(principal.equals("anonymousUser") ){
+	        	 //로그인 되어있지 않은 사용자는 2리턴 ->  ajax로 로그인 페이지로 이동
+	            return 2;
+	         }else {
+	            username = ((UserDetails)principal).getUsername();
+	         }
+			
+			wishlist.setM_id(username);
+			
+			int result = service.insertWishList(wishlist);
+			return result;
 		}
 		
+		//6-2. 위시리스트 삭제
+		@PostMapping("/delwishlist")
+		@ResponseBody
+		public int deleteWishList(WishList wishlist
+				) {
+			 String username = null;
+	         //시큐리티 로그인 정보 가져오기
+	         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	         username = ((UserDetails)principal).getUsername();
+			wishlist.setM_id(username);
+			
+			int result = service.deleteWishList(wishlist);
+			return result;
+		}
+		
+		
 	
+		//위시리스트 목록 
+		@GetMapping ("/wishlist")
+		public ModelAndView listWishList(ModelAndView mv
+				,WishList wishlist
+				) {
+			
+			 String username = null;
+			 //시큐리티 로그인 정보 가져오기
+	         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	         username = ((UserDetails)principal).getUsername();
+			
+
+			mv.addObject("wish", service.listWishList(username));
+			mv.setViewName("shop/wishlist");
+			return mv;
+		}
+		
+		
+
+		
 	
 }

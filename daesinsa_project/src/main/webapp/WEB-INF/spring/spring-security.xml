@@ -28,6 +28,8 @@
 			access="hasRole('ROLE_USER')" />
 		<security:intercept-url
 			pattern="/shopbasket/**" access="hasRole('ROLE_USER')" />
+		 <security:intercept-url
+			pattern="/shop/wishlist" access="hasRole('ROLE_USER')" /> 
 		<security:intercept-url pattern="/rent/**"
 			access="hasRole('ROLE_USER')" />
 		<security:intercept-url pattern="/admin/**"

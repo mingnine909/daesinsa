@@ -184,7 +184,7 @@
       <!-- 6-1. 상품 대여 insert -->
     <insert id="insertRental" parameterType="Rental">
     insert into rental (M_ID,P_ID,R_STARTDATE,R_ENDDATE,R_STATUS,R_PRICE,R_NUM)
-	values ('test',#{p_id},#{r_startdate},#{r_enddate},default,#{r_price},(select nvl(max(R_NUM),0)+1 from rental))
+	values (#{m_id},#{p_id},#{r_startdate},#{r_enddate},default,#{r_price},(select nvl(max(R_NUM),0)+1 from rental))
     </insert>
     
      <!-- 6-2. 상품 대여 update -->

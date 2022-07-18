@@ -2,22 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="Shopping">
 
- 	<!-- 	
- 	private String p_id;
-	private String p_name;
-	private int p_price;
-	private String p_content;
-	private String p_postdate;
-	private int p_issale;
-	private int p_saleamount;
-	private int p_isrental;
-	private int p_issoldout;
-	private String c_id;
-	//이미지 list 형태
-	private List<Product_img> p_img_list;
-	-->
-
-<!-- 상품 + 카테고리 + 이미지 resultMap   -->
+<!-- ① 상품 + 카테고리 + 이미지 resultMap   -->
 <resultMap type="Shopping" id="CaShoppingAndImgResultMap">
 <id column="p_id" property="p_id"/>
 <result column="p_name" property="p_name"/>
@@ -33,7 +18,7 @@
 <collection property="p_img_list" resultMap="ShoppingImgReusltMap"/>
 </resultMap>
 
-<!-- 카테고리 + 상품 + 이미지 + 옵션 resultMap -->
+<!-- ② 카테고리 + 상품 + 이미지 + 옵션 resultMap -->
 <resultMap type="Shopping" id="ShopAndImgOptResultMap">
 <id column="p_id" property="p_id"/>
 <result column="p_name" property="p_name"/>
@@ -50,7 +35,7 @@
 <collection property="p_option_info" resultMap="OptionInfoResultMap"/>
 </resultMap>
 
-<!-- 카테고리  resultMap -->	
+<!-- ② 카테고리  resultMap -->	
 <resultMap type="Category" id="CategoryReusltMap">
 <id column="c_id" property="c_id"/>
 <result column="c_first" property="c_first"/>
@@ -58,14 +43,14 @@
 <result column="c_thrid" property="c_thrid"/>
 </resultMap>
 
-<!-- 상품 이미지 resultMap -->
+<!-- ② 상품 이미지 resultMap -->
 <resultMap type="ProductImg" id ="ShoppingImgReusltMap">
 <id column="p_img_no" property="p_img_no"/>
 <result column="p_id" property="p_id"/>
 <result column="p_img_path" property="p_img_path"/>
 </resultMap>
 
-<!-- 상품 상세옵션 resultMap -->
+<!-- ② 상품 상세옵션 resultMap -->
 <resultMap type="ProductOptionInfo" id="OptionInfoResultMap">
 <id column="poi_id" property="poi_id"/>
 <result column="p_id" property="p_id"/>
@@ -75,7 +60,7 @@
 </resultMap>   
 
 
-<!-- 상품 리뷰 + 상품 리뷰 이미지 resultMap -->
+<!-- ③ 상품 리뷰 + 상품 리뷰 이미지 resultMap -->
 <resultMap type="ProductReview" id="ShopReviewResultMap">
 <id column="pr_no" property="pr_no"/>
 <result column="pr_title" property="pr_title"/>
@@ -87,12 +72,13 @@
 </resultMap> 
 
 
-<!-- 상품 리뷰 이미지 resultMap  -->
+<!-- ③ 상품 리뷰 이미지 resultMap  -->
 <resultMap type="ProductReviewImg" id="ShopReviewImgResultMap">
 <id column="pr_img_no" property="pr_img_no"/>
 <result column="pr_no" property="pr_no"/>
 <result column="pr_img_path" property="pr_img_path"/>
 </resultMap>  
+
 
 	<!-- 0. 카테고리별 상품 개수 조회(페이징처리용) -->
 	<select id="selectCaTotal"  parameterType="string" resultType="_int">
@@ -294,5 +280,34 @@
     values
 	(#{m_id},#{poi_id},#{p_id},#{po_id},#{sb_amount},#{p_price},#{sb_totalprice})
     </insert>
+    
+    <!-- 7-1. 위시리스트 담기 -->
+    <insert id="insertWishList" parameterType="WishList">
+    insert into wishlist 
+    (p_id,m_id)
+    values
+    (#{p_id},#{m_id})
+    </insert>
 
+	<!-- 7-2. 위시리스트 확인 -->
+	<select id ="selectWish" parameterType="WishList" resultType="WishList">
+	select * from wishlist
+	 where p_id =#{p_id} and m_id =#{m_id}
+	</select>
+	
+	<!-- 7-3. 위시리스트 삭제 -->
+	 <delete id="deleteWishList" parameterType="WishList">
+    delete from wishlist where p_id =#{p_id} and m_id =#{m_id}
+    </delete>
+    
+    
+    <!-- 7-4. 위시리스트 목록 -->
+    <select id ="listWishList" resultMap="CaShoppingAndImgResultMap">
+	select * from wishlist
+	join product
+	using(p_id) join product_img
+	using(p_id)
+	where m_id = #{m_id}
+    </select>
+    
 </mapper>

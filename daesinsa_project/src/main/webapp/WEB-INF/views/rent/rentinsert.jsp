@@ -152,7 +152,7 @@
 		<!-- 대여하기 버튼 클릭 시 대여 테이블 insert / 상품 테이블 p_isrental =2로  update -->
 		 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
         <button type="button" id="btn-retal" class="btn btn-retal">대여하기</button>
-        <button type="button" id="btn-checkd" class="btn btn-checkd">확인용</button>
+       <!-- <button type="button" id="btn-checkd" class="btn btn-checkd">확인용</button> -->
         </div>
 	</div>
 

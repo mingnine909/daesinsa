@@ -12,6 +12,7 @@ import kh.spring.daesinsa.shopping.domain.ProductImg;
 import kh.spring.daesinsa.shopping.domain.ProductQna;
 import kh.spring.daesinsa.shopping.domain.ProductReview;
 import kh.spring.daesinsa.shopping.domain.Shopping;
+import kh.spring.daesinsa.shopping.domain.WishList;
 
 @Repository
 public class ShoppingDao {
@@ -152,4 +153,23 @@ public class ShoppingDao {
 		
 	}
 	
+	//7-1. 위시리스트 추가
+	public int insertWishList(WishList wishlist) {
+		return sqlsession.insert("Shopping.insertWishList",wishlist);
+	}
+	
+	//7-2. 위시리스트 확인용
+	public WishList selectWish(WishList wishlist) {
+		return sqlsession.selectOne("Shopping.selectWish", wishlist);
+	}
+	
+	//7-3. 위시리스트 삭제
+	public int deleteWishList(WishList wishlist) {
+		return sqlsession.delete("Shopping.deleteWishList", wishlist);
+	}
+	
+	//7-4. 위시리스트 목록
+	public List<Shopping> listWishList(String username) {
+		return sqlsession.selectList("Shopping.listWishList", username);
+	}
 }

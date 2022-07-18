@@ -200,6 +200,11 @@
 							 	 xhr.setRequestHeader(header, token);
 							  }
 							,success:function(data){
+								if(data==2){
+									alert("로그인 후 이용해주세요");
+									location.href="${pageContext.request.contextPath}/member/login"
+									return false;
+								}
 								console.log(data);
 								
 								var result = confirm('상품이 장바구니에 추가되었습니다. 장바구니로 이동하시겠습니까?')
@@ -236,8 +241,89 @@
 					</c:if>
 				  </div>
 				  <div class="btn_wish">
-					<button type="submit" class="btn btn-dark btn_wish" ><span><i class="xi-heart"></i></span> &nbsp; 위시리스트</button>
+					<c:if test="${empty wishlist }">
+					<button type="submit" id="btn_wish" class="btn btn-dark btn_wish" >
+					<span><i class="xi-heart"></i></span> &nbsp; 위시리스트</button>
+					</c:if>
+					<c:if test="${not empty wishlist }">
+					<button type="submit" id="btn_wish_add" class="btn btn-dark btn_wish">
+					<span><i class="xi-heart" style="color: red;"></i></span> &nbsp; 위시리스트</button>
+					</c:if>
+         		
           </div>
+          
+        			 <!-- 위시리스트 담기 -->
+					<script>
+  
+					$("#btn_wish").click(function(){
+						
+						var productVal = '${detail.p_id}';
+						console.log(productVal); 
+						var token = $("input[name='_csrf']").val();
+						var header = "X-CSRF-TOKEN";
+						 $.ajax({
+							url : "${pageContext.request.contextPath}/shop/wishlist.do"
+							,type: "post"
+							,data :{
+								p_id: productVal
+							}
+							,beforeSend : function(xhr)
+							  {  
+							 	 xhr.setRequestHeader(header, token);
+							  }
+							,success:function(data){
+								console.log(data);
+								if(data==2){
+									alert("로그인 후 이용해주세요");
+									location.href="${pageContext.request.contextPath}/member/login"
+									return false;
+								}
+								var result = confirm('위시리스트에 추가되었습니다. 위시리스트로 이동하시겠습니까?')
+								if(result){
+								location.href="${pageContext.request.contextPath}/shop/wishlist"
+								}else{
+								location.reload();
+								}
+									},
+								error : function(errcode) {
+								console.log(errcode);
+								alert('상품이 이미 위시리스트에 있습니다.')
+									}
+								}); 
+						
+					}) 
+					</script>
+					
+					 <!-- 위시리스트 삭제-->
+					 <script>
+	$("#btn_wish_add").click(function(){
+		var productVal = '${detail.p_id}';
+		console.log(productVal); 
+		var token = $("input[name='_csrf']").val();
+		var header = "X-CSRF-TOKEN";
+	$.ajax({
+		url : "${pageContext.request.contextPath}/shop/delwishlist"
+		,type: "post"
+		,data :{
+			p_id: productVal
+			}
+		,beforeSend : function(xhr)
+		  {  
+		 	 xhr.setRequestHeader(header, token);
+		  }
+		,success:function(result){
+			console.log(result);
+			alert("위시리스트에서 삭제되었습니다.");
+			location.reload();
+				},
+				error : function(errcode) {
+					console.log(errcode);
+				}
+			});
+		});
+	</script>
+	
+		<!-- 공유하기 기능 -->
           <div class="product_share">
             <button type="button" class="btn btn-light" onclick="copyURL();"><i class="xi-share-alt-o xi-x"></i> </button>
             <button type="button" class="btn btn-light" onclick="shareTwitter();" id="twitter"><i class="xi-twitter xi-x"></i> </button>
@@ -334,8 +420,8 @@
 <c:when test="${not empty ProductQna }">
 <c:forEach items="${ProductQna }" var="qna">
  <div class="qna">
-<%--  <c:choose> --%>
-<%--  <c:when test="${qna.m_id eq username }"> --%>
+  <c:choose> 
+   <c:when test="${qna.pq_closed == 0 }"> 
 <div class="product_qna_title">
 <c:if test="${qna.pq_level ==0 }">
 <p>${fn:substring(qna.pq_date ,0,16) }</p>
@@ -358,25 +444,56 @@
 ] ${qna.pq_title }</p>
 </c:if>
 </div>
-<%-- </c:when> --%>
-<%-- <c:when test="${pq_closed ==1 && qna.m_id ne username }">
-<div class="product_qna_title_closed">
+ </c:when>
+ <c:otherwise>
+ <c:choose>
+  <c:when test="${qna.m_id eq username }"> 
+<div class="product_qna_title">
 <c:if test="${qna.pq_level ==0 }">
-<p>해당 게시물은 비공개로 작성된 게시글입니다.</p>
+<p>${fn:substring(qna.pq_date ,0,16) }</p>
+<p>[ <c:if test="${qna.pq_type ==1}">상품</c:if>
+<c:if test="${qna.pq_type ==2}">배송</c:if>
+<c:if test="${qna.pq_type ==3}">대여</c:if>
+<c:if test="${qna.pq_type ==4}">교환/환불/취소</c:if>
+<c:if test="${qna.pq_type ==5}">기타 </c:if>
+] ${qna.pq_title }</p>
+
 </c:if>
 <c:if test="${qna.pq_level ==1 }">
-<p><i class="xi-subdirectory-arrow"> </i>해당 게시물은 비공개로 작성된 게시글입니다.</p>
+<p class="qna_answer"><i class="xi-subdirectory-arrow"> </i>답변완료</p>
+<p>${fn:substring(qna.pq_date ,0,16) }</p>
+<p>[ <c:if test="${qna.pq_type ==1}">상품</c:if>
+<c:if test="${qna.pq_type ==2}">배송</c:if>
+<c:if test="${qna.pq_type ==3}">대여</c:if>
+<c:if test="${qna.pq_type ==4}">교환/환불/취소</c:if>
+<c:if test="${qna.pq_type ==5}">기타 </c:if>
+] ${qna.pq_title }</p>
+</c:if>
+</div>
+ </c:when>
+ <c:when test="${qna.m_id ne username }">
+<div class="product_qna_title_closed">
+<c:if test="${qna.pq_level ==0 }">
+<p> <i class="xi-lock-o"> </i> 해당 게시물은 비밀글로 작성된 게시글입니다.</p>
+</c:if>
+<c:if test="${qna.pq_level ==1 }">
+<p><i class="xi-subdirectory-arrow"> </i> <i class="xi-lock-o"> </i> <b style="font-weight: bold;">답변완료</b>
+해당 게시물은 비밀글로 작성된 게시글입니다.</p>
 </c:if>
 
 </div>
 </c:when>
-</c:choose> --%>
+</c:choose>
+</c:otherwise>
+
+</c:choose> 
 <div class="product_qna_desc bg-light">
 <p>내용${qna.pq_content }</p>
-<p>비밀글여부${qna.pq_closed }</p>
 <c:if test="${qna.pq_level ==0 }">
 <div class="qna_delete">
+ <c:if test="${qna.m_id eq username }">
 <button type="submit" class="btn qna_delete" > 삭제 </button>
+</c:if>
 <input type="hidden" class="pq_qref_value" value="${qna.pq_qref }">
 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 </div>
@@ -396,7 +513,7 @@ target="qnaAnswer" onsubmit='openAnswer();'>
 </div>
 </div>
 </c:forEach>
-
+<!-- 상품 문의 삭제 스크립트 -->
 <script>
 	$(".qna_delete").click(function(){
 		console.log($(this));
@@ -424,12 +541,10 @@ target="qnaAnswer" onsubmit='openAnswer();'>
 			});
 		});
 	</script>
-	
-	
 </c:when>
-<c:when test="${empty  productQna}">
-현재 작성된 상품 문의가 없습니다.
-</c:when>
+<c:otherwise>
+<p>현재 작성된 상품 문의가 없습니다.</p>
+</c:otherwise>
 </c:choose>
 </div>
 

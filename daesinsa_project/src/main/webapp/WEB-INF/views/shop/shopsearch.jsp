@@ -62,9 +62,10 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
       <span style="background-color: #e4e4e4;">품절</span>
       </c:if>
      
-       <div class="d-flex justify-content-between align-items-center">
-                      <button type="button" class="btn btn-outline-secondary"
-                      onclick="location.href='${pageContext.request.contextPath}/shop/detail?p_id=${shop.p_id }'">View Detail</button>
+       <div class="d-flex justify-content-between align-items-center btn_wish_view">
+                     <button type="button" class="btn btn-outline-secondary"
+                      onclick="location.href='${pageContext.request.contextPath}/shop/detail?p_id=${shop.p_id }'">
+                      <i class="xi-eye-o"> </i>View Detail</button>
 
                   </div>
                 </div>

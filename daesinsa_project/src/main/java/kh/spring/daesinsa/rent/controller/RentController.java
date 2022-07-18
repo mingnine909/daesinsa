@@ -2,6 +2,8 @@ package kh.spring.daesinsa.rent.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -84,7 +86,17 @@ public class RentController {
 		int totalCntRe = service.selectReviewTotal(p_id); //리뷰 개수
 		int totalCntQna = service.selectQnaTotal(p_id); // qna 개수
 		
-		
+
+	    String username = null;
+        //시큐리티 로그인 정보 가져오기
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if(principal.equals("anonymousUser") ){
+           System.out.println(">>>>>>>>>>>>>>> 비로그인 시 username에 null 넣고 db로 전달. 그러나 이런경우 보통 로그인 페이지로 이동하도록 해야함. url pattern을 활용하세요.");
+           username = null;
+        }else {
+           username = ((UserDetails)principal).getUsername();
+        }
+        
 		final int pageSize = 5;
 		final int pageBlock = 3;
 		// paging 처리
@@ -107,6 +119,7 @@ public class RentController {
 			return mv;
 		}
 
+		mv.addObject("username",username);
 		mv.addObject("detail",service.detailProduct(shopping));
 		mv.addObject("ProductQna",service.selectQnaList(p_id));
 		mv.addObject("ProductReview", service.selectReviewList(p_id));
@@ -162,6 +175,11 @@ public class RentController {
 				ModelAndView mv
 			,Rental rent
 				) {
+			//시큐리티 로그인 정보 가져오기
+			Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			String username = ((UserDetails)principal).getUsername();
+			
+			rent.setM_id(username);
 			
 			int result = service.insertRental(rent);
 			return result;

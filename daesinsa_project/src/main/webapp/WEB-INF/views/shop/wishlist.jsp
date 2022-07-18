@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,76 +32,41 @@
 <body>
 	<jsp:include page="../common/template_header.jsp"></jsp:include>
  <div id="mainwrap">
+<%--  ${wish } --%>
     <h2 class="pb-2 border-bottom title">Wish List</h2>
+    <c:choose>
+	<c:when test="${not empty wish }">
     <div class="wish_list">
         <div class="container">
           <ul class="row row-cols-3">
+           <c:forEach items="${wish }" var ="wish">
             <li>
                 <div class="col">
-                  <img src="#" width="100%" height="100%">
+                <c:forEach items="${wish.p_img_list }" var="wishimg" varStatus="status"> 
+    			<c:if test="${status.count <2 }">
+    			<c:if test ="${not empty wishimg.p_img_path }">
+     		 <img src="${pageContext.request.contextPath}${wishimg.p_img_path}" width="100%" height="100%">
+      		 </c:if>
+      		</c:if>
+      		</c:forEach>
                   <div class="witem_info bg-light shadow-sm ">
-                   <div class="witem_name">상품1</div>
-                  <div class="witem_price">19,400원</div> 
+                   <div class="witem_name">${wish.p_name }</div>
+                  <div class="witem_price">${wish.p_price }</div> 
                   <div class="witem_delete"><i class="xi-trash"></i></div>
                   </div>
                 </div>
               </li>
-              <li>
-                <div class="col">
-                  <img src="#" width="100%" height="100%">
-                  <div class="witem_info bg-light shadow-sm ">
-                   <div class="witem_name">상품2</div>
-                  <div class="witem_price">20,000원</div> 
-                  <div class="witem_delete"><i class="xi-trash"></i></div>
-                </div>
-                </div>
-              </li>
-            
-              <li>
-                <div class="col">
-                  <img src="#" width="100%" height="100%">
-                  <div class="witem_info bg-light shadow-sm ">
-                  <div class="witem_name">상품3</div>
-                  <div class="witem_price">45,500원</div> 
-                  <div class="witem_delete"><i class="xi-trash"></i></div>
-                </div>
-                </div>
-              </li>
-        
-          <li>
-            <div class="col">
-              <img src="#" width="100%" height="100%">
-              <div class="witem_info bg-light shadow-sm ">
-               <div class="witem_name">상품1</div>
-              <div class="witem_price">19,400원</div> 
-              <div class="witem_delete"><i class="xi-trash"></i></div>
-              </div>
-            </div>
-          </li>
-          <li>
-            <div class="col">
-              <img src="#" width="100%" height="100%">
-              <div class="witem_info bg-light shadow-sm ">
-               <div class="witem_name">상품2</div>
-              <div class="witem_price">20,000원</div> 
-              <div class="witem_delete"><i class="xi-trash"></i></div>
-            </div>
-            </div>
-          </li>
-        
-          <li>
-            <div class="col">
-              <img src="#" width="100%" height="100%">
-              <div class="witem_info bg-light shadow-sm ">
-              <div class="witem_name">상품3</div>
-              <div class="witem_price">45,500원</div> 
-              <div class="witem_delete"><i class="xi-trash"></i></div>
-            </div>
-            </div>
-          </li>
+             </c:forEach>
         </ul>
         </div>
         </div>
+        </c:when>
+        <c:when test="${empty wish }">
+        <div class="wish_list_empty">
+        <p>현재 위시리스트에 담긴 상품이 없습니다.</p>
+        </div>
+        </c:when>
+        </c:choose>
         <!-- 위시 리스트 끝 -->
     </div>
     <jsp:include page="../common/template_footer.jsp"></jsp:include>

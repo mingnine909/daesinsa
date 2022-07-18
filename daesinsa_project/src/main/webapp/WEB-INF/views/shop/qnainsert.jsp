@@ -111,8 +111,12 @@
 
 	<script>
 function CloseAndRefresh(result){
-	if(result>0){
+	if(result==1){
 		alert("문의글이 등록되었습니다.");	
+	} else if(result ==2){
+		alert("로그인 후 이용해주세요");
+		window.close();
+		return false;
 	}else {
 	alert("실패했습니다. 다시 등록해주세요");
 	}

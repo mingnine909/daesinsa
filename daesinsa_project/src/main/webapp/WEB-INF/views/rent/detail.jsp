@@ -228,7 +228,19 @@
 <c:when test="${not empty ProductQna }">
 <c:forEach items="${ProductQna }" var="qna">
  <div class="qna">
+  <c:choose> 
+   <c:when test="${qna.pq_closed == 0 }"> 
 <div class="product_qna_title">
+<c:if test="${qna.pq_level ==0 }">
+<p>${fn:substring(qna.pq_date ,0,16) }</p>
+<p>[ <c:if test="${qna.pq_type ==1}">상품</c:if>
+<c:if test="${qna.pq_type ==2}">배송</c:if>
+<c:if test="${qna.pq_type ==3}">대여</c:if>
+<c:if test="${qna.pq_type ==4}">교환/환불/취소</c:if>
+<c:if test="${qna.pq_type ==5}">기타 </c:if>
+] ${qna.pq_title }</p>
+
+</c:if>
 <c:if test="${qna.pq_level ==1 }">
 <p class="qna_answer"><i class="xi-subdirectory-arrow"> </i>답변완료</p>
 <p>${fn:substring(qna.pq_date ,0,16) }</p>
@@ -238,9 +250,25 @@
 <c:if test="${qna.pq_type ==4}">교환/환불/취소</c:if>
 <c:if test="${qna.pq_type ==5}">기타 </c:if>
 ] ${qna.pq_title }</p>
+</c:if>
+</div>
+ </c:when>
+ <c:otherwise>
+ <c:choose>
+  <c:when test="${qna.m_id eq username }"> 
+<div class="product_qna_title">
+<c:if test="${qna.pq_level ==0 }">
+<p>${fn:substring(qna.pq_date ,0,16) }</p>
+<p>[ <c:if test="${qna.pq_type ==1}">상품</c:if>
+<c:if test="${qna.pq_type ==2}">배송</c:if>
+<c:if test="${qna.pq_type ==3}">대여</c:if>
+<c:if test="${qna.pq_type ==4}">교환/환불/취소</c:if>
+<c:if test="${qna.pq_type ==5}">기타 </c:if>
+] ${qna.pq_title }</p>
 
 </c:if>
-<c:if test="${qna.pq_level ==0 }">
+<c:if test="${qna.pq_level ==1 }">
+<p class="qna_answer"><i class="xi-subdirectory-arrow"> </i>답변완료</p>
 <p>${fn:substring(qna.pq_date ,0,16) }</p>
 <p>[ <c:if test="${qna.pq_type ==1}">상품</c:if>
 <c:if test="${qna.pq_type ==2}">배송</c:if>
@@ -250,24 +278,42 @@
 ] ${qna.pq_title }</p>
 </c:if>
 </div>
-<div class="product_qna_desc">
+ </c:when>
+ <c:when test="${qna.m_id ne username }">
+<div class="product_qna_title_closed">
+<c:if test="${qna.pq_level ==0 }">
+<p> <i class="xi-lock-o"> </i> 해당 게시물은 비공개로 작성된 게시글입니다.</p>
+</c:if>
+<c:if test="${qna.pq_level ==1 }">
+<p><i class="xi-subdirectory-arrow"> </i> <i class="xi-lock-o"> </i>해당 게시물은 비공개로 작성된 게시글입니다.</p>
+</c:if>
+
+</div>
+</c:when>
+</c:choose>
+</c:otherwise>
+
+</c:choose> 
+<div class="product_qna_desc bg-light">
 <p>내용${qna.pq_content }</p>
-<p>비밀글여부${qna.pq_closed }</p>
 <c:if test="${qna.pq_level ==0 }">
 <div class="qna_delete">
+ <c:if test="${qna.m_id eq username }">
 <button type="submit" class="btn qna_delete" > 삭제 </button>
+</c:if>
 <input type="hidden" class="pq_qref_value" value="${qna.pq_qref }">
 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 </div>
 </c:if>
-
 <c:if test="${qna.pq_level ==0 }">
 
+<!-- TODO : 아래 버튼 관리자 로그인인 경우만 나타나도록 수정  -->
 <form action="${pageContext.request.contextPath}/shop/qnaanswer" method="post"
 target="qnaAnswer" onsubmit='openAnswer();'>
+<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 <input type="hidden" name ="pq_content_copy" value="${qna.pq_content }">
 <input type="hidden" name ="p_id" value="${detail.p_id}">
- <input type="hidden" name ="pq_no" value="${qna.pq_no }">
+<input type="hidden" name ="pq_no" value="${qna.pq_no }">
 <button type="submit" class="btn btn-dark btn-sm">답변</button>
 </form>
 </c:if>
@@ -275,7 +321,6 @@ target="qnaAnswer" onsubmit='openAnswer();'>
 </div>
 </c:forEach>
 
-<!-- 상품문의 삭제 스크립트 -->
 <script>
 	$(".qna_delete").click(function(){
 		console.log($(this));
@@ -303,14 +348,13 @@ target="qnaAnswer" onsubmit='openAnswer();'>
 			});
 		});
 	</script>
-	
-	
 </c:when>
 <c:when test="${empty  productQna}">
-현재 작성된 상품 문의가 없습니다.
+<p>현재 작성된 상품 문의가 없습니다.</p>
 </c:when>
 </c:choose>
 </div>
+
 <div class="paging">
 
   <ul class="pagination justify-content-center">

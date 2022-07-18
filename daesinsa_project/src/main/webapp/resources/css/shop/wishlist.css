@@ -27,3 +27,17 @@
     text-align: center;
     padding-bottom: 30px;
  }
+ 
+ .wish_list_empty{
+text-align: center;
+ }
+ 
+  .wish_list_empty p {
+  margin: 0 auto;
+  font-size: 1.5rem;
+  font-weight: bold;
+  }
+ 
+ 
+ 
+ 

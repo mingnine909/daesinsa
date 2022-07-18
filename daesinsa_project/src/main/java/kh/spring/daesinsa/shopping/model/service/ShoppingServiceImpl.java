@@ -9,6 +9,7 @@ import kh.spring.daesinsa.shopbasket.domain.Shopbasket;
 import kh.spring.daesinsa.shopping.domain.ProductQna;
 import kh.spring.daesinsa.shopping.domain.ProductReview;
 import kh.spring.daesinsa.shopping.domain.Shopping;
+import kh.spring.daesinsa.shopping.domain.WishList;
 import kh.spring.daesinsa.shopping.model.dao.ShoppingDao;
 
 @Service
@@ -139,6 +140,30 @@ public class ShoppingServiceImpl implements ShoppingService{
 	@Override
 	public int insertShopBasket(Shopbasket shopbasket) {
 		return dao.insertShopBasket(shopbasket);
+	}
+
+	//7-1. 위시리스트 추가
+	@Override
+	public int insertWishList(WishList wishlist) {
+		return dao.insertWishList(wishlist);
+	}
+
+	//7-2. 위시리스트 확인용
+	@Override
+	public WishList selectWish(WishList wishlist) {
+		return dao.selectWish(wishlist);
+	}
+
+	//7-3. 위시리스트 삭제
+	@Override
+	public int deleteWishList(WishList wishlist) {
+		return dao.deleteWishList(wishlist);
+	}
+
+	//7-4. 위시리스트 목록
+	@Override
+	public List<Shopping> listWishList(String username) {
+		return dao.listWishList(username);
 	}
 	
 

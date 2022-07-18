@@ -6,6 +6,7 @@ import kh.spring.daesinsa.shopbasket.domain.Shopbasket;
 import kh.spring.daesinsa.shopping.domain.ProductQna;
 import kh.spring.daesinsa.shopping.domain.ProductReview;
 import kh.spring.daesinsa.shopping.domain.Shopping;
+import kh.spring.daesinsa.shopping.domain.WishList;
 
 public interface ShoppingService {
 	
@@ -69,5 +70,16 @@ public interface ShoppingService {
 	//6.장바구니 추가
 	public int insertShopBasket(Shopbasket shopbasket);
 	
+	//7-1. 위시리스트 추가
+	public int insertWishList(WishList wishlist);
+	
+	//7-2. 위시리스트 확인용
+	public WishList selectWish(WishList wishlist);
+	
+	//7-3. 위시리스트 삭제
+	public int deleteWishList(WishList wishlist);
+	
+	//7-4. 위시리스트 목록
+	public List<Shopping> listWishList(String username);
 	
 }

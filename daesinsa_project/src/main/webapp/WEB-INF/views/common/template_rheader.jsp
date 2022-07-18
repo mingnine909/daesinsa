@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
-
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
   <div id="headerwrap">
  <!-- 로고 + 구매 / 대여 버튼 헤더 -->
     <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom logo">
@@ -105,12 +105,19 @@
                 <a class="nav-link" href="#"><i class="xi-log-out xi-2x"><p class="icon_des">로그아웃</p></i></a>
               </li>  -->
 
-				
+				    <sec:authorize access="isAnonymous()">
 						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/member/login"><i
 								class="xi-log-in xi-2x"><p class="icon_des">로그인</p></i></a></li>
 						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/member/signup"><i
 								class="xi-user-plus xi-2x"><p class="icon_des">회원가입</p></i></a></li>
-					
+	    </sec:authorize>
+    	<sec:authorize access="isAuthenticated()">
+			<form action="${pageContext.request.contextPath}/member/logout" method="POST" id="frmLogout">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+						<li class="nav-item"><a class="nav-link" href="javascript:;" onclick="document.getElementById('frmLogout').submit();"><i
+								class="xi-log-in xi-2x"><p class="icon_des">로그아웃</p></i></a></li>
+			</form>    	
+    	</sec:authorize>
 
 				</ul>
 			</div>
