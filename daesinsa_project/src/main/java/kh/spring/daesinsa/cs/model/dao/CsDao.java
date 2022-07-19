@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import kh.spring.daesinsa.cs.domain.CsFaq;
 import kh.spring.daesinsa.cs.domain.CsNotice;
+import kh.spring.daesinsa.cs.domain.CsQna;
 
 @Repository
 public class CsDao {
@@ -40,6 +41,11 @@ public class CsDao {
 	//2-2. 자주묻는 질문 목록 조회(카테고리별)
 	public List<CsFaq> faqListCa(int cs_fcategory){
 		return sqlsession.selectList("CsTotal.faqListCa",cs_fcategory);
+	}
+	
+	//3. 사이트 QNA
+	public int insertQna(CsQna csqna) {
+		return sqlsession.insert("CsTotal.insertQna",csqna);
 	}
 	
 	

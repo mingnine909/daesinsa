@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +27,8 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
 	rel="stylesheet">
-	
+<!-- Jquery -->
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>	
 <title>Daesinsa - 위시리스트</title>
 </head>
 <body>
@@ -41,7 +43,7 @@
           <ul class="row row-cols-3">
            <c:forEach items="${wish }" var ="wish">
             <li>
-                <div class="col">
+                <div class="col" style="width: 70%; height: 70%;">
                 <c:forEach items="${wish.p_img_list }" var="wishimg" varStatus="status"> 
     			<c:if test="${status.count <2 }">
     			<c:if test ="${not empty wishimg.p_img_path }">
@@ -51,8 +53,10 @@
       		</c:forEach>
                   <div class="witem_info bg-light shadow-sm ">
                    <div class="witem_name">${wish.p_name }</div>
-                  <div class="witem_price">${wish.p_price }</div> 
-                  <div class="witem_delete"><i class="xi-trash"></i></div>
+                  <div class="witem_price"><fmt:formatNumber value="${wish.p_price }" pattern="￦#,###.##"/></div> 
+                  <input type="hidden" value="${wish.p_id }" id="wish_p_id">
+                  <div class="witem_delete"><button type="button" class="btn delete_wish">
+                  <i class="xi-trash" ></i></button></div>
                   </div>
                 </div>
               </li>
@@ -71,6 +75,35 @@
     </div>
     <jsp:include page="../common/template_footer.jsp"></jsp:include>
 
+
+		 <script>
+	$(".delete_wish").click(function(){
+		var productVal = $('#wish_p_id').val();
+		console.log(productVal); 
+		var token = $("input[name='_csrf']").val();
+		var header = "X-CSRF-TOKEN";
+	$.ajax({
+		url : "${pageContext.request.contextPath}/shop/delwishlist"
+		,type: "post"
+		,data :{
+			p_id: productVal
+			}
+		,beforeSend : function(xhr)
+		  {  
+		 	 xhr.setRequestHeader(header, token);
+		  }
+		,success:function(result){
+			console.log(result);
+			alert("위시리스트에서 삭제되었습니다.");
+			location.reload();
+				},
+				error : function(errcode) {
+					console.log(errcode);
+				}
+			});
+		});
+	</script>
+	
 	<!-- 부트스트랩 스크립트 -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"

@@ -4,6 +4,7 @@ import java.util.List;
 
 import kh.spring.daesinsa.cs.domain.CsFaq;
 import kh.spring.daesinsa.cs.domain.CsNotice;
+import kh.spring.daesinsa.cs.domain.CsQna;
 
 public interface CsService {
 	
@@ -21,5 +22,8 @@ public interface CsService {
 	
 	//2-2. 자주묻는 질문 목록 조회(카테고리별)
 	public List<CsFaq> faqListCa(int cs_fcategory);
+	
+	//3. 상품 QNA 작성
+	public int insertQna(CsQna csqna);
 
 }

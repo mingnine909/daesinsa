@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kh.spring.daesinsa.cs.domain.CsFaq;
 import kh.spring.daesinsa.cs.domain.CsNotice;
+import kh.spring.daesinsa.cs.domain.CsQna;
 import kh.spring.daesinsa.cs.model.dao.CsDao;
 
 @Service
@@ -40,6 +41,12 @@ public class CsServiceImpl implements CsService{
 	@Override
 	public List<CsFaq> faqListCa(int cs_fcategory) {
 		return dao.faqListCa(cs_fcategory);
+	}
+	
+	//3.상품 QNA작성
+	@Override
+	public int insertQna(CsQna csqna) {
+		return dao.insertQna(csqna);
 	}
 	
 

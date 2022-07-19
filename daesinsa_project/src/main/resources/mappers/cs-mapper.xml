@@ -19,12 +19,20 @@
 	
 	<!-- 2-1.자주 묻는 질문 목록 조회 -->
 	<select id ="faqList" resultType="CsFaq">
-	select * from cs_faq
+	select * from cs_faq 
 	</select>
 	
 	<!-- 2-2.자주 묻는 질문 목록 조회 -->
 	<select id ="faqListCa" parameterType="_int" resultType="CsFaq">
 	select * from cs_faq where cs_fcategory = #{cs_fcategory}
 	</select>
+	
+	<!-- 3. 사이트 문의 작성 -->
+	<insert id="insertQna" parameterType="CsQna">
+	insert into cs_qna (m_id,cs_qno,cs_qtitle,cs_qcontent,cs_qdate,
+	cs_qfile,cs_qlevel,cs_qref,cs_type,ad_id) values
+	(#{m_id},(select nvl(max(cs_qno),0)+1 from cs_qna),#{cs_qtitle},#{cs_qcontent},default,
+	#{cs_qfile},0,(select nvl(max(cs_qno),0)+1 from cs_qna),#{cs_type},default)
+	</insert>
 
 </mapper>

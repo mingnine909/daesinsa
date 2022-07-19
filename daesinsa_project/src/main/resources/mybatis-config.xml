@@ -24,6 +24,7 @@
  <!-- 공지사항 - 김도현 -->
    <typeAlias type="kh.spring.daesinsa.cs.domain.CsNotice" alias="CsNotice"/>
    <typeAlias type="kh.spring.daesinsa.cs.domain.CsFaq" alias="CsFaq"/>
+   <typeAlias type="kh.spring.daesinsa.cs.domain.CsQna" alias="CsQna"/>
  <!-- 박자민 (member, admin, mypage) -->
    <typeAlias type="kh.spring.daesinsa.member.domain.Member" alias="Member"/>
    <typeAlias type="kh.spring.daesinsa.admin.domain.Admin" alias="Admin"/>

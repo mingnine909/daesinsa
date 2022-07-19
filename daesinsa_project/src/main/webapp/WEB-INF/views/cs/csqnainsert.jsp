@@ -76,18 +76,15 @@
         </div>
         </div>
         <!-- 사이드메뉴 끝 -->
-<form>
+<form action="${pageContext.request.contextPath}/cs/qnainsert" method="post">
+<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 <table id="qna_review_form">
 
-<tr>
-<td>회원 정보</td>
-<td>
- 	<p>회원 이름</p></td>
-</tr>
+
 <tr>
 <td>회원 ID</td>
 <td>
- 	<p>회원 id</p></td>
+ 	<p>${username }</p></td>
 </tr>
 <tr>
 <td>문의 유형 <span style="color: orange">&nbsp; *</span> </td>
@@ -116,7 +113,7 @@ placeholder="제목을 입력해주세요" required="required"></td>
 <label class="btn btn-label btn-sm" for="file-upload">
 파일첨부
 </label>
-<input type="file" id="file-upload" class="form-control" style="display:none">
+<input type="file" id="file-upload" name="cs_qfile" class="form-control" style="display:none">
 <span id="fileName">파일을 선택해주세요. (최대 1장)</span>
 </td>
 </tr>

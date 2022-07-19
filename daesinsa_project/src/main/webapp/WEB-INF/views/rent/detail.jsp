@@ -229,7 +229,7 @@
 <c:forEach items="${ProductQna }" var="qna">
  <div class="qna">
   <c:choose> 
-   <c:when test="${qna.pq_closed == 0 }"> 
+ <c:when test="${qna.pq_closed == 0 || username eq 'admin1' || username eq 'admin2' || username  eq 'admin3'}"> 
 <div class="product_qna_title">
 <c:if test="${qna.pq_level ==0 }">
 <p>${fn:substring(qna.pq_date ,0,16) }</p>
@@ -285,7 +285,8 @@
 <p> <i class="xi-lock-o"> </i> 해당 게시물은 비공개로 작성된 게시글입니다.</p>
 </c:if>
 <c:if test="${qna.pq_level ==1 }">
-<p><i class="xi-subdirectory-arrow"> </i> <i class="xi-lock-o"> </i>해당 게시물은 비공개로 작성된 게시글입니다.</p>
+<p><i class="xi-subdirectory-arrow"> </i> <i class="xi-lock-o"> </i> <b style="font-weight: bold;">답변완료</b>
+해당 게시물은 비밀글로 작성된 게시글입니다.</p>
 </c:if>
 
 </div>
@@ -314,7 +315,9 @@ target="qnaAnswer" onsubmit='openAnswer();'>
 <input type="hidden" name ="pq_content_copy" value="${qna.pq_content }">
 <input type="hidden" name ="p_id" value="${detail.p_id}">
 <input type="hidden" name ="pq_no" value="${qna.pq_no }">
+<c:if test="${username eq 'admin1' || username eq 'admin2' || username  eq 'admin3'}">
 <button type="submit" class="btn btn-dark btn-sm">답변</button>
+</c:if>
 </form>
 </c:if>
 </div>

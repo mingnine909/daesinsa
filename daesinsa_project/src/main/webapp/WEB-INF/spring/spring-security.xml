@@ -30,7 +30,9 @@
 			pattern="/shopbasket/**" access="hasRole('ROLE_USER')" />
 		 <security:intercept-url
 			pattern="/shop/wishlist" access="hasRole('ROLE_USER')" /> 
-		<security:intercept-url pattern="/rent/**"
+		<security:intercept-url pattern="/rent/rentinsert"
+			access="hasRole('ROLE_USER')" />
+			<security:intercept-url pattern="/cs/qnaMain"
 			access="hasRole('ROLE_USER')" />
 		<security:intercept-url pattern="/admin/**"
 			access="hasRole('ROLE_ADMIN')" />
