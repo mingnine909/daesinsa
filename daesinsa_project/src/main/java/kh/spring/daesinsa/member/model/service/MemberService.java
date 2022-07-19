@@ -7,5 +7,9 @@ public interface MemberService {
 	public int insertMember(Member member) throws Exception;
 	
 	public int login(Member member) throws Exception;
+	
+	public int idCheck(Member member) throws Exception;
+	
+	public int emailCheck(Member member) throws Exception;
 
 }

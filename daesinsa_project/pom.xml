@@ -208,6 +208,13 @@
 		  <version>${spring.security.version}</version>
 		</dependency>
 		
+		<!-- Validation (유효성 검사)-->
+		<dependency>
+		    <groupId>org.hibernate.validator</groupId>
+		    <artifactId>hibernate-validator</artifactId>
+		    <version>6.2.0.Final</version>
+		</dependency>
+		
 		
 		<!-- Thymeleaf  -->
 		<dependency>

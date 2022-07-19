@@ -19,6 +19,17 @@ public class MemberDao {
 	}
 	
 
+	//회원가입 - 아이디 중복 체크
+	public int idCheck(Member member) {
+		return sqlsession.selectOne("Member.idCheck", member);
+	}
+	
+	//회원가입 - 이메일 중복 체크
+	public int emailCheck(Member member) {
+		return sqlsession.selectOne("Member.emailCheck", member);
+	}
+	
+	
 	// 로그인	
 	public int login(Member member) {
 		return sqlsession.selectOne("Member.login", member);
