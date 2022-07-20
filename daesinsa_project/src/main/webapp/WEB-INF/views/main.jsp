@@ -47,7 +47,7 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 							<h1>Welcome</h1>
 							<p>신규 회원 전용 쿠폰 지급!</p>
 							<p>
-								<a class="btn btn-sm btn-primary" href="#">바로가기</a>
+								<a class="btn btn-sm btn-primary" href="${pageContext.request.contextPath}/cs/noticeEvent">바로가기</a>
 							</p>
 						</div>
 					</div>

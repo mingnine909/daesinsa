@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kh.spring.daesinsa.cs.domain.Coupon;
 import kh.spring.daesinsa.cs.domain.CsFaq;
 import kh.spring.daesinsa.cs.domain.CsNotice;
 import kh.spring.daesinsa.cs.domain.CsQna;
@@ -47,6 +48,18 @@ public class CsServiceImpl implements CsService{
 	@Override
 	public int insertQna(CsQna csqna) {
 		return dao.insertQna(csqna);
+	}
+	
+	//4-1.쿠폰 다운로드
+	@Override
+	public int insertCoupon(Coupon coupon) {
+		return dao.insertCoupon(coupon);
+	}
+	
+	//4-2.쿠폰 정보 확인
+	@Override
+	public Coupon selectCoupon(String username) {
+		return dao.selectCoupon(username);
 	}
 	
 

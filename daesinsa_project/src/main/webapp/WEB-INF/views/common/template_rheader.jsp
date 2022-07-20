@@ -49,7 +49,6 @@
               <li><a class="dropdown-item disabled second_menu" href="#">ACC</a>
                 <ul class="dropdown-item third_menu"> 
                   <li><a href="${pageContext.request.contextPath}/rent/rentlist?c_id=C131&c_first=1">가방</a></li>
-                  <li><a href="${pageContext.request.contextPath}/rent/rentlist?c_id=C132&c_first=1">신발</a></li>
                   <li><a href="${pageContext.request.contextPath}/rent/rentlist?c_id=C133&c_first=1">모자</a></li>
                 </ul>
               </li>
@@ -68,14 +67,12 @@
               </li>
                 <li><a class="dropdown-item disabled second_menu" href="#">하의</a>
                   <ul class="dropdown-item third_menu"> 
-                    <li><a href="${pageContext.request.contextPath}/rent/rentlist?c_id=C221&c_first=2">바지</a></li>
                     <li><a href="${pageContext.request.contextPath}/rent/rentlist?c_id=C222&c_first=2">치마</a></li>
                   </ul>
                 </li>
                 <li><a class="dropdown-item disabled second_menu" href="#">ACC</a>
                   <ul class="dropdown-item third_menu"> 
                     <li><a href="${pageContext.request.contextPath}/rent/rentlist?c_id=C231&c_first=2">가방</a></li>
-                    <li><a href="${pageContext.request.contextPath}/rent/rentlist?c_id=C232&c_first=2">신발</a></li>
                     <li><a href="${pageContext.request.contextPath}/rent/rentlist?c_id=C233&c_first=2">모자</a></li>
                   </ul>
                 </li>

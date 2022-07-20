@@ -2,6 +2,7 @@ package kh.spring.daesinsa.cs.model.service;
 
 import java.util.List;
 
+import kh.spring.daesinsa.cs.domain.Coupon;
 import kh.spring.daesinsa.cs.domain.CsFaq;
 import kh.spring.daesinsa.cs.domain.CsNotice;
 import kh.spring.daesinsa.cs.domain.CsQna;
@@ -25,5 +26,11 @@ public interface CsService {
 	
 	//3. 상품 QNA 작성
 	public int insertQna(CsQna csqna);
+	
+	//4-1.쿠폰 다운로드
+	public int insertCoupon(Coupon coupon) ;
+	
+	//4-2. 쿠폰 정보 확인용
+	public Coupon selectCoupon(String username);
 
 }

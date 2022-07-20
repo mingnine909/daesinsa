@@ -75,7 +75,7 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 </c:when>
 
 <c:when test="${empty Rent  }">
-<div><p><b>"${keyword }"</b>에 대한 검색 결과가 없습니다.</p> </div>
+<div class="search_error container"><p><b>"${keyword }"</b>에 대한 검색 결과가 없습니다.</p> </div>
 </c:when>
 </c:choose>
 

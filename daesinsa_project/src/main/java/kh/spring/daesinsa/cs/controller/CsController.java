@@ -10,12 +10,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import kh.spring.daesinsa.common.FileUpload;
+import kh.spring.daesinsa.cs.domain.Coupon;
 import kh.spring.daesinsa.cs.domain.CsQna;
 import kh.spring.daesinsa.cs.model.service.CsService;
+import kh.spring.daesinsa.shopbasket.domain.Shopbasket;
 
 
 @Controller
@@ -79,14 +82,7 @@ public class CsController {
 		return mv;
 		
 	}
-	//1-3.공지사항 이벤트
-	@GetMapping("noticeEvent")
-	public ModelAndView noticeEvent(ModelAndView mv) {
-		
-		mv.setViewName("cs/event");
-		return mv;
-	}
-	
+
 	//2. 자주묻는 질문
 	@GetMapping("faq")
 	public ModelAndView faqList(
@@ -165,4 +161,44 @@ public class CsController {
 		return mv;
 	}
 	
+	
+	//4-1.공지사항 이벤트 페이지 열기
+	@GetMapping("noticeEvent")
+	public ModelAndView noticeEvent(ModelAndView mv) {
+		
+	    String username = null;
+        //시큐리티 로그인 정보 가져오기
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if(principal.equals("anonymousUser") ){
+           username = null;
+        }else {
+           username = ((UserDetails)principal).getUsername();
+        }
+        
+		mv.addObject("username",username);
+		mv.addObject("coupon",service.selectCoupon(username));
+		mv.setViewName("cs/event");
+		return mv;
+	}
+	
+	//4-2.쿠폰 발급받기
+	@PostMapping("coupon")
+	@ResponseBody
+	public int insertCoupon(Coupon coupon) {
+	
+		 String username = null;
+         //시큐리티 로그인 정보 가져오기
+         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+         if(principal.equals("anonymousUser") ){
+        	 username = null;
+         }else {
+            username = ((UserDetails)principal).getUsername();
+         }
+		
+		coupon.setM_id(username);
+		
+		int result = service.insertCoupon(coupon);
+		return result;
+	
+	}
 }

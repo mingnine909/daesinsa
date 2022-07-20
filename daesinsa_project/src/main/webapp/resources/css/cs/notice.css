@@ -101,7 +101,7 @@
 }
 
 
-.btn-back{
+.btn-back, .btn_coupon{
 	display: block;
 	margin: auto;
 	background-color: #045757;

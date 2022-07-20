@@ -34,5 +34,18 @@
 	(#{m_id},(select nvl(max(cs_qno),0)+1 from cs_qna),#{cs_qtitle},#{cs_qcontent},default,
 	#{cs_qfile},0,(select nvl(max(cs_qno),0)+1 from cs_qna),#{cs_type},default)
 	</insert>
+	
+	<!-- 4. 쿠폰 발급받기 -->
+	<insert id="insertCoupon" parameterType="Coupon">
+	insert into coupon (C_NUM,C_PRICE,C_STARTDATE,C_ENDDATE,C_STATUS,
+	M_ID,C_NAME) values
+	((select nvl(max(C_NUM),0)+1 from coupon),#{c_price},default,'2022-12-31',default
+    ,#{m_id},#{c_name})
+	</insert>
+	
+	<!-- 4-2. 쿠폰 발급 확인용 -->
+	<select id="selectCoupon" parameterType="string" resultType="Coupon">
+	select * from coupon where m_id =#{m_id} 
+	</select>
 
 </mapper>

@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kh.spring.daesinsa.cs.domain.Coupon;
 import kh.spring.daesinsa.cs.domain.CsFaq;
 import kh.spring.daesinsa.cs.domain.CsNotice;
 import kh.spring.daesinsa.cs.domain.CsQna;
@@ -46,6 +47,16 @@ public class CsDao {
 	//3. 사이트 QNA
 	public int insertQna(CsQna csqna) {
 		return sqlsession.insert("CsTotal.insertQna",csqna);
+	}
+	
+	//4-1.쿠폰 다운로드
+	public int insertCoupon(Coupon coupon) {
+		return sqlsession.insert("CsTotal.insertCoupon",coupon);
+	}
+	
+	//4-2. 쿠폰 정보 확인용
+	public Coupon selectCoupon(String username) {
+		return sqlsession.selectOne("CsTotal.selectCoupon",username);
 	}
 	
 	
