@@ -140,7 +140,17 @@
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
         </form>
     </div>
-    <%@ include file="/WEB-INF/views/common/template_footer.jsp"%>
     
+        <!-- '취소하기' 버튼 클릭 시 동작 -->
+    <script>
+    $(function(){
+    	$('#signup-cancle').click(function(){
+    		if(confirm("회원가입을 취소하시겠습니까? 입력한 내용은 저장되지 않습니다.")) {
+    			self.location.href ="${pageContext.request.contextPath}/";
+    		}
+    	});
+    });	
+    </script>
+    <%@ include file="/WEB-INF/views/common/template_footer.jsp"%>
 </body>
 </html>
