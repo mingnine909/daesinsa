@@ -19,19 +19,19 @@
 	<insert id="insertMember" parameterType="Member">
 	INSERT INTO MEMBER
 	 (M_ID, M_PWD, M_NAME, M_EMAIL, M_PHONE
-	 , M_ADRS, M_GENDER, M_BDATE, M_ENROLLDATE, M_ISDELETE, AUTH, ENABLED, M_ADR2)
+	 , M_ADRS, M_GENDER, M_BDATE, M_ENROLLDATE, M_ISDELETE, AUTH, ENABLED, M_ADR2, M_ZIPCODE)
 	  VALUES 
 	 (#{id}, #{password}, #{name}, #{email}, #{phone}
-	 , #{adrs}, #{gender}, #{bdate}, DEFAULT, DEFAULT, DEFAULT, DEFAULT, #{adrs2}) 
+	 , #{adrs}, #{gender}, #{bdate}, DEFAULT, DEFAULT, DEFAULT, DEFAULT, #{adrs2}, #{zipcode}) 
 	</insert>
 	
 	<!-- 회원가입 - 아이디 중복 체크 -->
-	<select id="idCheck" parameterType="Member" resultType="int">
+	<select id="idCheck" parameterType="string" resultType="int">
 	SELECT COUNT(*) FROM MEMBER WHERE M_ID=#{id}
 	</select>
 	
 	<!-- 회원가입 - 이메일 중복 체크 -->
-	<select id="emailCheck" parameterType="Member" resultType="int">
+	<select id="emailCheck" parameterType="string" resultType="int">
 	SELECT COUNT(*) FROM MEMBER WHERE M_EMAIL=#{email}
 	</select>
 	

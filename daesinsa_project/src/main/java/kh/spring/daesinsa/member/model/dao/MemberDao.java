@@ -20,13 +20,13 @@ public class MemberDao {
 	
 
 	//회원가입 - 아이디 중복 체크
-	public int idCheck(Member member) {
-		return sqlsession.selectOne("Member.idCheck", member);
+	public int idCheck(String id) {
+		return sqlsession.selectOne("Member.idCheck", id);
 	}
 	
 	//회원가입 - 이메일 중복 체크
-	public int emailCheck(Member member) {
-		return sqlsession.selectOne("Member.emailCheck", member);
+	public int emailCheck(String email) {
+		return sqlsession.selectOne("Member.emailCheck", email);
 	}
 	
 	

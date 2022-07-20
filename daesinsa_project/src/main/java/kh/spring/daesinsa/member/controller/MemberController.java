@@ -1,8 +1,11 @@
 package kh.spring.daesinsa.member.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,27 +31,39 @@ public class MemberController {
 	}
 	
 	// 회원가입 - 아이디 중복체크	
+	@PostMapping("/idCheck")
 	@ResponseBody
-	@PostMapping("/idcheck")
-	public int idCheck(Member member) throws Exception {
-		int result = service.idCheck(member);
+	public int idCheck(String id) {
+		int result = service.idCheck(id);
 		return result;
 	}
 	
 	// 회원가입 - 이메일 중복체크	
+	@PostMapping("/emailCheck")
 	@ResponseBody
-	@PostMapping("/emailcheck")
-	public int emailCheck(Member member) throws Exception {
-		int result = service.emailCheck(member);
+	public int emailCheck(String email) throws Exception {
+		int result = service.emailCheck(email);
 		return result;
 	}
 	
 	@PostMapping("/signup")
 	public ModelAndView insertMember(
 		ModelAndView mv
-		, @Validated Member member	
+		, @Validated Member member
+		, Errors errors
 		, RedirectAttributes rttr) throws Exception {
-		
+		if (errors.hasErrors()) {            
+			/* 회원가입 실패시 입력 데이터 값을 유지 */            
+			mv.addObject("member", member);
+			/* 유효성 통과 못한 필드와 메시지를 핸들링 */
+			Map<String, String> validatorResult = service.validateHandling(errors);
+			for (String key : validatorResult.keySet()) {
+				mv.addObject(key, validatorResult.get(key));            
+			}
+			/* 회원가입 페이지로 다시 리턴 */
+			mv.setViewName("/member/signup");
+			return mv;
+		}
 		int result = service.insertMember(member);
 		
 		try {
