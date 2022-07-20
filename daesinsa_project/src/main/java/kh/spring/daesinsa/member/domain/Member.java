@@ -61,7 +61,7 @@ public class Member implements Serializable {
 	private String adrs2;
 	private int gender;
 	
-	@Past(message="미래의 날짜는 입력할 수 없습니다.")
+//	@Past(message="미래의 날짜는 입력할 수 없습니다.")
 	private String bdate;
 	private String enrolldate;
 	private int isdelete;
