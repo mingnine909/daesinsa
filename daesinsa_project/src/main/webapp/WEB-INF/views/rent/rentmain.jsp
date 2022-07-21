@@ -126,37 +126,28 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 		<!-- 메인 세번째 상품 진열 -->
 		<div class="container main_thrid">
 			<h1>Recommended product</h1>
-			<p>추천상품</p>
+			<p class="sub_title">추천 대여 가능 상품</p>
 			<ul class="row row-cols-4">
+			<c:forEach items="${rmain2 }" var="main">
 				<li>
-					<div class="col">
-						<img src="" width="80%" height="80%">
-						<div class="product_name">상품1</div>
-						<div class="product_price">19,400원</div>
+				<div class="col">
+				<a href="${pageContext.request.contextPath}/rent/detail?p_id=${main.p_id }">
+				<c:forEach items="${main.p_img_list }" var="img"
+						varStatus="status">
+					<c:if test="${status.count <2 }">
+					<c:if test="${not empty img.p_img_path }">
+			<img
+				src="${pageContext.request.contextPath}${img.p_img_path}" width="70%" height="70%">
+				</c:if>
+				</c:if>
+			</c:forEach>
+						<div class="product_name"><p>${main.p_name }</p></div>
+						<div class="product_price"><p>일 1,500원</p></div>
+					</a>
 					</div>
 				</li>
-				<li>
-					<div class="col">
-						<img src="" width="80%" height="80%">
-						<div class="product_name">상품2</div>
-						<div class="product_price">20,000원</div>
-					</div>
-				</li>
-
-				<li>
-					<div class="col">
-						<img src="" width="80%" height="80%">
-						<div class="product_name">상품3</div>
-						<div class="product_price">45,500원</div>
-					</div>
-				</li>
-				<li>
-					<div class="col">
-						<img src="" width="80%" height="80%">
-						<div class="product_name">상품4</div>
-						<div class="product_price">25,500원</div>
-					</div>
-				</li>
+				
+			</c:forEach>	
 			</ul>
 		</div>
 		<!-- 메인 세번째 상품 진열 끝 -->
@@ -166,8 +157,7 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 			class="position-relative p-3 p-md-5 m-md-3 text-center main_fourth"
 			style="background-color: #2266a5cb; color: white;">
 			<div class="col-md-5 p-sm mx-auto">
-				<img src="./img/여름배너.png" width="350" height="200">
-				<h1>Best summer clothes</h1>
+		<img src="${pageContext.request.contextPath}/resources/img/main/여름배너.png" width="550" height="250">
 			</div>
 		</div>
 
@@ -178,31 +168,43 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 			<ul class="row row-cols-4">
 				<li>
 					<div class="col">
-						<img src="" width="80%" height="80%">
-						<div class="product_name">상품1</div>
-						<div class="product_price">19,400원</div>
+					<a href="${pageContext.request.contextPath}/rent/detail?p_id=WTSS002">
+						<img src="${pageContext.request.contextPath}/resources/img/shop/women/top/WTSS002_1.jpg"
+						 width="70%" height="70%">
+						<div class="product_name">심플 소매 포인트 반팔 NAVY</div>
+						<div class="product_price">일 1,500원</div>
+						</a>
 					</div>
 				</li>
-				<li>
+					<li>
 					<div class="col">
-						<img src="" width="80%" height="80%">
-						<div class="product_name">상품2</div>
-						<div class="product_price">20,000원</div>
+					<a href="${pageContext.request.contextPath}/rent/detail?p_id=MTSS004">
+						<img src="${pageContext.request.contextPath}/resources/img/shop/men/top/MTSS004_1.jpg"
+						 width="70%" height="70%">
+						<div class="product_name">심플 반팔 WHITE</div>
+						<div class="product_price">일 1,500원</div>
+						</a>
 					</div>
 				</li>
 
-				<li>
+					<li>
 					<div class="col">
-						<img src="" width="80%" height="80%">
-						<div class="product_name">상품3</div>
-						<div class="product_price">45,500원</div>
+					<a href="${pageContext.request.contextPath}/rent/detail?p_id=MAB004">
+						<img src="${pageContext.request.contextPath}/resources/img/shop/men/acc/bag/MAB004_1.jpg"
+						 width="70%" height="70%">
+						<div class="product_name">빅여우 에코백 WHITE</div>
+						<div class="product_price">일 1,500원</div>
+						</a>
 					</div>
 				</li>
-				<li>
+					<li>
 					<div class="col">
-						<img src="" width="80%" height="80%">
-						<div class="product_name">상품4</div>
-						<div class="product_price">25,500원</div>
+					<a href="${pageContext.request.contextPath}/rent/detail?p_id=WAB007">
+						<img src="${pageContext.request.contextPath}/resources/img/shop/women/acc/bag/WAB007_1.jpg"
+						 width="70%" height="70%">
+						<div class="product_name">2WAY 체인백 BLACK</div>
+						<div class="product_price">일 1,500원</div>
+						</a>
 					</div>
 				</li>
 			</ul>

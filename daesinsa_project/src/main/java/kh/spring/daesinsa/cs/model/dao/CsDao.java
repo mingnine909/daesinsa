@@ -44,10 +44,21 @@ public class CsDao {
 		return sqlsession.selectList("CsTotal.faqListCa",cs_fcategory);
 	}
 	
-	//3. 사이트 QNA
+	//3-1. 사이트 QNA
 	public int insertQna(CsQna csqna) {
 		return sqlsession.insert("CsTotal.insertQna",csqna);
 	}
+	
+	//3-2. 사이트 QNA 목록
+	public List<CsQna> qnaList(CsQna csqna) {
+			return sqlsession.selectList("CsTotal.qnaList",csqna);
+		}
+	
+	//3-3. 사이트 QNA 확인
+	public CsQna qnaRead(int cs_qno) {
+		return sqlsession.selectOne("CsTotal.qnaRead",cs_qno);
+		}
+	
 	
 	//4-1.쿠폰 다운로드
 	public int insertCoupon(Coupon coupon) {

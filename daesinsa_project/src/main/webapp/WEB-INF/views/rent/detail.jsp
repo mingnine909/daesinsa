@@ -73,54 +73,9 @@
 				<div class="product_total_review"><a href="#product_review">상품 리뷰 : ${totalCntRe }개 <i class="xi-angle-right-min"></i></a></div>
 				  <select id="product_option">
 				  <!-- 이 부분 내일 질문 ...  -->
-				<c:forEach items="${detail.p_option_info}" var="option">
-				<c:choose>
-				  <c:when test="${option.po_id eq 'PO2' }">
-				  <option 
-				  <c:if test="${option.poi_id eq 'POI1' }">value="POI1" </c:if>
-				  <c:if test="${option.poi_id eq 'POI2' }">value="POI2" </c:if>
-				  <c:if test="${option.poi_id eq 'POI3' }">value="POI3" </c:if>
-				  <c:if test="${option.poi_id eq 'POI4'}">value="POI4" </c:if>
-				   ><c:if test="${option.poi_type==1 }">S</c:if>
-				   <c:if test="${option.poi_type==2 }">M</c:if>
-				   <c:if test="${option.poi_type==3 }">L</c:if>
-				   <c:if test="${option.poi_type==4 }">XL</c:if>
-				   </option>
-				  </c:when>
-				  <c:when test="${option.po_id eq 'PO3' }">
-				  <option 
-				  <c:if test="${option.poi_id eq 'POI1' }">value="POI1"</c:if>
-				  <c:if test="${option.poi_id eq 'POI2' }">value="POI2"</c:if>
-				  <c:if test="${option.poi_id eq 'POI3' }">value="POI3"</c:if>
-				  <c:if test="${option.poi_id eq 'POI4' }">value="POI4"</c:if>
-				  <c:if test="${option.poi_id eq 'POI5'}">value="POI5"</c:if>
-				   ><c:if test="${option.poi_type==1 }">250</c:if>
-				   <c:if test="${option.poi_type==2 }">260</c:if>
-				   <c:if test="${option.poi_type==3 }">270</c:if>
-				   <c:if test="${option.poi_type==4 }">280</c:if>
-				    <c:if test="${option.poi_type==5}">290</c:if>
-				   </option>
-				   </c:when>
-				   <c:when test="${option.po_id eq 'PO4' }">
-				  <option 
-		  		  <c:if test="${option.poi_id eq 'POI1' }">value="POI1"</c:if>
-				  <c:if test="${option.poi_id eq 'POI2'}">value="POI2"</c:if>
-				  <c:if test="${option.poi_id eq 'POI3' }">value="POI3"</c:if>
-				  <c:if test="${option.poi_id eq 'POI4' }">value="POI4"</c:if>
-				  <c:if test="${option.poi_id eq 'POI5'}">value="POI5"</c:if>
-				   ><c:if test="${option.poi_type==1 }">210</c:if>
-				   <c:if test="${option.poi_type==2 }">220</c:if>
-				   <c:if test="${option.poi_type==3 }">230</c:if>
-				   <c:if test="${option.poi_type==4 }">240</c:if>
-				    <c:if test="${option.poi_type==5}">250</c:if>
-				   </option>
-				  </c:when>
-				  <c:otherwise>
+				<c:forEach items="${detail.p_option_info}" var="option">	
 				  <option <c:if test="${option.poi_id eq 'POI1' }">value="POI1"</c:if>
 				  ><c:if test="${option.poi_type==0 }">FREE</c:if></option>
-				  </c:otherwise>
-				  </c:choose>
-				  
 				</c:forEach>
 				  </select>
 				  <br>

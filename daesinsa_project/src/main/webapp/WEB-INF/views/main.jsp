@@ -128,38 +128,29 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 
 		<!-- 메인 세번째 상품 진열 -->
 		<div class="container main_thrid">
-			<h1>Best product</h1>
-			<p class="sub_title">인기상품</p>
+			<h1>Recommended product</h1>
+			<p class="sub_title">추천상품</p>
 			<ul class="row row-cols-4">
+			<c:forEach items="${main2 }" var="main">
 				<li>
-					<div class="col">
-						<img src="" width="80%" height="80%">
-						<div class="product_name">상품1</div>
-						<div class="product_price">19,400원</div>
+				<div class="col">
+				<a href="${pageContext.request.contextPath}/shop/detail?p_id=${main.p_id }">
+				<c:forEach items="${main.p_img_list }" var="img"
+						varStatus="status">
+					<c:if test="${status.count <2 }">
+					<c:if test="${not empty img.p_img_path }">
+			<img
+				src="${pageContext.request.contextPath}${img.p_img_path}" width="70%" height="70%">
+				</c:if>
+				</c:if>
+			</c:forEach>
+						<div class="product_name"><p>${main.p_name }</p></div>
+						<div class="product_price"><p><fmt:formatNumber value="${main.p_price }" pattern="￦#,###.##"/></p></div>
+					</a>
 					</div>
 				</li>
-				<li>
-					<div class="col">
-						<img src="" width="80%" height="80%">
-						<div class="product_name">상품2</div>
-						<div class="product_price">20,000원</div>
-					</div>
-				</li>
-
-				<li>
-					<div class="col">
-						<img src="" width="80%" height="80%">
-						<div class="product_name">상품3</div>
-						<div class="product_price">45,500원</div>
-					</div>
-				</li>
-				<li>
-					<div class="col">
-						<img src="" width="80%" height="80%">
-						<div class="product_name">상품4</div>
-						<div class="product_price">25,500원</div>
-					</div>
-				</li>
+				
+			</c:forEach>	
 			</ul>
 		</div>
 		<!-- 메인 세번째 상품 진열 끝 -->

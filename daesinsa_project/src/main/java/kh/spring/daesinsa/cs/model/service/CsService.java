@@ -27,6 +27,12 @@ public interface CsService {
 	//3. 상품 QNA 작성
 	public int insertQna(CsQna csqna);
 	
+	//3-2. 상품 QNA 목록 보기
+	public List<CsQna> qnaList(CsQna csqna);
+	
+	//3-3. 사이트 QNA 보기
+	public CsQna qnaRead(int cs_qno);
+	
 	//4-1.쿠폰 다운로드
 	public int insertCoupon(Coupon coupon) ;
 	

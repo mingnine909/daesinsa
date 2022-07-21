@@ -31,6 +31,7 @@ public class RentController {
 	public ModelAndView home(ModelAndView mv) {
 		
 		mv.addObject("rmain", service.selectNewRentalList());	
+		mv.addObject("rmain2", service.selectRecommendProductList());	
 		mv.setViewName("rent/rentmain");
 		
 		return mv;

@@ -110,12 +110,12 @@ public class CsController {
 		csqna.setM_id(username);
 
 		mv.addObject("username", username);
-		
+		mv.addObject("csqna", service.qnaList(csqna));
 		mv.setViewName("cs/csqnamain");
 		return mv;
 	}
 	
-	//3-1. 1:1 문의 작성 페이지 열기
+	//3-2. 1:1 문의 작성 페이지 열기
 	@GetMapping("qna")
 	public ModelAndView qnaPage(ModelAndView mv
 			,CsQna csqna
@@ -134,7 +134,7 @@ public class CsController {
 	}
 	
 	
-	//3-2. 1:1 문의 등록
+	//3-3. 1:1 문의 등록
 	@PostMapping("qnainsert")
 	public ModelAndView insertQna(ModelAndView mv
 			,CsQna csqna
@@ -160,6 +160,26 @@ public class CsController {
 		mv.setViewName("redirect:/cs/qnaMain");
 		return mv;
 	}
+	
+	//3-1. 1:1 문의 페이지 읽기
+		@PostMapping("qnaread")
+		public ModelAndView qnaRead(
+				ModelAndView mv 
+				,@RequestParam(name="cs_qno", defaultValue = "0") int cs_qno
+				,CsQna csqna) {
+
+
+			if(cs_qno==0) {
+				mv.setViewName("redirect:/cs/notice");
+				return mv;
+			}
+	
+			mv.addObject("csqna",service.qnaRead(cs_qno));
+			mv.setViewName("cs/qnaread");
+			return mv;
+		}
+		
+		
 	
 	
 	//4-1.공지사항 이벤트 페이지 열기

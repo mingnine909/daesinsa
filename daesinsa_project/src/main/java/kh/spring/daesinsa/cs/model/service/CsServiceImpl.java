@@ -44,11 +44,24 @@ public class CsServiceImpl implements CsService{
 		return dao.faqListCa(cs_fcategory);
 	}
 	
-	//3.상품 QNA작성
+	//3-1.사이트 QNA작성
 	@Override
 	public int insertQna(CsQna csqna) {
 		return dao.insertQna(csqna);
 	}
+	
+	//3-2.사이트 QNA 목록
+	@Override
+	public List<CsQna> qnaList(CsQna csqna) {
+		return dao.qnaList(csqna);
+	}
+	
+	//3-3.사이트 QNA 읽기
+	@Override
+	public CsQna qnaRead(int cs_qno) {
+		return dao.qnaRead(cs_qno);
+	}
+	
 	
 	//4-1.쿠폰 다운로드
 	@Override
@@ -61,6 +74,8 @@ public class CsServiceImpl implements CsService{
 	public Coupon selectCoupon(String username) {
 		return dao.selectCoupon(username);
 	}
+	
+
 	
 
 }

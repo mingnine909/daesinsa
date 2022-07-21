@@ -31,6 +31,14 @@ public class ShoppingServiceImpl implements ShoppingService{
 		return dao.selectNewProductList();
 	}
 	
+
+	//메인 - 추천상품순
+	@Override
+	public List<Shopping> selectRecommendProductList() {
+		return dao.selectRecommendProductList();
+	}
+	
+	
 	//1. 쇼핑상품 전체 목록 조회
 	@Override
 	public List<Shopping> selectListAll() {
@@ -48,6 +56,7 @@ public class ShoppingServiceImpl implements ShoppingService{
 	public List<Shopping> selectListCaNew(Shopping shopping, int currentPage, int pageSize) {
 		return dao.selectListCaNew(shopping,currentPage,pageSize);
 	}
+
 
 	
 	//1-2.낮은 가격순
@@ -165,8 +174,8 @@ public class ShoppingServiceImpl implements ShoppingService{
 	public List<Shopping> listWishList(String username) {
 		return dao.listWishList(username);
 	}
-	
 
+	
 
 	
 

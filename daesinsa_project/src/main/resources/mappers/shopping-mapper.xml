@@ -96,6 +96,17 @@
 	    ]]>
 	</select>
 	
+	<!-- 메인 - 추천상품순 -->
+	<select id="selectRecommendProductList" resultMap="CaShoppingAndImgResultMap">
+	   <![CDATA[
+	     SELECT *
+      	FROM (select * from  product join product_img
+        using(p_id)
+        order by p_img_no asc ,dbms_random.value )
+        where rownum <=4
+	    ]]>
+	</select>
+	
 	<!-- 1.전체상품 조회  -->
 	<select id="selectListAll" resultType="Shopping">
 		SELECT *

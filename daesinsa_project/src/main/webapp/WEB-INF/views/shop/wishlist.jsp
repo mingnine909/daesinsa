@@ -54,9 +54,9 @@
                   <div class="witem_info bg-light shadow-sm ">
                    <div class="witem_name">${wish.p_name }</div>
                   <div class="witem_price"><fmt:formatNumber value="${wish.p_price }" pattern="￦#,###.##"/></div> 
-                  <input type="hidden" value="${wish.p_id }" id="wish_p_id">
                   <div class="witem_delete"><button type="button" class="btn delete_wish">
-                  <i class="xi-trash" ></i></button></div>
+                  <i class="xi-trash" ></i></button>
+                   <input type="hidden" value="${wish.p_id }" id="wish_p_id" name="wish_p_id"></div>
                   </div>
                 </div>
               </li>
@@ -78,7 +78,7 @@
 
 		 <script>
 	$(".delete_wish").click(function(){
-		var productVal = $('#wish_p_id').val();
+		var productVal =$(this).next().val();
 		console.log(productVal); 
 		var token = $("input[name='_csrf']").val();
 		var header = "X-CSRF-TOKEN";

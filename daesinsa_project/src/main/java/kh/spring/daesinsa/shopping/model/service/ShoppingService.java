@@ -19,6 +19,9 @@ public interface ShoppingService {
 	// 메인 - 최신상품순
 	public List<Shopping> selectNewProductList();
 	
+	//메인 - 추천 상품순
+	public List<Shopping> selectRecommendProductList();
+	
 	//1. 쇼핑상품 전체 목록 조회
 	public List<Shopping> selectListAll();
 

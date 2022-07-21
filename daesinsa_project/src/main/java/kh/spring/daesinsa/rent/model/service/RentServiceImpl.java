@@ -23,6 +23,12 @@ public class RentServiceImpl implements RentService {
 	public List<Shopping> selectNewRentalList() {
 		return dao.selectNewRentalList();
 	}
+	
+	//메인 추천대여 목록 조회
+	@Override
+	public List<Shopping> selectRecommendProductList() {
+		return dao.selectRecommendProductList();
+	}
 
 	// 대여 상품 전체 조회 (페이징처리용)
 	@Override
@@ -99,6 +105,8 @@ public class RentServiceImpl implements RentService {
 		dao.updateProductRental(rent.getP_id());
 		return dao.insertRental(rent);
 	}
+
+
 
 
 }

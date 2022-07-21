@@ -30,6 +30,11 @@ public class ShoppingDao {
 		return sqlsession.selectList("Shopping.selectNewProductList");
 	}
 	
+	//메인 추천상품 목록 조회
+	public List<Shopping> selectRecommendProductList(){
+		return sqlsession.selectList("Shopping.selectRecommendProductList");
+	}
+	
 	// 1. 쇼핑상품 전체 목록 조회
 	public List<Shopping> selectListAll(){
 		return sqlsession.selectList("Shopping.selectListAll");

@@ -35,6 +35,17 @@
 	#{cs_qfile},0,(select nvl(max(cs_qno),0)+1 from cs_qna),#{cs_type},default)
 	</insert>
 	
+	<!-- 3-2.사이트 qna 목록 보기 -->
+	<select id="qnaList" parameterType="string" resultType="CsQna">
+	select * from cs_qna where m_id =#{m_id}
+	</select>
+	
+	<!-- 3-3.사이트 qna 확인 -->
+	<select id="qnaRead" parameterType="_int" resultType="CsQna">
+	select * from cs_qna where cs_qno = #{cs_qno}
+	</select>
+	
+	
 	<!-- 4. 쿠폰 발급받기 -->
 	<insert id="insertCoupon" parameterType="Coupon">
 	insert into coupon (C_NUM,C_PRICE,C_STARTDATE,C_ENDDATE,C_STATUS,

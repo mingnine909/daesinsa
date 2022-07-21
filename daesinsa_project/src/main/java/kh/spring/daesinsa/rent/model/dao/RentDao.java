@@ -28,6 +28,11 @@ public class RentDao {
 	public List<Shopping> selectNewRentalList(){
 		return sqlsession.selectList("Rent.selectNewRentalList");
 		}
+	
+	//메인 추천대여 목록 조회
+	public List<Shopping> selectRecommendProductList(){
+		return sqlsession.selectList("Rent.selectRecommendProductList");
+		}
 		
 	// 1-1.대여 상품 카테고리별 조회
 	public List<Shopping> selectRentListCa(Shopping shopping, int currentPage, int pageSize) {

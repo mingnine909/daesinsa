@@ -384,7 +384,7 @@
 											<td class="review_date">작성일: ${fn:substring(re.pr_date,0,16) }</td>
 										</tr>
 										<tr>
-											<td class="review_writer">리뷰 작성자:<%-- ${re.pr_m_id} --%>
+											<td class="review_writer">리뷰 작성자: ${re.m_id} 
 											</td>
 										</tr>
 									</c:forEach>
@@ -400,8 +400,6 @@
 						</c:when>
 					</c:choose>
 				</div>
-				<button type="button" class="btn-loadmore btn btn-outline-dark container">
-				<i class="xi-caret-down-min"></i> Load More </button>
 			</div>
 
 
@@ -549,36 +547,6 @@ target="qnaAnswer" onsubmit='openAnswer();'>
 </c:otherwise>
 </c:choose>
 </div>
-
-<div class="paging">
-
-  <ul class="pagination justify-content-center">
-     <c:if test="${startPage > 1 }">
-    <li class="page-item">
-      <a class="page-link" href="${pageContext.request.contextPath}/shop/detail?p_id=${detail.p_id}&page=${startPage-1 }"
-       aria-label="이전">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-       </c:if>
-    <c:forEach begin="${startPage}" end="${endPage}" var="i">
-    <li class="page-item"><a class="page-link"
-     href="${pageContext.request.contextPath}/shop/detail?p_id=${detail.p_id}&page=${i}">${i }</a></li>
-    </c:forEach>
-    	<c:if test="${endPage < pageCnt}">
-    <li class="page-item">
-      <a class="page-link" href="${pageContext.request.contextPath}/shop/detail?p_id=${detail.p_id}&page=${endPage+1 }"
-       aria-label="다음">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-    </c:if>
-  </ul>
-
-		
-		
-
-		</div>
 </div>
 
 	</div>
@@ -637,27 +605,6 @@ target="qnaAnswer" onsubmit='openAnswer();'>
 		})
 	</script>
 	
-	<!-- 상품 리뷰 더 보기 스크립트  -->
-	<script>
-        
-        $(function(){ //리뷰 5개씩 보여주기
-        	if($(".product_review_content").length<5){
-        //	console.log($(".product_review_content").length);
-        	$(".btn-loadmore").hide();
-        	}
-        	else {
-        $(".product_review_content").slice(0, 5).show(); 
-        $(".btn-loadmore").click(function(e){
-            e.preventDefault();
-            $(".product_review_content:hidden").slice(0, 5).show(); 
-            if($(".product_review_content:hidden").length == 0){ 
-            	 $(".btn-loadmore").hide(); 
-            }
-        })
-        	}
-    });
-    </script>
-    
 	<!-- 상품 qna 열고닫기 스크립트 -->
     <script>
       let eleBtns= document.getElementsByClassName("product_qna_title");

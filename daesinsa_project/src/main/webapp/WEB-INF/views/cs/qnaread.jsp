@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -78,14 +79,12 @@
 				   <div class="notice_detail">
 				   <table class="table ">
 				   <tr>
-				   <td colspan="2" class="nTitle"><p>${notice.cs_ntitle }</p></td>
-				   <td class="nDate"><p>작성일 :${fn:substring(notice.cs_ndate ,0,10) }</p></td>
+				   <td colspan="2" class="nTitle"><p>${csqna.cs_qtitle }</p></td>
+				   <td class="nDate"><p>작성일 :${fn:substring(csqna.cs_qdate ,0,10) }</p></td>
 				   </tr>
 				    <tr>
-				   <td colspan="4" class="nContent"><p>${notice.cs_ncontent}</p></td>
+				   <td colspan="4" class="nContent"><p>${csqna.cs_qcontent}</p></td>
 				   </tr>
-				  
-				   
 				   </table>
 				   
 				   

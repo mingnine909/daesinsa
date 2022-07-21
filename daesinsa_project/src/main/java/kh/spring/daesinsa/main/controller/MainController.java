@@ -24,6 +24,7 @@ public class MainController {
 		
 		//주석처리
 		mv.addObject("main", service.selectNewProductList());	
+		mv.addObject("main2", service.selectRecommendProductList());	
 		mv.setViewName("main");
 		return mv;
 	}

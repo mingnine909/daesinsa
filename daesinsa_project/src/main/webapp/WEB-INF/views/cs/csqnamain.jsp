@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,10 +24,10 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/cs/qna.css">
 <!-- 폰트 -->
-<!-- 폰트 -->
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
 	rel="stylesheet">
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <title>Daesinsa</title>
 </head>
 <body>
@@ -74,29 +75,55 @@
         <!-- 사이드메뉴 끝 -->
         
         <c:choose>
-				<c:when test="${not empty qna }">
+				<c:when test="${not empty csqna }">
 				   <div class="table-responsive qna_list ">
 				
 				   <table class="table  table-hover qna">
 				   <thead>
 				   <tr>
+				   <td>문의유형</td>
 				   <td>제목</td>
 				   <td>작성일</td>
 				   </tr>
 				   </thead>
 				   <tbody>
-				   <c:forEach items="${qna }" var="qna">
+				   <c:forEach items="${csqna }" var="csqna">
 				   <tr class="qna_content">
-				   <td> </td>
-				   <td></td>
+				    <td>
+				    <c:if test="${csqna.cs_type ==1 }">
+				    구매/대여
+				    </c:if>
+				    <c:if test="${csqna.cs_type ==2 }">
+				    교환/환불/취소
+				    </c:if>
+				    <c:if test="${csqna.cs_type ==3 }">
+				    오류
+				    </c:if>
+				    <c:if test="${csqna.cs_type ==4 }">
+				    기타
+				    </c:if>
+				    </td>
+				
+				   	<td><a href="${pageContext.request.contextPath}/cs/qnaread?cs_qno=${csqna.cs_qno}"> 
+				   	${csqna.cs_qtitle }</a></td>
+				   <td>${fn:substring(csqna.cs_qdate ,0,10) }</td>
+				     <td>
+				     <form action="${pageContext.request.contextPath}/cs/qnaread" method="post">
+				  	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+				     <input type="hidden" value="${csqna.cs_qno }" id="cs_qno" name="cs_qno">
+				     <button type = "submit" class="btn btn-sm" style="background-color: #222222; color: white">문의글 보기</button>
+				     </form>
+				      </td>
 				   </tr>
+		
 				   </c:forEach>
 				   </tbody>
 				   </table>
-				   <button type="button" class="btn btn-qnainsert">문의 작성</button>
+				   <button type="button" class="btn btn-qnainsert"
+				   onclick="location.href='${pageContext.request.contextPath}/cs/qna'">문의 작성</button>
 				</div>
 				</c:when>
-				<c:when test="${empty qna }">
+				<c:when test="${empty csqna }">
 				  <div class="table-responsive qna_list ">
 				 
 				 <table class="table  table-hover qna">
@@ -122,6 +149,10 @@
 </div>
 
 <jsp:include page="../common/template_footer.jsp"></jsp:include>
+
+
+	
+	
 	<!-- 부트스트랩 스크립트 -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"

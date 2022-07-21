@@ -96,6 +96,18 @@
         where  rownum <=4 and p_isrental =1
 	    ]]>
 	</select>
+	
+	
+	<!-- 메인 - 추천대여상품순 -->
+	<select id="selectRecommendProductList" resultMap="CaShoppingAndImgResultMap">
+	   <![CDATA[
+	     SELECT *
+      	FROM (select * from  product join product_img
+        using(p_id)
+        order by p_img_no asc ,dbms_random.value )
+        where rownum <=4 and p_isrental =1
+	    ]]>
+	</select>
 
 		<!-- 1-1-1.카테고리별로 대여 페이지 headerd에서 진입   -->
 	<select id="selectRentListCa" parameterType="Shopping"
