@@ -13,6 +13,8 @@
 		class="kh.spring.daesinsa.member.security.CustomLoginSuccessHandler" />
 	<bean id="customAccessDenied"
 		class="kh.spring.daesinsa.member.security.CustomAccessDeniedHandler" />
+	<bean id="customLoginFail"
+		class="kh.spring.daesinsa.member.security.CustomLoginFailHandler" />
 
 
 	<!-- resources 폴더 안은 security X -->
@@ -35,7 +37,8 @@
 			access="hasRole('ROLE_ADMIN')" />
 		<security:form-login login-page="/member/login"
 			login-processing-url="/member/login" default-target-url="/"
-			authentication-success-handler-ref="customLoginSuccess" />
+			authentication-success-handler-ref="customLoginSuccess" 
+			authentication-failure-handler-ref="customLoginFail"/>
 		<security:logout logout-url="/member/logout"
 				logout-success-url="/"
 				invalidate-session="true"
