@@ -79,11 +79,11 @@
 		.td_width_4{
 			width: 15%;
 		}	
-		.cart_table{
+		.shopbasket_table{
 			font-size: 14px;
 			line-height: 20px;
 		}  
-			.cart_table tr{
+			.shopbasket_table tr{
 				height: 110px;
 			}
 			.price_td{
@@ -95,7 +95,7 @@
 				.green_color{
 					color : green;
 				}
-			.cart_table td{
+			.shopbasket_table td{
 				border-bottom: 1px solid #e7e7e7;
 			}
 			.quantity_div{

@@ -29,18 +29,17 @@
 
 <!-- 장바구니 목록 -->
 <select id="getShopbasket" resultType="Shopbasket">
-select * from shopbasket
-where m_id=#{m_id}
+select * from shopbasket where m_id=#{m_id}
 </select>
 
 <!-- 장바구니 삭제 -->
 <delete id="deleteShopbasket">
-delete from shopbasket where shopbasketId=#{shopbasketId}
+delete from shopbasket where p_Id=#{p_id}
 </delete>
 
 <!-- 장바구니 수량 수정 -->
 <update id="modifyCount">
-update shopbasket set sb_amount=#{sb_amount} where shopbasketId=#{shopbasketId}
+update shopbasket set sb_amount=#{sb_amount} where p_Id=#{p_id}
 </update>
 
 

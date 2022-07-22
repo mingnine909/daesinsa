@@ -14,7 +14,21 @@ public class ShopbasketDao {
 	@Autowired
 	private SqlSession sqlsession;
 	
-	//장바구니 목록 조회
+	public List<Shopbasket> getShopbasket(String m_id){
+		return sqlsession.selectList("Shopbasket.getShopbasket");}
+
+	public int deleteShopbasket(int p_id) {
+		return sqlsession.selectOne("Shopbasket.deleteShopbasket",p_id);	}
+	
+	
+	public int modifyCount(int sb_amount) {
+		return sqlsession.selectOne("Shopbasket.modifyCount",sb_amount);	}
+
+	
+
+
+	
+	//?????? ??? ???
 //	public List<Shopbasket>(String c_id){
 //		return sqlsession.selectList
 //		
