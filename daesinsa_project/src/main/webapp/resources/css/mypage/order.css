@@ -1,19 +1,29 @@
 @charset "UTF-8";
 
-body {
-	min-height: 100vh;
-	min-height: -webkit-fill-available;
+* {
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
-html {
-	height: -webkit-fill-available;
-}
+  body {
+    align-items: center;
+    background-color: #FFFFFF;
+  }
+  
 
 .order-wrapper {
-	position: absolute;
-	top: 10%;
-	left: 25%;
+	position:relative;
+    margin-top: -20% !important;
+    margin-left:30% !important;
+    margin-bottom:3% !important;
+    max-width: 600px;
+    max-height: 1100px;
 }
+
+ .my-hl-or {
+ 	text-align: left !important;
+ 	font-weight: 500;
+ 	font-size : 20px;
+ }
 
 .order-spacing {
 	margin-top: 30px;
@@ -29,13 +39,13 @@ html {
 	border: #FFFFFF !important;
 }
 
-button.btn.btn-primary.btn-sm { -
-	-bs-btn-bg: #045757 !important; -
-	-bs-btn-border-color: #FFFFFF !important;
+button.btn.btn-primary.btn-sm { 
+	--bs-btn-bg: #045757 !important; 
+	--bs-btn-border-color: #FFFFFF !important;
 }
 
-button.btn.btn-secondary.btn-sm { -
-	-bs-btn-color: #222222; -
-	-bs-btn-bg: #E4E4E4 !important; -
-	-bs-btn-border-color: #FFFFFF !important;
+button.btn.btn-secondary.btn-sm { 
+	--bs-btn-color: #222222; 
+	--bs-btn-bg: #E4E4E4 !important; 
+	--bs-btn-border-color: #FFFFFF !important;
 }

@@ -1,19 +1,28 @@
 @charset "UTF-8";
 
-body {
-	min-height: 100vh;
-	min-height: -webkit-fill-available;
+* {
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
-html {
-	height: -webkit-fill-available;
-}
+  body {
+    align-items: center;
+    background-color: #FFFFFF;
+  }
 
 .rental-wrapper {
-	position: absolute;
-	top: 10%;
-	left: 25%;
+	position:relative;
+    margin-top: -20% !important;
+    margin-left:30% !important;
+    margin-bottom:3% !important;
+    max-width: 600px;
+    max-height: 1100px;
 }
+
+ .my-hl-re {
+ 	text-align: left !important;
+ 	font-weight: 500;
+ 	font-size : 20px;
+ }
 
 .rental-spacing {
 	margin-top: 30px;
@@ -21,6 +30,7 @@ html {
 
 .rental-container {
 	width: 600px;
+	height : 1000px;
 }
 
 .rental-spacing-l {

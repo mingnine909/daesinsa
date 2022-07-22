@@ -24,28 +24,23 @@ public class MypageController {
 		return "mypage/exchange";
 	}
 	
-//	@GetMapping ("/order")
-//	public String myRental() {
-//		return "mypage/rental";
-//	}
+	@GetMapping ("/rental")
+	public String myRental() {
+		return "mypage/rental";
+	}
 	
 	@GetMapping ("/rentalre")
 	public String myRentalRe() {
 		return "mypage/rentalre";
 	}
 	
-	@GetMapping ("/infoupdate_pwd")
-	public String myInfoUpdatePwd() {
-		return "mypage/infoupdate_pwd";
-	}
-	
 	@GetMapping ("/infoupdate")
 	public String myInfoUpdate() {
 		return "mypage/infoupdate";
 	}
-
+	
 	@GetMapping ("/infodelete")
 	public String myInfoDelete() {
-		return "mypage/infdelete";
+		return "mypage/infodelete";
 	}
 }

@@ -1,18 +1,28 @@
 @charset "UTF-8";
 
-body {
-    min-height: 100vh;
-    min-height: -webkit-fill-available;
+* {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+  body {
+    align-items: center;
+    background-color: #FFFFFF;
   }
   
-html {
-    height: -webkit-fill-available;
-  }
   
 .infodelete-wrapper {
-    position: absolute;
-    top: 10%;
-    left: 25%;
+	position:relative;
+    margin-top: -20% !important;
+    margin-left:30% !important;
+    margin-bottom:3% !important;
+    max-width: 600px;
+    max-height: 1100px;
+ }
+ 
+ .my-hl-del {
+ 	text-align: left !important;
+ 	font-weight: 500;
+ 	font-size : 20px;
  }
 
 .infodelete-spacing {
@@ -21,6 +31,7 @@ html {
 
 .infodelete-container {
     width: 600px;
+    max-height: 1100px;
  }
 
 button.btn.btn-primary {

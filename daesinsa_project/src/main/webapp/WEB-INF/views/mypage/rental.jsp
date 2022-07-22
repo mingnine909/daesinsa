@@ -1,12 +1,3 @@
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/reset.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/common/header_footer.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/mypage/mypage_sidebar.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/mypage/rental.css">
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -19,9 +10,17 @@
 	rel="stylesheet"
 	integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
 	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/reset.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/common/header_footer.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/mypage/mypage_sidebar.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/mypage/rental.css">
 <!-- Font -->
 <link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
 	rel="stylesheet">
 <title>대여 상태 조회</title>
 </head>
@@ -29,7 +28,7 @@
 	<%@ include file="/WEB-INF/views/common/template_header.jsp"%>
 	<%@ include file="/WEB-INF/views/mypage/mypage_sidebar.jsp"%>
 	    <div class="rental-wrapper">
-        <h3 style="text-align: left;">대여 상태 조회</h3>
+        <p class="my-hl-re">대여 상태 조회</p>
         <div class="rental-spacing"></div>
         <div class="rental-container">
             <div class="order-spacing"></div>
