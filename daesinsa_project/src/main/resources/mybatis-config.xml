@@ -46,6 +46,8 @@
 <mapper resource="mappers/shopping-mapper.xml"/>
 <mapper resource="mappers/rent-mapper.xml"/>
 <mapper resource="mappers/cs-mapper.xml"/>
+<!-- 조병국 -->
+<mapper resource="mappers/shopbasket-mapper.xml"/>
 </mappers> 
 
 </configuration>

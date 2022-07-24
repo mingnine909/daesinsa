@@ -16,33 +16,23 @@ public class ShopbasketServiceImpl implements ShopbasketService {
 	private ShopbasketDao dao;
 
 	
-	//Shopbasket 목록 조회
+	//장바구니 목록
 	@Override
-	public List<Shopbasket> getShopBasketList(String m_id) {		
+	public List<Shopbasket> getShopbasketList(String m_id) {		
 		return dao.getShopbasket(m_id);
 	}
 
-	//Shopbasket 수정
-	
+	//장바구니 수정
 	@Override
 	public int modifyCount(int sb_amount) {
 		return dao.modifyCount(sb_amount);
-		
 	}
 	
-
-	//Shopbasket 삭제
-	
+	//장바구니 삭제
 	@Override
 	public int deleteShopbasket(int p_id) {
 		return dao.deleteShopbasket(p_id);
-		
 	}
 
-
-	
-
-	
-	
 	
 }

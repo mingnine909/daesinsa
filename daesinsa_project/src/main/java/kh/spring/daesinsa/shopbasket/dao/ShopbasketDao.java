@@ -15,26 +15,25 @@ public class ShopbasketDao {
 	private SqlSession sqlsession;
 	
 	public List<Shopbasket> getShopbasket(String m_id){
-		return sqlsession.selectList("Shopbasket.getShopbasket");}
+		return sqlsession.selectList("Shopbasket.getShopbasket", m_id);
+	}
 
 	public int deleteShopbasket(int p_id) {
-		return sqlsession.selectOne("Shopbasket.deleteShopbasket",p_id);	}
+		return sqlsession.selectOne("Shopbasket.deleteShopbasket",p_id);
+	}
 	
 	
 	public int modifyCount(int sb_amount) {
-		return sqlsession.selectOne("Shopbasket.modifyCount",sb_amount);	}
+		return sqlsession.selectOne("Shopbasket.modifyCount",sb_amount);
+	}
 
 	
 
 
 	
-	//?????? ??? ???
-//	public List<Shopbasket>(String c_id){
-//		return sqlsession.selectList
-//		
-//	}
+	}
 	
 	
 	
-}
+
 

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,31 +9,23 @@
 
 <!-- Bootstrap CSS -->
 <link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-	crossorigin="anonymous">
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <!-- XEICON CDN -->
-<link rel="stylesheet"
-	href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+<link rel="stylesheet"	href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 <!-- Common CSS -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/reset.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/common/header_footer.css">
-<!-- í°í¸ -->
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
-	rel="stylesheet">
-<link
-	href="${pageContext.request.contextPath}/resources/css/shopbasket.css">
-
+<link rel="stylesheet"	href="${pageContext.request.contextPath}/resources/css/reset.css">
+<link rel="stylesheet"	href="${pageContext.request.contextPath}/resources/css/common/header_footer.css">
+<!--ss -->
+<link	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"	rel="stylesheet">
+<link	href="${pageContext.request.contextPath}/resources/css/shopbasket/shopbasket.css" rel="stylesheet">
+<script src="http://code.jquery.com/jquery-3.5.1.js"></script>
 <title>장바구니</title>
+</head>
 <body>
 	<jsp:include page="../common/template_header.jsp"></jsp:include>
 
 	<div class="shopbasket_title">
-		<h2 class="shopbasket_title_content">Shopbasket</h2>
+		<h2 class="shopbasket_title_content"></h2>
 
 
 		<div class="content_subject">
@@ -43,7 +36,9 @@
 		<!-- 장바구니 가격 합계 -->
 		<!-- shopbasketInfo -->
 		<div class="content_totalCount_section">
-
+		<div class="all_check_input_div">
+			<input type="checkbox" class="all_check_input input_size_20" checked="checked"><span class="all_chcek_span">전체선택</span>
+		</div>
 			<table class="subject_table">
 				<caption>표 제목 부분</caption>
 				<tbody>
@@ -59,44 +54,43 @@
 					</tr>
 				</tbody>
 			</table>
+
 			<table class="shopbasket_table">
 				<caption>표 내용 부분</caption>
 				<tbody>
-					<c:forEach items="${shopbasket}" var="sb">
+					<c:forEach items="${shopbasketInfo}" var="sb">
 						<tr>
-							<td class="td_width_1"><input type="checkbox"
-								class="individual_shopbasket_checkbox input_size_20"
-								checked="checked"> <input type="hidden"
-								class="individual_bookPrice_input" value="${sb.itemPrice}">
-								<input type="hidden" class="individual_bookCount_input"
-								value="${sb.itemCount}"> <input type="hidden"
-								class="individual_totalPrice_input"
-								value="${sb.salePrice * sb.itemCount}"> <input
-								type="hidden" class="individual_totalPoint_input"
-								value="${sb.totalPoint}"></td>
-							<input type="hidden" class="individual_p_id_input"
-								value="${sb.p_id}">
-
+							<td class="td_width_1 shopbasketInfo_td">
+							<input type="checkbox"	class="individual_shopbasket_checkbox input_size_20"checked="checked">
+							<input type="hidden"	class="individual_bookPrice_input" value="${sb.p_price}">
+							<input type="hidden" class="individual_sbAmount_input"	value="${sb.sb_amount}"> 
+							<input type="hidden" class="individual_totalPrice_input" value="${sb.p_price * sb.sb_amount}"> 
+							<input type="hidden" class="individual_totalPoint_input" value="${sb.sb_totalprice}">
+							<input type="hidden" class="individual_p_id_input" value="${sb.p_id}">
+							</td>
 							<td class="td_width_2"></td>
-							<td class="td_width_3">${sb.itemName}</td>
-							<td class="td_width_4 price_td"><del>
-									정가 :
-									<fmt:formatNumber value="${sb.itemPrice}" pattern="#,### 원" />
-								</del><br> 판매가 : <span class="red_color"><fmt:formatNumber
-										value="${sb.salePrice}" pattern="#,### 원" /></span><br></td>
+							<td class="td_width_3">${sb.p_id}</td>
+							<td class="td_width_4 price_td">		
+								<br> 
+									판매가 : 
+								<span class="red_color">
+									<fmt:formatNumber value="${sb.p_price}" pattern="#,### 원" />
+								</span><br>
+							</td>
 							<td class="td_width_4 table_text_align_center">
 								<div class="table_text_align_center quantity_div">
-									<input type="text" value="${sb.bookCount}"
-										class="quantity_input">
+									<input type="text" value="${sb.sb_amount}"	class="quantity_input">
 									<button class="quantity_btn plus_btn">+</button>
 									<button class="quantity_btn minus_btn">-</button>
-									<a class="quantity_modify_btn"
-										data-shopbasketId="${sb.shopbasketId}">변경</a>
+									<a class="quantity_modify_btn"	data-shopbasketId="${sb.sb_amount}">변경</a>
+								</div>
 							</td>
-							<td class="td_width_4 table_text_align_center"><fmt:formatNumber
-									value="${sb.salePrice * sb.itemCount}" pattern="#,### 원" /></td>
-							<td class="td_width_4 table_text_align_center delete_btn"><button
-									class="delete_btn" data-shopbasketid="${sb.p_id}">삭제</button></td>
+							<td class="td_width_4 table_text_align_center">
+								<fmt:formatNumber	value="${sb.p_price * sb.sb_amount}" pattern="#,### 원" />
+							</td>
+							<td class="td_width_4 table_text_align_center delete_btn">
+								<button	class="delete_btn" data-shopbasketid="${sb.p_id}">삭제</button>
+							</td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -117,12 +111,12 @@
 								</tr>
 								<tr>
 									<td>배송비</td>
-									<td><span class="delivery_price">무료</span></td>
+									<td><span class="delivery_price"></span> 원</td>
 								</tr>
 								<tr>
 									<td>총 주문 상품수</td>
-									<td><span class="totalKind_span"></span>종 <span
-										class="totalCount_span"></span></td>
+									<td><span class="totalKind_span"> </span> <span
+										class="totalCount_span"></span> 개</td>
 								</tr>
 							</table>
 						</td>
@@ -144,7 +138,7 @@
 								<tbody>
 									<tr>
 										<td><strong>총 결제 예상 금액</strong></td>
-										<td><span class="finalTotalPrice_span">70000</span> 원</td>
+										<td><span class="finalTotalPrice_span"></span> 원</td>
 									</tr>
 								</tbody>
 							</table>
@@ -170,15 +164,15 @@
 		<!-- 수량 조정 form -->
 		<form action="/shopbasket/update" method="post"
 			class="quantity_update_form">
-			<input type="hidden" name="shopbasketId" class="update_shopbasketId">
-			<input type="hidden" name="bookCount" class="update_bookCount">
-			<input type="hidden" name="memberId" value="${member.memberId}">
+<!-- 			<input type="hidden" name="shopbasketId" class="update_shopbasketId"> -->			
+			<input type="hidden" name="sb_amount" class="update_sbamount">
+			<input type="hidden" name="m_id" value="${member.m_id}">
 		</form>
 		<!-- 삭제 form -->
 		<form action="/shopbasket/delete" method="post"
 			class="quantity_delete_form">
 			<input type="hidden" name="shopbasketId" class="delete_shopbasketId">
-			<input type="hidden" name="memberId" value="${member.memberId}">
+			<input type="hidden" name="memberId" value="${member.m_id}">
 		</form>
 		<!-- 주문 form -->
 		<form action="/order/${member.memberId}" method="get"
@@ -241,7 +235,7 @@
 			let deliveryPrice = 0; // 배송비
 			let finalTotalPrice = 0; // 최종 가격(총 가격 + 배송비)
 
-			$(".shopbasket_info_td").each(
+			$(".shopbasketInfo_td").each(
 					function(index, element) {
 
 						if ($(element).find(".individual_shopbasket_checkbox")
@@ -252,7 +246,7 @@
 									".individual_totalPrice_input").val());
 							// 총 갯수
 							totalCount += parseInt($(element).find(
-									".individual_bookCount_input").val());
+									".individual_sbAmount_input").val());
 							// 총 종류
 							totalKind += 1;
 						}
@@ -283,6 +277,20 @@
 			// 최종 가격(총 가격 + 배송비)
 			$(".finalTotalPrice_span").text(finalTotalPrice.toLocaleString());
 		}
+		/* 체크박스 전체 선택 */
+		$(".all_check_input").on("click", function(){
+
+			/* 체크박스 체크/해제 */
+			if($(".all_check_input").prop("checked")){
+				$(".individual_shopbasket_checkbox").attr("checked", true);
+			} else{
+				$(".individual_shopbasket_checkbox").attr("checked", false);
+			}
+			
+			/* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
+			setTotalInfo($(".shopbasketInfo_td"));	
+			
+		});
 
 		/* 수량버튼 */
 		$(".plus_btn").on("click", function() {
@@ -299,8 +307,8 @@
 		/* 수량 수정 버튼 */
 		$(".quantity_modify_btn").on("click", function() {
 			let sb_amount = $(this).data("sb_amount");
-			let bookCount = $(this).parent("td").find("input").val();
-			$(".update_sb_amount").val(sb_amount);
+			/* let bookCount = $(this).parent("td").find("input").val(); */
+			$(".update_sbamount").val(sb_amount);
 			$(".quantity_update_form").submit();
 
 		});
@@ -345,16 +353,7 @@
 	</script>
 
 
-
-
-
 	<jsp:include page="../common/template_footer.jsp"></jsp:include>
-	<!-- 부트스트랩 스크립트 -->
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-		crossorigin="anonymous"></script>
-
 
 
 </body>

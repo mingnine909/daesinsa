@@ -1,6 +1,8 @@
 package kh.spring.daesinsa.shopbasket.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,9 +23,14 @@ public class ShopbasketController {
 	
 	@GetMapping("/list")
 	public ModelAndView shopbasketlist(
-			ModelAndView mv			
+			ModelAndView mv
 			) {
-	//	Model.addAttribute("shopbasketInfo", ShopbasketService.getShopbasketList(m_id));
+		String m_id = null;
+		//시큐리티 로그인 정보 가져오기
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		m_id = ((UserDetails)principal).getUsername();
+        
+		mv.addObject("shopbasketInfo", service.getShopbasketList(m_id));
 		
 		mv.setViewName("shopbasket/shopbasket");
 				
@@ -35,9 +42,17 @@ public class ShopbasketController {
 	public ModelAndView shopbasketupdate(
 			ModelAndView mv			
 			) {
-	//	Model.addAttribute("shopbasketInfo", ShopbasketService.getShopbasketList(m_id));
+		String m_id = null;
+		
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		m_id = ((UserDetails)principal).getUsername();
+        
+		mv.addObject("shopbasketInfo", service.getShopbasketList(m_id));
 		
 		mv.setViewName("shopbasket/shopbasket");
+				
+		
+
 				
 		return mv;
 	}
