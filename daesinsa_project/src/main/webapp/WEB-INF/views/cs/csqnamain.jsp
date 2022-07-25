@@ -27,6 +27,7 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
 	rel="stylesheet">
+<!-- Jquery -->
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <title>Daesinsa</title>
 </head>
@@ -82,8 +83,10 @@
 				   <thead>
 				   <tr>
 				   <td>문의유형</td>
-				   <td>제목</td>
+				   <td id="qna_title">제목</td>
 				   <td>작성일</td>
+				   <td><i class="xi-library-books-o"></i></td>
+				   <td><i class="xi-trash-o"></i> </td>
 				   </tr>
 				   </thead>
 				   <tbody>
@@ -104,8 +107,8 @@
 				    </c:if>
 				    </td>
 				
-				   	<td><a href="${pageContext.request.contextPath}/cs/qnaread?cs_qno=${csqna.cs_qno}"> 
-				   	${csqna.cs_qtitle }</a></td>
+				   	<td>
+				   	${csqna.cs_qtitle }</td>
 				   <td>${fn:substring(csqna.cs_qdate ,0,10) }</td>
 				     <td>
 				     <form action="${pageContext.request.contextPath}/cs/qnaread" method="post">
@@ -114,6 +117,8 @@
 				     <button type = "submit" class="btn btn-sm" style="background-color: #222222; color: white">문의글 보기</button>
 				     </form>
 				      </td>
+				      <td><button type = "button" class="btn btn-sm btn_delete" style="background-color: #e4e4e4; color: black">문의글 삭제</button>
+				      <input type="hidden" value="${csqna.cs_qno}"></td>
 				   </tr>
 		
 				   </c:forEach>
@@ -151,6 +156,35 @@
 <jsp:include page="../common/template_footer.jsp"></jsp:include>
 
 
+	 <script>
+	$(".btn_delete").click(function(){
+		var csQnoVal =$(this).next().val();
+		console.log(csQnoVal); 
+		var token = $("input[name='_csrf']").val();
+		var header = "X-CSRF-TOKEN";
+	$.ajax({
+		url : "${pageContext.request.contextPath}/cs/delqna"
+		,type: "post"
+		,data :{
+			cs_qno : csQnoVal
+			}
+		,beforeSend : function(xhr)
+		  {  
+		 	 xhr.setRequestHeader(header, token);
+		  }
+		,success:function(result){
+			console.log(result);
+			alert("문의글이 삭제되었습니다.");
+			location.reload();
+				},
+				error : function(errcode) {
+					console.log(errcode);
+				}
+			});
+		});
+	</script>
+	
+	
 	
 	
 	<!-- 부트스트랩 스크립트 -->

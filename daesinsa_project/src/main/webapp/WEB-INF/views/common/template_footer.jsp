@@ -7,8 +7,8 @@
       <div class="col-2 footer_list">
         <h5>이용안내</h5>
         <ul class="nav flex-column">
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">이용약관</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">개인정보 처리 방침</a></li>
+          <li class="nav-item mb-2">이용약관</li>
+          <li class="nav-item mb-2">개인정보 처리 방침</li>
           
         </ul>
       </div>
@@ -17,7 +17,7 @@
         <h5>고객지원</h5>
         <ul class="nav flex-column">
           <li class="nav-item mb-2"><a href="${pageContext.request.contextPath}/cs/notice" class="nav-link p-0 text-muted">고객센터</a></li>
-          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">서비스 이용안내</a></li>
+          <li class="nav-item mb-2">서비스 이용안내</li>
        
         </ul>
       </div>

@@ -296,7 +296,7 @@ public class ShoppingController {
 		
 		
 	
-		//위시리스트 목록 
+		//6-3. 위시리스트 목록 
 		@GetMapping ("/wishlist")
 		public ModelAndView listWishList(ModelAndView mv
 				,WishList wishlist

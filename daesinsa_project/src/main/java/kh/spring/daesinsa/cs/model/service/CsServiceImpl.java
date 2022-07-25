@@ -62,6 +62,13 @@ public class CsServiceImpl implements CsService{
 		return dao.qnaRead(cs_qno);
 	}
 	
+	//3-4.사이트 QNA 삭제
+	@Override
+	public int deleteQna(int cs_qno) {
+		return dao.deleteQna(cs_qno);
+	}
+	
+	
 	
 	//4-1.쿠폰 다운로드
 	@Override

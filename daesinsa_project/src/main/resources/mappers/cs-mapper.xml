@@ -37,12 +37,17 @@
 	
 	<!-- 3-2.사이트 qna 목록 보기 -->
 	<select id="qnaList" parameterType="string" resultType="CsQna">
-	select * from cs_qna where m_id =#{m_id}
+	select * from cs_qna where m_id =#{m_id} order by cs_qdate desc
 	</select>
 	
 	<!-- 3-3.사이트 qna 확인 -->
 	<select id="qnaRead" parameterType="_int" resultType="CsQna">
 	select * from cs_qna where cs_qno = #{cs_qno}
+	</select>
+	
+	<!-- 3-4.사이트 qna 삭제 -->
+	<select id="deleteQna"  parameterType="_int">
+	delete from cs_qna where cs_qno=#{cs_qno}
 	</select>
 	
 	

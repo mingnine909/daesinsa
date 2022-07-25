@@ -60,6 +60,12 @@ public class CsDao {
 		}
 	
 	
+	//3-4. 사이트 QNA 삭제
+	public int deleteQna(int cs_qno) {
+		return sqlsession.delete("CsTotal.deleteQna",cs_qno);
+		}
+	
+	
 	//4-1.쿠폰 다운로드
 	public int insertCoupon(Coupon coupon) {
 		return sqlsession.insert("CsTotal.insertCoupon",coupon);

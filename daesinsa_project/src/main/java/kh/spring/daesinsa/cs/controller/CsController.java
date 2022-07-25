@@ -161,7 +161,7 @@ public class CsController {
 		return mv;
 	}
 	
-	//3-1. 1:1 문의 페이지 읽기
+	//3-4. 1:1 문의 페이지 읽기
 		@PostMapping("qnaread")
 		public ModelAndView qnaRead(
 				ModelAndView mv 
@@ -180,6 +180,19 @@ public class CsController {
 		}
 		
 		
+		
+		//3-5. 1:1 문의글 삭제
+		@PostMapping("delqna")
+		@ResponseBody
+		public int deleteQna(
+				ModelAndView mv,
+				@RequestParam(name="cs_qno", required = false) int cs_qno) {
+
+			int result = service.deleteQna(cs_qno);
+			
+			return result;
+			
+		}
 	
 	
 	//4-1.공지사항 이벤트 페이지 열기

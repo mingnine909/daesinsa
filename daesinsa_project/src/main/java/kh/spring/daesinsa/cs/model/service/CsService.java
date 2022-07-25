@@ -33,6 +33,9 @@ public interface CsService {
 	//3-3. 사이트 QNA 보기
 	public CsQna qnaRead(int cs_qno);
 	
+	//3-4. 사이트 QNA 삭제
+	public int deleteQna(int cs_qno);
+	
 	//4-1.쿠폰 다운로드
 	public int insertCoupon(Coupon coupon) ;
 	

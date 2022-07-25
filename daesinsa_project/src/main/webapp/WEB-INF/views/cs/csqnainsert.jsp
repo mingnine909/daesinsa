@@ -76,7 +76,7 @@
         </div>
         </div>
         <!-- 사이드메뉴 끝 -->
-<form action="${pageContext.request.contextPath}/cs/qnainsert" method="post">
+<form name="frmQna" action="${pageContext.request.contextPath}/cs/qnainsert" method="post">
 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 <table id="qna_review_form">
 
@@ -89,7 +89,7 @@
 <tr>
 <td>문의 유형 <span style="color: orange">&nbsp; *</span> </td>
 <td>
- 	<label for ="cs_type1"><input type="radio" name ="cs_type" id="cs_type1" value="1"> 구매/대여 </label>
+ 	<label for ="cs_type1"><input type="radio" name ="cs_type" id="cs_type1" value="1" required="required"> 구매/대여 </label>
     <label for ="cs_type2"><input type="radio" name ="cs_type" id="cs_type2" value="2"> 교환/환불/취소 </label>
     <label for ="cs_type3"><input type="radio" name ="cs_type" id="cs_type3" value="3"> 오류 </label>
     <label for ="cs_type4"><input type="radio" name ="cs_type" id="cs_type4" value="4"> 기타 </label>
@@ -97,15 +97,15 @@
 </tr>
 <tr>
 <td>문의 제목 <span style="color: orange">&nbsp; *</span> </td>
-<td><input type="text"  id="cs_qtitle" name="cs_qtitle" class="form-control"
-placeholder="제목을 입력해주세요" required="required"></td> 
+<td><input type="text"  id="cs_qtitle" name="cs_qtitle" required="required" class="form-control"
+placeholder="제목을 입력해주세요" ></td> 
 </tr>
 
 
 <tr>
 <td>문의 내용<span style="color: orange">&nbsp; *</span></td>
 <td colspan="2">
-<textarea id="cs_qcontent" name="cs_qcontent" placeholder="내용을 입력해주세요">
+<textarea id="cs_qcontent" name="cs_qcontent" required="required" placeholder="내용을 입력해주세요">
 </textarea></td>
 </tr>
 <tr>
@@ -122,6 +122,10 @@ placeholder="제목을 입력해주세요" required="required"></td>
 <label for="check_info"><input type="checkbox" required="required" name="check_info"
 id="check_info"> 개인정보 수집 및 이용에 대한 동의(필수)</label></td>
 </tr>
+<tr>
+<td colspan="2">
+<p><span style="color: orange">&nbsp; *</span> 표시된 항목은 필수 입력 항목입니다.</p></td>
+</tr>
 
 </table>
 <div class="btn-insert-reset">
@@ -134,6 +138,7 @@ id="check_info"> 개인정보 수집 및 이용에 대한 동의(필수)</label>
 
 
 <jsp:include page="../common/template_footer.jsp"></jsp:include>
+
 	<!-- 파일첨부 버튼 - label 연결  -->
 	<script>
 		document.getElementById('file-upload').addEventListener('change',

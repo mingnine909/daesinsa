@@ -327,7 +327,6 @@
           <div class="product_share">
             <button type="button" class="btn btn-light" onclick="copyURL();"><i class="xi-share-alt-o xi-x"></i> </button>
             <button type="button" class="btn btn-light" onclick="shareTwitter();" id="twitter"><i class="xi-twitter xi-x"></i> </button>
-            <button type="button" class="btn btn-light" onclick="shareFacebook();" id="facebook"><i class="xi-facebook-official xi-x"></i> </button>
             <button type="button" class="btn btn-light" onclick="shareKakao();" id="kakao"><i class=" xi-kakaotalk xi-x"></i> </button>
            
          		 </div>
@@ -659,16 +658,9 @@ target="qnaAnswer" onsubmit='openAnswer();'>
       }
       </script>
       
-       <script>
-      // 3. 페이스북 공유
-      function shareFacebook() {
-      var sendUrl =  document.URL; // 전달할 URL
-      window.open("http://www.facebook.com/sharer/sharer.php?u=" + sendUrl);
-      }
-      </script>
       
        <script>
-      // 4. 카카오 공유
+      // 3. 카카오 공유
       function shareKakao() { 
       // 사용할 앱의 JavaScript 키 설정
       Kakao.init('508c6cadc43c704a73db239c5bc2c017');
