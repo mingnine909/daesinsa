@@ -26,10 +26,8 @@
    <typeAlias type="kh.spring.daesinsa.cs.domain.CsFaq" alias="CsFaq"/>
    <typeAlias type="kh.spring.daesinsa.cs.domain.CsQna" alias="CsQna"/>
    <typeAlias type="kh.spring.daesinsa.cs.domain.Coupon" alias="Coupon"/>
- <!-- 박자민 (member, admin, mypage) -->
+ <!-- 박자민 (member) -->
    <typeAlias type="kh.spring.daesinsa.member.domain.Member" alias="Member"/>
-   <typeAlias type="kh.spring.daesinsa.admin.domain.Admin" alias="Admin"/>
-   <typeAlias type="kh.spring.daesinsa.mypage.domain.Mypage" alias="Mypage"/>
   <!-- 장바구니 -->
   <typeAlias type="kh.spring.daesinsa.shopbasket.domain.Shopbasket" alias="Shopbasket"/>
 
@@ -40,8 +38,6 @@
 <mappers>
 <!-- 박자민 -->
 <mapper resource="mappers/member-mapper.xml"/>
-<mapper resource="mappers/mypage-mapper.xml"/>
-<mapper resource="mappers/admin-mapper.xml"/>
 <!-- 김도현 -->
 <mapper resource="mappers/shopping-mapper.xml"/>
 <mapper resource="mappers/rent-mapper.xml"/>

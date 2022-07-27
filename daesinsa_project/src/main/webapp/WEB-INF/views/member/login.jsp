@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,32 +34,23 @@
 			class="login-logo">
 		<div class="checkbox mb-3"></div>
 		<form action="${pageContext.request.contextPath}/member/login" method="post">
+		<%-- <form action="${pageContext.request.contextPath}/login_check" method="post"> --%>
 			<div class="form-floating">
-				<input type="text" class="form-control" id="floatingInput" name="username"
-					placeholder="ID"> <label for="floatingInput">ID</label>
+				<input type="text" class="form-control" id="floatingInput" name="username" placeholder="ID"> 
+				<label for="floatingInput">ID</label>
 			</div>
 			<div class="form-floating">
-				<input type="password" class="form-control" id="floatingPassword" name="password"
-					placeholder="Password"> <label for="floatingPassword">Password</label>
+				<input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password"> 
+				<label for="floatingPassword">Password</label>
 			</div>
-			<input type="hidden" name="${_csrf.parameterName}"
-				value="${_csrf.token}" />
-			<div class="find">
-				<a href="#"
-					style="text-decoration: none; color: black; text-align: center;">아이디
-					찾기</a> &nbsp;|&nbsp; <a href="#"
-					style="text-decoration: none; color: black; text-align: center;">비밀번호
-					찾기</a>
-			</div>
+		<c:if test="${param.ng!=null}">
+			<p> error : <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/> </p>
+		</c:if>
+			<%-- <span>${requestScope.LoginFailMessage}</span> --%>
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			<div class="checkbox mb-3"></div>
 			<button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
 			<div class="checkbox mb-3"></div>
-			<a href="#"><img class="social-img"
-				src="${pageContext.request.contextPath}/resources/img/member/kakao_login.png"></a>
-			<div class="checkbox mb-3"></div>
-			<a href="#"><img class="social-img"
-				src="${pageContext.request.contextPath}/resources/img/member/naver_login.png"
-				style="height: 50px;"></a>
 		</form>
 	</main>
 	<%@ include file="/WEB-INF/views/common/template_footer.jsp"%>

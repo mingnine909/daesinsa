@@ -2,13 +2,6 @@ package kh.spring.daesinsa.member.domain;
 
 import java.io.Serializable;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.PositiveOrZero;
-import javax.validation.constraints.Size;
-
 import org.springframework.stereotype.Component;
 
 @SuppressWarnings("serial")
@@ -34,35 +27,14 @@ public class Member implements Serializable {
 //  M_ADR2               VARCHAR2(300)
 //  M_ZIPCODE	 NOT NULL NUMBER
 
-	@NotBlank(message="아이디는 필수 입력 값입니다.")
-	@Pattern(regexp="(?=.*[0-9])(?=.*[a-zA-Z])(?=\\S+$).{6,12}",
-    message = "아이디는 6~12자의 영문, 숫자로 작성되어야 합니다.")
 	private String id; 
-	
-	@NotBlank(message="비밀번호는 필수 입력 값입니다.")
-	@Pattern(regexp="(?=.*[0-9])(?=.*[a-zA-Z])(?=.*\\W)(?=\\S+$).{8,16}",
-    message = "비밀번호는 영문 대,소문자와 숫자, 특수기호가 적어도 1개 이상씩 포함되어야 하며, 8~16자 이내여야 합니다.")
 	private String password;
-	
-	@NotBlank(message="이름은 필수 입력 값입니다.")
-	@Size(min=2, max=5,message= "이름은 2자 이상, 6자 미만으로 입력해주세요.")
 	private String name;
-	
-
-	@NotBlank(message="이메일은 필수 입력 값입니다.")
-	@Pattern(regexp = "^(?:\\w+\\.?)*\\w+@(?:\\w+\\.)+\\w+$", message = "이메일 형식이 올바르지 않습니다.")
 	private String email;
-	
-	@NotBlank(message="휴대폰 번호는 필수 입력 값입니다.")
-	@PositiveOrZero(message="숫자만 입력해주세요.")
 	private String phone;
-	
-	@NotNull(message="주소는 필수 입력 값입니다.")
 	private String adrs;
 	private String adrs2;
 	private int gender;
-	
-//	@Past(message="미래의 날짜는 입력할 수 없습니다.")
 	private String bdate;
 	private String enrolldate;
 	private int isdelete;

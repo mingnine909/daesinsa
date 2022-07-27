@@ -16,8 +16,9 @@ import org.springframework.security.authentication.LockedException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
+//@Service("CustomLoginFailHandler")
 public class CustomLoginFailHandler implements AuthenticationFailureHandler {
-
+	
 	@Override
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException exception) throws IOException, ServletException {
@@ -37,5 +38,6 @@ public class CustomLoginFailHandler implements AuthenticationFailureHandler {
 			request.setAttribute("LoginFailMessage", "계정을 찾을 수 없습니다.");
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/member/login");
 		dispatcher.forward(request, response);
+//		response.sendRedirect(request.getContextPath()+"/member/login");
 	}
 }

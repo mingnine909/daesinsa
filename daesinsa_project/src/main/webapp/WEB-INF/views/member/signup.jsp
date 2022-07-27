@@ -48,46 +48,28 @@
 			<label for="formGroupExampleInput" class="form-label">아이디<span
 				class="text-muted">(필수)</span></label>
 			<div class="input-group mb-3">
-				<input type="text" class="form-control"  aria-describedby="button-addon2" name="id" id="id" required>
+				<input type="text" class="form-control"  aria-describedby="button-addon2" name="id_input" id="id" required>
 				<button class="btn btn-outline-secondary" type="button" id="idcheck-btn" value="N">중복확인</button>
-				<div class="invalid-feedback">아이디는 6글자 이상의 영문, 숫자로 작성되어야 합니다.
-				</div>
+			</div>
+			<span class="final_id_ck">아이디를 입력해주세요.</span>
+			<div class="mb-3">
+				<label for="formGroupExampleInput" class="form-label">비밀번호<span class="text-muted">(필수)</span></label> 
+				<input type="password" class="form-control" name="password" id="pw_input" required>
 			</div>
 			<div class="mb-3">
-				<label for="formGroupExampleInput" class="form-label">비밀번호<span
-					class="text-muted">(필수)</span></label> <input type="password"
-					class="form-control" name="password" required>
+				<label for="formGroupExampleInput" class="form-label">이름<span class="text-muted">(필수)</span></label> 
+				<input type="text" class="form-control" name="name" id="name_input" placeholder="김신사" required>
 			</div>
-			<div class="mb-3">
-				<label for="formGroupExampleInput" class="form-label">비밀번호
-					확인<span class="text-muted">(필수)</span>
-				</label> <input type="password" class="form-control" name="pwdconfirm"
-					required>
-				<div class="invalid-feedback">비밀번호가 일치하지 않습니다.</div>
-			</div>
-			<div class="mb-3">
-				<label for="formGroupExampleInput" class="form-label">이름<span
-					class="text-muted">(필수)</span></label> <input type="text"
-					class="form-control" name="name" placeholder="김신사" required>
-				<div class="invalid-feedback">이름은 한글로만 입력해주세요.</div>
-			</div>
-			<label for="formGroupExampleInput" class="form-label">이메일<span
-				class="text-muted">(필수)</span></label>
+			<label for="formGroupExampleInput" class="form-label">이메일<span class="text-muted">(필수)</span></label>
 			<div class="input-group mb-3">
-				<input type="email" class="form-control" placeholder="exmple@exmples.com" 
-				aria-describedby="button-addon2" name="email" id="email" required>
+				<input type="email" class="form-control" placeholder="exmple@exmples.com"  aria-describedby="button-addon2" name="email" id="email" required>
 				<button class="btn btn-outline-secondary" type="button" id="emailcheck-btn" value="N">중복확인</button>
-				<div class="invalid-feedback">이메일 형식으로 입력해주세요.</div>
 			</div>
 			<div class="mb-3">
-				<label for="formGroupExampleInput" class="form-label">휴대폰번호<span
-					class="text-muted">(필수)</span></label> <input type="text"
-					class="form-control" name="phone" placeholder="01012345678"
-					required>
-				<div class="invalid-feedback">9자리의 숫자만 입력해주세요.</div>
+				<label for="formGroupExampleInput" class="form-label">휴대폰번호<span class="text-muted">(필수)</span></label> 
+				<input type="text" class="form-control" name="phone" placeholder="01012345678" id="phone_input" required>
 			</div>
-			<label for="formGroupExampleInput" class="form-label">우편번호<span
-				class="text-muted">(필수)</span></label>
+			<label for="formGroupExampleInput" class="form-label">우편번호<span class="text-muted">(필수)</span></label>
 			<div class="input-group mb-3">
 				<input type="text" class="form-control" placeholder="'우편번호 검색' 버튼을 클릭해주세요."
 					aria-describedby="button-addon2" name="zipcode" id="sample6_postcode" required>
@@ -96,19 +78,16 @@
 			<input type=hidden id="sample6_extraAddress">
 			<div class="mb-3">
 				<label for="formGroupExampleInput" class="form-label">주소<span
-					class="text-muted">(필수)</span></label> <input type="text"
-					class="form-control" name="adrs" id="sample6_address" required>
+					class="text-muted">(필수)</span></label> <input type="text" class="form-control" name="adrs" id="sample6_address" required>
 			</div>
 			<div class="mb-3">
-				<label for="formGroupExampleInput" class="form-label">나머지 주소<span
-					class="text-muted">(선택)</span></label> <input type="text"
+				<label for="formGroupExampleInput" class="form-label">나머지 주소<span class="text-muted">(선택)</span></label> <input type="text"
 					class="form-control" name="adrs2" id="adrs2">
 			</div>
 			<div class="mb-3">
 				<label for="formGroupExampleInput" class="form-label">생년월일<span
 					class="text-muted">(선택)</span></label> <input type="text"
 					class="form-control" name="bdate" placeholder="19900219">
-				<div class="invalid-feedback">8자리 숫자로 입력해주세요.(YYYYMMDD)</div>
 			</div>
 			<label for="formGroupExampleInput" class="form-label">성별<span
 				class="text-muted">(선택)</span></label>
@@ -254,8 +233,7 @@
         }).open();
     }
 	</script>
-	
-	
+		
 	<!-- '취소하기' 버튼 클릭 시 동작 -->
 	<script>
     $(function(){
