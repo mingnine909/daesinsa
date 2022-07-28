@@ -48,7 +48,7 @@
 			<label for="formGroupExampleInput" class="form-label">아이디<span
 				class="text-muted">(필수)</span></label>
 			<div class="input-group mb-3">
-				<input type="text" class="form-control"  aria-describedby="button-addon2" name="id_input" id="id" required>
+				<input type="text" class="form-control"  aria-describedby="button-addon2" name="id" id="id" required>
 				<button class="btn btn-outline-secondary" type="button" id="idcheck-btn" value="N">중복확인</button>
 			</div>
 			<div class="mb-3">
