@@ -58,11 +58,10 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 
 					<div class="container">
 						<div class="carousel-caption banner">
-							<h1>Another example headline.</h1>
-							<p>Some representative placeholder content for the second
-								slide of the carousel.</p>
+							<h1>a collection of jeans</h1>
+							<p>편하고 시원하게 입기 좋은 여성용 데님 모음</p>
 							<p>
-								<a class="btn btn-sm btn-primary" href="#">Learn more</a>
+								<a class="btn btn-sm btn-primary" href="${pageContext.request.contextPath}/shop/shoplist?c_id=C221&c_first=2">바로가기</a>
 							</p>
 						</div>
 					</div>
@@ -73,11 +72,10 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 
 					<div class="container">
 						<div class="carousel-caption banner text-end">
-							<h1>One more for good measure.</h1>
-							<p>Some representative placeholder content for the third
-								slide of this carousel.</p>
+							<h1>a collection of shoes</h1>
+							<p>다양한 남성용 신발 모음</p>
 							<p>
-								<a class="btn btn-sm btn-primary" href="#">Browse gallery</a>
+								<a class="btn btn-sm btn-primary" href="${pageContext.request.contextPath}/shop/shoplist?c_id=C132&c_first=1">바로가기</a>
 							</p>
 						</div>
 					</div>

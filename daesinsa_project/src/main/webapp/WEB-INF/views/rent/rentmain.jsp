@@ -45,7 +45,7 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 							<h1>Welcome</h1>
 							<p>원하는 상품을 자유롭게 대여해보세요!</p>
 							<p>
-								<a class="btn btn-sm btn-primary" href="#">바로가기</a>
+								<a class="btn btn-sm btn-primary" href="${pageContext.request.contextPath}/rent/rentlist?c_id=C111&c_first=1">바로가기</a>
 							</p>
 						</div>
 					</div>
@@ -56,11 +56,10 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 
 					<div class="container">
 						<div class="carousel-caption banner">
-							<h1>Another example headline.</h1>
-							<p>Some representative placeholder content for the second
-								slide of the carousel.</p>
+							<h1>a rental of short-sleeved shirts</h1>
+							<p>시원한 여름 반팔티 대여는 대신사에서</p>
 							<p>
-								<a class="btn btn-sm btn-primary" href="#">Learn more</a>
+								<a class="btn btn-sm btn-primary" href="${pageContext.request.contextPath}/rent/rentlist?c_id=C212&c_first=2">바로가기</a>
 							</p>
 						</div>
 					</div>
@@ -71,11 +70,10 @@ integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jI
 
 					<div class="container">
 						<div class="carousel-caption banner text-end">
-							<h1>One more for good measure.</h1>
-							<p>Some representative placeholder content for the third
-								slide of this carousel.</p>
+							<h1>a bag rental</h1>
+							<p>의류 뿐만 아니라 가방까지 자유롭게 대여 가능</p>
 							<p>
-								<a class="btn btn-sm btn-primary" href="#">Browse gallery</a>
+								<a class="btn btn-sm btn-primary" href="${pageContext.request.contextPath}/rent/rentlist?c_id=C231&c_first=2">바로가기</a>
 							</p>
 						</div>
 					</div>

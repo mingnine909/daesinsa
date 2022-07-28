@@ -173,7 +173,6 @@
 											href="${pageContext.request.contextPath}/shop/detail?p_id=${shop.p_id }">
 											<c:forEach items="${shop.p_img_list }" var="shopimg"
 												varStatus="status">
-												<!-- 이미지 2장 이상인상품들 1장씩만 화면에 출력되도록 나타냄 -->
 												<c:if test="${status.count <2 }">
 													<c:if test="${not empty shopimg.p_img_path }">
 														<img
@@ -182,18 +181,21 @@
 													</c:if>
 												</c:if>
 											</c:forEach>
-											<div class="product_name"><p>${shop.p_name }</p></div>
-											<div class="product_price"><p><fmt:formatNumber value="${shop.p_price }" pattern="￦#,###.##"/></p></div> <c:if
+											</a>
+											<div class="product_name">
+											<p>${shop.p_name }</p>
+											</div>
+											<div class="product_price">
+											<p>
+											<fmt:formatNumber value="${shop.p_price }" pattern="￦#,###.##"/></p>
+											</div> <c:if
 												test="${shop.p_isrental ==1 }">
 												<span style="background-color: #FAA570; color: white">대여가능</span>
-											 </c:if>
-											 <%-- <c:if test="${shop.p_isrental ==2 }">
-												<span style="background-color: #044343; color: #e4e4e4;">대여불가</span>
-											</c:if>  --%>
+											 </c:if>						
 											<c:if test="${shop.p_issoldout ==1 }">
 												<span style="background-color: #e4e4e4;">품절</span>
 											</c:if>
-										</a>
+										
 									</div>
 								</li>
 							</c:forEach>
