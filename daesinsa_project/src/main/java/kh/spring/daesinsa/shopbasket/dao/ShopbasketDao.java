@@ -1,6 +1,8 @@
 package kh.spring.daesinsa.shopbasket.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,16 +20,17 @@ public class ShopbasketDao {
 		return sqlsession.selectList("Shopbasket.getShopbasket", m_id);
 	}
 
-	public int deleteShopbasket(int p_id) {
-		return sqlsession.selectOne("Shopbasket.deleteShopbasket",p_id);
-	}
-	
-	
-	public int modifyCount(int sb_amount) {
-		return sqlsession.selectOne("Shopbasket.modifyCount",sb_amount);
+	public int modifyCount(int sb_amount, String p_id, String poi_id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("sb_amount", sb_amount);
+		map.put("p_id", p_id);
+		map.put("poi_id", poi_id);
+		return sqlsession.update("Shopbasket.modifyCount", map);
 	}
 
-	
+	public int deleteShopbasket(Shopbasket shopbasket) {
+		return sqlsession.delete("Shopbasket.deleteShopbasket",shopbasket);
+	}
 
 
 	

@@ -13,11 +13,10 @@ public interface ShopbasketService {
 	
 	
 	//장바구니 수정
-	
-	public int modifyCount(int sb_amount);
+	public int modifyCount(int sb_amount, String p_id, String poi_id);
 	
 	//장바구니 삭제
 	
-	public int deleteShopbasket(int p_id);
+	public int deleteShopbasket(Shopbasket shopbasket);
 
 }

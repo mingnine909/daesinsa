@@ -18,7 +18,9 @@
 <!--ss -->
 <link	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"	rel="stylesheet">
 <link	href="${pageContext.request.contextPath}/resources/css/shopbasket/shopbasket.css" rel="stylesheet">
+
 <script src="http://code.jquery.com/jquery-3.5.1.js"></script>
+
 <title>장바구니</title>
 </head>
 <body>
@@ -61,12 +63,13 @@
 					<c:forEach items="${shopbasketInfo}" var="sb">
 						<tr>
 							<td class="td_width_1 shopbasketInfo_td">
-							<input type="checkbox"	class="individual_shopbasket_checkbox input_size_20"checked="checked">
-							<input type="hidden"	class="individual_bookPrice_input" value="${sb.p_price}">
-							<input type="hidden" class="individual_sbAmount_input"	value="${sb.sb_amount}"> 
-							<input type="hidden" class="individual_totalPrice_input" value="${sb.p_price * sb.sb_amount}"> 
-							<input type="hidden" class="individual_totalPoint_input" value="${sb.sb_totalprice}">
-							<input type="hidden" class="individual_p_id_input" value="${sb.p_id}">
+								<input type="checkbox"	class="individual_shopbasket_checkbox input_size_20"checked="checked">
+								<input type="hidden"	class="individual_bookPrice_input" value="${sb.p_price}">
+								<input type="hidden" class="individual_sbAmount_input"	value="${sb.sb_amount}"> 
+								<input type="hidden" class="individual_totalPrice_input" value="${sb.p_price * sb.sb_amount}"> 
+								<input type="hidden" class="individual_totalPoint_input" value="${sb.sb_totalprice}">
+								<input type="hidden" class="individual_p_id_input" value="${sb.p_id}">
+								<input type="hidden" class="individual_poi_id_input" value="${sb.poi_id}">
 							</td>
 							<td class="td_width_2"></td>
 							<td class="td_width_3">${sb.p_id}</td>
@@ -80,9 +83,11 @@
 							<td class="td_width_4 table_text_align_center">
 								<div class="table_text_align_center quantity_div">
 									<input type="text" value="${sb.sb_amount}"	class="quantity_input">
+									
 									<button class="quantity_btn plus_btn">+</button>
 									<button class="quantity_btn minus_btn">-</button>
 									<a class="quantity_modify_btn"	data-shopbasketId="${sb.sb_amount}">변경</a>
+								
 								</div>
 							</td>
 							<td class="td_width_4 table_text_align_center">
@@ -90,6 +95,8 @@
 							</td>
 							<td class="td_width_4 table_text_align_center delete_btn">
 								<button	class="delete_btn" data-shopbasketid="${sb.p_id}">삭제</button>
+								<input type="hidden" value="${sb.p_id }" id="delete_p_id" name="delete_p_id">
+								
 							</td>
 						</tr>
 					</c:forEach>
@@ -115,8 +122,8 @@
 								</tr>
 								<tr>
 									<td>총 주문 상품수</td>
-									<td><span class="totalKind_span"> </span> <span
-										class="totalCount_span"></span> 개</td>
+									<td>
+									<span class="totalCount_span"></span> 개</td>
 								</tr>
 							</table>
 						</td>
@@ -162,65 +169,39 @@
 			<a class="order_btn">주문하기</a>
 		</div>
 		<!-- 수량 조정 form -->
-		<form action="/shopbasket/update" method="post"
+		<form action="${pageContext.request.contextPath}/shopbasket/update" method="post"
 			class="quantity_update_form">
-<!-- 			<input type="hidden" name="shopbasketId" class="update_shopbasketId"> -->			
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+						
+<!-- 		<input type="hidden" name="shopbasketId" class="update_shopbasketId"> -->			
 			<input type="hidden" name="sb_amount" class="update_sbamount">
-			<input type="hidden" name="m_id" value="${member.m_id}">
+			<input type="hidden" name="p_id" class="update_pid">		
+			<input type="hidden" name="poi_id" class="update_poiid">
+			<input type="hidden" name="m_id" value="update_mid">
 		</form>
 		<!-- 삭제 form -->
-		<form action="/shopbasket/delete" method="post"
+		<form action="<%=request.getContextPath() %>/shopbasket/delete" method="post"
 			class="quantity_delete_form">
-			<input type="hidden" name="shopbasketId" class="delete_shopbasketId">
-			<input type="hidden" name="memberId" value="${member.m_id}">
-		</form>
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+						
+			<input type="hidden" name="p_id" class="delete_pid">
+<%-- 			<input type="hidden" name="m_id" value="${sb.m_id}">
+ --%>		
+ 		</form> 
 		<!-- 주문 form -->
-		<form action="/order/${member.memberId}" method="get"
-			class="order_form"></form>
+		<form action="${pageContext.request.contextPath}/order/list" method="post"
+			class="order_form">
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+		</form>		
+
 	</div>
-
-
-
 
 
 	<script>
 		$(document).ready(function() {
 
 			setTotalInfo();
-			/* 종합 정보 섹션 정보 삽입 */
-			/* 					let totalPrice = 0; // 총 가격
-			 let totalCount = 0; // 총 갯수
-			 let totalKind = 0; // 총 종류
-			 let finalTotalPrice = 0; // 최종 가격(총 가격 + 배송비)	
 
-			 $(".shopbasket_info_td").each(
-			 function(index, element) {
-
-			 // 총 가격
-			 totalPrice += parseInt($(element).find(
-			 ".individual_totalPrice_input").val());
-			 // 총 갯수
-			 totalCount += parseInt($(element).find(
-			 ".individual_itemCount_input").val());
-			 // 총 종류
-			 totalKind += 1;
-
-			 });
-
-			 /* 					/* 최종 가격 */
-			/* 					finalTotalPrice = totalPrice + deliveryPrice;
-			 */
-			/* 값 삽입 */
-			// 총 가격
-			/* 					$(".totalPrice_span").text(totalPrice.toLocaleString());
-			 */// 총 갯수
-			/* 					$(".totalCount_span").text(totalCount);
-			 */// 총 종류
-			/* 					$(".totalKind_span").text(totalKind);
-			 */// 최종 가격(총 가격 )
-			/* 					$(".finalTotalPrice_span").text(
-			 *//* 							finalTotalPrice.toLocaleString());
-			 */
 		});
 		$(".individual_shopbasket_checkbox").on("change", function() {
 			/* 총 주문 정보 세팅(배송비, 총 가격, 물품 수, 종류) */
@@ -259,7 +240,7 @@
 			} else if (totalPrice == 0) {
 				deliveryPrice = 0;
 			} else {
-				deliveryPrice = 3000;
+				deliveryPrice = 2000;
 			}
 
 			finalTotalPrice = totalPrice + deliveryPrice;
@@ -306,20 +287,34 @@
 
 		/* 수량 수정 버튼 */
 		$(".quantity_modify_btn").on("click", function() {
-			let sb_amount = $(this).data("sb_amount");
-			/* let bookCount = $(this).parent("td").find("input").val(); */
+			let sb_amount = $(this).siblings(".quantity_input").val();
 			$(".update_sbamount").val(sb_amount);
+			
+			let p_id = $(this).parents("tr").find(".individual_p_id_input").val();
+			$(".update_pid").val(p_id);
+			
+			let poi_id = $(this).parents("tr").find(".individual_poi_id_input").val();
+			$(".update_poiid").val(poi_id);
+			
 			$(".quantity_update_form").submit();
-
+			//let sb_amount = $(this).data("shopbasketId");
+			/* let bookCount = $(this).parent("td").find("input").val(); */
 		});
 
 		/* 장바구니 삭제 버튼 */
-		$(".delete_btn").on("click", function(e) {
-			e.preventDefault();
-			const shopbasketId = $(this).data("p_id");
-			$(".delete_p_id").val(p_id);
+ 		$(".delete_btn").on("click", function(e) {
+ 			/* 			e.preventDefault();
+			const shopbasketId = $(this).data("p_id"); */
+			
+			let p_id = $(this).parents("tr").find(".individual_p_id_input").val();
+			$(".delete_pid").val(p_id);
+			
+		/* 	let poi_id = $(this).parents("tr").find(".individual_poi_id_input").val();
+			$(".update_poiid").val(poi_id); */			
+		/* 	$(".delete_pid").val(p_id); */
 			$(".quantity_delete_form").submit();
-		});
+		}); 
+		
 		
 		
 		/* 주문 페이지 이동 */	
@@ -328,25 +323,25 @@
 			let form_contents ='';
 			let orderNumber = 0;
 			
-			$(".shopbasket").each(function(index, element){
+			$(".shopbasketInfo_td").each(function(index, element){
 				
 				if($(element).find(".individual_shopbasket_checkbox").is(":checked") === true){	//체크여부
 					
-					let p_id = $(element).find(".individual_p_idd_input").val();
-					let sb_amount = $(element).find(".individual_sb_amount_input").val();
+					let p_id = $(element).find(".individual_p_id_input").val();
+					let sb_amount = $(element).find(".individual_sbAmount_input").val();
 					
-					let p_id_input = "<input name='orders[" + orderNumber + "].p_id' type='hidden' value='" + p_id + "'>";
-					form_contents += bookId_input;
+					let p_id_input = "<input name='p_id' type='hidden' value='" + p_id + "'>";
+					form_contents += p_id_input;
 					
-					let sb_amount_input = "<input name='orders[" + orderNumber + "].sb_amount' type='hidden' value='" + sb_amount + "'>";
+					let sb_amount_input = "<input name='sb_amount' type='hidden' value='" + sb_amount + "'>";
 					form_contents += sb_amount_input;
 					
 					orderNumber += 1;
 					
 				}
 			});	
-
-			$(".order_form").html(form_contents);
+			//form_contents += '<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />';
+			$(".order_form").append(form_contents);
 			$(".order_form").submit();
 			
 		});

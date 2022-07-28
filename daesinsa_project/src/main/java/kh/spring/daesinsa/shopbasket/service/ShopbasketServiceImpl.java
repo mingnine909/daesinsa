@@ -24,14 +24,15 @@ public class ShopbasketServiceImpl implements ShopbasketService {
 
 	//장바구니 수정
 	@Override
-	public int modifyCount(int sb_amount) {
-		return dao.modifyCount(sb_amount);
+	public int modifyCount(int sb_amount, String p_id, String poi_id) {
+	//public int modifyCount(int sb_amount, String p_id, String_poi_id) {//
+		return dao.modifyCount(sb_amount, p_id, poi_id);
 	}
 	
 	//장바구니 삭제
 	@Override
-	public int deleteShopbasket(int p_id) {
-		return dao.deleteShopbasket(p_id);
+	public int deleteShopbasket(Shopbasket shopbasket) {
+		return dao.deleteShopbasket(shopbasket);
 	}
 
 	

@@ -2,6 +2,9 @@ package kh.spring.daesinsa.order.domain;
 
 import java.sql.Date;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Order {
 	private String o_num;
 	private Date o_date;

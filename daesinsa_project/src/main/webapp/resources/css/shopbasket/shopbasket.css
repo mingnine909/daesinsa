@@ -29,7 +29,7 @@
 	 }	  
 
 	 .content_subject{
-		height: 110px;
+		height: 80px;
 	    line-height: 110px;
 	    background-color: #000000;
 	    margin-bottom: 60px; 
@@ -39,18 +39,18 @@
 		    padding-left: 30 px;
 		    display: inline-block;
 		    color: white;
-		    font-size: 50px;
+		    font-size: 30px;
 		    font-weight: bolder; 
 		 }
 	 
 	 .content_totalCount_section{
 	 	margin-bottom: 12px;
 	 }
-	 .content_btn_section{
+	 .btn_content_section{
 	 	margin-top: 20px;
 	 	text-align: right;
 	 }
-	 	.content_btn_section a{
+	 	.btn_content_section a{
 	    color: #fefeff;
 	    background-color: #365fdd;
 	    min-width: 125px;
@@ -191,16 +191,3 @@
 			    border: 1px dotted #d1c7c7;
 			    margin: 5px 0 5px 0;		
 			}
-/* table {border: solid 1px rgb(233, 233, 233);
-    width: 80%; margin: auto;
-
-}
-
-td, th{
-border-bottom: solid 1px rgb(233, 233, 233) ;
-
-}
-
-
-
-.guide_text{font-size: 12px;} */
