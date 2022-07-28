@@ -92,8 +92,6 @@
 					</button>
 				</form>
 				<ul class="navbar-nav mb-2 mb-lg-0">
-					<li class="nav-item"><a class="nav-link"  href="${pageContext.request.contextPath}/mypage/order"><i
-							class="xi-user xi-2x"><p class="icon_des">마이페이지</p></i></a></li>
 					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/shop/wishlist"><i
 							class="xi-heart xi-2x"><p class="icon_des">위시리스트</p></i></a></li>
 					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/shopbasket/list"><i
