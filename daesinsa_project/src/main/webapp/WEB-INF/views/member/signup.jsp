@@ -51,7 +51,6 @@
 				<input type="text" class="form-control"  aria-describedby="button-addon2" name="id_input" id="id" required>
 				<button class="btn btn-outline-secondary" type="button" id="idcheck-btn" value="N">중복확인</button>
 			</div>
-			<span class="final_id_ck">아이디를 입력해주세요.</span>
 			<div class="mb-3">
 				<label for="formGroupExampleInput" class="form-label">비밀번호<span class="text-muted">(필수)</span></label> 
 				<input type="password" class="form-control" name="password" id="pw_input" required>
