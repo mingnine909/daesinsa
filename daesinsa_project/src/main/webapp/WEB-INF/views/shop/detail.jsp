@@ -128,6 +128,12 @@
 				  
 				</c:forEach>
 				 </select>
+				 
+				  <!-- poi_id 값 가져오기 -->
+				 <c:forEach items="${detail.p_option_info}" var="option">
+				 <input type="hidden" value="${option.poi_id}" id="poi_id_hidden">
+				 </c:forEach>
+				 
 				  
 				 <!-- po_id 값 가져오기 -->
 				 <c:forEach items="${detail.p_option_info}" var="option">
@@ -178,7 +184,7 @@
 						console.log(sbAmountVal); 
 						var totalCntVal = priceVal * sbAmountVal;
 						console.log(totalCntVal);
-						var poiIdVal = $('#product_option').val();
+						var poiIdVal = $('#poi_id_hidden').val();
 						console.log(poiIdVal);
 						var poIdVal = $('#poi_hidden').val();
 						console.log(poIdVal);	

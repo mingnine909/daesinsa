@@ -45,7 +45,7 @@
 <mapper resource="mappers/cs-mapper.xml"/>
 <!-- 조병국 -->
 <mapper resource="mappers/shopbasket-mapper.xml"/>
-<mapper resource="mappers/order-mapper.xml"/>
+<!-- <mapper resource="mappers/order-mapper.xml"/> -->
 </mappers> 
 
 </configuration>
